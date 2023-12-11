@@ -1,5 +1,6 @@
 "use client";
 import KaKaoImg from "/public/kakao_login_medium_wide.png";
+import googleImg from "/public/google_login_medium_wide.png";
 import { ChangeEventHandler, useState } from "react";
 import style from "@/app/(loginLayout)/init/signin/signin.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
@@ -90,6 +91,14 @@ export default function SignIn() {
               width={0}
               height={0}
               src={KaKaoImg}
+              style={{ cursor: "pointer", width: "100%", height: "auto" }}
+              onClick={handleKakaoLogin}
+            />
+            <Image
+              alt="kakao"
+              width={0}
+              height={0}
+              src={googleImg}
               style={{ cursor: "pointer", width: "100%", height: "auto" }}
               onClick={handleKakaoLogin}
             />

@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import styles from "@/app/page.module.css";
 import Script from "next/script";
+import Link from "next/link";
 
 export default function LoginLayout({
   children,
@@ -9,7 +10,9 @@ export default function LoginLayout({
 }) {
   return (
     <div className={styles.loginContainer}>
-      LOGIN LAYOUT
+      <header className={styles.loginHeader}>
+        <Link href="/">LOGO</Link>
+      </header>
       {children}
       <Script
         src="https://code.jquery.com/jquery-1.12.4.min.js"

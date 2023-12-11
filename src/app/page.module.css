@@ -1,8 +1,15 @@
 .loginContainer {
+  height: 100dvh;
+  width: 100dvw;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100dvh;
+}
+
+.loginHeader {
+  top: 0;
+  padding: 3rem;
+  border: 1px solid gray;
 }
 
 .main {
