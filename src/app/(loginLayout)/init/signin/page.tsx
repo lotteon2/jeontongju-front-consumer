@@ -4,7 +4,7 @@ import style from "@/app/(loginLayout)/init/signin/signin.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Link from "next/link";
 import Image from "next/image";
-// import KaKaoImg from "/kakao_login_medium_wide.png";
+import KaKaoImg from "public/kakao_login_medium_wide.png";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
@@ -86,18 +86,20 @@ export default function SignIn() {
             >
               로그인하기
             </button>
-            <img
+            <Image
               alt="kakao"
               width={800}
               height={100}
-              src="/kakao_login_medium_wide.png"
+              src={KaKaoImg}
               style={{ cursor: "pointer" }}
               onClick={handleKakaoLogin}
             />
           </div>
         </form>
-        <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
-        <Link href="/init/signup"> 계정 만들기</Link>
+        <div>
+          <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
+          <Link href="/init/signup"> 계정 만들기</Link>
+        </div>
       </div>
     </>
   );
