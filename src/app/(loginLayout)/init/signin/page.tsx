@@ -4,7 +4,7 @@ import style from "@/app/(loginLayout)/init/signin/signin.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Link from "next/link";
 import Image from "next/image";
-import KaKaoImg from "public/kakao_login_medium_wide.png";
+import KaKaoImg from "@/public/kakao_login_medium_wide.png";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
