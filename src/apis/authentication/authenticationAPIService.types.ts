@@ -30,7 +30,15 @@ export type CheckEmailResponseData = {
   authCode: string;
 };
 
+export interface UpdateMyPasswordParams {
+  email: string;
+  memberRole: string;
+  newPassword: string;
+}
+
 export type CheckEmailResponse = ApiResponse<CheckEmailResponseData>;
 
 export type SignInResponse = ApiResponse<SignInResponseData>;
 export type SignUpResponse = ApiResponse<string>;
+export type CheckMyEmailResponse = ApiResponse<{ authCode: string }>;
+export type UpdateMyPasswordBeforeLoginResponse = ApiResponse<string>;

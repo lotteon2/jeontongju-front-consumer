@@ -2,10 +2,13 @@ import { authAxiosInstance, unAuthAxiosInstance } from "../common";
 import {
   CheckEmailParams,
   CheckEmailResponse,
+  CheckMyEmailResponse,
   SignInParams,
   SignInResponse,
   SignUpParams,
   SignUpResponse,
+  UpdateMyPasswordBeforeLoginResponse,
+  UpdateMyPasswordParams,
 } from "./authenticationAPIService.types";
 
 const authAPI = {
@@ -34,6 +37,25 @@ const authAPI = {
       "/authentication-service/api/sign-up/email/auth",
       params
     );
+    return data;
+  },
+  /* 로그인 전 비밀번호 찾기시 이메일 인증 단계 */
+  checkMyEmail: async (email: string) => {
+    const { data } = await unAuthAxiosInstance.post<CheckMyEmailResponse>(
+      "/authentication-service/api/password",
+      {
+        email,
+      }
+    );
+    return data;
+  },
+  /* 로그인 전 비밀번호 재설정 */
+  updateMyPasswordBeforeLogin: async (params: UpdateMyPasswordParams) => {
+    const { data } =
+      await unAuthAxiosInstance.patch<UpdateMyPasswordBeforeLoginResponse>(
+        "/password",
+        params
+      );
     return data;
   },
 };
