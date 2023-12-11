@@ -2,7 +2,7 @@
 import { ChangeEventHandler, useState } from "react";
 import style from "./findMyPassword.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
-export default function findMyPassword() {
+export default function FindMyPassword() {
   const [email, setEmail] = useState<string>(null);
   const [authCode, setAuthcode] = useState<string>(null);
   const [inputAuthCode, setInputAuthCode] = useState<string>("");
