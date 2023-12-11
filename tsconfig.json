@@ -23,8 +23,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@emotion/react/*": ["node_modules/@emotion/react/*"],
-      "@emotion/styled/*": ["node_modules/@emotion/styled/*"],
+      "react": ["./node_modules/@types/react"],
       "next/*": ["node_modules/next/types"]
     }
   },
