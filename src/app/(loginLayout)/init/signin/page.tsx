@@ -47,8 +47,7 @@ export default function SignIn() {
 
   return (
     <>
-      {/* <Script src="https://developers.kakao.com/sdk/js/kakao.js"></Script> */}
-      <div>
+      <div className={style.signInContainer}>
         <form onSubmit={onSubmit}>
           <div className={style.modalBody}>
             <div className={style.inputDiv}>
@@ -88,8 +87,6 @@ export default function SignIn() {
             </button>
             <Image
               alt="kakao"
-              width={800}
-              height={100}
               src={KaKaoImg}
               style={{ cursor: "pointer" }}
               onClick={handleKakaoLogin}
