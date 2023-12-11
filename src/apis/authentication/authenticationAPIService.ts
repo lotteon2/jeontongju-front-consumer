@@ -26,7 +26,7 @@ const authAPI = {
     return data;
   },
   signUp: async (params: SignUpParams) => {
-    const { data } = await authAxiosInstance.post<SignUpResponse>(
+    const { data } = await unAuthAxiosInstance.post<SignUpResponse>(
       "/authentication-service/api/consumers/sign-up",
       params
     );
