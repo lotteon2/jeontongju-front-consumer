@@ -3,11 +3,11 @@ import { ChangeEventHandler, useState } from "react";
 import style from "./findMyPassword.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 export default function FindMyPassword() {
-  const [email, setEmail] = useState<string>(null);
-  const [authCode, setAuthcode] = useState<string>(null);
+  const [email, setEmail] = useState<string>("");
+  const [authCode, setAuthcode] = useState<string>("");
   const [inputAuthCode, setInputAuthCode] = useState<string>("");
   const [authUser, setAuthUser] = useState<boolean>(false);
-  const [newPassword, setNewPassword] = useState<string>(null);
+  const [newPassword, setNewPassword] = useState<string>("");
 
   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 
@@ -20,7 +20,7 @@ export default function FindMyPassword() {
   };
 
   const onChangeInputAuthCode: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setAuthcode(e.target.value);
+    setInputAuthCode(e.target.value);
   };
 
   const onSubmitEmail = async () => {

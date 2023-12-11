@@ -11,16 +11,16 @@ export default function SignUp() {
   const [isClickedCheckEmail, setIsClickedCheckEmail] =
     useState<boolean>(false);
   const [isAbleToMerge, setIsAbleToMerge] = useState<boolean>(false);
-  const [authCode, setAuthcode] = useState<string>(null);
+  const [authCode, setAuthcode] = useState<string>("");
 
-  const [code, setCode] = useState<string>(null);
-  const [email, setEmail] = useState<string>(null);
-  const [password, setPassword] = useState<string>(null);
-  const [checkPassword, setCheckPassword] = useState<string>(null);
-  const [imp_uid, setImpUid] = useState<string>(null);
-  const [isMerge, setIsMerge] = useState<boolean>(null);
+  const [code, setCode] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [checkPassword, setCheckPassword] = useState<string>("");
+  const [imp_uid, setImpUid] = useState<string>("");
+  const [isMerge, setIsMerge] = useState<boolean>(false);
 
-  const [message, setMessage] = useState<string>(null);
+  const [message, setMessage] = useState<string>("");
 
   const checkEmail = async () => {
     try {

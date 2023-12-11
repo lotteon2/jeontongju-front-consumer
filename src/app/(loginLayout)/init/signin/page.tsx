@@ -7,9 +7,9 @@ import Script from "next/script";
 import Image from "next/image";
 
 export default function SignIn() {
-  const [email, setEmail] = useState<string>(null);
-  const [password, setPassword] = useState<string>(null);
-  const [message, setMessage] = useState<string>(null);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
   const onSubmit = async (e: any) => {
     e.preventDefault();
     try {
