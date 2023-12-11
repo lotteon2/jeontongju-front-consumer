@@ -3,8 +3,8 @@ import { ChangeEventHandler, useState } from "react";
 import style from "@/app/(loginLayout)/init/signin/signin.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Link from "next/link";
-import Script from "next/script";
 import Image from "next/image";
+// import KaKaoImg from "/kakao_login_medium_wide.png";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
@@ -24,7 +24,6 @@ export default function SignIn() {
       setMessage("아이디와 비밀번호가 일치하지 않습니다.");
     }
   };
-  const onClickClose = () => {};
 
   const onChangeEmail: ChangeEventHandler<HTMLInputElement> = (e) => {
     setEmail(e.target.value);
@@ -87,12 +86,11 @@ export default function SignIn() {
             >
               로그인하기
             </button>
-            <Image
+            <img
               alt="kakao"
               width={800}
               height={100}
               src="/kakao_login_medium_wide.png"
-              preview={false}
               style={{ cursor: "pointer" }}
               onClick={handleKakaoLogin}
             />
