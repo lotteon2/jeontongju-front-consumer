@@ -90,14 +90,18 @@ export default function SignIn() {
               width={0}
               height={0}
               src={KaKaoImg}
-              style={{ cursor: "pointer" ,width:'100%', height:'auto'}}
+              style={{ cursor: "pointer", width: "100%", height: "auto" }}
               onClick={handleKakaoLogin}
             />
           </div>
         </form>
         <div>
-          <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
-          <Link href="/init/signup"> 계정 만들기</Link>
+          <>
+            <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
+          </>
+          <>
+            <Link href="/init/signup"> 계정 만들기</Link>
+          </>
         </div>
       </div>
     </>
