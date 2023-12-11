@@ -1,8 +1,3 @@
-export default async function Login() {
-
-    return (
-        <>
-            LOGIN
-        </>
-    );
+export default async function Seller() {
+  return <>SellerDetail</>;
 }
