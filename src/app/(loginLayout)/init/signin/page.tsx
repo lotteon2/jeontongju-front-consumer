@@ -95,9 +95,9 @@ export default function SignIn() {
               onClick={handleKakaoLogin}
             />
           </div>
-          <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
-          <Link href="/init/signup"> 계정 만들기</Link>
         </form>
+        <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
+        <Link href="/init/signup"> 계정 만들기</Link>
       </div>
     </>
   );
