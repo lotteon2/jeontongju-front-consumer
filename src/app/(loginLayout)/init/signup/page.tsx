@@ -3,7 +3,7 @@ import consumerAPI from "@/apis/consumer/consumerAPIService";
 import style from "@/app/(loginLayout)/init/signup/signup.module.css";
 import { ChangeEventHandler, useState } from "react";
 import Image from "next/image";
-import Script from "next/script";
+import KaKaoImg from "../public/kakao_login_medium_wide.png";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 
 export default function SignUp() {
@@ -205,9 +205,7 @@ export default function SignUp() {
           <div className={style.message}>{message}</div>
           <Image
             alt="kakao"
-            width={1000}
-            height={500}
-            src="/adultValid.png"
+            src={KaKaoImg}
             preview={false}
             style={{ cursor: "pointer" }}
             onClick={handleAdultValid}
