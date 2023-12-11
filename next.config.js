@@ -4,6 +4,7 @@ const nextConfig = {
     nextScriptWorkers: true,
   },
   images: {
+    formats: ["image/webp"],
     remotePatterns: [
       {
         protocol: "https",
