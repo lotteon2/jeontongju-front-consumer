@@ -107,15 +107,16 @@ export default function SignUp() {
 
   return (
     <>
-      <Script
-        src="https://code.jquery.com/jquery-1.12.4.min.js"
-        strategy="beforeInteractive"
-      />
-      <Script
-        src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
-        strategy="beforeInteractive"
-      />
       <div>
+        {/* <Script
+          src="https://code.jquery.com/jquery-1.12.4.min.js"
+          strategy="beforeInteractive"
+          async
+        />
+        <Script
+          src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
+          strategy="beforeInteractive"
+        /> */}
         <form onSubmit={onSubmit}>
           <div className={style.modalBody}>
             <div className={style.inputDiv}>

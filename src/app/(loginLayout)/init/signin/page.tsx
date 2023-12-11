@@ -48,7 +48,7 @@ export default function SignIn() {
 
   return (
     <>
-      <Script src="https://developers.kakao.com/sdk/js/kakao.js"></Script>
+      {/* <Script src="https://developers.kakao.com/sdk/js/kakao.js"></Script> */}
       <div>
         <form onSubmit={onSubmit}>
           <div className={style.modalBody}>
