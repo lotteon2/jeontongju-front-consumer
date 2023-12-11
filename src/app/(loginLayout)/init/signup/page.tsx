@@ -3,7 +3,7 @@ import consumerAPI from "@/apis/consumer/consumerAPIService";
 import style from "@/app/(loginLayout)/init/signup/signup.module.css";
 import { ChangeEventHandler, useState } from "react";
 import Image from "next/image";
-import KaKaoImg from "../public/kakao_login_medium_wide.png";
+import KaKaoImg from "/kakao_login_medium_wide.png";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 
 export default function SignUp() {
