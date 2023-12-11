@@ -1,14 +1,9 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "types": [
-      "@emotion/react/types/css-prop"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["@emotion/react/types/css-prop"],
+    "typeRoots": ["src/types"],
     "baseUrl": ".",
     "allowJs": true,
     "skipLibCheck": true,
@@ -27,27 +22,12 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@emotion/react/*": [
-        "node_modules/@emotion/react/*"
-      ],
-      "@emotion/styled/*": [
-        "node_modules/@emotion/styled/*"
-      ],
-      "next/*": [
-        "node_modules/next/types"
-      ]
+      "@/*": ["./src/*"],
+      "@emotion/react/*": ["node_modules/@emotion/react/*"],
+      "@emotion/styled/*": ["node_modules/@emotion/styled/*"],
+      "next/*": ["node_modules/next/types"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

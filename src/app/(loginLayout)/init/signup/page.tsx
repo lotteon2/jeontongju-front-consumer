@@ -204,8 +204,8 @@ export default function SignUp() {
           </div>
           <div className={style.message}>{message}</div>
           <Image
-            alt="kakao"
-            src={KaKaoImg}
+            alt="adultValidImg"
+            src={adultValidImg}
             preview={false}
             style={{ cursor: "pointer" }}
             onClick={handleAdultValid}
