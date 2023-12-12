@@ -45,23 +45,25 @@ export default function SignUp() {
     }
   };
 
-  const onChangeEmail: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const onChangeEmail: ChangeEventHandler<HTMLInputElement> = (e: any) => {
     setEmail(e.target.value);
   };
 
-  const onChangePassword: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const onChangePassword: ChangeEventHandler<HTMLInputElement> = (e: any) => {
     setPassword(e.target.value);
   };
 
-  const onChangeCheckPassword: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const onChangeCheckPassword: ChangeEventHandler<HTMLInputElement> = (
+    e: any
+  ) => {
     setCheckPassword(e.target.value);
   };
 
-  const onChangeCode: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const onChangeCode: ChangeEventHandler<HTMLInputElement> = (e: any) => {
     setCode(e.target.value);
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const data = await authAPI.signUp({
@@ -81,7 +83,7 @@ export default function SignUp() {
     }
   };
 
-  const callback = (response) => {
+  const callback = (response: any) => {
     const { success, error_msg: errorMsg, imp_uid: responseImpUid } = response;
 
     if (success) {
