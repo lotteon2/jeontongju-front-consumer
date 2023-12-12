@@ -108,10 +108,12 @@ export default function SignIn() {
         </form>
         <div>
           <>
-            <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
+            <a href="/init/findMyPassword">비밀번호 찾기</a> |
+            {/* <Link href="/init/findMyPassword">비밀번호 찾기</Link> | */}
           </>
           <>
-            <Link href="/init/signup"> 계정 만들기</Link>
+            <a href="/init/signup">비밀번호 찾기</a> |
+            {/* <Link href="/init/signup"> 계정 만들기</Link> */}
           </>
         </div>
       </div>
