@@ -205,13 +205,14 @@ export default function SignUp() {
             </div>
           </div>
           <div className={style.message}>{message}</div>
-          <Image
+          <img src={adultValidImg} onClick={handleAdultValid} />
+          {/* <Image
             alt="adultValidImg"
             src={adultValidImg}
             preview={false}
             style={{ cursor: "pointer" }}
             onClick={handleAdultValid}
-          />
+          /> */}
           <div className={style.modalFooter}>
             <button
               className={style.actionButton}
