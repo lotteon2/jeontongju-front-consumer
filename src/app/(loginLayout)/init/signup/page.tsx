@@ -3,7 +3,7 @@ import adultValidImg from "/public/adultValid.png";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import style from "@/app/(loginLayout)/init/signup/signup.module.css";
 import { ChangeEventHandler, useState } from "react";
-import Image from "next/image";
+import Image from "next/Image";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 
 export default function SignUp() {

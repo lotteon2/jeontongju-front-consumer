@@ -5,7 +5,7 @@ import { ChangeEventHandler, useState } from "react";
 import style from "@/app/(loginLayout)/init/signin/signin.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/Image";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
