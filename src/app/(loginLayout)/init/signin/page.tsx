@@ -5,7 +5,7 @@ import { ChangeEventHandler, useState } from "react";
 import style from "@/app/(loginLayout)/init/signin/signin.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Link from "next/link";
-import Image from "next/Image";
+import Image from "next/image";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
@@ -86,22 +86,24 @@ export default function SignIn() {
             >
               로그인하기
             </button>
-            <Image
+            {/* <Image
               alt="kakao"
               width={0}
               height={0}
               src={KaKaoImg}
               style={{ cursor: "pointer", width: "100%", height: "auto" }}
               onClick={handleKakaoLogin}
-            />
-            <Image
+            /> */}
+            <img src={KaKaoImg} onClick={handleKakaoLogin} />
+            <img src={googleImg} onClick={handleKakaoLogin} />
+            {/* <Image
               alt="kakao"
               width={0}
               height={0}
               src={googleImg}
               style={{ cursor: "pointer", width: "100%", height: "auto" }}
               onClick={handleKakaoLogin}
-            />
+            /> */}
           </div>
         </form>
         <div>
