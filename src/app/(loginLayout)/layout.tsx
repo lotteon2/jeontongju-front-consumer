@@ -11,7 +11,9 @@ export default function LoginLayout({
   return (
     <div className={styles.loginContainer}>
       <header className={styles.loginHeader}>
-        <Link href="/">LOGO</Link>
+        {/* <Link href="/">LOGO</Link>
+         */}
+        <a href="/">LOGO</a>
       </header>
       {children}
       <Script
