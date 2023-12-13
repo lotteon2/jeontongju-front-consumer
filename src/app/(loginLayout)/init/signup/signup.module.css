@@ -7,21 +7,32 @@
   padding-top: 2rem;
 }
 
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .inputDiv {
   display: flex;
-  flex-direction: row;
-  height: 56px;
+  flex-direction: column;
+  height: 4rem;
   position: relative;
   margin: 12px 0;
+  width: 100%;
 }
 
 .inputButton {
   width: 8rem;
+  height: 4rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
 }
 
 .inputButton:hover {
   width: 8rem;
-  color: yellowgreen;
+  background-color: yellowgreen;
 }
 
 .inputLabel {
@@ -32,7 +43,7 @@
   border: 1px solid rgb(207, 217, 222);
   border-radius: 8px;
   font-size: 13px;
-  height: 56px;
+  height: 4rem;
   padding: 8px 8px 0;
   box-sizing: border-box;
   color: rgb(83, 100, 113);

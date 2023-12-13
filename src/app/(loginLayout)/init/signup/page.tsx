@@ -119,18 +119,20 @@ export default function SignUp() {
         />
         <form onSubmit={onSubmit}>
           <div className={style.modalBody}>
-            <div className={style.inputDiv}>
-              <label className={style.inputLabel} htmlFor="email">
-                이메일
-              </label>
-              <input
-                id="email"
-                className={style.input}
-                value={email}
-                onChange={onChangeEmail}
-                type="text"
-                placeholder=""
-              />
+            <div className={style.inputWrapper}>
+              <div className={style.inputDiv}>
+                <label className={style.inputLabel} htmlFor="email">
+                  이메일
+                </label>
+                <input
+                  id="email"
+                  className={style.input}
+                  value={email}
+                  onChange={onChangeEmail}
+                  type="text"
+                  placeholder=""
+                />
+              </div>
               <button
                 className={style.inputButton}
                 type="button"
