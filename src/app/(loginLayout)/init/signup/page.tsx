@@ -1,6 +1,5 @@
 "use client";
 import adultValidImg from "/public/adultValid.png";
-import consumerAPI from "@/apis/consumer/consumerAPIService";
 import style from "@/app/(loginLayout)/init/signup/signup.module.css";
 import { ChangeEventHandler, useState } from "react";
 import Image from "next/image";
@@ -12,7 +11,7 @@ export default function SignUp() {
   const [isClickedCheckEmail, setIsClickedCheckEmail] =
     useState<boolean>(false);
   const [isAbleToMerge, setIsAbleToMerge] = useState<boolean>(false);
-  const [authCode, setAuthcode] = useState<string>("");
+  const [authCode, setAuthcode] = useState<string>("1");
 
   const [code, setCode] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -130,7 +129,7 @@ export default function SignUp() {
                   value={email}
                   onChange={onChangeEmail}
                   type="text"
-                  placeholder=""
+                  placeholder="이메일을 입력해주세요"
                 />
               </div>
               <button
@@ -143,17 +142,25 @@ export default function SignUp() {
               </button>
             </div>
             {authCode && (
-              <div className={style.inputDiv}>
-                <label className={style.inputLabel}>유효 코드</label>
-                <input
-                  id="code"
-                  className={style.input}
-                  value={code}
-                  onChange={onChangeCode}
-                  type="text"
-                  placeholder=""
-                />
-                <button type="button" disabled={!email} onClick={checkAuthcode}>
+              <div className={style.inputWrapper}>
+                <div className={style.inputDiv}>
+                  <label className={style.inputLabel} htmlFor="code">
+                    유효 코드
+                  </label>
+                  <input
+                    id="code"
+                    className={style.input}
+                    value={code}
+                    onChange={onChangeCode}
+                    placeholder="유효코드를 입력해주세요"
+                  />
+                </div>
+                <button
+                  className={style.inputButton}
+                  type="button"
+                  disabled={!email}
+                  onClick={checkAuthcode}
+                >
                   {isCheckedEmail ? "인증완료" : "인증하기"}
                 </button>
               </div>
