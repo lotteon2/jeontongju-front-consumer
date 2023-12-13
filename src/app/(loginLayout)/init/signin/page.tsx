@@ -6,6 +6,7 @@ import style from "@/app/(loginLayout)/init/signin/signin.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
@@ -36,6 +37,8 @@ export default function SignIn() {
 
   const handleKakaoLogin = (e: any) => {
     e.preventDefault();
+    console.log(e);
+    console.log(window.kakao);
     if (window.Kakao) {
       window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
       console.log(window.Kakao.isInitialized());
@@ -48,6 +51,7 @@ export default function SignIn() {
 
   return (
     <>
+      <Script src="https://developers.kakao.com/sdk/js/kakao.js" async></Script>
       <div className={style.signInContainer}>
         <form onSubmit={onSubmit}>
           <div className={style.modalBody}>
@@ -106,7 +110,7 @@ export default function SignIn() {
         </form>
         <div>
           <>
-            <Link href="/init/findMyPassword">비밀번호 찾기</Link> | 
+            <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
           </>
           <>
             <Link href="/init/signup"> 계정 만들기</Link>
