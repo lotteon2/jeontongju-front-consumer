@@ -35,7 +35,7 @@ const authAPI = {
   checkEmail: async (params: CheckEmailParams) => {
     const { data } = await unAuthAxiosInstance.post<CheckEmailResponse>(
       "/authentication-service/api/sign-up/email/auth",
-      params
+      { ...params, memberRole: "ROLE_CONSUMER" }
     );
     return data;
   },
