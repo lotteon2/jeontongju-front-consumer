@@ -2,17 +2,17 @@ import { ReactNode } from "react";
 import styles from "@/app/page.module.css";
 import Script from "next/script";
 import Link from "next/link";
+import NextServer from "next/script";
 
 export default function LoginLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode | typeof NextServer;
 }) {
   return (
     <div className={styles.loginContainer}>
       <header className={styles.loginHeader}>
-        {/* <Link href="/">LOGO</Link>
-         */}
+        <Link href="/">LOGO</Link>
         <a href="/">LOGO</a>
       </header>
       {children}

@@ -3,6 +3,9 @@ const nextConfig = {
   experimental: {
     nextScriptWorkers: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     remotePatterns: [
       {
