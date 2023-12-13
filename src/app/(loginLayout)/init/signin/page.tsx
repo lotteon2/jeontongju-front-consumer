@@ -6,7 +6,6 @@ import style from "@/app/(loginLayout)/init/signin/signin.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Link from "next/link";
 import Image from "next/image";
-import Script from "next/script";
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>("");
@@ -97,7 +96,7 @@ export default function SignIn() {
               width={0}
               height={0}
               src={KaKaoImg}
-              style={{ cursor: "pointer", width: "100%", height: "auto" }}
+              style={{ cursor: "pointer", width: "100%", height: "50px" }}
               onClick={handleKakaoLogin}
             />
             <Image
@@ -105,18 +104,14 @@ export default function SignIn() {
               width={0}
               height={0}
               src={googleImg}
-              style={{ cursor: "pointer", width: "100%", height: "auto" }}
+              style={{ cursor: "pointer", width: "100%", height: "50px" }}
               onClick={handleGoogleLogin}
             />
           </div>
         </form>
         <div>
-          <>
-            <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
-          </>
-          <>
-            <Link href="/init/signup"> 계정 만들기</Link>
-          </>
+          <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
+          <Link href="/init/signup"> 계정 만들기</Link>
         </div>
       </div>
     </>
