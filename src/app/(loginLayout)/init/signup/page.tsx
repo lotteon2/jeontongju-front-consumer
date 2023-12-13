@@ -5,6 +5,7 @@ import style from "@/app/(loginLayout)/init/signup/signup.module.css";
 import { ChangeEventHandler, useState } from "react";
 import Image from "next/image";
 import authAPI from "@/apis/authentication/authenticationAPIService";
+import Script from "next/script";
 
 export default function SignUp() {
   const [isCheckedEmail, setIsCheckedEmail] = useState<boolean>(false);
