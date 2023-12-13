@@ -1,52 +1,27 @@
-.modalBackground {
-  width: 100vw;
+.signUpContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.4);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.modal {
-  background: #ffffff;
-  position: relative;
-  top: 5%;
-  max-width: 80vw;
-  min-width: 600px;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  height: 450px;
-}
-
-.modalHeader {
-  padding: 36px 80px 20px;
-  font-size: 31px;
-  font-weight: bold;
-}
-
-.modal form {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.modalBody {
-  flex: 1;
-  padding: 0 80px;
+  padding-top: 2rem;
 }
 
 .inputDiv {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   height: 56px;
   position: relative;
   margin: 12px 0;
+}
+
+.inputButton {
+  width: 8rem;
+}
+
+.inputButton:hover {
+  width: 8rem;
+  color: yellowgreen;
 }
 
 .inputLabel {
@@ -55,10 +30,11 @@
   position: absolute;
   top: 0;
   border: 1px solid rgb(207, 217, 222);
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 13px;
   height: 56px;
   padding: 8px 8px 0;
+  box-sizing: border-box;
   color: rgb(83, 100, 113);
 }
 
@@ -75,60 +51,13 @@
   outline: none;
 }
 
-.modalFooter {
-  padding: 24px 80px;
-}
-
 .actionButton {
   width: 100%;
   height: 50px;
-  border-radius: 25px;
+  border-radius: 8px;
   background-color: rgb(15, 20, 25);
   color: white;
   font-size: 17px;
   cursor: pointer;
   border: none;
-}
-
-.actionButton:disabled {
-  opacity: 0.5;
-}
-
-.actionButton:hover {
-  background-color: rgb(39, 44, 48);
-}
-
-.closeButton {
-  width: 34px;
-  height: 34px;
-  border-radius: 17px;
-  border: none;
-  cursor: pointer;
-  background-color: #fff;
-  position: absolute;
-  left: 16px;
-  top: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.closeButton:hover {
-  background-color: rgba(15, 20, 25, 0.1);
-}
-
-.adultCheck {
-  width: 100%;
-  height: 20rem;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-image: url();
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 100% 100%;
-  cursor: pointer;
-  margin-bottom: 1rem;
 }

@@ -111,15 +111,10 @@ export default function SignUp() {
 
   return (
     <>
-      <div>
-        <Script
-          src="https://code.jquery.com/jquery-1.12.4.min.js"
-          strategy="beforeInteractive"
-          async
-        />
+      <div className={style.signUpContainer}>
+        <Script src="https://code.jquery.com/jquery-1.12.4.min.js" async />
         <Script
           src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
-          strategy="beforeInteractive"
           async
         />
         <form onSubmit={onSubmit}>
@@ -136,7 +131,12 @@ export default function SignUp() {
                 type="text"
                 placeholder=""
               />
-              <button type="button" disabled={!email} onClick={checkEmail}>
+              <button
+                className={style.inputButton}
+                type="button"
+                disabled={!email}
+                onClick={checkEmail}
+              >
                 {isCheckedEmail ? "인증완료" : "인증하기"}
               </button>
             </div>
