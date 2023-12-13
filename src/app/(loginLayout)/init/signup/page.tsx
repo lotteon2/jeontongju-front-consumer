@@ -11,7 +11,7 @@ export default function SignUp() {
   const [isClickedCheckEmail, setIsClickedCheckEmail] =
     useState<boolean>(false);
   const [isAbleToMerge, setIsAbleToMerge] = useState<boolean>(false);
-  const [authCode, setAuthcode] = useState<string>("1");
+  const [authCode, setAuthcode] = useState<string>("");
 
   const [code, setCode] = useState<string>("");
   const [email, setEmail] = useState<string>("");
