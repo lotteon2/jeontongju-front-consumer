@@ -54,7 +54,7 @@ const authAPI = {
     const { data } =
       await unAuthAxiosInstance.patch<UpdateMyPasswordBeforeLoginResponse>(
         "/password",
-        params
+        { ...params, memberRole: "ROLE_CONSUMER" }
       );
     return data;
   },

@@ -32,7 +32,6 @@ export type CheckEmailResponseData = {
 
 export interface UpdateMyPasswordParams {
   email: string;
-  memberRole: string;
   newPassword: string;
 }
 

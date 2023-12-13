@@ -51,7 +51,6 @@ export default function FindMyPassword() {
       const params = {
         email,
         newPassword,
-        memberRole: "ROLE_SELLER",
       };
       const result = await authAPI.updateMyPasswordBeforeLogin(params);
       if (result.code === 200) {
