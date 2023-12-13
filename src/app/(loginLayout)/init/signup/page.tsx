@@ -70,7 +70,7 @@ export default function SignUp() {
       const data = await authAPI.signUp({
         email,
         password,
-        imp_uid,
+        impUid: imp_uid,
         isMerge,
       });
       if (data.code === 200) {

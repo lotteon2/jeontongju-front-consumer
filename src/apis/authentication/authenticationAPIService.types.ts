@@ -14,7 +14,7 @@ export interface SignInParams {
 export interface SignUpParams {
   email: string;
   password: string;
-  imp_uid: string;
+  impUid: string;
   isMerge: boolean;
 }
 
