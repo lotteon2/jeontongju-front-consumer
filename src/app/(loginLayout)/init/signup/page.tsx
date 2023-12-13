@@ -138,7 +138,7 @@ export default function SignUp() {
                 {isCheckedEmail ? "인증완료" : "인증하기"}
               </button>
             </div>
-            {isCheckedEmail && (
+            {authCode && (
               <div className={style.inputDiv}>
                 <label className={style.inputLabel} htmlFor="email">
                   유효 코드
