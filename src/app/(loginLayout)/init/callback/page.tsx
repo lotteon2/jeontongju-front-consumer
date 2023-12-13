@@ -8,6 +8,7 @@ const Callback = () => {
   // const { query } = router;
   // const { code } = query;
   console.log(params?.get("code"));
+  localStorage.setItem("accessToken", params?.get("accessToken"));
   router.push("/");
 
   return <>CALLBACK {params?.get("code")}</>;
