@@ -44,7 +44,7 @@ export default function SignIn() {
     e.preventDefault();
     console.log(e);
     window.location.href =
-      "https://jeontongju-dev.shop/authentication-service/oauth2/authorization/kakao";
+      "https://jeontongju-dev.shop/authentication-service/oauth2/authorization/google";
     // window.location.href =
     //   "https://accounts.google.com/o/oauth2/auth?" +
     //   "client_id=239926923495-3v7i8t922da18fc2ftjrgt29acp1asr5.apps.googleusercontent.com&" +
@@ -102,7 +102,7 @@ export default function SignIn() {
               onClick={handleKakaoLogin}
             />
             <Image
-              alt="kakao"
+              alt="google"
               width={0}
               height={0}
               src={googleImg}
