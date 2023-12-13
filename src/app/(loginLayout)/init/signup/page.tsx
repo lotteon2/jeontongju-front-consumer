@@ -149,7 +149,7 @@ export default function SignUp() {
                   type="text"
                   placeholder=""
                 />
-                <button disabled={!email} onClick={checkAuthcode}>
+                <button type="button" disabled={!email} onClick={checkAuthcode}>
                   {isCheckedEmail ? "인증완료" : "인증하기"}
                 </button>
               </div>
