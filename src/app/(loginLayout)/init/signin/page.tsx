@@ -86,34 +86,30 @@ export default function SignIn() {
             >
               로그인하기
             </button>
-            {/* <Image
+            <Image
               alt="kakao"
               width={0}
               height={0}
               src={KaKaoImg}
               style={{ cursor: "pointer", width: "100%", height: "auto" }}
               onClick={handleKakaoLogin}
-            /> */}
-            <img src={KaKaoImg} onClick={handleKakaoLogin} />
-            <img src={googleImg} onClick={handleKakaoLogin} />
-            {/* <Image
+            />
+            <Image
               alt="kakao"
               width={0}
               height={0}
               src={googleImg}
               style={{ cursor: "pointer", width: "100%", height: "auto" }}
               onClick={handleKakaoLogin}
-            /> */}
+            />
           </div>
         </form>
         <div>
           <>
-            <a href="/init/findMyPassword">비밀번호 찾기</a> |
-            {/* <Link href="/init/findMyPassword">비밀번호 찾기</Link> | */}
+            <Link href="/init/findMyPassword">비밀번호 찾기</Link> |
           </>
           <>
-            <a href="/init/signup">비밀번호 찾기</a> |
-            {/* <Link href="/init/signup"> 계정 만들기</Link> */}
+            <Link href="/init/signup"> 계정 만들기</Link>
           </>
         </div>
       </div>
