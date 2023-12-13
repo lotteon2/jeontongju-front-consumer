@@ -44,11 +44,13 @@ export default function SignIn() {
     e.preventDefault();
     console.log(e);
     window.location.href =
-      "https://accounts.google.com/o/oauth2/auth?" +
-      "client_id=239926923495-3v7i8t922da18fc2ftjrgt29acp1asr5.apps.googleusercontent.com&" +
-      "redirect_uri=https://jeontongju-dev.shop/authentication-service/login/oauth2/code/google&" +
-      "response_type=token&" +
-      "scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
+      "https://jeontongju-dev.shop/authentication-service/oauth2/authorization/kakao";
+    // window.location.href =
+    //   "https://accounts.google.com/o/oauth2/auth?" +
+    //   "client_id=239926923495-3v7i8t922da18fc2ftjrgt29acp1asr5.apps.googleusercontent.com&" +
+    //   "redirect_uri=https://jeontongju-dev.shop/authentication-service/login/oauth2/code/google&" +
+    //   "response_type=token&" +
+    //   "scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
   };
 
   return (
