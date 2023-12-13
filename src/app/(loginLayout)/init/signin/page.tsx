@@ -44,7 +44,7 @@ export default function SignIn() {
       console.log(window.Kakao.isInitialized());
       window.Kakao.Auth.authorize({
         redirectUri:
-          "https://jeontongju-dev.shop/authentication-service/login/oauth2/code/kakao",
+          "https://jeontongju-dev.shop/authentication-service/oauth2/authorization/kakao",
       });
     }
   };
