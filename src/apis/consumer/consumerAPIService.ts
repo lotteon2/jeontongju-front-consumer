@@ -1,4 +1,4 @@
-import { authAxiosInstance, unAuthAxiosInstance } from "../common";
+import { authAxiosInstance } from "../common";
 import { GetMyInfoResponse } from "./consumerAPIservice.types";
 
 const consumerAPI = {

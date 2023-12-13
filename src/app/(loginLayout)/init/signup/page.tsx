@@ -5,8 +5,11 @@ import { ChangeEventHandler, useState } from "react";
 import Image from "next/image";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Script from "next/script";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
+  const router = useRouter();
+
   const [isCheckedEmail, setIsCheckedEmail] = useState<boolean>(false);
   const [isClickedCheckEmail, setIsClickedCheckEmail] =
     useState<boolean>(false);
@@ -74,6 +77,7 @@ export default function SignUp() {
       });
       if (data.code === 200) {
         console.log("회원가입 성공");
+        router.push("/init/signin");
       } else {
         setMessage("아이디와 비밀번호가 일치하지 않습니다.");
       }
