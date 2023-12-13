@@ -98,6 +98,7 @@ export default function SignUp() {
 
   const handleAdultValid = async () => {
     if (!window.IMP) return;
+    console.log(window);
     const { IMP } = window;
     IMP.init(process.env.NEXT_PUBLIC_INICIS);
     const data = {
@@ -119,6 +120,7 @@ export default function SignUp() {
         <Script
           src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
           strategy="beforeInteractive"
+          async
         />
         <form onSubmit={onSubmit}>
           <div className={style.modalBody}>
@@ -206,9 +208,11 @@ export default function SignUp() {
           <div className={style.message}>{message}</div>
           <Image
             alt="adultValidImg"
+            width={0}
+            height={0}
             src={adultValidImg}
             preview={false}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", width: "100%", height: "auto" }}
             onClick={handleAdultValid}
           />
           <div className={style.modalFooter}>
