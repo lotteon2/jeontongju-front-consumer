@@ -96,7 +96,7 @@ export default function FindMyPassword() {
                 disabled={authUser !== false && authCode !== null}
                 onClick={onSubmitAuthCode}
                 type="button"
-              />
+              ></button>
             </>
           )}
         </div>
@@ -111,8 +111,8 @@ export default function FindMyPassword() {
               className={style.input}
               value={newPassword}
               onChange={onChangeNewPassword}
-              type="text"
-              placeholder=""
+              type="password"
+              placeholder="새로운 비밀번호"
             />
             <button
               disabled={!newPassword}
