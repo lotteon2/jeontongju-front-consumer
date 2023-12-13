@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 const Callback = () => {
   const params = useSearchParams();
   const router = useRouter();
-  // const { query } = router;
-  // const { code } = query;
   console.log(params?.get("code"));
   localStorage.setItem("accessToken", params?.get("code"));
   router.push("/main");
