@@ -140,11 +140,9 @@ export default function SignUp() {
             </div>
             {authCode && (
               <div className={style.inputDiv}>
-                <label className={style.inputLabel} htmlFor="email">
-                  유효 코드
-                </label>
+                <label className={style.inputLabel}>유효 코드</label>
                 <input
-                  id="email"
+                  id="code"
                   className={style.input}
                   value={code}
                   onChange={onChangeCode}
