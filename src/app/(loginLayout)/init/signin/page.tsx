@@ -43,7 +43,8 @@ export default function SignIn() {
       window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
       console.log(window.Kakao.isInitialized());
       window.Kakao.Auth.authorize({
-        redirectUri: "https://jeontongju-dev.shop/login/oauth2/code/kakao",
+        redirectUri:
+          "https://jeontongju-dev.shop/authentication-service/login/oauth2/code/kakao",
       });
     }
   };
