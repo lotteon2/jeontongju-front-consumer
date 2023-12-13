@@ -52,14 +52,12 @@ export default function SignIn() {
   const handleGoogleLogin = (e: any) => {
     e.preventDefault();
     console.log(e);
-    console.log(window.kakao);
-    if (window.Kakao) {
-      window.Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
-      console.log(window.Kakao.isInitialized());
-      window.Kakao.Auth.authorize({
-        redirectUri: "https://jeontongju-dev.shop/login/oauth2/code/google",
-      });
-    }
+    window.location.href =
+      "https://accounts.google.com/o/oauth2/auth?" +
+      "client_id=239926923495-3v7i8t922da18fc2ftjrgt29acp1asr5.apps.googleusercontent.com&" +
+      "redirect_uri=https://jeontongju-dev.shop/authentication-service/login/oauth2/code/kakao&" +
+      "response_type=token&" +
+      "scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
   };
 
   return (
@@ -117,7 +115,7 @@ export default function SignIn() {
               height={0}
               src={googleImg}
               style={{ cursor: "pointer", width: "100%", height: "auto" }}
-              onClick={handleKakaoLogin}
+              onClick={handleGoogleLogin}
             />
           </div>
         </form>
