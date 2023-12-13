@@ -74,9 +74,9 @@ export default function FindMyPassword() {
               value={email}
               onChange={onChangeEmail}
               type="text"
-              placeholder=""
+              placeholder="회원가입 당시 사용했던 이메일을 입력해주세요"
             />
-            <button disabled={!email} onClick={onSubmitEmail}></button>
+            <button disabled={!email} onClick={onSubmitEmail}>발송</button>
           </div>
           {authCode && (
             <>

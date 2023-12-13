@@ -42,9 +42,10 @@ const authAPI = {
   /* 로그인 전 비밀번호 찾기시 이메일 인증 단계 */
   checkMyEmail: async (email: string) => {
     const { data } = await unAuthAxiosInstance.post<CheckMyEmailResponse>(
-      "/authentication-service/api/password",
+      "/authentication-service/api/email/auth",
       {
         email,
+        memberRole: "ROLE_CONSUMER",
       }
     );
     return data;
