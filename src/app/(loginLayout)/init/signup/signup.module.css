@@ -33,6 +33,7 @@
 .inputButton:hover {
   width: 8rem;
   background-color: yellowgreen;
+  color: white;
 }
 
 .inputLabel {
@@ -54,11 +55,12 @@
 }
 
 .input {
-  width: 100%;
+  /* width: 100%; */
   border: none;
   font-size: 17px;
   margin-top: 16px;
-  padding: 12px 8px 8px;
+  padding: 0.6rem;
+  /* padding: 12px 8px 8px; */
   outline: none;
 }
 
