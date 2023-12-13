@@ -1,6 +1,6 @@
 "use client";
 import { ChangeEventHandler, useState } from "react";
-import style from "./findMyPassword.module.css";
+import style from "@/app/(loginLayout)/init/findMyPassword/findMyPassword.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 export default function FindMyPassword() {
   const [email, setEmail] = useState<string>("");
@@ -61,67 +61,72 @@ export default function FindMyPassword() {
   };
 
   return (
-    <div>
-      <div>
-        <div className={style.modalBody}>
-          <div className={style.inputDiv}>
-            <label className={style.inputLabel} htmlFor="email">
-              회원가입 당시 사용했던 이메일을 입력해주세요
-            </label>
-            <input
-              id="email"
-              className={style.input}
-              value={email}
-              onChange={onChangeEmail}
-              type="text"
-              placeholder="회원가입 당시 사용했던 이메일을 입력해주세요"
-            />
-            <button disabled={!email} onClick={onSubmitEmail}>발송</button>
-          </div>
-          {authCode && (
-            <>
-              <span>이메일로 새로 생성된 비밀번호를 발송했어요.</span>
-              <label className={style.inputLabel} htmlFor="email">
-                유효코드
-              </label>
-              <input
-                id="inputAuthCode"
-                className={style.input}
-                value={inputAuthCode}
-                onChange={onChangeInputAuthCode}
-                type="text"
-                placeholder=""
-              />
-              <button
-                disabled={authUser !== false && authCode !== null}
-                onClick={onSubmitAuthCode}
-                type="button"
-              ></button>
-            </>
-          )}
+    <div className={style.findMyPasswordContainer}>
+      <div className={style.inputWrapper}>
+        <div className={style.inputDiv}>
+          <label className={style.inputLabel} htmlFor="email">
+            이메일을 입력해주세요
+          </label>
+          <input
+            id="email"
+            className={style.input}
+            value={email}
+            onChange={onChangeEmail}
+            type="text"
+            placeholder="이메일"
+          />
         </div>
-        {authCode && authUser && (
-          <>
-            <span>새로운 비밀번호를 입력해주세요.</span>
-            <label className={style.inputLabel} htmlFor="email">
-              새로운 비밀번호
-            </label>
-            <input
-              id="newPassword"
-              className={style.input}
-              value={newPassword}
-              onChange={onChangeNewPassword}
-              type="password"
-              placeholder="새로운 비밀번호"
-            />
-            <button
-              disabled={!newPassword}
-              onClick={onSubmitNewPassword}
-              type="button"
-            />
-          </>
-        )}
+        <button
+          className={style.inputButton}
+          type="button"
+          disabled={!email}
+          onClick={onSubmitEmail}
+        >
+          발송
+        </button>
       </div>
+      {authCode && (
+        <>
+          <span>이메일로 새로 생성된 비밀번호를 발송했어요.</span>
+          <label className={style.inputLabel} htmlFor="inputAuthCode">
+            유효코드
+          </label>
+          <input
+            id="inputAuthCode"
+            className={style.input}
+            value={inputAuthCode}
+            onChange={onChangeInputAuthCode}
+            type="text"
+            placeholder=""
+          />
+          <button
+            disabled={authUser !== false && authCode !== null}
+            onClick={onSubmitAuthCode}
+            type="button"
+          ></button>
+        </>
+      )}
+      {authCode && authUser && (
+        <>
+          <span>새로운 비밀번호를 입력해주세요.</span>
+          <label className={style.inputLabel} htmlFor="newPassword">
+            새로운 비밀번호
+          </label>
+          <input
+            id="newPassword"
+            className={style.input}
+            value={newPassword}
+            onChange={onChangeNewPassword}
+            type="password"
+            placeholder="새로운 비밀번호"
+          />
+          <button
+            disabled={!newPassword}
+            onClick={onSubmitNewPassword}
+            type="button"
+          />
+        </>
+      )}
     </div>
   );
 }
