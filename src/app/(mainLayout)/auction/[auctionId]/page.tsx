@@ -35,21 +35,13 @@ type ChatData = {
   message: string;
 };
 
-type AuctionData = {
-  auctionName: string;
-  auctionProductList: [
-    {
-      auctionProductId: string;
-      auctionProductName: string;
-      state: "ING";
-    },
-    {
-      auctionProductId: string;
-      auctionProductName: string;
-      state: "BEFORE";
-    }
-  ];
-};
+interface AuctionData {
+  auctionProductList: {
+    auctionProductId: string;
+    auctionProductName: string;
+    state: "ING" | "BEFORE" | "AFTER";
+  }[];
+}
 
 const AuctionDetail = ({ params }: Props) => {
   const { auctionId } = params;
@@ -94,7 +86,7 @@ const AuctionDetail = ({ params }: Props) => {
           console.log("[BID] 구독으로 받은 메시지 입니다.", res.body);
           // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
           const auctionData = JSON.parse(res.body);
-          setAuctionInfo([...auctionInfo, auctionData]);
+          setAuctionInfo((prev) => [...prev, auctionData]);
         });
       },
       (error) => {
@@ -201,7 +193,20 @@ const AuctionDetail = ({ params }: Props) => {
               {isLogin && <input className={style.chatInput} />}
             </div>
           </div>
-          <div className={style.auctionRight}>경매 내역 {auctionId}</div>
+          <div className={style.auctionRight}>
+            <div>
+              <h3>{auctionName}</h3>
+            </div>
+
+            <div>
+              <h2>현재 입찰 내역</h2>
+              <div>
+                {auctionInfo.map((it, idx) => (
+                  <div key={idx}>{it.auctionProductList}</div>
+                ))}
+              </div>
+            </div>
+          </div>
         </>
       ) : status === "BEFORE" ? (
         <video
