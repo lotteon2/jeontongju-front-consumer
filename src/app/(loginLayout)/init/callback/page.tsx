@@ -7,7 +7,7 @@ const Callback = () => {
   const router = useRouter();
   console.log(params?.get("code"));
   localStorage.setItem("accessToken", params?.get("code"));
-  router.push("/main");
+  router.replace("/main");
 
   return <>CALLBACK {params?.get("code")}</>;
 };
