@@ -208,17 +208,20 @@ const AuctionDetail = ({ params }: Props) => {
           autoPlay={true}
           muted={true}
           loop={true}
-          style={{ width: "100%", height: "650px" }}
+          style={{ width: "100%", height: "100%" }}
           src={LiveBeforeImg}
         />
       ) : (
-        <video
-          autoPlay={true}
-          muted={true}
-          loop={true}
-          style={{ width: "100%", height: "650px" }}
-          src={LiveBeforeImg}
-        />
+        <>
+          <video
+            autoPlay={true}
+            muted={true}
+            loop={true}
+            style={{ width: "100%", height: "100%" }}
+            src={LiveBeforeImg}
+          />
+          <span>종료된 방송이에요.</span>
+        </>
       )}
     </div>
   );
