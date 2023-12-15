@@ -47,5 +47,6 @@ const nextConfig = {
 };
 
 const withImages = require("next-images");
+const withVideos = require("next-videos");
 
-module.exports = withImages(nextConfig);
+module.exports = withVideos(withImages(nextConfig));

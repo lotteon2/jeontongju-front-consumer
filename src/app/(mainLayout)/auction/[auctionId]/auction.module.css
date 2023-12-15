@@ -1,0 +1,55 @@
+.auctionPage {
+  display: flex;
+  height: 100vh;
+}
+
+.auctionLeft {
+  flex: 2;
+}
+.auctionRight {
+  flex: 1;
+}
+
+.chatBox {
+  width: min-content;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: #ffe2e2;
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin: 0.2rem 0;
+  gap: 1rem;
+
+  .chatInput {
+    position: absolute;
+    bottom: 5%;
+  }
+  .chatName {
+    white-space: nowrap;
+    font-weight: 800;
+  }
+
+  .chatMessage {
+    white-space: nowrap;
+    font-weight: 700;
+  }
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  max-height: 40%;
+}
+.chatBox::before {
+  content: "";
+  display: block;
+  flex: 1;
+}
+
+.remoteContainer {
+  width: 50%;
+  height: 50%;
+  background-color: #ffe2e2;
+}
