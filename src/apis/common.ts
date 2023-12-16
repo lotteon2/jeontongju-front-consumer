@@ -7,7 +7,10 @@ const authAxiosInstance = axios.create({
   headers: {
     "Content-Type": `application/json;charset=UTF-8`,
     Accept: "application/json",
-    Authorization: localStorage.getItem("accessToken"),
+    Authorization:
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null,
   },
 });
 
