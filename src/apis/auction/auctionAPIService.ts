@@ -1,5 +1,7 @@
 import { authAxiosInstance } from "../common";
 import {
+  BidParams,
+  BidResponse,
   EnterAuctionResponse,
   GetAuctionDetailInfoResponse,
 } from "./auctionAPIService.types";
@@ -14,6 +16,14 @@ const auctionAPI = {
   getAuctionDetailInfo: async () => {
     const { data } = await authAxiosInstance.get<GetAuctionDetailInfoResponse>(
       "/auction-service/api/auction/consumer/detail"
+    );
+    return data;
+  },
+  // 현재가 + 호가만큼 입찰하기
+  bid: async (params: BidParams) => {
+    const { data } = await authAxiosInstance.post<BidResponse>(
+      `auction-service/api/auction/bid`,
+      params
     );
     return data;
   },

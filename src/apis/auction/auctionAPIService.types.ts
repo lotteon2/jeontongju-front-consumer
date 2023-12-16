@@ -6,6 +6,11 @@ interface ApiResponse<T> {
   failure?: string;
 }
 
+export type BidParams = {
+  auctionId: string;
+  bidPrice: number;
+};
+
 export interface EnterAuctionResponseData {
   auctionName: string;
   status: "ING" | "BEFORE" | "AFTER";
@@ -40,3 +45,4 @@ export interface GetAuctionDetailInfoResponseData {
 export type EnterAuctionResponse = ApiResponse<EnterAuctionResponseData>;
 export type GetAuctionDetailInfoResponse =
   ApiResponse<GetAuctionDetailInfoResponseData>;
+export type BidResponse = ApiResponse<string>;

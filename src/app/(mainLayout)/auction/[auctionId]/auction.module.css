@@ -6,8 +6,33 @@
 .auctionLeft {
   flex: 2;
 }
+
 .auctionRight {
   flex: 1;
+
+  .todayAuctionBox {
+    border-radius: 32px;
+    background-color: #ffe2e2;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    .auctionName {
+      font-weight: 900;
+      font-size: 2rem;
+    }
+  }
+
+  .bidInfo {
+    border-radius: 32px;
+    background-color: #ffe2e2;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .chatBox {
@@ -21,10 +46,6 @@
   margin: 0.2rem 0;
   gap: 1rem;
 
-  .chatInput {
-    position: absolute;
-    bottom: 5%;
-  }
   .chatName {
     white-space: nowrap;
     font-weight: 800;
@@ -36,12 +57,69 @@
   }
 }
 
+.bottomInput {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  display: flex;
+
+  .chatInput {
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    margin-top: 0.3rem;
+    width: 100%;
+    height: 3rem;
+  }
+
+  .inputButton {
+    width: 8rem;
+    height: 3rem;
+  }
+}
+
+.bidInput {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.inputBidButton {
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.chatInput {
+  border-radius: 8px;
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  margin-top: 0.3rem;
+  width: 100%;
+}
+
+.inputButton {
+  width: 4rem;
+  height: 2rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
 .chat {
   display: flex;
   flex-direction: column;
   height: 40%;
   max-height: 40%;
+  position: relative;
+  overflow: scroll;
 }
+
 .chatBox::before {
   content: "";
   display: block;
