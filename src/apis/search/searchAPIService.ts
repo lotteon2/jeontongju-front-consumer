@@ -1,7 +1,7 @@
 import { authAxiosInstance, unAuthAxiosInstance } from "../common";
 import { GetProductDetailByProductIdResponse } from "./searchAPIService.types";
 
-const consumerAPI = {
+const searchAPI = {
   getProductDetailByProductId: async (productId: string) => {
     const { data } =
       await authAxiosInstance.get<GetProductDetailByProductIdResponse>(
@@ -10,4 +10,4 @@ const consumerAPI = {
     return data;
   },
 };
-export default consumerAPI;
+export default searchAPI;

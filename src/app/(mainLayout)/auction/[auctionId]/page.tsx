@@ -12,13 +12,14 @@ import type {
   IRoomEventRemoteVideoPublished,
   IRoomEventRemoteVideoUnpublished,
 } from "@connectlive/connectlive-web-sdk";
-
+import { Client } from "stompjs";
 import Stomp from "webstomp-client";
 import SockJS from "sockjs-client";
 import { useEffect, useState } from "react";
 import style from "@/app/(mainLayout)/auction/[auctionId]/auction.module.css";
 import auctionAPI from "@/apis/auction/auctionAPIService";
 import Image from "next/image";
+import { Button } from "antd";
 
 interface RemoteParticipantWithVideo {
   participant: IRemoteParticipant;
@@ -45,7 +46,9 @@ interface AuctionData {
 
 const AuctionDetail = ({ params }: Props) => {
   const { auctionId } = params;
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [message, setMessage] = useState<string>("");
+  const [stompClient, setStompClient] = useState<null | Client>(null);
   const [auctionName, setAuctionName] = useState<string>("");
   const [status, setStatus] = useState<"ING" | "BEFORE" | "AFTER">();
   const [auctionInfo, setAuctionInfo] = useState<AuctionData[]>([]);
@@ -93,6 +96,7 @@ const AuctionDetail = ({ params }: Props) => {
         console.log("소켓 연결 실패", error);
       }
     );
+    setStompClient(stompClient);
   };
 
   const addRemoteVideoNode = (videos: IRemoteVideo[]): void => {
@@ -153,6 +157,16 @@ const AuctionDetail = ({ params }: Props) => {
     }
   };
 
+  const sendMessage = () => {
+    if (!message) return;
+    const msg = {
+      memberId: 2,
+      message,
+    };
+    stompClient!.send(`/pub/chat/${auctionId}`, JSON.stringify(msg));
+    setMessage("");
+  };
+
   const enterAuctionRoom = async () => {
     try {
       const data = await auctionAPI.enterAuction(auctionId);
@@ -190,15 +204,26 @@ const AuctionDetail = ({ params }: Props) => {
                   <span className={style.chatMessage}>{it.message}</span>
                 </div>
               ))}
-              {isLogin && <input className={style.chatInput} />}
+              {isLogin && (
+                <div className={style.bottomInput}>
+                  <input
+                    className={style.chatInput}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
+                  <button className={style.inputButton} onClick={sendMessage}>
+                    입력
+                  </button>
+                </div>
+              )}
             </div>
           </div>
           <div className={style.auctionRight}>
-            <div>
-              <h3>{auctionName}</h3>
+            <div className={style.todayAuctionBox}>
+              <h3 className={style.auctionName}>{auctionName}</h3>
             </div>
 
-            <div>
+            <div className={style.bidInfo}>
               <h2>현재 입찰 내역</h2>
               <div>
                 {auctionInfo.map((it, idx) => (
@@ -206,6 +231,18 @@ const AuctionDetail = ({ params }: Props) => {
                 ))}
               </div>
             </div>
+            {isLogin && (
+              <div className={style.bidInput}>
+                <input
+                  className={style.chatInput}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                />
+                <button className={style.inputButton} onClick={sendMessage}>
+                  입찰
+                </button>
+              </div>
+            )}
           </div>
         </>
       ) : status === "BEFORE" ? (
