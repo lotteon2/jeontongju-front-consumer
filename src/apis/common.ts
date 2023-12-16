@@ -3,6 +3,12 @@ const baseURL = `${process.env.NEXT_PUBLIC_API_END_POINT}`;
 
 const authAxiosInstance = axios.create({
   baseURL,
+  withCredentials: true,
+  headers: {
+    "Content-Type": `application/json;charset=UTF-8`,
+    Accept: "application/json",
+    Authorization: localStorage.getItem("accessToken"),
+  },
 });
 
 const unAuthAxiosInstance = axios.create({

@@ -85,6 +85,15 @@
   align-items: center;
 }
 
+.inputBidButton {
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
 .chatInput {
   border-radius: 8px;
   border: 1px solid lightgray;

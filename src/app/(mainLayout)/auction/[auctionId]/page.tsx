@@ -186,6 +186,17 @@ const AuctionDetail = ({ params }: Props) => {
     }
   };
 
+  const bidAskingPrice = async () => {
+    try {
+      const data = await auctionAPI.bid({ auctionId, bidPrice: 1000 });
+      if (data.code === 200) {
+        console.log("입찰 성공");
+      }
+    } catch (error) {
+      console.error("입찰 실패");
+    }
+  };
+
   useEffect(() => {
     enterAuctionRoom();
   }, []);
@@ -232,16 +243,21 @@ const AuctionDetail = ({ params }: Props) => {
               </div>
             </div>
             {isLogin && (
-              <div className={style.bidInput}>
-                <input
-                  className={style.chatInput}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                />
-                <button className={style.inputButton} onClick={sendMessage}>
-                  입찰
+              <>
+                <div className={style.bidInput}>
+                  <input
+                    className={style.chatInput}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
+                  <button className={style.inputButton} onClick={sendMessage}>
+                    입찰
+                  </button>
+                </div>
+                <button className={style.inputBidButton} onClick={bidAskingPrice}>
+                  현재가 + 호가만큼 입찰하기
                 </button>
-              </div>
+              </>
             )}
           </div>
         </>
