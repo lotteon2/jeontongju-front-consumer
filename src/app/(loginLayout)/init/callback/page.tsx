@@ -1,4 +1,6 @@
 "use client";
+import loadingImg from "/public/loading.gif";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -12,6 +14,17 @@ const Callback = () => {
     router.replace("/main");
   }, []);
 
-  return <>CALLBACK {params?.get("code")}</>;
+  return (
+    <>
+      <Image
+        src={loadingImg}
+        width={0}
+        height={0}
+        alt="loading"
+        preview={false}
+        style={{ cursor: "pointer", width: "50%", height: "50%" }}
+      />
+    </>
+  );
 };
 export default Callback;
