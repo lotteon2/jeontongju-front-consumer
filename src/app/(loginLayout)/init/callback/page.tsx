@@ -10,7 +10,7 @@ const Callback = () => {
   const router = useRouter();
   console.log(params?.get("code"));
   useEffect(() => {
-    localStorage.setItem("accessToken", params?.get("code"));
+    localStorage.setItem("accessToken", "Bearer" + params?.get("code"));
     router.replace("/main");
   }, []);
 
