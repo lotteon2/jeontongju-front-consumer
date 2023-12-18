@@ -1,8 +1,13 @@
 "use Client";
 
 import consumerAPI from "@/apis/consumer/consumerAPIService";
+import MyOrderList from "../_component/MyPage/MyOrderList";
 
 export default function MyPage() {
-  console.log(consumerAPI.getMyInfo());
-  return <div>MYPAGE</div>;
+  // console.log(consumerAPI.getMyInfo());
+  return (
+    <div>
+      <MyOrderList />
+    </div>
+  );
 }

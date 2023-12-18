@@ -3,7 +3,7 @@ const baseURL = `${process.env.NEXT_PUBLIC_API_END_POINT}`;
 
 const authAxiosInstance = axios.create({
   baseURL,
-  withCredentials: true,
+  withCredentials: false,
   headers: {
     "Content-Type": `application/json;charset=UTF-8`,
     Accept: "application/json",
@@ -20,6 +20,7 @@ const unAuthAxiosInstance = axios.create({
 
 authAxiosInstance.interceptors.request.use((config: any) => {
   if (config.headers) {
+    console.log("!!!");
     if (typeof window !== "undefined") {
       config.headers.Authorization = window.localStorage.getItem("accessToken");
     }
@@ -33,14 +34,13 @@ authAxiosInstance.interceptors.response.use(
   },
   async function (error) {
     const originalRequest = error.config;
-    // if (
-    //     error.response.code === 401 &&
-    //     error.response.failure === "EXPIRED_ACCESS_TOKEN"
-    // ) {
-    //     originalRequest._retry = true;
-
-    //     return authAxiosInstance(originalRequest);
-    // }
+    if (error.response.code === 401) {
+      console.log("here");
+      originalRequest.config.headers.Authorization =
+        window.localStorage.getItem("accessToken");
+      originalRequest._retry = true;
+      return authAxiosInstance(originalRequest);
+    }
     return Promise.reject(error);
   }
 );
