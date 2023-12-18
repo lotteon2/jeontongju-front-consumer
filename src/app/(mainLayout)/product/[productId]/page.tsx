@@ -1,4 +1,5 @@
 "use client";
+import JeontongjuNotFoundImg from "/public/jeontongju_notfound.png";
 import searchAPI from "@/apis/search/searchAPIService";
 import Image from "next/image";
 import style from "@/app/(mainLayout)/product/[productId]/product.module.css";
@@ -50,7 +51,7 @@ export default function Page({ params }: Props) {
 
   return (
     <>
-      {productData && (
+      {productData ? (
         <div>
           <div className={style.productTop}>
             <div className={style.thumbnail}>
@@ -92,6 +93,14 @@ export default function Page({ params }: Props) {
           </div>
           <div className={style.hr}></div>
         </div>
+      ) : (
+        <Image
+          src={JeontongjuNotFoundImg}
+          alt="jeontongju-notfound"
+          width={0}
+          height={0}
+          style={{ cursor: "pointer", width: "80%", height: "80%" }}
+        />
       )}
     </>
   );
