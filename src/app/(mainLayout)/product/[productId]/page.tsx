@@ -8,12 +8,14 @@ import QualityInput from "../../_component/QualityInput/QualityInput";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GetProductDetailByProductIdResponseData } from "@/apis/search/searchAPIService.types";
+import { useRouter } from "next/navigation";
 
 type Props = {
   params: { productId: string };
 };
 
 export default function Page({ params }: Props) {
+  const router = useRouter();
   const { productId } = params;
   const [productData, setProductData] =
     useState<GetProductDetailByProductIdResponseData>(null);
@@ -81,13 +83,45 @@ export default function Page({ params }: Props) {
                 {total}
               </div>
               <div className={style.btnGroup}>
-                <button className={style.button}>장바구니 담기</button>
-                <button className={style.button}>바로 구매하기</button>
+                <Link
+                  className={style.button}
+                  href={{
+                    pathname: "/payment",
+                    query: { productId, productCount: quantity },
+                  }}
+                  replace
+                >
+                  장바구니 담기
+                </Link>
+                <Link
+                  className={style.button}
+                  href={{
+                    pathname: "/payment",
+                    query: {
+                      products: JSON.stringify([
+                        {
+                          productId,
+                          productCount: quantity,
+                        },
+                      ]),
+                    },
+                  }}
+                >
+                  바로 구매하기
+                </Link>
               </div>
               <div className={style.hr} />
               <div>리뷰 적립시 3% 추가 적립</div>
-              <Link href={`/seller/${productData.sellerId}`}>
-                <div>판매자 | {productData.sellerId}</div>
+              <Link
+                href={`/seller/${productData.sellerId}`}
+                className={style.sellerInfo}
+              >
+                <img
+                  src={productData.storeImageUrl}
+                  alt="img"
+                  className={style.storeImg}
+                />
+                <div>판매자 | {productData.storeName}</div>
               </Link>
             </div>
           </div>

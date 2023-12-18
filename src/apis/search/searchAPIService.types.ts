@@ -24,6 +24,8 @@ export type GetProductDetailByProductIdResponseData = {
   productDetailsImageUrl: string;
   categoryId: number;
   sellerId: number;
+  storeName: string;
+  storeImageUrl: string;
   taste: {
     sour: number;
     sweet: number;

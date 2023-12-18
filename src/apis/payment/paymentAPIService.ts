@@ -1,9 +1,9 @@
 import { authAxiosInstance } from "../common";
-import { KakaoParams, KakaoPayResponse } from "./paymentAPIService.types";
+import { KakaoParams, KakaoPayResponseData } from "./paymentAPIService.types";
 
 const paymentAPI = {
   kakaoPay: async (params: KakaoParams) => {
-    const { data } = await authAxiosInstance.post<KakaoPayResponse>(
+    const { data } = await authAxiosInstance.post<KakaoPayResponseData>(
       "/payment-service/api/order",
       params
     );
