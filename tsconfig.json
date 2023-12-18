@@ -33,6 +33,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "additional.d.ts"
-  ],
+, "src/app/(mainLayout)/_component/MemberShipBox"  ],
   "exclude": ["node_modules"]
 }
