@@ -20,8 +20,9 @@ const unAuthAxiosInstance = axios.create({
 
 authAxiosInstance.interceptors.request.use((config: any) => {
   if (config.headers) {
-    if (typeof window !== "undefined")
-      config.headers.accessToken = window.localStorage.getItem("accessToken");
+    if (typeof window !== "undefined") {
+      config.headers.Authorization = window.localStorage.getItem("accessToken");
+    }
     return config;
   }
 });
