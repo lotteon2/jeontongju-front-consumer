@@ -39,8 +39,8 @@ export type GetMyOrderListResponseData = {
   order: {
     ordersId: string;
     orderDate: string;
-    orderStatus: "NORMAL";
-    isAuction: false;
+    orderStatus: string;
+    isAuction: boolean;
   };
   product: {
     productOrderId: number;
@@ -49,8 +49,10 @@ export type GetMyOrderListResponseData = {
     productCount: number;
     productPrice: number;
     productTotalAmount: number;
-    productOrderStatus: "CANCEL";
+    productOrderStatus: string;
     productThumbnailImageUrl: string;
+    sellerId: number;
+    sellerName: string;
   }[];
   payment: {
     minusPointAmount: number;
@@ -69,5 +71,5 @@ export type GetMyOrderListResponseData = {
 };
 
 export type GetMyOrderListResponse = ApiResponse<
-  Page<GetMyOrderListResponse[]>
+  Page<GetMyOrderListResponseData[]>
 >;

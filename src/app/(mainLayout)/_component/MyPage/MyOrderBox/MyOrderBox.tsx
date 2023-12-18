@@ -1,32 +1,57 @@
+"use client";
 import Link from "next/link";
 import style from "@/app/(mainLayout)/_component/MyPage/MyOrderBox/MyOrderBox.module.css";
 import Image from "next/image";
+import { GetMyOrderListResponseData } from "@/apis/order/orderAPIService.types";
+import { useRouter } from "next/navigation";
 
-export default function MyOrderBox() {
+export default function MyOrderBox({
+  params,
+}: {
+  params: GetMyOrderListResponseData;
+}) {
+  const router = useRouter();
+  console.log(params);
   return (
     <div className={style.orderBox}>
       <div className={style.orderBoxHeader}>
-        <div>2023.11.20</div>
-        <div>주문취소</div>
-      </div>
-      <div className={style.orderBoxBody}>
-        <div>
-          <Image
-            src="https://i.namu.wiki/i/wtVDagqTzZ1Zm4slYrtRiZHlBFYBvs8R33IriNuIbUpeGQ7QTMEFK--6iQalNSMPRdkPHFe8rlXb89yI996i5EtOD4VTcvfTijzG_qnFTXIR8ZkdeSj3axvqc9BgGPV-Ndex9pwWMMqTGnEEUHkmvw.webp"
-            alt="img"
-            width={0}
-            height={0}
-            className={style.orderBoxImg}
-          />
+        <div>{params.order?.orderDate.slice(0, 10)}</div>
+        <div className={style.orderBoxHeaderRight}>
+          <div>{params.order?.orderStatus}</div>
+          <Link
+            href={{
+              pathname: `orderdetail/${params.order.ordersId}`,
+              query: {
+                order: encodeURIComponent(JSON.stringify(params)),
+              },
+            }}
+          >
+            상세 보기
+          </Link>
         </div>
-        <div className={style.orderDetail}>
-          <div>
-            <strong>구매확정 | 2023.11.21 배송 완료</strong>
+      </div>
+      {params.product?.map((item) => (
+        <div className={style.orderBoxBody} key={item.productOrderId}>
+          <Link href={`/product/${item.productId}`}>
+            <Image
+              src={item.productThumbnailImageUrl}
+              alt="img"
+              width={0}
+              height={0}
+              className={style.orderBoxImg}
+            />
+          </Link>
+          <div className={style.orderDetail}>
+            <div>
+              <strong>{item.productOrderStatus}</strong>
+            </div>
+            <div>
+              {item.productPrice} 원 X {item.productCount}
+            </div>
+            <Link href={`/product/${item.productId}`}>{item.productName}</Link>
           </div>
-          <div>12,000원</div>
-          <Link href={`product/12`}>복순이가 복순복순</Link>
         </div>
-      </div>
+      ))}
     </div>
   );
 }
