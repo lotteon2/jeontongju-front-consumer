@@ -1,5 +1,6 @@
 "use client";
-import JeontongjuNotFoundImg from "/public/jeontongju_notfound.png";
+import LoadingImg from "/public/loading.gif";
+import NotFoundImg from "/public/jeontongju_notfound.png";
 import searchAPI from "@/apis/search/searchAPIService";
 import Image from "next/image";
 import style from "@/app/(mainLayout)/product/[productId]/product.module.css";
@@ -17,6 +18,7 @@ type Props = {
 export default function Page({ params }: Props) {
   const router = useRouter();
   const { productId } = params;
+  const [img, setImg] = useState<string>(LoadingImg);
   const [productData, setProductData] =
     useState<GetProductDetailByProductIdResponseData>(null);
 
@@ -41,10 +43,18 @@ export default function Page({ params }: Props) {
   };
 
   const getProductData = async (productId: string) => {
-    const { data } = await searchAPI.getProductDetailByProductId(
-      productId as string
-    );
-    setProductData(data);
+    try {
+      const data = await searchAPI.getProductDetailByProductId(
+        productId as string
+      );
+      if (data.code === 200) {
+        setProductData(data.data);
+        setImg("");
+      }
+    } catch (err) {
+      console.error(err);
+      setImg(NotFoundImg);
+    }
   };
 
   useEffect(() => {
@@ -129,7 +139,7 @@ export default function Page({ params }: Props) {
         </div>
       ) : (
         <Image
-          src={JeontongjuNotFoundImg}
+          src={img}
           alt="jeontongju-notfound"
           width={0}
           height={0}
