@@ -1,4 +1,12 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
+declare global {
+  interface Window {
+    Kakao: any;
+    IMP: any;
+  }
+}
+
 export default function Document() {
   return (
     <Html>
@@ -15,21 +23,21 @@ export default function Document() {
         />
         <script
           src="https://developers.kakao.com/sdk/js/kakao.js"
-          async
+          defer
         ></script>
         <meta
           name="google-signin-client_id"
           content="239926923495-3v7i8t922da18fc2ftjrgt29acp1asr5.apps.googleusercontent.com"
         />
-        <script
-          defer
-          src="https://developers.kakao.com/sdk/js/kakao.min.js"
-        ></script>
       </Head>
       <body>
         <Main />
         <NextScript />
       </body>
+      <Script
+        src="https://developers.kakao.com/sdk/js/kakao.js"
+        strategy="afterInteractive"
+      />
     </Html>
   );
 }

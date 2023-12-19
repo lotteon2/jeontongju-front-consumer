@@ -1,4 +1,5 @@
 "use client";
+import KakaoShareImg from "/public/kakaotalk_sharing_btn_small_ov.png";
 import LoadingImg from "/public/loading.gif";
 import NotFoundImg from "/public/jeontongju_notfound.png";
 import sellerAPI from "@/apis/seller/sellerAPIService";
@@ -31,14 +32,71 @@ export default function Seller({ params }: Props) {
 
   useEffect(() => {
     getSellerInfo(parseInt(params.sellerId));
+    const script = document.createElement("script");
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.async = true;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      const { Kakao } = window;
+      if (Kakao && !Kakao.isInitialized()) {
+        Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
+      }
+    };
+
+    return () => {
+      // Remove the script tag when the component is unmounted
+      document.head.removeChild(script);
+    };
   }, []);
+
+  const handleShareKakao = async () => {
+    if (!window.Kakao) {
+      const script = document.createElement("script");
+      script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+      script.async = true;
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        const { Kakao } = window;
+        if (Kakao && !Kakao.isInitialized()) {
+          Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
+          // Now Kakao is initialized, you can use it here
+          window.Kakao.Share.sendDefault({
+            objectType: "feed",
+            content: {
+              title: `전통주점, ${sellerInfo.storeName}`,
+              description: `${sellerInfo.storeDescription}`,
+              imageUrl: `${sellerInfo.storeImageUrl}`,
+              link: {
+                mobileWebUrl: `https://consumer.jeontongju-dev.shop/seller/${sellerId}`,
+                webUrl: `https://developers.kakao.com/seller/${sellerId}`,
+              },
+            },
+          });
+        }
+      };
+    } else {
+      await window.Kakao.Share.sendDefault({
+        objectType: "feed",
+        content: {
+          title: `전통주점, ${sellerInfo.storeName}`,
+          description: `${sellerInfo.storeDescription}`,
+          imageUrl: `${sellerInfo.storeImageUrl}`,
+          link: {
+            mobileWebUrl: `https://consumer.jeontongju-dev.shop/seller/${sellerId}`,
+            webUrl: `https://developers.kakao.com/seller/${sellerId}`,
+          },
+        },
+      });
+    }
+  };
 
   return (
     <>
       {sellerInfo ? (
         <div className={style.sellerPage}>
           <div className={style.sellerHeader}>
-            <Image 
             <Image
               src={sellerInfo.storeImageUrl}
               alt="seller-thumbnail"
@@ -53,6 +111,32 @@ export default function Seller({ params }: Props) {
             />
             <div className={style.storeName}>{sellerInfo.storeName}</div>
             <div>{sellerInfo.storeDescription}</div>
+            <div className={style.shareBtns}>
+              <div onClick={handleShareKakao}>
+                <Image
+                  src={KakaoShareImg}
+                  alt="kakaoShare"
+                  width={0}
+                  height={0}
+                  style={{
+                    cursor: "pointer",
+                    width: "2rem",
+                    height: "2rem",
+                  }}
+                />
+              </div>
+              <Image
+                src={KakaoShareImg}
+                alt="kakaoShare"
+                width={0}
+                height={0}
+                style={{
+                  cursor: "pointer",
+                  width: "2rem",
+                  height: "2rem",
+                }}
+              />
+            </div>
           </div>
         </div>
       ) : (
