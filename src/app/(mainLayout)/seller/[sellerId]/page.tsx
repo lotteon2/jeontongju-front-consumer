@@ -10,6 +10,8 @@ import Image from "next/image";
 import { GetPopularProductsBySellerIdResponseData } from "@/apis/search/searchAPIService.types";
 import searchAPI from "@/apis/search/searchAPIService";
 import ProductContainer from "../../_component/ProductContainer/ProductContainer";
+import PopularProducts from "../../_component/Seller/PopularContainer";
+import AllProducts from "../../_component/Seller/AllProducts";
 
 type Props = {
   params: { sellerId: string };
@@ -205,34 +207,27 @@ export default function Seller({ params }: Props) {
               </div>
             </div>
             <div className={style.sellerSub}>
-              <div>
-                <h2>다들 구매하고 있어요! 인기 상품</h2>
-                <div className={style.products}>
-                  {popularProducts?.map((product) => (
-                    <ProductContainer
-                      productName={product.productName}
-                      productId={product.productId}
-                      productImg={product.productThumbnailImageUrl}
-                      price={product.productPrice}
-                      capacityToPriceRatio={product.capacityToPriceRatio}
-                      key={product.productId}
-                    />
-                  ))}
-                </div>
-                <h2>구매 후기가 팡팡! 리뷰 인기 상품</h2>
-                <div className={style.products}>
-                  {popularReviewProducts?.map((product) => (
-                    <ProductContainer
-                      productName={product.productName}
-                      productId={product.productId}
-                      productImg={product.productThumbnailImageUrl}
-                      price={product.productPrice}
-                      capacityToPriceRatio={product.capacityToPriceRatio}
-                      key={product.productId}
-                    />
-                  ))}
-                </div>
-              </div>
+              {selectedMenu === 0 ? (
+                <PopularProducts
+                  popularProducts={popularProducts}
+                  popularReviewProducts={popularReviewProducts}
+                />
+              ) : (
+                <AllProducts sellerId={parseInt(sellerId)} />
+              )}
+
+              {/* <div>
+                {sellerProducts?.map((product) => (
+                  <ProductContainer
+                    productName={product.productName}
+                    productId={product.productId}
+                    productImg={product.productThumbnailImageUrl}
+                    price={product.productPrice}
+                    capacityToPriceRatio={product.capacityToPriceRatio}
+                    key={product.productId}
+                  />
+                ))}
+              </div> */}
             </div>
           </div>
         </div>
