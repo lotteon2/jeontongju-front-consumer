@@ -16,6 +16,17 @@
   .storeName {
     font-size: 1.3rem;
   }
-  .sellerImg {
+
+  .sellerMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    .selected {
+      color: red;
+    }
   }
 }

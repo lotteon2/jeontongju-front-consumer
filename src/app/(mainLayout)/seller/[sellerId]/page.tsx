@@ -16,6 +16,7 @@ export default function Seller({ params }: Props) {
   const { sellerId } = params;
   const [sellerInfo, setSellerInfo] = useState<GetSellerInfoResponseData>(null);
   const [img, setImg] = useState<string>(LoadingImg);
+  const [selectedMenu, setSelectedMenu] = useState<number>(0);
 
   const getSellerInfo = async (sellerId: number) => {
     try {
@@ -61,7 +62,6 @@ export default function Seller({ params }: Props) {
         const { Kakao } = window;
         if (Kakao && !Kakao.isInitialized()) {
           Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY);
-          // Now Kakao is initialized, you can use it here
           window.Kakao.Share.sendDefault({
             objectType: "feed",
             content: {
@@ -136,6 +136,34 @@ export default function Seller({ params }: Props) {
                   height: "2rem",
                 }}
               />
+            </div>
+          </div>
+          <div>
+            <div className={style.sellerMenu}>
+              <div
+                className={selectedMenu === 0 ? style.selected : ""}
+                onClick={() => setSelectedMenu(0)}
+              >
+                인기 상품
+              </div>
+              <div
+                className={selectedMenu === 1 ? style.selected : ""}
+                onClick={() => setSelectedMenu(1)}
+              >
+                전체 상품
+              </div>
+              <div
+                className={selectedMenu === 2 ? style.selected : ""}
+                onClick={() => setSelectedMenu(2)}
+              >
+                등록된 쇼츠
+              </div>
+              <div
+                className={selectedMenu === 3 ? style.selected : ""}
+                onClick={() => setSelectedMenu(3)}
+              >
+                주모 정보
+              </div>
             </div>
           </div>
         </div>
