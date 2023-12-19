@@ -9,12 +9,13 @@
 a {
   text-decoration: none;
   outline: none;
+  color: black;
 }
 
 a:hover,
 a:active {
   text-decoration: none;
-  color: red;
+  color: #ffa1a1;
 }
 
 body {

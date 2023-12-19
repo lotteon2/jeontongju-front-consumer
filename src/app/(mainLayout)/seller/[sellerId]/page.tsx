@@ -9,6 +9,7 @@ import style from "@/app/(mainLayout)/seller/[sellerId]/seller.module.css";
 import Image from "next/image";
 import { GetPopularProductsBySellerIdResponseData } from "@/apis/search/searchAPIService.types";
 import searchAPI from "@/apis/search/searchAPIService";
+import ProductContainer from "../../_component/ProductContainer/ProductContainer";
 
 type Props = {
   params: { sellerId: string };
@@ -60,7 +61,7 @@ export default function Seller({ params }: Props) {
         "reviewCount"
       );
       if (data.code === 200) {
-        setPopularProducts(data.data);
+        setPopularReviewProducts(data.data);
         setImg("");
       }
     } catch (err) {
@@ -203,7 +204,36 @@ export default function Seller({ params }: Props) {
                 주모 정보
               </div>
             </div>
-            <div></div>
+            <div className={style.sellerSub}>
+              <div>
+                <h2>다들 구매하고 있어요! 인기 상품</h2>
+                <div className={style.products}>
+                  {popularProducts?.map((product) => (
+                    <ProductContainer
+                      productName={product.productName}
+                      productId={product.productId}
+                      productImg={product.productThumbnailImageUrl}
+                      price={product.productPrice}
+                      capacityToPriceRatio={product.capacityToPriceRatio}
+                      key={product.productId}
+                    />
+                  ))}
+                </div>
+                <h2>구매 후기가 팡팡! 리뷰 인기 상품</h2>
+                <div className={style.products}>
+                  {popularReviewProducts?.map((product) => (
+                    <ProductContainer
+                      productName={product.productName}
+                      productId={product.productId}
+                      productImg={product.productThumbnailImageUrl}
+                      price={product.productPrice}
+                      capacityToPriceRatio={product.capacityToPriceRatio}
+                      key={product.productId}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       ) : (

@@ -1,0 +1,13 @@
+.productContainer {
+  .productImg {
+    border-radius: 4px;
+    margin-bottom: 1px;
+  }
+  .productName {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .capacityToPriceRatio {
+    color: gray;
+  }
+}
