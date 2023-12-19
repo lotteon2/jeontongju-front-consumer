@@ -26,7 +26,15 @@
     font-weight: 700;
     cursor: pointer;
     .selected {
-      color: red;
+      color: #ffa1a1;
     }
+  }
+
+  .products {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
 }

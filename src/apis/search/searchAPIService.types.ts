@@ -40,5 +40,20 @@ export type GetProductDetailByProductIdResponseData = {
   isLikes: boolean;
 };
 
+export type GetPopularProductsBySellerIdResponseData = {
+  productId: string;
+  productName: string;
+  productDescription: string;
+  productThumbnailImageUrl: string;
+  productPrice: number;
+  capacityToPriceRatio: number;
+  isLikes: boolean;
+  isSoldOut: boolean;
+};
+
 export type GetProductDetailByProductIdResponse =
   ApiResponse<GetProductDetailByProductIdResponseData>;
+
+export type GetPopularProductsBySellerIdResponse = ApiResponse<
+  GetPopularProductsBySellerIdResponseData[]
+>;

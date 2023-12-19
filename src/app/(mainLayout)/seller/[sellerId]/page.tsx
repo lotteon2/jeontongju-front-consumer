@@ -7,6 +7,9 @@ import { GetSellerInfoResponseData } from "@/apis/seller/sellerAPIService.types"
 import { useEffect, useState } from "react";
 import style from "@/app/(mainLayout)/seller/[sellerId]/seller.module.css";
 import Image from "next/image";
+import { GetPopularProductsBySellerIdResponseData } from "@/apis/search/searchAPIService.types";
+import searchAPI from "@/apis/search/searchAPIService";
+import ProductContainer from "../../_component/ProductContainer/ProductContainer";
 
 type Props = {
   params: { sellerId: string };
@@ -16,10 +19,15 @@ export default function Seller({ params }: Props) {
   const { sellerId } = params;
   const [sellerInfo, setSellerInfo] = useState<GetSellerInfoResponseData>(null);
   const [img, setImg] = useState<string>(LoadingImg);
+  const [popularProducts, setPopularProducts] =
+    useState<GetPopularProductsBySellerIdResponseData[]>(null);
+  const [popularReviewProducts, setPopularReviewProducts] =
+    useState<GetPopularProductsBySellerIdResponseData[]>(null);
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
 
   const getSellerInfo = async (sellerId: number) => {
     try {
+      setImg(LoadingImg);
       const data = await sellerAPI.getSellerInfo(sellerId);
       if (data.code === 200) {
         setSellerInfo(data.data);
@@ -31,8 +39,40 @@ export default function Seller({ params }: Props) {
     }
   };
 
+  const getPopularProducts = async (sellerId: number) => {
+    try {
+      setImg(LoadingImg);
+      const data = await searchAPI.getPopularProductsBySellerId(
+        sellerId,
+        "totalSalesCount"
+      );
+      if (data.code === 200) {
+        setPopularProducts(data.data);
+        setImg("");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    try {
+      setImg(LoadingImg);
+      const data = await searchAPI.getPopularProductsBySellerId(
+        sellerId,
+        "reviewCount"
+      );
+      if (data.code === 200) {
+        setPopularReviewProducts(data.data);
+        setImg("");
+      }
+    } catch (err) {
+      console.error(err);
+      setImg(NotFoundImg);
+    }
+  };
+
   useEffect(() => {
     getSellerInfo(parseInt(params.sellerId));
+    getPopularProducts(parseInt(params.sellerId));
     const script = document.createElement("script");
     script.src = "https://developers.kakao.com/sdk/js/kakao.js";
     script.async = true;
@@ -46,7 +86,6 @@ export default function Seller({ params }: Props) {
     };
 
     return () => {
-      // Remove the script tag when the component is unmounted
       document.head.removeChild(script);
     };
   }, []);
@@ -163,6 +202,36 @@ export default function Seller({ params }: Props) {
                 onClick={() => setSelectedMenu(3)}
               >
                 주모 정보
+              </div>
+            </div>
+            <div className={style.sellerSub}>
+              <div>
+                <h2>다들 구매하고 있어요! 인기 상품</h2>
+                <div className={style.products}>
+                  {popularProducts?.map((product) => (
+                    <ProductContainer
+                      productName={product.productName}
+                      productId={product.productId}
+                      productImg={product.productThumbnailImageUrl}
+                      price={product.productPrice}
+                      capacityToPriceRatio={product.capacityToPriceRatio}
+                      key={product.productId}
+                    />
+                  ))}
+                </div>
+                <h2>구매 후기가 팡팡! 리뷰 인기 상품</h2>
+                <div className={style.products}>
+                  {popularReviewProducts?.map((product) => (
+                    <ProductContainer
+                      productName={product.productName}
+                      productId={product.productId}
+                      productImg={product.productThumbnailImageUrl}
+                      price={product.productPrice}
+                      capacityToPriceRatio={product.capacityToPriceRatio}
+                      key={product.productId}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
