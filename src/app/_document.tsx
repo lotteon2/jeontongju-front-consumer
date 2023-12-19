@@ -21,6 +21,10 @@ export default function Document() {
           name="google-signin-client_id"
           content="239926923495-3v7i8t922da18fc2ftjrgt29acp1asr5.apps.googleusercontent.com"
         />
+        <script
+          defer
+          src="https://developers.kakao.com/sdk/js/kakao.min.js"
+        ></script>
       </Head>
       <body>
         <Main />

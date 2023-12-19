@@ -17,6 +17,7 @@ export default function SignIn() {
       const data = await authAPI.signIn({ email, password });
       if (data.code === 200) {
         console.log("로그인 성공");
+        localStorage.setItem("accessToken", data.data.accessToken);
       } else {
         setMessage("아이디와 비밀번호가 일치하지 않습니다.");
       }
