@@ -1,0 +1,47 @@
+.membership {
+  .membershipHeader {
+    background: #f2cbf9;
+    font-size: 2rem;
+    text-align: center;
+    padding: 2rem;
+
+    .membershipHeaderDesc {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+    }
+  }
+}
+.benefitSection {
+  text-align: center;
+  color: #111;
+  line-height: 1.5;
+
+  .benefitSection__delivery {
+    padding: 1rem;
+    background: #ccd2f0;
+  }
+  .benefitSection__gift {
+    padding: 1rem;
+    background: #fff5d9;
+  }
+
+  .benefitSection__point {
+    padding: 1rem;
+    background: #d8e7ff;
+  }
+}
+
+.button {
+  margin: 2rem;
+  width: 50%;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: #ffa1a1;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 900px;
+}
