@@ -1,4 +1,12 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
+declare global {
+  interface Window {
+    Kakao: any;
+    IMP: any;
+  }
+}
+
 export default function Document() {
   return (
     <Html>
@@ -15,7 +23,7 @@ export default function Document() {
         />
         <script
           src="https://developers.kakao.com/sdk/js/kakao.js"
-          async
+          defer
         ></script>
         <meta
           name="google-signin-client_id"
@@ -26,6 +34,10 @@ export default function Document() {
         <Main />
         <NextScript />
       </body>
+      <Script
+        src="https://developers.kakao.com/sdk/js/kakao.js"
+        strategy="afterInteractive"
+      />
     </Html>
   );
 }

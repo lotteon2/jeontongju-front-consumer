@@ -55,7 +55,7 @@ export default function OrderDetail() {
                     </Link>
                   </div>
                   <div>
-                    <Link href={`/product/${product.sellerId}`}>
+                    <Link href={`/seller/${product.sellerId}`}>
                       {product.sellerName}
                     </Link>
                   </div>
