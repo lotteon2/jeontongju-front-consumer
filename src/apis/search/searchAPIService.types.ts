@@ -99,6 +99,7 @@ export type GetPopularProductsBySellerIdResponse = ApiResponse<
 >;
 
 export type GetCropProductsResponse = ApiResponse<GetCropProductsResponseData>;
+export type GetCostProductsResponse = ApiResponse<ProductData[]>;
 export type GetAllProductsBySellerIdResponse = ApiResponse<
   Page<GetPopularProductsBySellerIdResponseData[]>
 >;

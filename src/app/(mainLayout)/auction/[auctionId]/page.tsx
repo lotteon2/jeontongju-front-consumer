@@ -19,7 +19,6 @@ import { useEffect, useState } from "react";
 import style from "@/app/(mainLayout)/auction/[auctionId]/auction.module.css";
 import auctionAPI from "@/apis/auction/auctionAPIService";
 import Image from "next/image";
-import { Button } from "antd";
 
 interface RemoteParticipantWithVideo {
   participant: IRemoteParticipant;
@@ -160,7 +159,7 @@ const AuctionDetail = ({ params }: Props) => {
   const sendMessage = () => {
     if (!message) return;
     const msg = {
-      memberId: 2,
+      memberId: 53,
       message,
     };
     stompClient!.send(`/pub/chat/${auctionId}`, JSON.stringify(msg));
@@ -254,7 +253,10 @@ const AuctionDetail = ({ params }: Props) => {
                     입찰
                   </button>
                 </div>
-                <button className={style.inputBidButton} onClick={bidAskingPrice}>
+                <button
+                  className={style.inputBidButton}
+                  onClick={bidAskingPrice}
+                >
                   현재가 + 호가만큼 입찰하기
                 </button>
               </>

@@ -3,12 +3,17 @@ import { useEffect, useState } from "react";
 import useGetCropQuery from "../../_lib/useGetCropQuery";
 import ProductContainer from "../ProductContainer/ProductContainer";
 import { ProductData } from "@/apis/search/searchAPIService.types";
-import style from "@/app/(mainLayout)/_component/Crop/CropCotainer.module.css";
+import style from "@/app/(mainLayout)/_component/Crop/CropContainer.module.css";
+import { useQuery } from "@tanstack/react-query";
+import searchAPI from "@/apis/search/searchAPIService";
 
 export default function CropContainer() {
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
   const [selectedValue, setSelectedValue] = useState<string>("sweetPotato");
-  const { data } = useGetCropQuery();
+  const { data } = useQuery({
+    queryKey: ["event", "crop"],
+    queryFn: () => searchAPI.getCropProducts("totalSalesCount"),
+  });
   console.log("!!! data", data);
 
   useEffect(() => {
@@ -24,6 +29,7 @@ export default function CropContainer() {
   return (
     <>
       <div className={style.cropContainer}>
+        <div className={style.banner}>구황작물 전통주 모아보기</div>
         <div className={style.cropHeader}>
           <div
             className={selectedMenu === 0 ? style.selected : style.cropMenu}
@@ -45,7 +51,7 @@ export default function CropContainer() {
           </div>
         </div>
         <div className={style.cropBody}>
-          {data?.data.selectedValue.map((crop: ProductData) => (
+          {data?.data[selectedValue].map((crop: ProductData) => (
             <ProductContainer
               key={crop.productId}
               productId={crop.productId}

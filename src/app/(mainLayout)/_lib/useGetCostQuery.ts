@@ -1,10 +1,10 @@
 import searchAPI from "@/apis/search/searchAPIService";
 import { useQuery } from "@tanstack/react-query";
 
-export default function useGetCropQuery() {
+export default function useGetCostQuery() {
   return useQuery({
-    queryKey: ["event", "crop"],
-    queryFn: () => searchAPI.getCropProducts(),
+    queryKey: ["event", "cost"],
+    queryFn: () => searchAPI.getCostProducts(),
     enabled: true,
   });
 }

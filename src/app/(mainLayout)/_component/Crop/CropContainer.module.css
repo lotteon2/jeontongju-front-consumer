@@ -3,11 +3,13 @@
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
+  font-family: "__Jua_fe7685";
 
   .cropHeader {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 2rem;
 
     .cropMenu {
       background-color: bisque;
@@ -27,5 +29,21 @@
 
   .cropBody {
     display: flex;
+    flex-wrap: wrap;
   }
+}
+
+.costBody {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.banner {
+  width: 100%;
+  background: bisque;
+  height: 20vh;
+  text-align: center;
+  line-height: 20vh;
+  font-size: 2rem;
 }

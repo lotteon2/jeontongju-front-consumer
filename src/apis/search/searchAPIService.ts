@@ -5,6 +5,7 @@ import {
   GetAllProductsBySellerIdResponse,
   GetPopularProductsBySellerIdResponse,
   GetProductDetailByProductIdResponse,
+  GetCostProductsResponse,
 } from "./searchAPIService.types";
 
 const searchAPI = {
@@ -28,7 +29,13 @@ const searchAPI = {
   },
   getCropProducts: async () => {
     const { data } = await unAuthAxiosInstance.get<GetCropProductsResponse>(
-      `/search-service/api/products?sort=totalSalesCount,desc&size=10&topic=cerealCrops`
+      `/search-service/api/products/cereal-crops?sort=totalSalesCount,desc&size=10`
+    );
+    return data;
+  },
+  getCostProducts: async () => {
+    const { data } = await unAuthAxiosInstance.get<GetCostProductsResponse>(
+      `/search-service/api/products?sort=capacityToPriceRatio,asc&size=6`
     );
     return data;
   },
