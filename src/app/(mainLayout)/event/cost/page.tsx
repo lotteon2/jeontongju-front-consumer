@@ -10,7 +10,7 @@ export default async function Cost() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["event", "cost"],
-    queryFn: () => searchAPI.getCropProducts("capacityToPriceRatio"),
+    queryFn: () => searchAPI.getCostProducts(),
   });
   const dehydratedState = dehydrate(queryClient);
   queryClient.getQueryData(["event", "cost"]);

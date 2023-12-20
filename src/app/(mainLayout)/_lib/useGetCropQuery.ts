@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function useGetCropQuery() {
   return useQuery({
     queryKey: ["event", "crop"],
-    queryFn: () => searchAPI.getCropProducts("totalSalesCount"),
+    queryFn: () => searchAPI.getCropProducts(),
     enabled: true,
   });
 }

@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 export default function CostContainer() {
   const { data, isLoading } = useQuery({
     queryKey: ["event", "cost"],
-    queryFn: () => searchAPI.getCropProducts("capacityToPriceRatio"),
+    queryFn: () => searchAPI.getCostProducts(),
   });
   const [mounted, setMounted] = useState<boolean>(false);
 

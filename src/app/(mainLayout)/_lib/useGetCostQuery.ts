@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 export default function useGetCostQuery() {
   return useQuery({
     queryKey: ["event", "cost"],
-    queryFn: () => searchAPI.getCropProducts("capacityToPriceRatio"),
+    queryFn: () => searchAPI.getCostProducts(),
     enabled: true,
   });
 }

@@ -10,7 +10,7 @@ export default async function Crop() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["event", "crop"],
-    queryFn: () => searchAPI.getCropProducts("totalSalesCount"),
+    queryFn: () => searchAPI.getCropProducts(),
   });
   const dehydratedState = dehydrate(queryClient);
   queryClient.getQueryData(["event", "crop"]);
