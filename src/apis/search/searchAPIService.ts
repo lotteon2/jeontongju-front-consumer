@@ -30,7 +30,8 @@ const searchAPI = {
     const { data } = await unAuthAxiosInstance.get<GetCropProductsResponse>(
       `/search-service/api/products?sort=totalSalesCount,desc&size=10&topic=cerealCrops`
     );
-    console.log(data);
+    return data;
+  },
   getAllProductsBySellerId: async (
     sellerId: number,
     sort: keyof typeof SORT,
