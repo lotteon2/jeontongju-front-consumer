@@ -1,4 +1,4 @@
-import { authAxiosInstance } from "../common";
+import { authAxiosInstance, unAuthAxiosInstance } from "../common";
 import {
   BidParams,
   BidResponse,
@@ -14,9 +14,10 @@ const auctionAPI = {
     return data;
   },
   getAuctionDetailInfo: async () => {
-    const { data } = await authAxiosInstance.get<GetAuctionDetailInfoResponse>(
-      "/auction-service/api/auction/consumer/detail"
-    );
+    const { data } =
+      await unAuthAxiosInstance.get<GetAuctionDetailInfoResponse>(
+        "/auction-service/api/auction/consumer/detail"
+      );
     return data;
   },
   // 현재가 + 호가만큼 입찰하기

@@ -44,6 +44,24 @@ const nextConfig = {
     // when true, every image will be unoptimized
     unoptimized: true,
   },
+  webpack: (
+    config,
+    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
+  ) => {
+    config.module.rules.push({
+      test: /^.*\/(robots\.txt|sitemap(-\d+)?\.xml)$/,
+      loader: "ignore-loader",
+    });
+    // config.module.rules.push({
+    //   test: /\.(png|jpe?g|gif)$/i,
+    //   use: [
+    //     {
+    //       loader: "file-loader",
+    //     },
+    //   ],
+    // });
+    return config;
+  },
 };
 
 const withImages = require("next-images");
