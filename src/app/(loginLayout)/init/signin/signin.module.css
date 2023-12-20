@@ -49,6 +49,11 @@
   padding: 0 80px;
 }
 
+.message {
+  color: red;
+  text-align: center;
+}
+
 .inputDiv {
   display: flex;
   flex-direction: column;
