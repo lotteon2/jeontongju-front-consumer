@@ -26,11 +26,18 @@ const searchAPI = {
 
     return data;
   },
-  getCropProducts: async () => {
-    const { data } = await unAuthAxiosInstance.get<GetCropProductsResponse>(
-      `/search-service/api/products?sort=totalSalesCount,desc&size=10&topic=cerealCrops`
-    );
-    return data;
+  getCropProducts: async (sort: "capacityToPriceRatio" | "totalSalesCount") => {
+    if (sort === "totalSalesCount") {
+      const { data } = await unAuthAxiosInstance.get<GetCropProductsResponse>(
+        `/search-service/api/products?sort=${sort},desc&size=10&topic=cerealCrops`
+      );
+      return data;
+    } else {
+      const { data } = await unAuthAxiosInstance.get<GetCropProductsResponse>(
+        `/search-service/api/products?sort=${sort},desc&size=10`
+      );
+      return data;
+    }
   },
   getAllProductsBySellerId: async (
     sellerId: number,

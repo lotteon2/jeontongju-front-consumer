@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import style from "@/app/(mainLayout)/_component/ProductContainer/ProductContainer.module.css";
 
 type Props = {
@@ -22,6 +23,7 @@ export default function ProductContainer({
 }: Props) {
   return (
     <div className={style.productContainer}>
+      <Script>{`console.log('Rendering on client:', typeof window !== 'undefined');`}</Script>
       <Link href={`/product/${productId}`}>
         <Image
           alt="productThumbnail"

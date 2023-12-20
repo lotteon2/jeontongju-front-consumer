@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/(mainLayout)/globals.css";
 import RQProvider from "./_component/RQProvider";
+import { QueryClient } from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   title: "전통주점",

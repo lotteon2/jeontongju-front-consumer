@@ -27,5 +27,12 @@
 
   .cropBody {
     display: flex;
+    flex-wrap: wrap;
   }
+}
+
+.costBody {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
