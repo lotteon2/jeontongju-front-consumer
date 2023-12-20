@@ -29,6 +29,7 @@ export default function CropContainer() {
   return (
     <>
       <div className={style.cropContainer}>
+        <div className={style.banner}>구황작물 전통주 모아보기</div>
         <div className={style.cropHeader}>
           <div
             className={selectedMenu === 0 ? style.selected : style.cropMenu}

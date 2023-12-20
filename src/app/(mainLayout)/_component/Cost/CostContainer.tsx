@@ -21,20 +21,23 @@ export default function CostContainer() {
 
   console.log("!!! cost data", data);
   return (
-    <div className={style.costBody}>
+    <div className={style.cropContainer}>
+      <div className={style.banner}>가성비 전통주 모아보기</div>
       {mounted && !isLoading ? (
-        data?.data.map((crop: ProductData) => (
-          <ProductContainer
-            key={crop.productId}
-            productId={crop.productId}
-            productImg={crop.productThumbnailImageUrl}
-            sellerName={crop.storeName}
-            sellerProfileImg={crop.storeImageUrl}
-            price={crop.productPrice}
-            capacityToPriceRatio={crop.capacityToPriceRatio}
-            productName={crop.productName}
-          />
-        ))
+        <div className={style.costBody}>
+          {data?.data.map((crop: ProductData) => (
+            <ProductContainer
+              key={crop.productId}
+              productId={crop.productId}
+              productImg={crop.productThumbnailImageUrl}
+              sellerName={crop.storeName}
+              sellerProfileImg={crop.storeImageUrl}
+              price={crop.productPrice}
+              capacityToPriceRatio={crop.capacityToPriceRatio}
+              productName={crop.productName}
+            />
+          ))}
+        </div>
       ) : (
         <div>Loading...</div>
       )}
