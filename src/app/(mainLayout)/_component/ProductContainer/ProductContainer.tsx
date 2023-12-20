@@ -41,7 +41,10 @@ export default function ProductContainer({
           <div>
             <Image
               alt="sellerThumbnail"
-              src={sellerProfileImg}
+              src={
+                sellerProfileImg ||
+                "https://img.freepik.com/free-photo/concrete-background-cement-texture-with-blank-space_53876-129755.jpg"
+              }
               width={0}
               height={0}
               style={{ cursor: "pointer", width: "80%", height: "80%" }}

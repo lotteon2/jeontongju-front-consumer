@@ -51,9 +51,22 @@ export type GetPopularProductsBySellerIdResponseData = {
   isSoldOut: boolean;
 };
 
+export interface ProductData extends GetPopularProductsBySellerIdResponseData {
+  storeName: string;
+  storeImageUrl: string;
+}
+
+export type GetCropProductsResponseData = {
+  sweetPotato: ProductData[];
+  potato: ProductData[];
+  corn: ProductData[];
+};
+
 export type GetProductDetailByProductIdResponse =
   ApiResponse<GetProductDetailByProductIdResponseData>;
 
 export type GetPopularProductsBySellerIdResponse = ApiResponse<
   GetPopularProductsBySellerIdResponseData[]
 >;
+
+export type GetCropProductsResponse = ApiResponse<GetCropProductsResponseData>;

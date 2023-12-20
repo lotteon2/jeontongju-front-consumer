@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/app/(mainLayout)/globals.css";
+import RQProvider from "./_component/RQProvider";
 
 export const metadata: Metadata = {
   title: "전통주점",
@@ -12,7 +13,9 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <RQProvider>
+        <body>{children}</body>
+      </RQProvider>
     </html>
   );
 }
