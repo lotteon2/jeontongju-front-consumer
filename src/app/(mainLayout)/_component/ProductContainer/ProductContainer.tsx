@@ -23,7 +23,7 @@ export default function ProductContainer({
 }: Props) {
   return (
     <div className={style.productContainer}>
-      <Script>{`console.log('Rendering on client:', typeof window !== 'undefined');`}</Script>
+      <Script id="my-script">{`console.log('Rendering on client:', typeof window !== 'undefined');`}</Script>
       <Link href={`/product/${productId}`}>
         <Image
           alt="productThumbnail"
