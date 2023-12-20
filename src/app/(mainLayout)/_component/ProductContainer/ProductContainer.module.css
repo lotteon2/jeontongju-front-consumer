@@ -1,5 +1,6 @@
 .productContainer {
-  width: 15%;
+  width: 20%;
+  height: 20%;
   .productImg {
     border-radius: 4px;
     margin-bottom: 1px;

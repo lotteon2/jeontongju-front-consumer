@@ -1,0 +1,31 @@
+.cropContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+
+  .cropHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .cropMenu {
+      background-color: bisque;
+      padding: 1rem 2rem;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .selected {
+      background-color: #ffa1a1;
+      padding: 1rem 2rem;
+      border-radius: 3px;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  .cropBody {
+    display: flex;
+  }
+}

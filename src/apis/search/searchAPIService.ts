@@ -1,6 +1,7 @@
 import { SORT } from "@/constants/SortEnum";
 import { authAxiosInstance, unAuthAxiosInstance } from "../common";
 import {
+  GetCropProductsResponse,
   GetAllProductsBySellerIdResponse,
   GetPopularProductsBySellerIdResponse,
   GetProductDetailByProductIdResponse,
@@ -25,6 +26,11 @@ const searchAPI = {
 
     return data;
   },
+  getCropProducts: async () => {
+    const { data } = await unAuthAxiosInstance.get<GetCropProductsResponse>(
+      `/search-service/api/products?sort=totalSalesCount,desc&size=10&topic=cerealCrops`
+    );
+    console.log(data);
   getAllProductsBySellerId: async (
     sellerId: number,
     sort: keyof typeof SORT,
