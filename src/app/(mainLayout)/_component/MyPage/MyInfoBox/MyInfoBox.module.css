@@ -1,0 +1,16 @@
+.myInfoBox {
+  border-radius: 12px;
+
+  .infoHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+
+    .name {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+  }
+}

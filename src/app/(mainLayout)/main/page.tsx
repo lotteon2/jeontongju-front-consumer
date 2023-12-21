@@ -11,7 +11,5 @@ async function getOrderList() {
 }
 
 export default function MainPage() {
-  console.log(consumerAPI.getMyInfo());
-
   return <div>MYPAGE</div>;
 }
