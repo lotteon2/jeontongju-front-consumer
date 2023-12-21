@@ -29,6 +29,17 @@ export default function Document() {
           name="google-signin-client_id"
           content="239926923495-3v7i8t922da18fc2ftjrgt29acp1asr5.apps.googleusercontent.com"
         />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/swiper/swiper-bundle.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/swiper/swiper-bundle.min.css"
+        />
+        <script src="../app/_component/swiper.js" defer></script>
+        {/* <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> */}
       </Head>
       <body>
         <Main />
@@ -36,6 +47,14 @@ export default function Document() {
       </body>
       <Script
         src="https://developers.kakao.com/sdk/js/kakao.js"
+        strategy="afterInteractive"
+      />
+      <Script
+        src="https://unpkg.com/swiper/swiper-bundle.js"
+        strategy="afterInteractive"
+      />
+      <Script
+        src="https://unpkg.com/swiper/swiper-bundle.min.js"
         strategy="afterInteractive"
       />
     </Html>

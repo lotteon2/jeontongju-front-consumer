@@ -250,20 +250,20 @@
 
   .auctionContainer {
     width: 100%;
-    height: 30%;
     text-decoration: none;
     outline: none;
     color: black;
 
     .auctionHeader {
       font-size: 1.4rem;
+      margin-bottom: 1rem;
     }
 
     .auctionBody {
       display: flex;
-      align-items: center;
       justify-content: center;
       height: 80%;
+      gap: 1rem;
       .auctionLeft {
         flex: 1;
 
@@ -278,6 +278,16 @@
       }
       .auctionRight {
         flex: 2;
+        width: 40%;
+        /* border-radius: 12px;
+        background-color: #ffe2e2; */
+        padding: 1rem;
+        display: flex;
+
+        .productName {
+          font-weight: 700;
+          font-size: 1.2rem;
+        }
       }
     }
   }

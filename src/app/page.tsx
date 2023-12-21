@@ -11,6 +11,7 @@ import {
   HydrationBoundary,
 } from "@tanstack/react-query";
 import RQProvider from "./(mainLayout)/_component/RQProvider";
+import Head from "next/head";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -22,21 +23,26 @@ export default async function Page() {
   queryClient.getQueryData(["auction", "detail"]);
 
   return (
-    <div className={style.mainPage}>
-      <RQProvider>
-        <HydrationBoundary state={dehydratedState}>
-          <AuctionContainer />
-          <Link href={"/membership"}>
-            <Image
-              src={loadingImg}
-              width={0}
-              height={0}
-              alt="membership_banner"
-              style={{ cursor: "pointer", width: "100%", height: "20%" }}
-            />
-          </Link>
-        </HydrationBoundary>
-      </RQProvider>
-    </div>
+    <>
+      <Head>
+        <script src="../app/_component/swiper.js" defer></script>
+      </Head>
+      <div className={style.mainPage}>
+        <RQProvider>
+          <HydrationBoundary state={dehydratedState}>
+            <AuctionContainer />
+            <Link href={"/membership"}>
+              <Image
+                src={loadingImg}
+                width={0}
+                height={0}
+                alt="membership_banner"
+                style={{ cursor: "pointer", width: "100%", height: "20%" }}
+              />
+            </Link>
+          </HydrationBoundary>
+        </RQProvider>
+      </div>
+    </>
   );
 }
