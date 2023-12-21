@@ -261,7 +261,9 @@
 
     .auctionBody {
       display: flex;
-
+      align-items: center;
+      justify-content: center;
+      height: 80%;
       .auctionLeft {
         flex: 1;
 

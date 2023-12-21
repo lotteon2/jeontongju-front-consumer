@@ -16,6 +16,23 @@ export interface EnterAuctionResponseData {
   status: "ING" | "BEFORE" | "AFTER";
 }
 
+export type AuctionProduct = {
+  sellerId: number;
+  sellerName: string;
+  sellerEmail: string;
+  businessmanName: string;
+  storePhoneNumber: string;
+  storeImageUrl: string;
+  auctionProductId: string;
+  productName: string;
+  description: string;
+  startingPrice: number;
+  capacity: number;
+  alcoholDegree: number;
+  productImageUrl: string;
+  createdAt: string;
+};
+
 export interface GetAuctionDetailInfoResponseData {
   auction: {
     auctionId: string;
@@ -25,22 +42,7 @@ export interface GetAuctionDetailInfoResponseData {
     endDate: string;
     status: "ING" | "BEFORE" | "AFTER";
   };
-  productList: {
-    sellerId: number;
-    sellerName: string;
-    sellerEmail: string;
-    businessmanName: string;
-    storePhoneNumber: string;
-    storeImageUrl: string;
-    auctionProductId: string;
-    productName: string;
-    description: string;
-    startingPrice: number;
-    capacity: number;
-    alcoholDegree: number;
-    productImageUrl: string;
-    createdAt: string;
-  }[];
+  productList: AuctionProduct[];
 }
 export type EnterAuctionResponse = ApiResponse<EnterAuctionResponseData>;
 export type GetAuctionDetailInfoResponse =
