@@ -1,7 +1,7 @@
 import loadingImg from "/public/loading.gif";
-import eventCropImg from "/public/event_crop.png";
+// import eventCropImg from "/public/event_crop.png";
 import Image from "next/image";
-import membershipBannerImg from "/public/membership_banner.png";
+// import membershipBannerImg from "/public/membership_banner.png";
 import style from "@/app/page.module.css";
 import Link from "next/link";
 import AuctionContainer from "./_component/AuctionContainer";
@@ -12,6 +12,7 @@ import {
   HydrationBoundary,
 } from "@tanstack/react-query";
 import RQProvider from "./(mainLayout)/_component/RQProvider";
+import Banner from "./_component/Banner";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -28,24 +29,9 @@ export default async function Page() {
         <RQProvider>
           <HydrationBoundary state={dehydratedState}>
             <AuctionContainer />
-            <Link href={"/membership"}>
-              <Image
-                src={loadingImg}
-                width={0}
-                height={0}
-                alt="membership_banner"
-                style={{ cursor: "pointer", width: "100%", height: "20%" }}
-              />
-            </Link>
-            <Link href={"/membership"}>
-              <Image
-                src={eventCropImg}
-                width={0}
-                height={0}
-                alt="eventCropImg"
-                style={{ cursor: "pointer", width: "100%", height: "20%" }}
-              />
-            </Link>
+            <Banner type="membership" href="/membership" />
+            <Banner type="crop" href="/event/crop" />
+            <Banner type="cost" href="/event/cost" />
           </HydrationBoundary>
         </RQProvider>
       </div>
