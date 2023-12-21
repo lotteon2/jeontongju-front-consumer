@@ -48,10 +48,10 @@ const nextConfig = {
     config,
     { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
   ) => {
-    config.module.rules.push({
-      test: /^.*\/(robots\.txt|sitemap(-\d+)?\.xml)$/,
-      loader: "ignore-loader",
-    });
+    // config.module.rules.push({
+    //   test: /^.*\/(robots\.txt|sitemap(-\d+)?\.xml)$/,
+    //   loader: "ignore-loader",
+    // });
     // config.module.rules.push({
     //   test: /\.(png|jpe?g|gif)$/i,
     //   use: [

@@ -1,4 +1,5 @@
 import loadingImg from "/public/loading.gif";
+import eventCropImg from "/public/event_crop.png";
 import Image from "next/image";
 import membershipBannerImg from "/public/membership_banner.png";
 import style from "@/app/page.module.css";
@@ -11,7 +12,6 @@ import {
   HydrationBoundary,
 } from "@tanstack/react-query";
 import RQProvider from "./(mainLayout)/_component/RQProvider";
-import Head from "next/head";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -34,6 +34,15 @@ export default async function Page() {
                 width={0}
                 height={0}
                 alt="membership_banner"
+                style={{ cursor: "pointer", width: "100%", height: "20%" }}
+              />
+            </Link>
+            <Link href={"/membership"}>
+              <Image
+                src={eventCropImg}
+                width={0}
+                height={0}
+                alt="eventCropImg"
                 style={{ cursor: "pointer", width: "100%", height: "20%" }}
               />
             </Link>
