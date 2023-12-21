@@ -26,7 +26,14 @@ export type KakaoParams = {
   }[];
 };
 
-export interface KakaoPayResponseData {
+export type MembershipParams = {
+  paymentType: string;
+  paymentMethod: string;
+  itemName: string;
+  subscriptionType: string;
+};
+
+export interface PayResponseData {
   tid?: string;
   tms_result?: boolean;
   next_redirect_app_url?: string;
@@ -35,5 +42,5 @@ export interface KakaoPayResponseData {
   android_app_scheme?: string;
   ios_app_scheme?: string;
   created_at?: string;
-  detail?: string;
+  message?: string;
 }
