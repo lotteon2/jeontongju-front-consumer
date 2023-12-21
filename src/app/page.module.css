@@ -297,10 +297,15 @@
     outline: none;
     color: black;
   }
+}
 
-  /* .auctionContainer a:hover,
-  a:active {
-    text-decoration: none;
-    color: black;
-  } */
+.slider {
+  width: 100%;
+}
+
+.sliderItem {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2rem;
 }

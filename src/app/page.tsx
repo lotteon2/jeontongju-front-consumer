@@ -24,9 +24,6 @@ export default async function Page() {
 
   return (
     <>
-      <Head>
-        <script src="../app/_component/swiper.js" defer></script>
-      </Head>
       <div className={style.mainPage}>
         <RQProvider>
           <HydrationBoundary state={dehydratedState}>

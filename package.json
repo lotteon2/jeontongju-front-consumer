@@ -23,8 +23,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
     "sockjs-client": "^1.6.1",
-    "swiper": "6",
     "webstomp-client": "^1.2.6"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "@types/node": "^20.10.4",
     "@types/react": "17.0.45",
     "@types/react-dom": "17.0.11",
+    "@types/react-slick": "^0.23.13",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "file-loader": "^6.2.0",

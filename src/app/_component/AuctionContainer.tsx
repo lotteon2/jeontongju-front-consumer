@@ -8,16 +8,21 @@ import {
   AuctionProduct,
   GetAuctionDetailInfoResponseData,
 } from "@/apis/auction/auctionAPIService.types";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Script from "next/script";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useState } from "react";
 
-// async function getAuction() {
-//   const data = await auctionAPI.getAuctionDetailInfo();
-//   if (data.code === 200) return data.data;
-// }
-
 export default function AuctionContainer() {
+  const settings = {
+    infinite: true,
+    speed: 2000,
+    autoplay: true,
+    pauseOnHover: true,
+    autoplaySpeed: 2000,
+    arrows: false,
+    slidesToShow: 1,
+  };
   const [mounted, setMounted] = useState<boolean>(false);
   const [data, setData] = useState<GetAuctionDetailInfoResponseData>();
   async function getAuction() {
@@ -76,7 +81,37 @@ export default function AuctionContainer() {
                 </div>
               </div>
               <div className={style.auctionRight}>
-                <Swiper spaceBetween={50} autoplay>
+                <Slider {...settings} className={style.slider}>
+                  {data?.productList?.map((product: AuctionProduct) => (
+                    <div
+                      key={product.auctionProductId}
+                      className={style.sliderItem}
+                    >
+                      <Image
+                        src={
+                          product.productImageUrl ||
+                          "https://img.freepik.com/free-photo/concrete-background-cement-texture-with-blank-space_53876-129755.jpg"
+                        }
+                        alt={product.description}
+                        width={200}
+                        height={200}
+                        priority
+                        style={{
+                          borderRadius: "12px",
+                        }}
+                      />
+                      <div>
+                        <div className={style.productName}>
+                          {product.productName}
+                        </div>
+                        <div>{product.description}</div>
+                        <div>도수 | {product.alcoholDegree}%</div>
+                        <div>용량 | {product.capacity}ml</div>
+                      </div>
+                    </div>
+                  ))}
+                </Slider>
+                {/* <Swiper spaceBetween={50} autoplay>
                   {data?.productList?.map((product: AuctionProduct) => (
                     <SwiperSlide key={product.auctionProductId}>
                       <Image
@@ -102,7 +137,7 @@ export default function AuctionContainer() {
                       </div>
                     </SwiperSlide>
                   ))}
-                </Swiper>
+                </Swiper> */}
                 {/* <div className="swiper-container">
               <div className="swiper-wrapper">
                 {data?.productList?.map((product: AuctionProduct) => (
