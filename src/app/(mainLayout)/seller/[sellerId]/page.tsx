@@ -215,19 +215,6 @@ export default function Seller({ params }: Props) {
               ) : (
                 <AllProducts sellerId={parseInt(sellerId)} />
               )}
-
-              {/* <div>
-                {sellerProducts?.map((product) => (
-                  <ProductContainer
-                    productName={product.productName}
-                    productId={product.productId}
-                    productImg={product.productThumbnailImageUrl}
-                    price={product.productPrice}
-                    capacityToPriceRatio={product.capacityToPriceRatio}
-                    key={product.productId}
-                  />
-                ))}
-              </div> */}
             </div>
           </div>
         </div>

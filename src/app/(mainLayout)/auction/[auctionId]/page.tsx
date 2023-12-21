@@ -19,6 +19,8 @@ import { useEffect, useState } from "react";
 import style from "@/app/(mainLayout)/auction/[auctionId]/auction.module.css";
 import auctionAPI from "@/apis/auction/auctionAPIService";
 import Image from "next/image";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface RemoteParticipantWithVideo {
   participant: IRemoteParticipant;
@@ -55,6 +57,7 @@ const AuctionDetail = ({ params }: Props) => {
   const [remoteParticipant, setRemoteParticipant] = useState<
     RemoteParticipantWithVideo[]
   >([]);
+  const notify = (message: string) => toast(message);
   const connectChatInfo = () => {
     console.log("auction");
     const serverURL = "https://jeontongju-dev.shop/auction-service";
@@ -170,6 +173,7 @@ const AuctionDetail = ({ params }: Props) => {
     try {
       const data = await auctionAPI.enterAuction(auctionId);
       if (data.code === 200) {
+        notify("입장에 성공했어요");
         console.log("성공");
         setAuctionName(data.data.auctionName);
         setStatus(data.data.status);
@@ -181,6 +185,7 @@ const AuctionDetail = ({ params }: Props) => {
         }
       }
     } catch (error) {
+      notify("입장에 실패했어요");
       console.error(error);
     }
   };
@@ -261,6 +266,7 @@ const AuctionDetail = ({ params }: Props) => {
                 </button>
               </>
             )}
+            <ToastContainer />
           </div>
         </>
       ) : status === "BEFORE" ? (
