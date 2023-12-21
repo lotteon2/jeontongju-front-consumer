@@ -10,11 +10,10 @@ export default function OrderSuccess() {
 
   return (
     <Image
-      alt="orderFailImg"
+      alt="OrderSuccess"
       width={0}
       height={0}
       src={orderSuccessImg}
-      preview={false}
       style={{ cursor: "pointer", width: "80%", height: "auto" }}
       onClick={handleGoPrevPage}
     />

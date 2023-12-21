@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import useGetCropQuery from "../../_lib/useGetCropQuery";
 import ProductContainer from "../ProductContainer/ProductContainer";
 import { ProductData } from "@/apis/search/searchAPIService.types";
 import style from "@/app/(mainLayout)/_component/Crop/CropContainer.module.css";
@@ -12,7 +11,7 @@ export default function CropContainer() {
   const [selectedValue, setSelectedValue] = useState<string>("sweetPotato");
   const { data } = useQuery({
     queryKey: ["event", "crop"],
-    queryFn: () => searchAPI.getCropProducts("totalSalesCount"),
+    queryFn: () => searchAPI.getCropProducts(),
   });
   console.log("!!! data", data);
 

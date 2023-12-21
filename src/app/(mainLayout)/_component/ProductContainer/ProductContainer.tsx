@@ -40,7 +40,7 @@ export default function ProductContainer({
         <div className={style.productName}>{productName}</div>
         <div className={style.price}>{price}</div>
         {sellerProfileImg && (
-          <div>
+          <div className={style.sellerInfo}>
             <Image
               alt="sellerThumbnail"
               src={
@@ -49,7 +49,7 @@ export default function ProductContainer({
               }
               width={0}
               height={0}
-              style={{ cursor: "pointer", width: "80%", height: "80%" }}
+              style={{ cursor: "pointer", width: "3rem", height: "3rem" }}
             />
             <div>{sellerName}</div>
           </div>

@@ -241,3 +241,71 @@
     transform: rotate(0deg);
   }
 }
+
+.mainPage {
+  padding: 0 20vh;
+  width: 100dvw;
+  height: 100dvh;
+  box-sizing: border-box;
+
+  .auctionContainer {
+    width: 100%;
+    text-decoration: none;
+    outline: none;
+    color: black;
+
+    .auctionHeader {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .auctionBody {
+      display: flex;
+      justify-content: center;
+      height: 80%;
+      gap: 1rem;
+      .auctionLeft {
+        flex: 1;
+
+        .auctionTitle {
+          font-size: 1.2rem;
+        }
+
+        .auctionDesc {
+          font-size: 0.8rem;
+          color: gray;
+        }
+      }
+      .auctionRight {
+        flex: 2;
+        width: 40%;
+        /* border-radius: 12px;
+        background-color: #ffe2e2; */
+        padding: 1rem;
+        display: flex;
+
+        .productName {
+          font-weight: 700;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .auctionContainer a {
+    text-decoration: none;
+    outline: none;
+    color: black;
+  }
+}
+
+.slider {
+  width: 100%;
+}
+
+.sliderItem {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2rem;
+}
