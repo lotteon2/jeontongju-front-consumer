@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GetProductDetailByProductIdResponseData } from "@/apis/search/searchAPIService.types";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
 
 type Props = {
   params: { productId: string };
@@ -17,13 +18,11 @@ type Props = {
 
 export default function Page({ params }: Props) {
   const router = useRouter();
+  const notify = (message: string) => toast(message);
   const { productId } = params;
   const [img, setImg] = useState<string>(LoadingImg);
   const [productData, setProductData] =
     useState<GetProductDetailByProductIdResponseData>(null);
-
-  // const data = await getProductData(productId);
-  // const productData = data.data;
 
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState(
@@ -31,7 +30,6 @@ export default function Page({ params }: Props) {
   );
 
   const handleClickCounter = (num: number) => {
-    console.log(num);
     setQuantity((prev) => prev + num);
     setTotal((prev) => prev + productData.productPrice * num);
   };
@@ -54,6 +52,7 @@ export default function Page({ params }: Props) {
     } catch (err) {
       console.error(err);
       setImg(NotFoundImg);
+      notify("없는 상품이에요.");
     }
   };
 

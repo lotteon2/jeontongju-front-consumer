@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Jua } from "next/font/google";
 import styles from "@/app/page.module.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const jua = Jua({ subsets: ["latin"], display: "swap", weight: "400" });
 
 export const metadata: Metadata = {
@@ -17,6 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={jua.className}>
         <div className={styles.container}>{children}</div>
+        <ToastContainer limit={1} />
       </body>
     </html>
   );

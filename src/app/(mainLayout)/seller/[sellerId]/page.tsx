@@ -12,6 +12,8 @@ import searchAPI from "@/apis/search/searchAPIService";
 import ProductContainer from "../../_component/ProductContainer/ProductContainer";
 import PopularProducts from "../../_component/Seller/PopularContainer";
 import AllProducts from "../../_component/Seller/AllProducts";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type Props = {
   params: { sellerId: string };
@@ -26,6 +28,7 @@ export default function Seller({ params }: Props) {
   const [popularReviewProducts, setPopularReviewProducts] =
     useState<GetPopularProductsBySellerIdResponseData[]>(null);
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
+  const notify = (message: string) => toast(message);
 
   const getSellerInfo = async (sellerId: number) => {
     try {
@@ -53,6 +56,7 @@ export default function Seller({ params }: Props) {
         setImg("");
       }
     } catch (err) {
+      notify("판매 인기 상품 불러오는데 실패했어요");
       console.error(err);
     }
 
@@ -68,6 +72,7 @@ export default function Seller({ params }: Props) {
       }
     } catch (err) {
       console.error(err);
+      notify("리뷰 인기 상품 불러오는데 실패했어요");
       setImg(NotFoundImg);
     }
   };
@@ -215,19 +220,6 @@ export default function Seller({ params }: Props) {
               ) : (
                 <AllProducts sellerId={parseInt(sellerId)} />
               )}
-
-              {/* <div>
-                {sellerProducts?.map((product) => (
-                  <ProductContainer
-                    productName={product.productName}
-                    productId={product.productId}
-                    productImg={product.productThumbnailImageUrl}
-                    price={product.productPrice}
-                    capacityToPriceRatio={product.capacityToPriceRatio}
-                    key={product.productId}
-                  />
-                ))}
-              </div> */}
             </div>
           </div>
         </div>
