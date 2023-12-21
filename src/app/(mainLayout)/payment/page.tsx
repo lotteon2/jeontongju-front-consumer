@@ -28,7 +28,11 @@ export default function Payment() {
     };
     try {
       const data = await paymentAPI.kakaoPay(params);
-      router.replace(data.next_redirect_pc_url);
+      if (data.message) {
+        console.error(data.message);
+      } else {
+        router.replace(data.next_redirect_pc_url);
+      }
     } catch (err) {
       console.log(err);
     }

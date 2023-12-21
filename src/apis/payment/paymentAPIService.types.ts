@@ -33,6 +33,13 @@ export type MembershipParams = {
   subscriptionType: string;
 };
 
+export type BuyCreditParams = {
+  chargeCredit: number;
+  paymentType: string;
+  paymentMethod: string;
+  itemName: string;
+};
+
 export interface PayResponseData {
   tid?: string;
   tms_result?: boolean;
