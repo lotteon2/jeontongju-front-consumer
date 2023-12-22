@@ -75,6 +75,18 @@ export type GetMyCreditListResponseData = {
   histories: Page<Credit[]>;
 };
 
+export type GetMyMembershipResponseData = {
+  subscriptionId: number;
+  startDate: string;
+  endDate: string;
+  subscriptionType: "YANGBAN";
+  paymentType: "KAKAO";
+  paymentAmount: number;
+};
+
 export type GetMyInfoResponse = ApiResponse<GetMyInfoResponseData>;
 export type GetMyPointListResponse = ApiResponse<GetMyPointListResponseData>;
 export type GetMyCreditListResponse = ApiResponse<GetMyCreditListResponseData>;
+export type GetMyMembershipResponse = ApiResponse<
+  Page<GetMyMembershipResponseData[]>
+>;

@@ -2,7 +2,7 @@
 import MemberShipPointImg from "/public/membership_point.gif";
 import MemberShipDeliveryImg from "/public/membership_delivery.gif";
 import Image from "next/image";
-import style from "@/app/(mainLayout)/membership/membership.module.css";
+import style from "@/app/(mainLayout)/membership/buy/membership.module.css";
 import paymentAPI from "@/apis/payment/paymentAPIService";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";

@@ -13,6 +13,16 @@
       font-size: 1.2rem;
       font-weight: 700;
     }
+
+    .membership {
+      background: #f2cbf9;
+      border-radius: 12px;
+      width: 5rem;
+      text-align: center;
+      padding: 0.3rem;
+      color: white;
+      cursor: pointer;
+    }
   }
 
   .infoFooter {

@@ -1,0 +1,9 @@
+.paidMembershipBox {
+  border-radius: 12px;
+  background-color: #ececec;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}

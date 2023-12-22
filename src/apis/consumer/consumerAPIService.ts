@@ -3,6 +3,7 @@ import {
   GetMyPointListResponse,
   GetMyInfoResponse,
   GetMyCreditListResponse,
+  GetMyMembershipResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -25,6 +26,12 @@ const consumerAPI = {
   ) => {
     const { data } = await authAxiosInstance.get<GetMyCreditListResponse>(
       `/consumer-service/api/consumers/credit-history?search=${search}&page=${page}&size=${size}`
+    );
+    return data;
+  },
+  getMyMembershipList: async (page: number, size: number) => {
+    const { data } = await authAxiosInstance.get<GetMyMembershipResponse>(
+      `consumer-service/api/consumers/subscription-history?page=${page}&size=${size}`
     );
     return data;
   },
