@@ -16,9 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={jua.className}>
-        <div className={styles.container}>{children}</div>
+        <div className={styles.container} suppressHydrationWarning={true}>
+          {children}
+        </div>
         <ToastContainer limit={1} />
       </body>
     </html>
