@@ -12,10 +12,8 @@ type Props = {
 };
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang="en">
-      <RQProvider>
-        <body>{children}</body>
-      </RQProvider>
-    </html>
+    <section>
+      <RQProvider>{children}</RQProvider>
+    </section>
   );
 }

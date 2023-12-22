@@ -1,5 +1,6 @@
 .myInfoBox {
   border-radius: 12px;
+  margin-bottom: 1rem;
 
   .infoHeader {
     display: flex;
@@ -11,6 +12,32 @@
     .name {
       font-size: 1.2rem;
       font-weight: 700;
+    }
+  }
+
+  .infoFooter {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    .infoDiv {
+      cursor: pointer;
+      flex: 1;
+      background-color: antiquewhite;
+      border-radius: 12px;
+      display: flex;
+      gap: 0.5rem;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+
+      .infoTitle {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .infoDesc {
+      }
     }
   }
 }

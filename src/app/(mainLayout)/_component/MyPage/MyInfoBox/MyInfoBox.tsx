@@ -3,8 +3,10 @@ import { GetMyInfoResponseData } from "@/apis/consumer/consumerAPIservice.types"
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import style from "@/app/(mainLayout)/_component/MyPage/MyInfoBox/MyInfoBox.module.css";
+import { useRouter } from "next/navigation";
 
 export default function MyInfoBox() {
+  const router = useRouter();
   const [mounted, setMounted] = useState<boolean>(false);
   const [myInfo, setMyInfo] = useState<GetMyInfoResponseData>();
 
@@ -17,6 +19,7 @@ export default function MyInfoBox() {
     getMyInfo();
     setMounted(true);
   }, []);
+
   return (
     <div className={style.myInfoBox}>
       <div className={style.infoHeader}>
@@ -33,6 +36,23 @@ export default function MyInfoBox() {
           <div className={style.name}>{myInfo?.name}</div>
           <div>{myInfo?.email}</div>
           <div>{myInfo?.phoneNumber}</div>
+        </div>
+      </div>
+      <div className={style.infoFooter}>
+        <div className={style.infoDiv}>
+          <div className={style.infoTitle}>포인트</div>
+          <div className={style.infoDesc}>{myInfo?.point}</div>
+        </div>
+        <div className={style.infoDiv}>
+          <div className={style.infoTitle}>쿠폰</div>
+          <div className={style.infoDesc}>쿠폰 받으러 가기</div>
+        </div>
+        <div
+          className={style.infoDiv}
+          onClick={() => router.push("/credit/list")}
+        >
+          <div className={style.infoTitle}>크레딧</div>
+          <div className={style.infoDesc}>{myInfo?.credit}</div>
         </div>
       </div>
     </div>
