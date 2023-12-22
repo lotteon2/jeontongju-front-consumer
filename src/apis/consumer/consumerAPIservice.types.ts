@@ -54,6 +54,13 @@ export type Trade = {
   tradeDate: string;
 };
 
+export type Credit = {
+  tradeCreditId: number;
+  tradeCredit: number;
+  tradePath: "CHARGE" | "BID";
+  tradeDate: string;
+};
+
 export type GetMyPointListResponseData = {
   point: number;
   totalAcc: number;
@@ -61,5 +68,13 @@ export type GetMyPointListResponseData = {
   histories: Page<Trade[]>;
 };
 
+export type GetMyCreditListResponseData = {
+  credit: number;
+  totalAcc: number;
+  totalUse: number;
+  histories: Page<Credit[]>;
+};
+
 export type GetMyInfoResponse = ApiResponse<GetMyInfoResponseData>;
 export type GetMyPointListResponse = ApiResponse<GetMyPointListResponseData>;
+export type GetMyCreditListResponse = ApiResponse<GetMyCreditListResponseData>;

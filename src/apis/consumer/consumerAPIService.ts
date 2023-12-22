@@ -2,6 +2,7 @@ import { authAxiosInstance } from "../common";
 import {
   GetMyPointListResponse,
   GetMyInfoResponse,
+  GetMyCreditListResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -14,6 +15,16 @@ const consumerAPI = {
   getMyPointList: async (search: "acc" | "use", page: number, size: number) => {
     const { data } = await authAxiosInstance.get<GetMyPointListResponse>(
       `/consumer-service/api/consumers/point-history?search=${search}&page=${page}&size=${size}`
+    );
+    return data;
+  },
+  getMyCreditList: async (
+    search: "charge" | "bid",
+    page: number,
+    size: number
+  ) => {
+    const { data } = await authAxiosInstance.get<GetMyCreditListResponse>(
+      `/consumer-service/api/consumers/credit-history?search=${search}&page=${page}&size=${size}`
     );
     return data;
   },
