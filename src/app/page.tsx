@@ -13,6 +13,7 @@ import {
 } from "@tanstack/react-query";
 import RQProvider from "./(mainLayout)/_component/RQProvider";
 import Banner from "./_component/Banner";
+import Header from "./(mainLayout)/_component/Header/Header";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ export default async function Page() {
       <div className={style.mainPage}>
         <RQProvider>
           <HydrationBoundary state={dehydratedState}>
+            <Header />
             <AuctionContainer />
             <Banner type="membership" href="/membership" />
             <Banner type="crop" href="/event/crop" />
