@@ -39,7 +39,10 @@ export default function MyInfoBox() {
         </div>
       </div>
       <div className={style.infoFooter}>
-        <div className={style.infoDiv}>
+        <div
+          className={style.infoDiv}
+          onClick={() => router.push("/point/list")}
+        >
           <div className={style.infoTitle}>포인트</div>
           <div className={style.infoDesc}>{myInfo?.point}</div>
         </div>
