@@ -8,11 +8,7 @@ import { useRouter } from "next/navigation";
 import orderAPI from "@/apis/order/orderAPIService";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import {
-  ORDER_STATE,
-  ORDER_STATUS,
-  translateOrderState,
-} from "@/constants/OrderStatusEnum";
+import { ORDER_STATE, translateOrderState } from "@/constants/OrderStatusEnum";
 
 export default function MyOrderBox({
   params,

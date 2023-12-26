@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
+import { translateOrderState } from "@/constants/OrderStatusEnum";
 
 export default function OrderDetail() {
   const params = useSearchParams();
@@ -48,7 +49,9 @@ export default function OrderDetail() {
               {order.product?.map((product) => (
                 <div key={product.productOrderId}>
                   <div>
-                    <strong>{product.productOrderStatus}</strong>
+                    <strong>
+                      {translateOrderState(product.productOrderStatus)}
+                    </strong>
                   </div>
                   <div>
                     {product.productPrice} 원 X {product.productCount}
