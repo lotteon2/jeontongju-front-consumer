@@ -18,7 +18,7 @@ export default function Banner({ type, href }: { type: string; href: string }) {
         }
         width={0}
         height={0}
-        alt={type}
+        alt={type || "banner"}
         style={{ cursor: "pointer", width: "100%", height: "20%" }}
       />
     </Link>

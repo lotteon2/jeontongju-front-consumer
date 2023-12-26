@@ -1,0 +1,30 @@
+.sellerList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  cursor: pointer;
+
+  .sellerBox {
+    width: 20%;
+    border: 1px solid gray;
+    border-radius: 12px;
+    height: 30%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    .storeName {
+      font-size: 1.2rem;
+    }
+
+    .storeDescription {
+      color: #c0c0c0;
+    }
+  }
+}

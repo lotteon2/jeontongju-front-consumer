@@ -1,3 +1,5 @@
+import { Page } from "@/constants/PageResponseType";
+
 interface ApiResponse<T> {
   code: number;
   message: string;
@@ -14,4 +16,18 @@ export type GetSellerInfoResponseData = {
   storeImageUrl: string;
 };
 
+export type GetSellerListResponseData = {
+  sellerId: number;
+  email: string;
+  businessmanName: string;
+  storeName: string;
+  storePhoneNumber: string;
+  createdAt: string;
+  storeDescription: string;
+  storeImageUrl: string;
+};
+
 export type GetSellerInfoResponse = ApiResponse<GetSellerInfoResponseData>;
+export type GetSellerListResponse = ApiResponse<
+  Page<GetSellerListResponseData[]>
+>;
