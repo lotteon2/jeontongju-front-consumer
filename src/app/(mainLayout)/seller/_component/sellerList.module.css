@@ -10,13 +10,13 @@
   margin: 0 auto;
 
   .sellerBox {
+    box-shadow: 3px 3px 1px 1px #c0c0c0;
     width: 20%;
     max-width: 20%;
-    border: 1px solid gray;
     border-radius: 12px;
-    height: 15vh;
-    max-height: 15vh;
-    min-height: 15vh;
+    height: 30%;
+    max-height: 30%;
+    min-height: 30%;
     padding: 1rem;
     display: flex;
     align-items: center;
