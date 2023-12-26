@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import orderAPI from "@/apis/order/orderAPIService";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { ORDER_STATUS } from "@/constants/OrderStatusEnum";
 
 export default function MyOrderBox({
   params,
@@ -44,6 +45,21 @@ export default function MyOrderBox({
       }
     } catch (error) {
       toast("주문 취소에 실패했어요");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  //TODO : alert
+  const handleConfirmOrderByProductOrderId = async (productOrderId: number) => {
+    try {
+      setIsLoading(true);
+      const data = await orderAPI.confirmMyOrderByOrderId(productOrderId);
+      if (data.code === 200) {
+        toast("주문 확정에 성공했어요.");
+      }
+    } catch (error) {
+      toast("주문 확정에 실패했어요");
     } finally {
       setIsLoading(false);
     }
@@ -101,8 +117,18 @@ export default function MyOrderBox({
                       handleCancelOrderByProductOrderId(item.productOrderId)
                     }
                   >
-                    {item.productOrderStatus === "ORDER" && "취소하기"}
+                    {item.productOrderStatus === ORDER_STATUS.ORDER &&
+                      "취소하기"}
                   </div>
+                </div>
+                <div
+                  className={style.orderStatusBox}
+                  onClick={() =>
+                    handleConfirmOrderByProductOrderId(item.productOrderId)
+                  }
+                >
+                  {item.productOrderStatus === ORDER_STATUS.COMPLETED &&
+                    "주문 확정하기"}
                 </div>
                 <div>
                   {item.productPrice} 원 X {item.productCount}

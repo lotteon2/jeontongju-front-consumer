@@ -2,6 +2,7 @@ import { authAxiosInstance } from "../common";
 import {
   CancelMyOrderByOrderIdResponse,
   CancelMyOrderByProductOrderIdResponse,
+  ConfirmMyOrderByProductOrderIdResponse,
   GetMyOrderListResponse,
 } from "./orderAPIService.types";
 
@@ -29,6 +30,13 @@ const orderAPI = {
         {
           productOrderId,
         }
+      );
+    return data;
+  },
+  confirmMyOrderByOrderId: async (productOrderId: number) => {
+    const { data } =
+      await authAxiosInstance.patch<ConfirmMyOrderByProductOrderIdResponse>(
+        `/order-service/api/product-order-confirm/${productOrderId}`
       );
     return data;
   },
