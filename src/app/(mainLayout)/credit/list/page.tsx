@@ -62,13 +62,13 @@ export default function CreditList() {
               }
               onClick={() => setType("charge")}
             >
-              충전
+              충전 내역
             </div>
             <div
               className={type === "bid" ? style.selectedButton : style.button}
               onClick={() => setType("bid")}
             >
-              사용
+              사용 내역
             </div>
           </div>
           <div className={style.credits}>
