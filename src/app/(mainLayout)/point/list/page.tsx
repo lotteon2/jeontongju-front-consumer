@@ -8,7 +8,11 @@ import consumerAPI from "@/apis/consumer/consumerAPIService";
 import { Trade } from "@/apis/consumer/consumerAPIservice.types";
 import CreditBox from "../../_component/PointCreditBox/PointCreditBox";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
+
 export default function PointList() {
+  const router = useRouter();
   const [type, setType] = useState<"acc" | "use">("acc");
   const [currentPoint, setCurrentPoint] = useState<number>();
   const [accPoint, setAccPoint] = useState<number>();
@@ -18,9 +22,14 @@ export default function PointList() {
   const [points, setPoints] = useState<Trade[]>();
   const [mounted, setMounted] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLogin] = useMyInfoStore((state) => [state.isLogin]);
 
   useEffect(() => {
     setMounted(true);
+    if (!isLogin) {
+      toast("로그인한 유저만 접근할 수 있어요.");
+      router.push("/init/signin");
+    }
   }, []);
 
   const getMyCredit = async () => {

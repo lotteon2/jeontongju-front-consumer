@@ -14,7 +14,7 @@ export default function MyPage() {
   useEffect(() => {
     if (!isLogin) {
       toast("로그인한 유저만 접근할 수 있어요.");
-      router.push("/404");
+      router.push("/init/signin");
     }
   });
   return (

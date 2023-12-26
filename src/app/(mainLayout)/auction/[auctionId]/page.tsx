@@ -21,6 +21,8 @@ import auctionAPI from "@/apis/auction/auctionAPIService";
 import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
+import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 
 interface RemoteParticipantWithVideo {
   participant: IRemoteParticipant;
@@ -46,8 +48,12 @@ interface AuctionData {
 }
 
 const AuctionDetail = ({ params }: Props) => {
+  const router = useRouter();
   const { auctionId } = params;
-  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isLogin, memberId] = useMyInfoStore((state) => [
+    state.isLogin,
+    state.memberId,
+  ]);
   const [message, setMessage] = useState<string>("");
   const [stompClient, setStompClient] = useState<null | Client>(null);
   const [auctionName, setAuctionName] = useState<string>("");
@@ -58,6 +64,13 @@ const AuctionDetail = ({ params }: Props) => {
     RemoteParticipantWithVideo[]
   >([]);
   const notify = (message: string) => toast(message);
+
+  useEffect(() => {
+    if (!isLogin) {
+      toast("로그인한 유저만 접근할 수 있어요.");
+      router.push("/init/signin");
+    }
+  }, []);
   const connectChatInfo = () => {
     console.log("auction");
     const serverURL = "https://jeontongju-dev.shop/auction-service";
@@ -162,7 +175,7 @@ const AuctionDetail = ({ params }: Props) => {
   const sendMessage = () => {
     if (!message) return;
     const msg = {
-      memberId: 53,
+      memberId,
       message,
     };
     stompClient!.send(`/pub/chat/${auctionId}`, JSON.stringify(msg));
