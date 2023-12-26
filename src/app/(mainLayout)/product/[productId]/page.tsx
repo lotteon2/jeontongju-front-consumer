@@ -91,7 +91,7 @@ export default function Page({ params }: Props) {
               <div className={style.quantityBox}>
                 <QualityInput
                   quantity={quantity}
-                  stock={100}
+                  stock={productData.registeredQuantity}
                   onClick={handleClickCounter}
                   setQuantity={setQuantity}
                   onBlur={handleBlurInput}
