@@ -1,5 +1,8 @@
 import { authAxiosInstance } from "../common";
-import { GetSellerInfoResponse } from "./sellerAPIService.types";
+import {
+  GetSellerInfoResponse,
+  GetSellerListResponse,
+} from "./sellerAPIService.types";
 
 const sellerAPI = {
   getSellerInfo: async (sellerId: number) => {

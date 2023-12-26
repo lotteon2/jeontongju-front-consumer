@@ -19,6 +19,7 @@ export default function Header() {
             className={style.input}
           />
           <Image
+            alt="search"
             width={32}
             height={32}
             src="https://static.lotteon.com/p/common/foCommon/assets/img/icon_search_black.svg"

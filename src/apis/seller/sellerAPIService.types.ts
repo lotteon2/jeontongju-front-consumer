@@ -1,3 +1,5 @@
+import { Page } from "@/constants/PageResponseType";
+
 interface ApiResponse<T> {
   code: number;
   message: string;
@@ -26,3 +28,6 @@ export type GetSellerListResponseData = {
 };
 
 export type GetSellerInfoResponse = ApiResponse<GetSellerInfoResponseData>;
+export type GetSellerListResponse = ApiResponse<
+  Page<GetSellerListResponseData[]>
+>;

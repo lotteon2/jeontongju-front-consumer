@@ -76,7 +76,7 @@ export default function AuctionContainer() {
                           product.productImageUrl ||
                           "https://img.freepik.com/free-photo/concrete-background-cement-texture-with-blank-space_53876-129755.jpg"
                         }
-                        alt={product.description}
+                        alt={product.description || "product"}
                         width={200}
                         height={200}
                         priority
