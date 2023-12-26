@@ -1,4 +1,3 @@
-import { persist, createJSONStorage } from "zustand/middleware";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { MyInfoDispatcher, MyInfoState } from "./myInfo.types";
