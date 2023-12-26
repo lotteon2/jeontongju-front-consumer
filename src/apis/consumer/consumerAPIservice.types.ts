@@ -47,6 +47,21 @@ export type GetMyCreditListResponseData = {
   histories: Page<Credit[]>;
 };
 
+export type GetMyInfoForStoreResponseData = {
+  email: string;
+  profileImageUrl: string;
+  name: string;
+  isAdult: boolean;
+  isRegularPayment: boolean;
+  point: number;
+  credit: number;
+  phoneNumber: string;
+  isAddressDefault: boolean;
+  memberId: number;
+};
+
 export type GetMyInfoResponse = ApiResponse<GetMyInfoResponseData>;
 export type GetMyPointListResponse = ApiResponse<GetMyPointListResponseData>;
 export type GetMyCreditListResponse = ApiResponse<GetMyCreditListResponseData>;
+export type GetMyInfoForStoreResponse =
+  ApiResponse<GetMyInfoForStoreResponseData>;

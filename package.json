@@ -28,7 +28,8 @@
     "react-toastify": "^9.1.3",
     "slick-carousel": "^1.8.1",
     "sockjs-client": "^1.6.1",
-    "webstomp-client": "^1.2.6"
+    "webstomp-client": "^1.2.6",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@tanstack/react-query-devtools": "5",

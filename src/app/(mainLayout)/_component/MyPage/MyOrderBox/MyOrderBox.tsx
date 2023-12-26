@@ -8,7 +8,11 @@ import { useRouter } from "next/navigation";
 import orderAPI from "@/apis/order/orderAPIService";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { ORDER_STATUS } from "@/constants/OrderStatusEnum";
+import {
+  ORDER_STATE,
+  ORDER_STATUS,
+  translateOrderState,
+} from "@/constants/OrderStatusEnum";
 
 export default function MyOrderBox({
   params,
@@ -110,14 +114,16 @@ export default function MyOrderBox({
               </Link>
               <div className={style.orderDetail}>
                 <div className={style.orderStatusContainer}>
-                  <strong>{item.productOrderStatus}</strong>
+                  <strong>
+                    {translateOrderState(item.productOrderStatus)}
+                  </strong>
                   <div
                     className={style.orderStatusBox}
                     onClick={() =>
                       handleCancelOrderByProductOrderId(item.productOrderId)
                     }
                   >
-                    {item.productOrderStatus === ORDER_STATUS.ORDER &&
+                    {item.productOrderStatus === ORDER_STATE.ORDER &&
                       "취소하기"}
                   </div>
                 </div>
@@ -127,7 +133,7 @@ export default function MyOrderBox({
                     handleConfirmOrderByProductOrderId(item.productOrderId)
                   }
                 >
-                  {item.productOrderStatus === ORDER_STATUS.COMPLETED &&
+                  {item.productOrderStatus === ORDER_STATE.COMPLETED &&
                     "주문 확정하기"}
                 </div>
                 <div>

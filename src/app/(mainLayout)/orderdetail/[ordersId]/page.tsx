@@ -7,6 +7,7 @@ import { GetMyOrderListResponseData } from "@/apis/order/orderAPIService.types";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 
 export default function OrderDetail() {
   const params = useSearchParams();
@@ -14,6 +15,9 @@ export default function OrderDetail() {
   const [order, setOrder] = useState<GetMyOrderListResponseData | null>(null);
   const [img, setImg] = useState<string>(LoadingImg);
 
+  const [isRegularPayment] = useMyInfoStore((state) => [
+    state.isRegularPayment,
+  ]);
   useEffect(() => {
     if (orderParam) {
       try {
@@ -93,8 +97,8 @@ export default function OrderDetail() {
               </div>
               <div className={style.infoCont}>
                 <div className={style.infoDiv}>
-                  <strong>상품 금액</strong>
-                  <span>{order.payment.realPrice}</span>
+                  <strong>전체 금액</strong>
+                  <span>{order.payment.totalPrice}</span>
                 </div>
                 <div className={style.infoDiv}>
                   <strong>배송비</strong>
@@ -106,7 +110,11 @@ export default function OrderDetail() {
                 </div>
                 <div className={style.infoDiv}>
                   <strong>포인트 할인 </strong>
-                  <span> {order.payment.minusCouponAmount}</span>
+                  <span> {order.payment.minusPointAmount}</span>
+                </div>
+                <div className={style.infoDiv}>
+                  <strong>실제 결제 금액 </strong>
+                  <span> {order.payment.realPrice}</span>
                 </div>
               </div>
             </div>
@@ -118,7 +126,12 @@ export default function OrderDetail() {
             <div className={style.infoCont}>
               <div className={style.infoDiv}>
                 <strong>구매 확정시 적립</strong>
-                <span>{order.payment.realPrice * 0.3}</span>
+                <span>
+                  {isRegularPayment
+                    ? order.payment.realPrice * 0.03
+                    : order.payment.realPrice * 0.01}
+                  원
+                </span>
               </div>
               <div className={style.infoDiv}>
                 <strong>리뷰 적립</strong>
