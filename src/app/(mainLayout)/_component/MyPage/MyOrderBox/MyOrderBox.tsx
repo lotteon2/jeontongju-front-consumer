@@ -4,6 +4,8 @@ import style from "@/app/(mainLayout)/_component/MyPage/MyOrderBox/MyOrderBox.mo
 import Image from "next/image";
 import { GetMyOrderListResponseData } from "@/apis/order/orderAPIService.types";
 import { useRouter } from "next/navigation";
+import orderAPI from "@/apis/order/orderAPIService";
+import { toast } from "react-toastify";
 
 export default function MyOrderBox({
   params,
@@ -12,6 +14,18 @@ export default function MyOrderBox({
 }) {
   const router = useRouter();
   console.log(params);
+
+  //TODO : alert
+  const handleCancelOrderByProductOrderId = async (productOrderId: number) => {
+    try {
+      const data = await orderAPI.cancelMyOrderByProductOrderId(productOrderId);
+      if (data.code === 200) {
+        toast("결제 취소에 성공했어요.");
+      }
+    } catch (error) {
+      toast("결제 취소에 실패했어요");
+    }
+  };
   return (
     <div className={style.orderBox}>
       <div className={style.orderBoxHeader}>
@@ -20,7 +34,7 @@ export default function MyOrderBox({
           <div>{params.order?.orderStatus}</div>
           <Link
             href={{
-              pathname: `orderdetail/${params.order.ordersId}`,
+              pathname: `/orderdetail/${params.order.ordersId}`,
               query: {
                 order: encodeURIComponent(JSON.stringify(params)),
               },
@@ -42,8 +56,16 @@ export default function MyOrderBox({
             />
           </Link>
           <div className={style.orderDetail}>
-            <div>
+            <div className={style.orderStatusContainer}>
               <strong>{item.productOrderStatus}</strong>
+              <div
+                className={style.orderStatusBox}
+                onClick={() =>
+                  handleCancelOrderByProductOrderId(item.productOrderId)
+                }
+              >
+                {item.productOrderStatus === "ORDER" && "취소하기"}
+              </div>
             </div>
             <div>
               {item.productPrice} 원 X {item.productCount}

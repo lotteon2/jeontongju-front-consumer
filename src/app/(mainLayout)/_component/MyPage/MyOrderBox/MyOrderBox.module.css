@@ -35,6 +35,14 @@
     .orderDetail {
       font-size: 1.3rem;
       line-height: 2rem;
+
+      .orderStatusContainer {
+        display: flex;
+        gap: 2rem;
+        .orderStatusBox {
+          color: red;
+        }
+      }
     }
   }
 }

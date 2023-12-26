@@ -14,6 +14,7 @@ export type GetMyOrderListResponseData = {
     orderDate: string;
     orderStatus: string;
     isAuction: boolean;
+    isAbleToCancel: boolean;
   };
   product: {
     productOrderId: number;
@@ -42,6 +43,10 @@ export type GetMyOrderListResponseData = {
     zonecode: string;
   };
 };
+
+export type CancelMyOrderByOrderIdResponse = ApiResponse<string>;
+
+export type CancelMyOrderByProductOrderIdResponse = ApiResponse<string>;
 
 export type GetMyOrderListResponse = ApiResponse<
   Page<GetMyOrderListResponseData[]>
