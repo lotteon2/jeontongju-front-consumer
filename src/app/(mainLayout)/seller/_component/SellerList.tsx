@@ -38,7 +38,6 @@ export default function SellerList() {
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
-  console.log(data);
   return (
     <div className={style.sellerList}>
       {data?.pages.map((page, i) => (
@@ -46,10 +45,9 @@ export default function SellerList() {
           {page.map((seller) => (
             <Seller key={seller.sellerId} seller={seller} />
           ))}
-          <div ref={ref} style={{ height: 50 }} />
         </Fragment>
       ))}
+      <div ref={ref} style={{ height: 50 }} />
     </div>
   );
-  // return <></>;
 }

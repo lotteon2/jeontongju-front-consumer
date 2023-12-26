@@ -20,8 +20,9 @@ export default function Seller({
           seller.storeImageUrl ||
           "https://img.freepik.com/free-photo/concrete-background-cement-texture-with-blank-space_53876-129755.jpg"
         }
-        width={50}
-        height={50}
+        width={100}
+        height={100}
+        style={{ borderRadius: "12px" }}
       />
       <div className={style.storeName}>{seller.storeName}</div>
       <div className={style.storeDescription}>
