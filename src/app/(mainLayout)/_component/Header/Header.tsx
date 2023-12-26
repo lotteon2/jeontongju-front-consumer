@@ -1,3 +1,4 @@
+"use client";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import style from "@/app/(mainLayout)/_component/Header/Header.module.css";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
@@ -11,9 +12,10 @@ export default function Header() {
     queryFn: () => consumerAPI.getMyInfoForStore(),
   });
 
-  const [setMemberId, setIsLogin, setIsAdult, setIsRegularPayment] =
+  const [setMemberId, isLogin, setIsLogin, setIsAdult, setIsRegularPayment] =
     useMyInfoStore((state) => [
       state.dispatchMemberId,
+      state.isLogin,
       state.dispatchIsLogin,
       state.dispatchIsAdult,
       state.dispatchIsRegularPayment,
@@ -55,10 +57,17 @@ export default function Header() {
         </div>
       </div>
       <div className={style.headerBottom}>
-        <Link href={"/init/signin"}>로그인</Link>
-        <Link href={"/init/signup"}>로그인</Link>
-        <Link href={"/mypage"}>마이페이지</Link>
-        <Link href={"/init/logout"}>로그아웃</Link>
+        {isLogin ? (
+          <>
+            <Link href={"/mypage"}>마이페이지</Link>
+            <Link href={"/init/logout"}>로그아웃</Link>
+          </>
+        ) : (
+          <>
+            <Link href={"/init/signin"}>로그인</Link>
+            <Link href={"/init/signup"}>회원가입</Link>
+          </>
+        )}
       </div>
     </div>
   );

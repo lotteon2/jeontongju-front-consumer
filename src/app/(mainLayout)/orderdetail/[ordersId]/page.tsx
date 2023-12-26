@@ -97,8 +97,8 @@ export default function OrderDetail() {
               </div>
               <div className={style.infoCont}>
                 <div className={style.infoDiv}>
-                  <strong>상품 금액</strong>
-                  <span>{order.payment.realPrice}</span>
+                  <strong>전체 금액</strong>
+                  <span>{order.payment.totalPrice}</span>
                 </div>
                 <div className={style.infoDiv}>
                   <strong>배송비</strong>
@@ -110,7 +110,11 @@ export default function OrderDetail() {
                 </div>
                 <div className={style.infoDiv}>
                   <strong>포인트 할인 </strong>
-                  <span> {order.payment.minusCouponAmount}</span>
+                  <span> {order.payment.minusPointAmount}</span>
+                </div>
+                <div className={style.infoDiv}>
+                  <strong>실제 결제 금액 </strong>
+                  <span> {order.payment.realPrice}</span>
                 </div>
               </div>
             </div>
