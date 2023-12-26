@@ -28,11 +28,13 @@ export default async function RootLayout({ children }: Props) {
   queryClient.getQueryData(["consumer", "myinfo"]);
 
   return (
-    <section>
+    <RQProvider>
       <HydrationBoundary state={dehydratedState}>
-        <Header />
-        <RQProvider>{children}</RQProvider>
+        <section>
+          <Header />
+          {children}
+        </section>
       </HydrationBoundary>
-    </section>
+    </RQProvider>
   );
 }
