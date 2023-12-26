@@ -39,10 +39,10 @@
       .orderStatusContainer {
         display: flex;
         gap: 2rem;
-        .orderStatusBox {
-          color: red;
-        }
       }
     }
+  }
+  .orderStatusBox {
+    color: red;
   }
 }
