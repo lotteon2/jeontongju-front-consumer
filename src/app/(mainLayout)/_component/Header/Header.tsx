@@ -26,8 +26,7 @@ export default function Header() {
     if (data?.data) {
       setMemberId(data.data.memberId);
       setIsAdult(data.data.isAdult);
-      setIsRegularPayment;
-      data.data.isRegularPayment;
+      setIsRegularPayment(data.data.isRegularPayment);
     }
   }, [data]);
 
