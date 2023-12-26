@@ -8,5 +8,11 @@ const sellerAPI = {
     );
     return data;
   },
+  getSellerList: async (page: number, size: number) => {
+    const { data } = await authAxiosInstance.get<GetSellerListResponse>(
+      `/seller-service/api/sellers/all?page=${page}&size=${size}`
+    );
+    return data;
+  },
 };
 export default sellerAPI;
