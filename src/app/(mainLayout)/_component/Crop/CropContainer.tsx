@@ -13,7 +13,6 @@ export default function CropContainer() {
     queryKey: ["event", "crop"],
     queryFn: () => searchAPI.getCropProducts(),
   });
-  console.log("!!! data", data);
 
   useEffect(() => {
     if (selectedMenu === 0) {

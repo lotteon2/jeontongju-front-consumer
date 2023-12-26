@@ -27,4 +27,13 @@
       color: #c0c0c0;
     }
   }
+
+  .banner {
+    width: 100%;
+    background: bisque;
+    height: 10vh;
+    text-align: center;
+    line-height: 10vh;
+    font-size: 2rem;
+  }
 }

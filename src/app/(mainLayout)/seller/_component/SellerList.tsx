@@ -40,6 +40,7 @@ export default function SellerList() {
 
   return (
     <div className={style.sellerList}>
+      <div className={style.banner}>전통주점 주모님들을 소개합니다</div>
       {data?.pages.map((page, i) => (
         <Fragment key={i}>
           {page.map((seller) => (
