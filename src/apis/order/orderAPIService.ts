@@ -1,11 +1,35 @@
 import { authAxiosInstance } from "../common";
-import { GetMyOrderListResponse } from "./orderAPIService.types";
+import {
+  CancelMyOrderByOrderIdResponse,
+  CancelMyOrderByProductOrderIdResponse,
+  GetMyOrderListResponse,
+} from "./orderAPIService.types";
 
 const orderAPI = {
   getMyOrderList: async (page: number, size: number, isAuction: boolean) => {
     const { data } = await authAxiosInstance.get<GetMyOrderListResponse>(
       `/order-service/api/order/consumer?page=${page}&size=${size}&isAuction=${isAuction}`
     );
+    return data;
+  },
+  cancelMyOrderByOrderId: async (ordersId: string) => {
+    const { data } =
+      await authAxiosInstance.post<CancelMyOrderByOrderIdResponse>(
+        `/order-service/api/order-cancel`,
+        {
+          ordersId,
+        }
+      );
+    return data;
+  },
+  cancelMyOrderByProductOrderId: async (productOrderId: number) => {
+    const { data } =
+      await authAxiosInstance.post<CancelMyOrderByProductOrderIdResponse>(
+        `/order-service/api/product-order-cancel`,
+        {
+          productOrderId,
+        }
+      );
     return data;
   },
 };
