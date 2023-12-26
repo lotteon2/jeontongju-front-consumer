@@ -6,9 +6,8 @@ export default function Payment() {
   const router = useRouter();
   const params = useSearchParams();
   const products = params.get("products");
-
-  console.log(products);
-  console.log(params.get("products"));
+  const totalAmount = params.get("totalAmount");
+  const realAmount = params.get("realAmount");
   const handlePay = async () => {
     const params = {
       paymentType: "ORDER",
@@ -21,8 +20,8 @@ export default function Payment() {
       basicAddress: "서울특별시 서대문구 연희동 블라블라",
       addressDetail: "101",
       zoneCode: "12345",
-      totalAmount: 30000,
-      realAmount: 30000, // 실금액 - 쿠폰금액 - 포인트금액
+      totalAmount,
+      realAmount, // 실금액 - 쿠폰금액 - 포인트금액
       titleName: "복순도가외1",
       products: Array.from(JSON.parse(products)),
     };

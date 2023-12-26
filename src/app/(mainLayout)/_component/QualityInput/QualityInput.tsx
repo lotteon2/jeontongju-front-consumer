@@ -52,6 +52,7 @@ export default function QualityInput({
           className={style.input}
           type="number"
           min={1}
+          disabled
           value={quantity}
           max={stock}
           onChange={handleChangeInput}

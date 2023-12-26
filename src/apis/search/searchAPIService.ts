@@ -35,7 +35,7 @@ const searchAPI = {
   },
   getCostProducts: async () => {
     const { data } = await unAuthAxiosInstance.get<GetCostProductsResponse>(
-      `/search-service/api/products?sort=capacityToPriceRatio,asc&size=6`
+      `/search-service/api/products?sort=capacityToPriceRatio,desc&size=6`
     );
     return data;
   },

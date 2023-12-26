@@ -20,6 +20,7 @@ export default function Page({ params }: Props) {
   const router = useRouter();
   const notify = (message: string) => toast(message);
   const { productId } = params;
+  const [mounted, setMounted] = useState<boolean>(false);
   const [img, setImg] = useState<string>(LoadingImg);
   const [productData, setProductData] =
     useState<GetProductDetailByProductIdResponseData>(null);
@@ -32,10 +33,12 @@ export default function Page({ params }: Props) {
   const handleClickCounter = (num: number) => {
     console.log(num);
     setQuantity((prev) => (prev as number) + num);
+    // console.log(quantity);
     setTotal((prev) => prev + productData.productPrice * num);
   };
 
   const handleBlurInput = (quantity: number) => {
+    console.log(quantity);
     const newQuantity = quantity;
     setQuantity(newQuantity);
     setTotal(productData.productPrice * newQuantity);
@@ -48,6 +51,7 @@ export default function Page({ params }: Props) {
       );
       if (data.code === 200) {
         setProductData(data.data);
+        setTotal(data.data.productPrice);
         setImg("");
       }
     } catch (err) {
@@ -59,11 +63,12 @@ export default function Page({ params }: Props) {
 
   useEffect(() => {
     getProductData(params.productId);
+    setMounted(true);
   }, []);
 
   return (
     <>
-      {productData ? (
+      {mounted && productData ? (
         <div>
           <div className={style.productTop}>
             <div className={style.thumbnail}>
@@ -109,6 +114,8 @@ export default function Page({ params }: Props) {
                   href={{
                     pathname: "/payment",
                     query: {
+                      realAmount: total,
+                      totalAmount: total,
                       products: JSON.stringify([
                         {
                           productId,
