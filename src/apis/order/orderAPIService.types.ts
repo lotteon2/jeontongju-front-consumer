@@ -1,4 +1,4 @@
-import { ORDER_STATUS } from "@/constants/OrderStatusEnum";
+import { ORDER_STATE } from "@/constants/OrderStatusEnum";
 import { Page } from "@/constants/PageResponseType";
 
 interface ApiResponse<T> {
@@ -13,7 +13,7 @@ export type GetMyOrderListResponseData = {
   order: {
     ordersId: string;
     orderDate: string;
-    orderStatus: keyof typeof ORDER_STATUS;
+    orderStatus: keyof typeof ORDER_STATE;
     isAuction: boolean;
     isAbleToCancel: boolean;
   };
@@ -24,7 +24,7 @@ export type GetMyOrderListResponseData = {
     productCount: number;
     productPrice: number;
     productTotalAmount: number;
-    productOrderStatus: keyof typeof ORDER_STATUS;
+    productOrderStatus: keyof typeof ORDER_STATE;
     productThumbnailImageUrl: string;
     sellerId: number;
     sellerName: string;
