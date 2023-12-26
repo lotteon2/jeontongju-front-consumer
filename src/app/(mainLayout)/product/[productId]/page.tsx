@@ -30,7 +30,8 @@ export default function Page({ params }: Props) {
   );
 
   const handleClickCounter = (num: number) => {
-    setQuantity((prev) => prev + num);
+    console.log(num);
+    setQuantity((prev) => (prev as number) + num);
     setTotal((prev) => prev + productData.productPrice * num);
   };
 
@@ -82,14 +83,15 @@ export default function Page({ params }: Props) {
                 {productData.productPrice}원
               </div>
               <MemberShipBox />
-              <div>
+              <div className={style.quantityBox}>
                 <QualityInput
                   quantity={quantity}
                   stock={100}
                   onClick={handleClickCounter}
+                  setQuantity={setQuantity}
                   onBlur={handleBlurInput}
                 />
-                {total}
+                <div>{total}원</div>
               </div>
               <div className={style.btnGroup}>
                 <Link

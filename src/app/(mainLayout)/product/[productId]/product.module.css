@@ -1,3 +1,22 @@
+.button {
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  background-color: #c0c0c0;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #ffa1a1;
+  color: white;
+}
+
 .productTop {
   width: 50;
   display: flex;
@@ -26,11 +45,43 @@
   .productPrice {
   }
 
+  .quantityBox {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
   .btnGroup {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+  }
+
+  .quantityInput {
+    display: flex;
+    align-items: center;
+    .button {
+      padding: 0 0.5rem;
+      border-radius: 5px;
+    }
+
+    .button:disabled {
+      opacity: 0.5;
+      cursor: none;
+    }
+
+    .input {
+      border: none;
+      font-size: 17px;
+      outline: none;
+      margin: 0 auto;
+    }
+
+    .button:disabled,
+    .button:hover {
+      background-color: #c0c0c0;
+    }
   }
 }
 
@@ -39,25 +90,6 @@
   background-color: #c0c0c0;
   height: 0.1px;
   border-color: #c0c0c0;
-}
-
-.button {
-  width: 100%;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  padding: 1rem;
-  margin-top: 1rem;
-  font-size: 1rem;
-  background-color: #c0c0c0;
-  color: white;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.button:hover {
-  background-color: #ffa1a1;
-  color: white;
 }
 
 .sellerInfo {
