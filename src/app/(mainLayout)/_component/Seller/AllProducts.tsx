@@ -34,6 +34,7 @@ export default function AllProducts({ sellerId }: { sellerId: number }) {
   useEffect(() => {
     getAllProductsBySellerId(sellerId);
   }, []);
+
   return (
     <div className={style.products}>
       {sellerProducts?.map(
