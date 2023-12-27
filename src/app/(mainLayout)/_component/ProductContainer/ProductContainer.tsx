@@ -30,7 +30,6 @@ export default function ProductContainer({
   const isLogin = useMyInfoStore((state) => state.isLogin);
   const queryClient = useQueryClient();
   const handleRefetch = () => {
-    // Replace "wish" with your actual query key
     queryClient.invalidateQueries(["wish", "list"]);
   };
 
@@ -84,9 +83,11 @@ export default function ProductContainer({
           </div>
         )}
 
-        <div className={style.capacityToPriceRatio}>
-          100ml당 {capacityToPriceRatio}원
-        </div>
+        {capacityToPriceRatio && (
+          <div className={style.capacityToPriceRatio}>
+            100ml당 {capacityToPriceRatio}원
+          </div>
+        )}
       </Link>
     </div>
   );
