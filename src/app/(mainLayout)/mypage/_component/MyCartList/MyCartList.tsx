@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getSellerList } from "@/app/(mainLayout)/seller/_lib/getSellerList";
 import { getMyCartList } from "../../_lib/getMyCartList";
+import MyCartBox from "../MyCartBox/MyCartBox";
 
 export default function MyCartList() {
   const queryClient = useQueryClient();
