@@ -7,16 +7,24 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { GetMyMembershipResponseData } from "@/apis/consumer/consumerAPIservice.types";
 import PaidMemberShipBox from "../../_component/PaidMemberShipBox/PaidMemberShipBox";
+import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
+import { useRouter } from "next/navigation";
 
 export default function MemberShipList() {
+  const router = useRouter();
   const [page, setPage] = useState<number>(0);
   const [size, setSize] = useState<number>(10);
   const [memberships, setMemberships] =
     useState<GetMyMembershipResponseData[]>();
   const [mounted, setMounted] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLogin] = useMyInfoStore((state) => [state.isLogin]);
 
   useEffect(() => {
+    if (!isLogin) {
+      toast("로그인한 유저만 접근할 수 있어요.");
+      router.push("/init/signin");
+    }
     setMounted(true);
   }, []);
 
