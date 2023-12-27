@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import MyWishList from "./_component/MyWishList/MyWishList";
 import { QueryClient } from "@tanstack/react-query";
+import MyCartList from "./_component/MyCartList/MyCartList";
 
 export default function MyPage() {
   const router = useRouter();
@@ -22,6 +23,7 @@ export default function MyPage() {
       <MyInfoBox />
       <MyWishList />
       <MyOrderList />
+      <MyCartList />
     </div>
   );
 }

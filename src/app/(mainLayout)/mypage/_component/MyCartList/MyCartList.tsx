@@ -9,44 +9,45 @@ import style from "@/app/(mainLayout)/mypage/_component/MyList.module.css";
 import { toast } from "react-toastify";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getSellerList } from "@/app/(mainLayout)/seller/_lib/getSellerList";
+import { getMyCartList } from "../../_lib/getMyCartList";
 
-export default function MyWishList() {
+export default function MyCartList() {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
   const { data, refetch } = useQuery({
-    queryKey: ["wish", "list"],
-    queryFn: () => wishAPI.getMyWishList(0, 5),
+    queryKey: ["cart", "list"],
+    queryFn: () => wishAPI.getMyCartList(0, 5),
   });
 
   queryClient.prefetchInfiniteQuery({
-    queryKey: ["seller", "list"],
-    queryFn: getSellerList,
+    queryKey: ["cart", "list"],
+    queryFn: getMyCartList,
     initialPageParam: 0,
   });
 
-  const getMyWish = async () => {
+  const getMyCart = async () => {
     try {
       setIsLoading(true);
       refetch();
     } catch (err) {
-      toast("내 찜 내역을 불러오는데 실패했어요.");
+      toast("내 장바구니 내역을 불러오는데 실패했어요.");
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    getMyWish();
+    getMyCart();
   }, []);
 
   return (
     <div className={style.list}>
       <div className={style.listHeader}>
-        <h2>나의 찜 내역</h2>
+        <h2>나의 장바구니 내역</h2>
         <div
           className={style.goDetail}
-          onClick={() => router.push("/mypage/mywish")}
+          onClick={() => router.push("/mypage/mycart")}
         >
           자세히 보기
         </div>
@@ -56,19 +57,11 @@ export default function MyWishList() {
           data?.content ? (
             data.content.slice(0, 5)?.map((it, i) => (
               <Fragment key={i}>
-                <ProductContainer
-                  key={it.productId}
-                  isLikes={it.isLikes}
-                  productId={it.productId}
-                  productImg={it.productThumbnailImageUrl}
-                  price={it.productPrice}
-                  productName={it.productName}
-                  refetch={refetch}
-                />
+                <MyCartBox key={it.productId} item={it} refetch={refetch} />
               </Fragment>
             ))
           ) : (
-            <div>찜한 상품이 없어요.</div>
+            <div>장바구니에 담은 상품이 없어요.</div>
           )
         ) : (
           <Image
