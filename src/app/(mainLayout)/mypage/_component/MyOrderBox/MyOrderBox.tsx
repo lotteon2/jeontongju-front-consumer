@@ -1,7 +1,7 @@
 "use client";
 import loadingImg from "/public/loading.gif";
 import Link from "next/link";
-import style from "@/app/(mainLayout)/_component/MyPage/MyOrderBox/MyOrderBox.module.css";
+import style from "@/app/(mainLayout)/mypage/_component/MyOrderBox/MyOrderBox.module.css";
 import Image from "next/image";
 import { GetMyOrderListResponseData } from "@/apis/order/orderAPIService.types";
 import { useRouter } from "next/navigation";

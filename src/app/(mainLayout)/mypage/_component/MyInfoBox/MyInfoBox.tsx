@@ -2,7 +2,7 @@ import consumerAPI from "@/apis/consumer/consumerAPIService";
 import { GetMyInfoResponseData } from "@/apis/consumer/consumerAPIservice.types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import style from "@/app/(mainLayout)/_component/MyPage/MyInfoBox/MyInfoBox.module.css";
+import style from "@/app/(mainLayout)/mypage/_component//MyInfoBox/MyInfoBox.module.css";
 import { useRouter } from "next/navigation";
 
 export default function MyInfoBox() {

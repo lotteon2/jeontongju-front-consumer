@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  GetSellerListResponse,
-  GetSellerListResponseData,
-} from "@/apis/seller/sellerAPIService.types";
+import { GetSellerListResponseData } from "@/apis/seller/sellerAPIService.types";
 import { useInfiniteQuery, InfiniteData } from "@tanstack/react-query";
 import { getSellerList } from "../_lib/getSellerList";
 import { Fragment, useEffect } from "react";

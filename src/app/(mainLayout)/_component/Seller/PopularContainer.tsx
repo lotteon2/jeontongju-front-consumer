@@ -21,6 +21,7 @@ export default function PopularProducts({
               price={product.productPrice}
               capacityToPriceRatio={product.capacityToPriceRatio}
               key={product.productId}
+              isLikes={product.isLikes}
             />
           )
         )}
@@ -36,6 +37,7 @@ export default function PopularProducts({
               price={product.productPrice}
               capacityToPriceRatio={product.capacityToPriceRatio}
               key={product.productId}
+              isLikes={product.isLikes}
             />
           )
         )}

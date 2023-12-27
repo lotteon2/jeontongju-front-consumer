@@ -59,6 +59,7 @@ export default function CropContainer() {
               price={crop.productPrice}
               capacityToPriceRatio={crop.capacityToPriceRatio}
               productName={crop.productName}
+              isLikes={crop.isLikes}
             />
           ))}
         </div>

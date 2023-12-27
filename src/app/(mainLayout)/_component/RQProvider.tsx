@@ -14,7 +14,7 @@ function RQProvider({ children }: Props) {
       defaultOptions: {
         // react-query 전역 설정
         queries: {
-          refetchOnWindowFocus: false,
+          refetchOnWindowFocus: true,
           retryOnMount: true,
           refetchOnReconnect: false,
           retry: false,

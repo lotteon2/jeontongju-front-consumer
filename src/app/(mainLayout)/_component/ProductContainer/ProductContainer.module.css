@@ -19,6 +19,7 @@
   }
   .capacityToPriceRatio {
     color: gray;
+    margin-top: 0.5rem;
   }
 
   .sellerInfo {
