@@ -4,11 +4,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
 import wishAPI from "@/apis/wishCart/wishAPIService";
-import ProductContainer from "../../../_component/ProductContainer/ProductContainer";
 import style from "@/app/(mainLayout)/mypage/_component/MyList.module.css";
 import { toast } from "react-toastify";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getSellerList } from "@/app/(mainLayout)/seller/_lib/getSellerList";
 import { getMyCartList } from "../../_lib/getMyCartList";
 import MyCartBox from "../MyCartBox/MyCartBox";
 

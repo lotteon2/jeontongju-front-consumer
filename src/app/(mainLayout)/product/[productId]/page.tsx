@@ -62,13 +62,19 @@ export default function Page({ params }: Props) {
   };
 
   const handleAddCart = async () => {
-    try{
+    if (localStorage.getItem("accessToken")) {
+      toast("로그인해주세요");
+      router.push("/init/signin");
+      return;
+    }
+
+    try {
       const data = await wishAPI.addCart(productId, quantity);
-      if(data.code === 200){
-        toast("장바구니 담기에 성공했어요.")
+      if (data.code === 200) {
+        toast("장바구니 담기에 성공했어요.");
       }
-    }catch(err){
-      toast("장바구니 담기에 실패했어요.")
+    } catch (err) {
+      toast("장바구니 담기에 실패했어요.");
     }
   };
 
