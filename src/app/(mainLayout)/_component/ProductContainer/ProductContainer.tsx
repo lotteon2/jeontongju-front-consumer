@@ -2,12 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import style from "@/app/(mainLayout)/_component/ProductContainer/ProductContainer.module.css";
+import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
+import wishAPI from "@/apis/wishCart/wishAPIService";
+import { toast } from "react-toastify";
 
 type Props = {
   productId: string;
   productName: string;
   productImg: string;
   price: number;
+  isLiked?: boolean;
   sellerName?: string;
   sellerProfileImg?: string;
   capacityToPriceRatio: number;
@@ -18,12 +22,30 @@ export default function ProductContainer({
   productImg,
   price,
   sellerName,
+  isLiked,
   sellerProfileImg,
   capacityToPriceRatio,
 }: Props) {
+  const isLogin = useMyInfoStore((state) => state.isLogin);
+
+  const handleLike = async () => {
+    try {
+      const data = await wishAPI.addDeleteWish(productId);
+      if (data.code === 200) {
+        console.log("refetch");
+      }
+    } catch (error) {
+      toast("서버에 오류가 발생했어요.");
+    }
+  };
   return (
     <div className={style.productContainer}>
       <Script id="my-script">{`console.log('Rendering on client:', typeof window !== 'undefined');`}</Script>
+      {isLogin && (
+        <div onClick={handleLike} className={style.isLiked}>
+          {isLiked ? "❤️" : "🤍"}
+        </div>
+      )}
       <Link href={`/product/${productId}`}>
         <Image
           alt="productThumbnail"

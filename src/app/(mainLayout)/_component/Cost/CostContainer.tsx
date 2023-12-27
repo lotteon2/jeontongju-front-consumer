@@ -28,6 +28,7 @@ export default function CostContainer() {
           {data?.data.map((crop: ProductData) => (
             <ProductContainer
               key={crop.productId}
+              isLiked={crop.isLikes}
               productId={crop.productId}
               productImg={crop.productThumbnailImageUrl}
               sellerName={crop.storeName}
