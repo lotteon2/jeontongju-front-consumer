@@ -23,12 +23,18 @@ export default function MyCartBox({
 
   return (
     <div className={style.myCartBox}>
-      <div>
-        <div>
-          <Image src={item.productThumbnailImageUrl} alt="img" />
+      <div className={style.myCartBody}>
+        <div style={{ width: "10rem", height: "10rem", position: "relative" }}>
+          <Image
+            src={item.productThumbnailImageUrl}
+            alt="img"
+            layout="fill"
+            objectFit="contain"
+          />
         </div>
         <div>
-          <div>{item.name}</div>
+          <div className={style.productName}>{item.productName}</div>
+          <div>{item.productPrice}</div>
         </div>
       </div>
       <div>

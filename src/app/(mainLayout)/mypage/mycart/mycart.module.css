@@ -1,10 +1,15 @@
 .myCartPage {
   .deleteButton {
+    margin-bottom: 2rem;
     cursor: pointer;
-    float: right;
+    text-align: right;
   }
 
   .deleteButton:hover {
     color: red;
+  }
+
+  .myWishList {
+    margin-bottom: 2rem;
   }
 }

@@ -1,10 +1,7 @@
 "use client";
 import { useInfiniteQuery, InfiniteData } from "@tanstack/react-query";
 import { Page } from "@/constants/PageResponseType";
-import {
-  GetMyCartListResponseData,
-  GetMyWishListResponseData,
-} from "@/apis/wishCart/wishAPIService.types";
+import { GetMyCartListResponseData } from "@/apis/wishCart/wishAPIService.types";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import style from "@/app/(mainLayout)/mypage/mycart/mycart.module.css";

@@ -20,8 +20,8 @@ export type GetMyWishListResponseData = {
 
 export type GetMyCartListResponseData = {
   productId: string;
-  name: string;
-  price: number;
+  productName: string;
+  productPrice: number;
   productThumbnailImageUrl: string;
   amount: number;
   isSoldOut: boolean;

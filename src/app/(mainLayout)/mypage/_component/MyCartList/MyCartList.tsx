@@ -15,7 +15,7 @@ export default function MyCartList() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
   const { data, refetch } = useQuery({
-    queryKey: ["cart", "list"],
+    queryKey: ["cart", "list", "get"],
     queryFn: () => wishAPI.getMyCartList(0, 5),
   });
 

@@ -8,20 +8,20 @@ import ProductContainer from "../../../_component/ProductContainer/ProductContai
 import style from "@/app/(mainLayout)/mypage/_component/MyList.module.css";
 import { toast } from "react-toastify";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getSellerList } from "@/app/(mainLayout)/seller/_lib/getSellerList";
+import { getMyCartList } from "../../_lib/getMyCartList";
 
 export default function MyWishList() {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
   const { data, refetch } = useQuery({
-    queryKey: ["wish", "list"],
+    queryKey: ["wish", "list", "get"],
     queryFn: () => wishAPI.getMyWishList(0, 5),
   });
 
   queryClient.prefetchInfiniteQuery({
-    queryKey: ["seller", "list"],
-    queryFn: getSellerList,
+    queryKey: ["wish", "list"],
+    queryFn: getMyCartList,
     initialPageParam: 0,
   });
 
