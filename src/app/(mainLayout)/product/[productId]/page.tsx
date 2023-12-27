@@ -62,7 +62,7 @@ export default function Page({ params }: Props) {
   };
 
   const handleAddCart = async () => {
-    if (localStorage.getItem("accessToken")) {
+    if (!localStorage.getItem("accessToken")) {
       toast("로그인해주세요");
       router.push("/init/signin");
       return;

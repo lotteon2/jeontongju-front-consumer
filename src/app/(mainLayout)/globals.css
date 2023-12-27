@@ -22,4 +22,8 @@ body {
   width: 80vw;
   margin: 0 auto;
   font-family: "jua";
+
+  .Toastify__toast-body {
+    font-family: "Jua";
+  }
 }

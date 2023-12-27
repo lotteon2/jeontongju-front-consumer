@@ -1,7 +1,5 @@
 import loadingImg from "/public/loading.gif";
-// import eventCropImg from "/public/event_crop.png";
 import Image from "next/image";
-// import membershipBannerImg from "/public/membership_banner.png";
 import style from "@/app/page.module.css";
 import Link from "next/link";
 import AuctionContainer from "./_component/AuctionContainer";

@@ -1,4 +1,5 @@
 .Toastify--animate {
+  font-family: "Jua";
   animation-fill-mode: both;
   animation-duration: 0.7s;
 }
