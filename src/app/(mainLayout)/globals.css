@@ -21,9 +21,9 @@ a:active {
 body {
   width: 80vw;
   margin: 0 auto;
-  font-family: "jua";
+  font-family: "Jua";
 
   .Toastify__toast-body {
-    font-family: "Jua";
+    font-family: "__Jua_fe7685";
   }
 }
