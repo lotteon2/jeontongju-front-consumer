@@ -31,6 +31,8 @@ export default function ProductContainer({
   const queryClient = useQueryClient();
   const handleRefetch = () => {
     queryClient.invalidateQueries(["wish", "list"]);
+    queryClient.invalidateQueries(["event", "crop"]);
+    queryClient.invalidateQueries(["event", "cost"]);
   };
 
   const handleLike = async () => {
