@@ -2,7 +2,7 @@ import style from "@/app/(mainLayout)/_component/MemberShipBox/membershipBox.mod
 import Link from "next/link";
 const MemberShipBox = () => {
   return (
-    <Link href="/membership">
+    <Link href="/membership/buy">
       <div className={style.memberShipBox}>
         구매 전, 먼저 <strong>양반 혜택</strong>을 확인해보세요
       </div>

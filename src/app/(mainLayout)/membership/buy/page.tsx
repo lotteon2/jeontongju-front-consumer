@@ -6,32 +6,40 @@ import style from "@/app/(mainLayout)/membership/membership.module.css";
 import paymentAPI from "@/apis/payment/paymentAPIService";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 
 export default function MemberShip() {
   const router = useRouter();
   const [mounted, setMounted] = useState<boolean>(false);
+  const [isRegularPayment] = useMyInfoStore((state) => [
+    state.isRegularPayment,
+  ]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const handleMembershipPay = async () => {
-    console.log("here");
-    const params = {
-      paymentType: "SUBSCRIPTION",
-      paymentMethod: "KAKAO",
-      itemName: "양반 회원 구독",
-      subscriptionType: "YANGBAN",
-    };
-    try {
-      const data = await paymentAPI.membership(params);
-      if (data.message) {
-        console.error(data.message);
-      } else {
-        router.replace(data.next_redirect_pc_url);
+    if (!isRegularPayment) {
+      console.log("here");
+      const params = {
+        paymentType: "SUBSCRIPTION",
+        paymentMethod: "KAKAO",
+        itemName: "양반 회원 구독",
+        subscriptionType: "YANGBAN",
+      };
+      try {
+        const data = await paymentAPI.membership(params);
+        if (data.message) {
+          console.error(data.message);
+        } else {
+          router.replace(data.next_redirect_pc_url);
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
+    } else {
+      router.push("/mypage/membership");
     }
   };
   return (
@@ -44,7 +52,7 @@ export default function MemberShip() {
               월 3,900원으로 양반이 되어보세요!
             </div>
             <button className={style.button} onClick={handleMembershipPay}>
-              양반으로 인연 맺기
+              {isRegularPayment ? "이미 양반 회원이에요" : "양반으로 인연 맺기"}
             </button>
           </div>
           <div>

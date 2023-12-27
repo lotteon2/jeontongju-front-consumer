@@ -31,7 +31,7 @@ export default async function Page() {
           <HydrationBoundary state={dehydratedState}>
             <Header />
             <AuctionContainer />
-            <Banner type="membership" href="/membership" />
+            <Banner type="membership" href="/membership/buy" />
             <Banner type="crop" href="/event/crop" />
             <Banner type="cost" href="/event/cost" />
           </HydrationBoundary>

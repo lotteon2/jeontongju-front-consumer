@@ -36,6 +36,18 @@ export default function MyInfoBox() {
           <div className={style.name}>{myInfo?.name}</div>
           <div>{myInfo?.email}</div>
           <div>{myInfo?.phoneNumber}</div>
+          <div
+            className={style.membership}
+            onClick={() =>
+              router.push(
+                myInfo?.isRegularPayments
+                  ? "/membership/list"
+                  : "/membership/buy"
+              )
+            }
+          >
+            {myInfo?.isRegularPayments ? "양반" : "나그네"}
+          </div>
         </div>
       </div>
       <div className={style.infoFooter}>

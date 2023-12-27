@@ -35,5 +35,11 @@ const consumerAPI = {
     );
     return data;
   },
+  getMyMembershipList: async (page: number, size: number) => {
+    const { data } = await authAxiosInstance.get<GetMyMembershipResponse>(
+      `consumer-service/api/consumers/subscription-history?page=${page}&size=${size}`
+    );
+    return data;
+  },
 };
 export default consumerAPI;
