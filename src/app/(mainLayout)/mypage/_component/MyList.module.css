@@ -1,4 +1,5 @@
 .list {
+  margin-bottom: 2rem;
   .listHeader {
     display: flex;
     align-items: center;
@@ -8,5 +9,11 @@
       cursor: pointer;
     }
   }
-  margin-bottom: 2rem;
+
+  .listBody {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    width: 100%;
+  }
 }

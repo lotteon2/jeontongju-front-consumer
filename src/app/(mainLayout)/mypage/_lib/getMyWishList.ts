@@ -1,5 +1,4 @@
 import { authAxiosInstance } from "@/apis/common";
-import { GetSellerListResponse } from "@/apis/seller/sellerAPIService.types";
 import { GetMyWishListResponse } from "@/apis/wishCart/wishAPIService.types";
 
 type Props = { pageParam?: number };

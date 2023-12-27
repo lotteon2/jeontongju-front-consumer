@@ -18,8 +18,6 @@ export default function MyOrderBox({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  console.log(params);
-
   //TODO : alert
   const handleCancelOrderByProductOrderId = async (productOrderId: number) => {
     try {
