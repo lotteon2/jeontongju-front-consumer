@@ -11,7 +11,7 @@ export default function PaidMemberShipBox({
         {params.startDate.slice(0, 10)} ~ {params.endDate.slice(0, 10)}
       </div>
       <div>{params.paymentAmount}</div>
-      <div>{params.paymentType === "KAKAO" ? "카카오" : "?"}</div>
+      <div>{params.paymentMethod === "KAKAO" ? "카카오" : "?"}</div>
     </div>
   );
 }

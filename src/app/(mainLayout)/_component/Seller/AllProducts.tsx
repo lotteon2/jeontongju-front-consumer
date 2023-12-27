@@ -45,6 +45,7 @@ export default function AllProducts({ sellerId }: { sellerId: number }) {
             price={product.productPrice}
             capacityToPriceRatio={product.capacityToPriceRatio}
             key={product.productId}
+            isLikes={product.isLikes}
           />
         )
       )}

@@ -2,15 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import style from "@/app/(mainLayout)/_component/ProductContainer/ProductContainer.module.css";
+import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
+import wishAPI from "@/apis/wishCart/wishAPIService";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 type Props = {
   productId: string;
   productName: string;
   productImg: string;
   price: number;
+  isLikes?: boolean;
   sellerName?: string;
   sellerProfileImg?: string;
-  capacityToPriceRatio: number;
+  capacityToPriceRatio?: number;
 };
 export default function ProductContainer({
   productId,
@@ -18,12 +23,36 @@ export default function ProductContainer({
   productImg,
   price,
   sellerName,
+  isLikes,
   sellerProfileImg,
   capacityToPriceRatio,
 }: Props) {
+  const isLogin = useMyInfoStore((state) => state.isLogin);
+  const queryClient = useQueryClient();
+  const handleRefetch = () => {
+    // Replace "wish" with your actual query key
+    queryClient.invalidateQueries(["wish", "list"]);
+  };
+
+  const handleLike = async () => {
+    try {
+      const data = await wishAPI.addDeleteWish(productId);
+      if (data.code === 200) {
+        console.log("refetch");
+        handleRefetch();
+      }
+    } catch (error) {
+      toast("서버에 오류가 발생했어요.");
+    }
+  };
   return (
     <div className={style.productContainer}>
       <Script id="my-script">{`console.log('Rendering on client:', typeof window !== 'undefined');`}</Script>
+      {isLogin && (
+        <div onClick={handleLike} className={style.isLiked}>
+          {isLikes ? "❤️" : "🤍"}
+        </div>
+      )}
       <Link href={`/product/${productId}`}>
         <Image
           alt="productThumbnail"

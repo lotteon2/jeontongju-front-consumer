@@ -1,0 +1,8 @@
+.myWishPage {
+  .myWishList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    width: 100%;
+  }
+}

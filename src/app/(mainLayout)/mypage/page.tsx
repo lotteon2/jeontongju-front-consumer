@@ -1,25 +1,26 @@
 "use client";
-import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
-import MyInfoBox from "../_component/MyPage/MyInfoBox/MyInfoBox";
-import MyOrderList from "../_component/MyPage/MyOrderList";
+import MyInfoBox from "./_component/MyInfoBox/MyInfoBox";
+import MyOrderList from "./_component/MyOrderList/MyOrderList";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import MyWishList from "./_component/MyWishList/MyWishList";
+import { QueryClient } from "@tanstack/react-query";
 
 export default function MyPage() {
   const router = useRouter();
 
-  const [isLogin] = useMyInfoStore((state) => [state.isLogin]);
-
   useEffect(() => {
-    if (!isLogin) {
+    if (!localStorage.getItem("accessToken")) {
       toast("로그인한 유저만 접근할 수 있어요.");
       router.push("/init/signin");
     }
   });
+
   return (
     <div>
       <MyInfoBox />
+      <MyWishList />
       <MyOrderList />
     </div>
   );

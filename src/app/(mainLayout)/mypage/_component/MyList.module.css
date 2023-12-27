@@ -1,0 +1,12 @@
+.list {
+  .listHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .goDetail {
+      cursor: pointer;
+    }
+  }
+  margin-bottom: 2rem;
+}

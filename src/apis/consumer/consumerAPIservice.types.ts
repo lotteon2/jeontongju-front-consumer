@@ -65,7 +65,7 @@ export type GetMyMembershipResponseData = {
   startDate: string;
   endDate: string;
   subscriptionType: "YANGBAN";
-  paymentType: "KAKAO";
+  paymentMethod: "KAKAO";
   paymentAmount: number;
 };
 
