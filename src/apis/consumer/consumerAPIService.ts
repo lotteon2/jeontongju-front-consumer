@@ -4,6 +4,7 @@ import {
   GetMyInfoResponse,
   GetMyCreditListResponse,
   GetMyInfoForStoreResponse,
+  GetMyMembershipResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {

@@ -1,0 +1,10 @@
+.myCartPage {
+  .deleteButton {
+    cursor: pointer;
+    float: right;
+  }
+
+  .deleteButton:hover {
+    color: red;
+  }
+}

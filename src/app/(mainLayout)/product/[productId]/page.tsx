@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { GetProductDetailByProductIdResponseData } from "@/apis/search/searchAPIService.types";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
+import wishAPI from "@/apis/wishCart/wishAPIService";
 
 type Props = {
   params: { productId: string };
@@ -33,7 +34,6 @@ export default function Page({ params }: Props) {
   const handleClickCounter = (num: number) => {
     console.log(num);
     setQuantity((prev) => (prev as number) + num);
-    // console.log(quantity);
     setTotal((prev) => prev + productData.productPrice * num);
   };
 
@@ -58,6 +58,17 @@ export default function Page({ params }: Props) {
       console.error(err);
       setImg(NotFoundImg);
       notify("없는 상품이에요.");
+    }
+  };
+
+  const handleAddCart = async () => {
+    try{
+      const data = await wishAPI.addCart(productId, quantity);
+      if(data.code === 200){
+        toast("장바구니 담기에 성공했어요.")
+      }
+    }catch(err){
+      toast("장바구니 담기에 실패했어요.")
     }
   };
 
@@ -99,16 +110,9 @@ export default function Page({ params }: Props) {
                 <div>{total}원</div>
               </div>
               <div className={style.btnGroup}>
-                <Link
-                  className={style.button}
-                  href={{
-                    pathname: "/payment",
-                    query: { productId, productCount: quantity },
-                  }}
-                  replace
-                >
+                <div className={style.button} onClick={handleAddCart}>
                   장바구니 담기
-                </Link>
+                </div>
                 <Link
                   className={style.button}
                   href={{
