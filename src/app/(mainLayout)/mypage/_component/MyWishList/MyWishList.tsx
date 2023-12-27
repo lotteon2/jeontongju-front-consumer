@@ -9,6 +9,7 @@ import ProductContainer from "../../../_component/ProductContainer/ProductContai
 import style from "@/app/(mainLayout)/mypage/_component/MyList.module.css";
 import { toast } from "react-toastify";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getSellerList } from "@/app/(mainLayout)/seller/_lib/getSellerList";
 
 export default function MyWishList() {
   const queryClient = useQueryClient();
@@ -17,6 +18,12 @@ export default function MyWishList() {
   const { data, refetch } = useQuery({
     queryKey: ["wish", "list"],
     queryFn: () => wishAPI.getMyWishList(0, 5),
+  });
+
+  queryClient.prefetchInfiniteQuery({
+    queryKey: ["seller", "list"],
+    queryFn: getSellerList,
+    initialPageParam: 0,
   });
 
   const getMyWish = async () => {
@@ -57,6 +64,7 @@ export default function MyWishList() {
                   productImg={it.productThumbnailImageUrl}
                   price={it.productPrice}
                   productName={it.productName}
+                  refetch={refetch}
                 />
               </Fragment>
             ))

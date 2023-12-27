@@ -16,6 +16,7 @@ type Props = {
   sellerName?: string;
   sellerProfileImg?: string;
   capacityToPriceRatio?: number;
+  refetch?: () => void;
 };
 export default function ProductContainer({
   productId,
@@ -26,21 +27,17 @@ export default function ProductContainer({
   isLikes,
   sellerProfileImg,
   capacityToPriceRatio,
+  refetch,
 }: Props) {
   const isLogin = useMyInfoStore((state) => state.isLogin);
   const queryClient = useQueryClient();
-  const handleRefetch = () => {
-    queryClient.invalidateQueries(["wish", "list"]);
-    queryClient.invalidateQueries(["event", "crop"]);
-    queryClient.invalidateQueries(["event", "cost"]);
-  };
 
   const handleLike = async () => {
     try {
       const data = await wishAPI.addDeleteWish(productId);
       if (data.code === 200) {
         console.log("refetch");
-        handleRefetch();
+        refetch && refetch();
       }
     } catch (error) {
       toast("서버에 오류가 발생했어요.");

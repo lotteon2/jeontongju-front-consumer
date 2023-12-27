@@ -46,10 +46,10 @@ const searchAPI = {
     page: number
   ) => {
     const { data } =
-      await unAuthAxiosInstance.get<GetAllProductsBySellerIdResponse>(
+      await authAxiosInstance.get<GetAllProductsBySellerIdResponse>(
         `/search-service/api/sellers/${sellerId}/products/all?sort=${sort}&size=${size}&page=${page}`
       );
-    return data;
+    return data.data;
   },
 };
 export default searchAPI;
