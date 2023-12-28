@@ -39,7 +39,7 @@ export default function MemberShip() {
         console.log(err);
       }
     } else {
-      router.push("/mypage/membership");
+      router.push("/membership/list");
     }
   };
   return (
