@@ -1,14 +1,18 @@
+import FiSrBellSVG from "/public/fi-sr-bell.svg";
+import NewFiSrBellSVG from "/public/fi-sr-new-bell.svg";
 import { useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { EventSourcePolyfill, NativeEventSource } from "event-source-polyfill";
 import styles from "./Noti.module.scss";
+import Image from "next/image";
+import notificationAPI from "@/apis/notification/notificationAPIService";
+import { toast } from "react-toastify";
 
 export default function Noti() {
   const queryClient = useQueryClient();
 
-  const [newNotice, setNewNotice] = useState();
-  const [newStatus, setStatus] = useState();
-  const [newApply, setNewApply] = useState();
+  const [newNoti, setNewNoti] = useState<string[]>([]);
+  const [notiOpen, setNotiOpen] = useState<boolean>(false);
   const [animationClass, setAnimationClass] = useState(styles["slide-in"]);
 
   useEffect(() => {
@@ -40,74 +44,19 @@ export default function Noti() {
       });
 
       // eslint-disable-next-line
-      eventSource.addEventListener("newNotice", (event: any) => {
-        const newNoticeInfo: INewNotice = JSON.parse(event.data);
-        setNewNotice(newNoticeInfo);
-        setAnimationClass(styles["slide-in"]); // 슬라이드 애니메이션
-        queryClient.invalidateQueries("noticeCnt"); // 쪽지수 업데이트
-        queryClient.invalidateQueries("noticeList"); // 쪽지리스트 업데이트
-        queryClient.invalidateQueries(["unreadReceiveList", 0]); // 안읽은 쪽지리스트 업데이트
-
-        const slideOutTimer = setTimeout(() => {
-          setAnimationClass(styles["slide-out"]);
-
-          const clearNoticeTimer = setTimeout(() => {
-            setNewNotice(undefined);
-          }, 500);
-
-          return () => clearTimeout(clearNoticeTimer);
-        }, 5000);
-
-        return () => clearTimeout(slideOutTimer);
-      });
-
-      eventSource.addEventListener("statusChange", (event: any) => {
-        const newNoticeInfo = JSON.parse(event.data);
-        setStatus(newNoticeInfo);
-        setAnimationClass(styles["slide-in"]); // 슬라이드 애니메이션
-        queryClient.invalidateQueries("noticeCnt"); // 쪽지수 업데이트
-        queryClient.invalidateQueries("noticeList"); // 쪽지리스트 업데이트
-        queryClient.invalidateQueries(["unreadReceiveList"]); // 안읽은 쪽지리스트 업데이트
-        queryClient.invalidateQueries("apiCount"); // 상태 수 업데이트
-        queryClient.invalidateQueries("apiStatuslist 전체"); // 상태 리스트 업데이트
-        queryClient.invalidateQueries(["apiStatus"]); // 상태 리스트 업데이트
-
-        // 5초 후에 알림 언마운트하고 상태 비우기
-        const slideOutTimer = setTimeout(() => {
-          setAnimationClass(styles["slide-out"]);
-
-          const clearStatusTimer = setTimeout(() => {
-            setStatus(undefined);
-          }, 500);
-
-          return () => clearTimeout(clearStatusTimer);
-        }, 5000);
-
-        return () => clearTimeout(slideOutTimer);
-      });
-
-      // eslint-disable-next-line
       eventSource.addEventListener("sse", (event: any) => {
         console.log(event);
-        // const newApplyInfo = JSON.parse(event.data);
+        const newNoti = event.data;
         console.log("HI");
-        // setNewApply(newApplyInfo);
+        setNewNoti((prev) => [...prev, newNoti]);
         setAnimationClass(styles["slide-in"]); // 슬라이드 애니메이션
         queryClient.invalidateQueries("noticeCnt"); // 쪽지수 업데이트
         queryClient.invalidateQueries("noticeList"); // 쪽지리스트 업데이트
         queryClient.invalidateQueries(["unreadReceiveList"]); // 안읽은 쪽지리스트 업데이트
-        queryClient.invalidateQueries(["provideApplyList"]); // 제공 신청 리스트 업데이트
-        queryClient.invalidateQueries(["useApplyList"]); // 제공 신청 리스트 업데이트
 
         // 5초 후에 알림 언마운트하고 상태 비우기
         const slideOutTimer = setTimeout(() => {
           setAnimationClass(styles["slide-out"]);
-
-          const clearStatusTimer = setTimeout(() => {
-            setStatus(undefined);
-          }, 500);
-
-          return () => clearTimeout(clearStatusTimer);
         }, 5000);
 
         return () => clearTimeout(slideOutTimer);
@@ -121,25 +70,59 @@ export default function Noti() {
     // eslint-disable-next-line
   }, []);
 
-  const handleClose = () => {
-    setAnimationClass(styles["slide-out"]);
+  // if (newNoti) {
+  //   return <div className={`${styles.background} ${animationClass}`}>...</div>;
+  // }
+
+  const handleOpenNoti = () => {
+    setNotiOpen((notiOpen) => !notiOpen);
   };
 
-  if (!newNotice && !newStatus && !newApply) {
-    return null;
-  }
+  const handleAllRead = async () => {
+    try {
+      const data = await notificationAPI.readAllNoti();
+      if (data.code === 200) {
+        toast("전체 읽음 처리에 성공했어요.");
+      }
+    } catch (error) {
+      toast("전체 읽음 처리에 실패했어요");
+    }
+  };
 
-  if (newNotice) {
-    return <div className={`${styles.background} ${animationClass}`}>...</div>;
-  }
+  return (
+    <div>
+      <Image
+        alt="bell"
+        width={0}
+        height={0}
+        src={newNoti.length > 0 ? NewFiSrBellSVG : FiSrBellSVG}
+        style={{
+          cursor: "pointer",
+          width: "1rem",
+          height: "1rem",
+          position: "relative",
+        }}
+        onClick={handleOpenNoti}
+      />
 
-  if (newStatus) {
-    return <div className={`${styles.background} ${animationClass}`}>...</div>;
-  }
-
-  if (newApply) {
-    return <div className={`${styles.background} ${animationClass}`}>...</div>;
-  }
-
-  return <div>대충 종모양</div>;
+      {notiOpen ? (
+        newNoti.length === 0 ? (
+          <div className={styles.alarmBox}>알람 확인 완료 끝!</div>
+        ) : (
+          <div className={styles.alarmBox}>
+            <div className={styles.everyReadButton} onClick={handleAllRead}>
+              전체 읽음
+            </div>
+            {newNoti.map((it, i) => (
+              <div className={styles.alarmDiv} key={i}>
+                {it}
+              </div>
+            ))}
+          </div>
+        )
+      ) : (
+        <></>
+      )}
+    </div>
+  );
 }

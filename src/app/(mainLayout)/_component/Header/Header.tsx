@@ -64,9 +64,9 @@ export default function Header() {
       <div className={style.headerBottom}>
         {isLogin ? (
           <>
+            <Noti />
             <Link href={"/mypage"}>마이페이지</Link>
             <Link href={"/init/logout"}>로그아웃</Link>
-            <Noti />
           </>
         ) : (
           <>

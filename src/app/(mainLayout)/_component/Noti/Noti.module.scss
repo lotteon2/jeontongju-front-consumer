@@ -38,3 +38,24 @@
 .slide-out {
   animation: slideOutRight 0.5s ease forwards;
 }
+
+.alarmBox {
+  border: 1px solid #ccc;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  position: absolute;
+  z-index: 100;
+  background-color: white;
+  max-height: 10rem;
+  overflow-y: scroll;
+
+  .alarmDiv {
+    padding: 0.5rem 0;
+  }
+}
+
+.everyReadButton {
+  text-align: right;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}

@@ -243,9 +243,8 @@
 }
 
 .mainPage {
-  padding: 0 20vh;
-  width: 100dvw;
-  height: 100dvh;
+  width: 80vw;
+  margin: 0 auto;
   box-sizing: border-box;
 
   .auctionContainer {

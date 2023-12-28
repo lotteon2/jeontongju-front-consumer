@@ -24,18 +24,16 @@ export default async function Page() {
   queryClient.getQueryData(["auction", "detail"]);
 
   return (
-    <>
-      <div className={style.mainPage}>
-        <RQProvider>
-          <HydrationBoundary state={dehydratedState}>
-            <Header />
-            <AuctionContainer />
-            <Banner type="membership" href="/membership/buy" />
-            <Banner type="crop" href="/event/crop" />
-            <Banner type="cost" href="/event/cost" />
-          </HydrationBoundary>
-        </RQProvider>
-      </div>
-    </>
+    <div className={style.mainPage}>
+      <RQProvider>
+        <HydrationBoundary state={dehydratedState}>
+          <Header />
+          <AuctionContainer />
+          <Banner type="membership" href="/membership/buy" />
+          <Banner type="crop" href="/event/crop" />
+          <Banner type="cost" href="/event/cost" />
+        </HydrationBoundary>
+      </RQProvider>
+    </div>
   );
 }
