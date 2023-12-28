@@ -30,32 +30,40 @@ export default function Noti() {
         }
       );
 
-      // eslint-disable-next-line
-      eventSource.addEventListener("connect", (event: any) => {
-        console.log(event);
-        const { data: receivedConnectData } = event;
-        if (receivedConnectData === "SSE 연결이 완료되었습니다.") {
-          console.log("SSE CONNECTED");
-        } else {
-          console.log(event);
-        }
-      });
+      eventSource.onopen = () => {
+        eventSource.addEventListener("happy", (event: any) => {
+          const newNoti = event.data;
+          console.log("HI");
+          setNewNoti((prev) => [...prev, newNoti]);
+        });
+      };
 
       // eslint-disable-next-line
-      eventSource.addEventListener("happy", (event: any) => {
-        console.log(event);
-        const newNoti = event.data;
-        console.log("HI");
-        setNewNoti((prev) => [...prev, newNoti]);
-        setAnimationClass(styles["slide-in"]); // 슬라이드 애니메이션
+      // eventSource.addEventListener("connect", (event: any) => {
+      //   console.log(event);
+      //   const { data: receivedConnectData } = event;
+      //   if (receivedConnectData === "SSE 연결이 완료되었습니다.") {
+      //     console.log("SSE CONNECTED");
+      //   } else {
+      //     console.log(event);
+      //   }
+      // });
 
-        // 5초 후에 알림 언마운트하고 상태 비우기
-        const slideOutTimer = setTimeout(() => {
-          setAnimationClass(styles["slide-out"]);
-        }, 5000);
+      // eslint-disable-next-line
+      // eventSource.addEventListener("happy", (event: any) => {
+      //   console.log(event);
+      //   const newNoti = event.data;
+      //   console.log("HI");
+      //   setNewNoti((prev) => [...prev, newNoti]);
+      //   setAnimationClass(styles["slide-in"]); // 슬라이드 애니메이션
 
-        return () => clearTimeout(slideOutTimer);
-      });
+      //   // 5초 후에 알림 언마운트하고 상태 비우기
+      //   const slideOutTimer = setTimeout(() => {
+      //     setAnimationClass(styles["slide-out"]);
+      //   }, 5000);
+
+      //   return () => clearTimeout(slideOutTimer);
+      // });
 
       // return () => {
       //   eventSource.close();
@@ -64,10 +72,6 @@ export default function Noti() {
     }
     // eslint-disable-next-line
   }, []);
-
-  // if (newNoti) {
-  //   return <div className={`${styles.background} ${animationClass}`}>...</div>;
-  // }
 
   const handleOpenNoti = () => {
     setNotiOpen((notiOpen) => !notiOpen);
