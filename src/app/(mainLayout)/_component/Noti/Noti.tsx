@@ -32,6 +32,9 @@ function Noti() {
       eventSource.onopen = () => {
         console.log("OPEN");
 
+        eventSource.removeEventListener("connect", () => {});
+        eventSource.removeEventListener("happy", () => {});
+
         eventSource.addEventListener("happy", (event: any) => {
           const newNoti = event.data;
           console.log("HI");
