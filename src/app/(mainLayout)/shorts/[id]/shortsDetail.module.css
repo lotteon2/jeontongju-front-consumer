@@ -1,0 +1,22 @@
+.shortsContainer {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  height: 90dvh;
+
+  .shortsBottom {
+    position: absolute;
+    bottom: 5rem;
+    color: white;
+
+    .shortsTitle {
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+    }
+
+    .shortsDescription {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

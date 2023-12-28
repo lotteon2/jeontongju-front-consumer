@@ -12,8 +12,6 @@ import { useInView } from "react-intersection-observer";
 
 export default function AllProducts({ sellerId }: { sellerId: number }) {
   const [img, setImg] = useState<string>(LoadingImg);
-  // const [sellerProducts, setSellerProducts] =
-  //   useState<GetPopularProductsBySellerIdResponseData[]>(null);
 
   const { data, fetchNextPage, hasNextPage, isFetching, refetch } =
     useInfiniteQuery<
