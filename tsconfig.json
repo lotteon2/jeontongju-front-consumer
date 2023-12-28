@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["@tanstack/react-query"],
+    "types": ["@tanstack/react-query", "@types/gtag.js"],
     "typeRoots": ["src/types"],
     "baseUrl": ".",
     "allowJs": true,
