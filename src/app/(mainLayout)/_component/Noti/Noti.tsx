@@ -31,6 +31,8 @@ function Noti() {
       );
 
       eventSource.onopen = () => {
+        console.log("OPEN");
+
         eventSource.addEventListener("happy", (event: any) => {
           const newNoti = event.data;
           console.log("HI");
@@ -46,6 +48,11 @@ function Noti() {
             console.log(event);
           }
         });
+      };
+
+      return () => {
+        eventSource.close();
+        console.log("SSE CLOSED");
       };
 
       // eslint-disable-next-line
