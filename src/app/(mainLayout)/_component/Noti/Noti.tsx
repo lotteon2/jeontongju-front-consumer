@@ -26,6 +26,7 @@ function Noti() {
             Accept: "text/event-stream",
           },
           heartbeatTimeout: 86400000,
+          withCredentials: true,
         }
       );
 
