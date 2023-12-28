@@ -1,6 +1,5 @@
 import FiSrBellSVG from "/public/fi-sr-bell.svg";
 import NewFiSrBellSVG from "/public/fi-sr-new-bell.svg";
-import { useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { EventSourcePolyfill, NativeEventSource } from "event-source-polyfill";
 import styles from "./Noti.module.scss";
@@ -9,8 +8,6 @@ import notificationAPI from "@/apis/notification/notificationAPIService";
 import { toast } from "react-toastify";
 
 export default function Noti() {
-  const queryClient = useQueryClient();
-
   const [newNoti, setNewNoti] = useState<string[]>([]);
   const [notiOpen, setNotiOpen] = useState<boolean>(false);
   const [animationClass, setAnimationClass] = useState(styles["slide-in"]);
@@ -50,9 +47,6 @@ export default function Noti() {
         console.log("HI");
         setNewNoti((prev) => [...prev, newNoti]);
         setAnimationClass(styles["slide-in"]); // 슬라이드 애니메이션
-        queryClient.invalidateQueries("noticeCnt"); // 쪽지수 업데이트
-        queryClient.invalidateQueries("noticeList"); // 쪽지리스트 업데이트
-        queryClient.invalidateQueries(["unreadReceiveList"]); // 안읽은 쪽지리스트 업데이트
 
         // 5초 후에 알림 언마운트하고 상태 비우기
         const slideOutTimer = setTimeout(() => {
