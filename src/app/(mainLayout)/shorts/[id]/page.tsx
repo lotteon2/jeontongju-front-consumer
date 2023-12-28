@@ -87,6 +87,12 @@ export default function ShortsDetail({ short }: { short: Short }) {
                   page_path: window.location.pathname,
                   shortsId: ${short.shortsId}
                 });
+
+                gtag('event', 'watch_shorts', {
+                  'event_name' : 'watch_shorts',
+                  'event_label' : 'shortsId-${short.shortsId}'
+                });
+                
         `,
           }}
         />
