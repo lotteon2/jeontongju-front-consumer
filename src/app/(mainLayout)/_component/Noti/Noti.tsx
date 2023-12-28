@@ -88,9 +88,10 @@ export default function Noti() {
 
       // eslint-disable-next-line
       eventSource.addEventListener("sse", (event: any) => {
-        const newApplyInfo = JSON.parse(event.data);
+        console.log(event);
+        // const newApplyInfo = JSON.parse(event.data);
         console.log("HI");
-        setNewApply(newApplyInfo);
+        // setNewApply(newApplyInfo);
         setAnimationClass(styles["slide-in"]); // 슬라이드 애니메이션
         queryClient.invalidateQueries("noticeCnt"); // 쪽지수 업데이트
         queryClient.invalidateQueries("noticeList"); // 쪽지리스트 업데이트
