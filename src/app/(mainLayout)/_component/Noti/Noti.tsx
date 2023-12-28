@@ -7,7 +7,7 @@ import Image from "next/image";
 import notificationAPI from "@/apis/notification/notificationAPIService";
 import { toast } from "react-toastify";
 
-export default function Noti() {
+function Noti() {
   const [newNoti, setNewNoti] = useState<string[]>([]);
   const [notiOpen, setNotiOpen] = useState<boolean>(false);
   const [animationClass, setAnimationClass] = useState(styles["slide-in"]);
@@ -135,3 +135,5 @@ export default function Noti() {
     </div>
   );
 }
+
+export default React.memo(Noti);
