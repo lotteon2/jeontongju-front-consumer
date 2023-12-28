@@ -32,6 +32,7 @@ export default function Noti() {
 
       // eslint-disable-next-line
       eventSource.addEventListener("connect", (event: any) => {
+        console.log(event);
         const { data: receivedConnectData } = event;
         if (receivedConnectData === "SSE 연결이 완료되었습니다.") {
           console.log("SSE CONNECTED");
@@ -41,7 +42,7 @@ export default function Noti() {
       });
 
       // eslint-disable-next-line
-      eventSource.addEventListener("sse", (event: any) => {
+      eventSource.addEventListener("happy", (event: any) => {
         console.log(event);
         const newNoti = event.data;
         console.log("HI");
