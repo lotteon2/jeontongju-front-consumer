@@ -21,9 +21,13 @@
   width: 50;
   display: flex;
   margin-bottom: 1rem;
+  gap: 2rem;
 
   .thumbnail {
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .info {
@@ -95,9 +99,37 @@
 .sellerInfo {
   display: flex;
   align-items: center;
+  gap: 1rem;
 
   .storeImg {
     width: 2rem;
     height: 2rem;
   }
+}
+
+.menus {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem 0;
+
+  .menu {
+    background-color: bisque;
+    padding: 1rem 2rem;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .selected {
+    background-color: #ffa1a1;
+    padding: 1rem 2rem;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.detailDesc {
+  color: #ccc;
+  margin-top: 2rem;
 }

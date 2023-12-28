@@ -19,6 +19,8 @@ type Props = {
 
 export default function Page({ params }: Props) {
   const router = useRouter();
+  const [selectedMenu, setSelectedMenu] = useState<number>(0);
+  const [selectedValue, setSelectedValue] = useState<string>("sweetPotato");
   const notify = (message: string) => toast(message);
   const { productId } = params;
   const [mounted, setMounted] = useState<boolean>(false);
@@ -30,6 +32,16 @@ export default function Page({ params }: Props) {
   const [total, setTotal] = useState(
     productData ? productData.productPrice : 0
   );
+
+  useEffect(() => {
+    if (selectedMenu === 0) {
+      setSelectedValue("sweetPotato");
+    } else if (selectedMenu === 1) {
+      setSelectedValue("potato");
+    } else {
+      setSelectedValue("corn");
+    }
+  }, [selectedMenu]);
 
   const handleClickCounter = (num: number) => {
     console.log(num);
@@ -94,7 +106,12 @@ export default function Page({ params }: Props) {
                 alt="productImg"
                 width={0}
                 height={0}
-                style={{ cursor: "pointer", width: "100%", height: "auto" }}
+                style={{
+                  borderRadius: "12px",
+                  cursor: "pointer",
+                  width: "30rem",
+                  height: "auto",
+                }}
               />
             </div>
             <div className={style.info}>
@@ -150,13 +167,96 @@ export default function Page({ params }: Props) {
                   className={style.storeImg}
                   width={0}
                   height={0}
-                  style={{ cursor: "pointer", width: "10rem", height: "auto" }}
+                  style={{
+                    borderRadius: "12px",
+                    cursor: "pointer",
+                    width: "3rem",
+                    height: "auto",
+                  }}
                 />
                 <div>판매자 | {productData.storeName}</div>
               </Link>
             </div>
           </div>
           <div className={style.hr}></div>
+          <div className={style.menus}>
+            <div
+              className={selectedMenu === 0 ? style.selected : style.menu}
+              onClick={() => setSelectedMenu(0)}
+            >
+              상품 상세
+            </div>
+            <div
+              className={selectedMenu === 1 ? style.selected : style.menu}
+              onClick={() => setSelectedMenu(1)}
+            >
+              리뷰
+            </div>
+            <div
+              className={selectedMenu === 2 ? style.selected : style.menu}
+              onClick={() => setSelectedMenu(2)}
+            >
+              교환 / 반품 안내
+            </div>
+          </div>
+          <div className={style.details}>
+            {selectedMenu === 0 ? (
+              <Image
+                src={productData.productDetailsImageUrl}
+                alt="productDetailImg"
+                width={0}
+                height={0}
+                style={{
+                  cursor: "pointer",
+                  width: "80%",
+                  height: "80%",
+                }}
+              />
+            ) : selectedMenu === 1 ? (
+              <div></div>
+            ) : (
+              <div>
+                <h2>판매자정보</h2>
+                <table>
+                  <tr>
+                    <td>업체명</td>
+                    <td>{productData.storeName}</td>
+                  </tr>
+                  <tr>
+                    <td>양조장</td>
+                    <td>{productData.breweryName}</td>
+                  </tr>
+                  <tr>
+                    <td>우편 번호</td>
+                    <td>{productData.breweryZonecode}</td>
+                  </tr>
+                  <tr>
+                    <td>사업장 소재지</td>
+                    <td>{productData.breweryAddressDetails}</td>
+                  </tr>
+                  <tr>
+                    <td>사업장 상세 소재지</td>
+                    <td>
+                      {productData.breweryAddress}
+                      {productData.breweryAddressDetails}
+                    </td>
+                  </tr>
+                </table>
+                <div className={style.detailDesc}>
+                  본 상품정보(상품상세정보, 상품기본정보 등)의 내용은 판매자가
+                  직접 등록한 정보입니다. 전통주점은 중개시스템만 제공하며 그
+                  등록 내용에 대하여 일체의 책임을 지지 않습니다.
+                </div>
+                <h2>교환 / 반품 안내</h2>
+                <table>
+                  <tr>
+                    <td>교환/반품 비용</td>
+                    <td>전통주 특성상 교환, 반품이 불가해요.</td>
+                  </tr>
+                </table>
+              </div>
+            )}
+          </div>
         </div>
       ) : (
         <Image
