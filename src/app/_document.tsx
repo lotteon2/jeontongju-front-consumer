@@ -5,6 +5,8 @@ declare global {
   interface Window {
     Kakao: any;
     IMP: any;
+    dataLayer: unknown;
+    gtag: unknown;
   }
 }
 
