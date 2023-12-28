@@ -1,12 +1,15 @@
 import { authAxiosInstance } from "../common";
-import { GetShortsListResponse } from "./productAPIService.types";
+import {
+  GetShortDetailResponse,
+  GetShortsListResponse,
+} from "./productAPIService.types";
 
 const productAPI = {
-  getAllShorts: async (page: number) => {
+  getAllShorts: async (page: number, size: number) => {
     const { data } = await authAxiosInstance.get<GetShortsListResponse>(
-      `/product-service/api/shorts?page=${page}&sort=shortsHits,desc&size=6`
+      `/product-service/api/shorts?page=${page}&sort=shortsHits,desc&size=${size}`
     );
-    return data;
+    return data.data;
   },
   getShortListBySellerId: async (sellerId: number, page: number) => {
     const { data } = await authAxiosInstance.get<GetShortsListResponse>(
@@ -15,7 +18,7 @@ const productAPI = {
     return data;
   },
   getShortsDetail: async (shortsId: number) => {
-    const { data } = await authAxiosInstance.get<GetShortsListResponse>(
+    const { data } = await authAxiosInstance.get<GetShortDetailResponse>(
       `/product-service/api/shorts/${shortsId}`
     );
     return data;

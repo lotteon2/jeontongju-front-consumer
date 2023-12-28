@@ -13,10 +13,11 @@ export type Short = {
   shortsTitle: string;
   shortsDescription: string;
   shortsVideoUrl: string;
-  shortsPreviewUrl: string;
+  shortsPreviewUrl?: string;
   shortsThumbnailImageUrl: string;
   shortsHits: number;
   targetId: string;
 };
 
+export type GetShortDetailResponse = ApiResponse<Short>;
 export type GetShortsListResponse = ApiResponse<Page<Short[]>>;
