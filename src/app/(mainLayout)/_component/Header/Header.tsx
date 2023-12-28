@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
+import Noti from "../Noti/Noti";
 export default function Header() {
   const { data } = useQuery({
     queryKey: ["consumer", "myinfo"],
@@ -26,7 +27,7 @@ export default function Header() {
     if (typeof window !== "undefined") {
       if (localStorage.getItem("accessToken")) {
         setIsLogin(true);
-        notificationAPI.connectNoti();
+        // notificationAPI.connectNoti();
       }
     }
     if (data?.data) {
@@ -65,6 +66,7 @@ export default function Header() {
           <>
             <Link href={"/mypage"}>마이페이지</Link>
             <Link href={"/init/logout"}>로그아웃</Link>
+            <Noti />
           </>
         ) : (
           <>
