@@ -144,10 +144,13 @@ export default function Page({ params }: Props) {
                 href={`/seller/${productData.sellerId}`}
                 className={style.sellerInfo}
               >
-                <img
+                <Image
                   src={productData.storeImageUrl}
                   alt="img"
                   className={style.storeImg}
+                  width={0}
+                  height={0}
+                  style={{ cursor: "pointer", width: "10rem", height: "auto" }}
                 />
                 <div>판매자 | {productData.storeName}</div>
               </Link>
