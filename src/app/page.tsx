@@ -12,6 +12,7 @@ import {
 import RQProvider from "./(mainLayout)/_component/RQProvider";
 import Banner from "./_component/Banner";
 import Header from "./(mainLayout)/_component/Header/Header";
+import notificationAPI from "@/apis/notification/notificationAPIService";
 
 export default async function Page() {
   const queryClient = new QueryClient();

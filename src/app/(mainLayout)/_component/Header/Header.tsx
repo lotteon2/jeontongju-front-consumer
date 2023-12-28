@@ -1,5 +1,6 @@
 "use client";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
+import notificationAPI from "@/apis/notification/notificationAPIService";
 import style from "@/app/(mainLayout)/_component/Header/Header.module.css";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import { useQuery } from "@tanstack/react-query";
@@ -23,7 +24,10 @@ export default function Header() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if (localStorage.getItem("accessToken")) setIsLogin(true);
+      if (localStorage.getItem("accessToken")) {
+        setIsLogin(true);
+        notificationAPI.connectNoti();
+      }
     }
     if (data?.data) {
       setMemberId(data.data.memberId);
