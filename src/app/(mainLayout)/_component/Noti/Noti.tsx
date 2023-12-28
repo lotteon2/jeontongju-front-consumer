@@ -36,6 +36,16 @@ export default function Noti() {
           console.log("HI");
           setNewNoti((prev) => [...prev, newNoti]);
         });
+
+        eventSource.addEventListener("connect", (event: any) => {
+          console.log(event);
+          const { data: receivedConnectData } = event;
+          if (receivedConnectData === "SSE 연결이 완료되었습니다.") {
+            console.log("SSE CONNECTED");
+          } else {
+            console.log(event);
+          }
+        });
       };
 
       // eslint-disable-next-line
