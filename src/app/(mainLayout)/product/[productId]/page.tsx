@@ -106,8 +106,8 @@ export default function Page({ params }: Props) {
             <div className={style.info}>
               <div className={style.title}>
                 <div>{productData.productName}</div>
-                {/* {productData.registeredQuantity < 10 && ( */}
-                <div style={{ color: "red" }}>품절 임박</div>
+                {productData.registeredQuantity < 10 && (
+                  <div style={{ color: "red" }}>품절 임박</div>
                 )}
               </div>
               <div className={style.desc}>{productData.productDescription}</div>
