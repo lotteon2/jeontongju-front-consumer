@@ -28,9 +28,8 @@ export default function Banner({
         } else if (data.code === 400) {
           if (data.data.isOpen) {
             toast("아직 오픈 전이에요");
-          }
-          else if(data.data.isSoldOut){
-            toast("쿠폰이 매진되었어요")
+          } else if (data.data.isSoldOut) {
+            toast("쿠폰이 매진되었어요");
           }
         }
         return data;
@@ -76,23 +75,3 @@ export default function Banner({
     </Link>
   );
 }
-
-// <Link href={href}>
-//   <div onClick={getCoupon}>
-//     <Image
-//       src={
-//         type === "membership"
-//           ? membershipBannerImg
-//           : type === "cost"
-//           ? eventCostImg
-//           : type === "coupon"
-//           ? eventCouponImg
-//           : eventCropImg
-//       }
-//       width={0}
-//       height={0}
-//       alt={type || "banner"}
-//       style={{ cursor: "pointer", width: "100%", height: "20%" }}
-//     />
-//   </div>
-// </Link>
