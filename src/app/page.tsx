@@ -12,6 +12,8 @@ import {
 import RQProvider from "./(mainLayout)/_component/RQProvider";
 import Banner from "./_component/Banner";
 import Header from "./(mainLayout)/_component/Header/Header";
+import couponAPI from "@/apis/coupon/couponAPIService";
+import { toast } from "react-toastify";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -30,6 +32,7 @@ export default async function Page() {
             <Header />
             <AuctionContainer />
             <Banner type="membership" href="/membership/buy" />
+            <Banner type="coupon" />
             <Banner type="crop" href="/event/crop" />
             <Banner type="cost" href="/event/cost" />
           </HydrationBoundary>
