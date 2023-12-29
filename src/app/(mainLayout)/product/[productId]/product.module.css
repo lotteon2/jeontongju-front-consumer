@@ -40,6 +40,8 @@
   .title {
     font-size: 2rem;
     font-weight: 900;
+    display: flex;
+    gap: 2rem;
   }
 
   .desc {
@@ -132,4 +134,10 @@
 .detailDesc {
   color: #ccc;
   margin-top: 2rem;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

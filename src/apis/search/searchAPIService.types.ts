@@ -1,4 +1,5 @@
 import { Page } from "@/constants/PageResponseType";
+import { SNACK } from "@/constants/SnackTypeEnum";
 
 interface ApiResponse<T> {
   code: number;
@@ -36,7 +37,7 @@ export type GetProductDetailByProductIdResponseData = {
     body: number;
   };
   rawMaterial: ["RICE"];
-  food: ["PIZZA", "CHICKEN"];
+  food: (keyof typeof SNACK)[];
   concept: ["TRIP"];
   isSoldOut: boolean;
   isLikes: boolean;

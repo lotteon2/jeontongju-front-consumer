@@ -20,7 +20,6 @@ type Props = {
 export default function Page({ params }: Props) {
   const router = useRouter();
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
-  const [selectedValue, setSelectedValue] = useState<string>("sweetPotato");
   const notify = (message: string) => toast(message);
   const { productId } = params;
   const [mounted, setMounted] = useState<boolean>(false);
@@ -32,16 +31,6 @@ export default function Page({ params }: Props) {
   const [total, setTotal] = useState(
     productData ? productData.productPrice : 0
   );
-
-  useEffect(() => {
-    if (selectedMenu === 0) {
-      setSelectedValue("sweetPotato");
-    } else if (selectedMenu === 1) {
-      setSelectedValue("potato");
-    } else {
-      setSelectedValue("corn");
-    }
-  }, [selectedMenu]);
 
   const handleClickCounter = (num: number) => {
     console.log(num);
@@ -115,7 +104,12 @@ export default function Page({ params }: Props) {
               />
             </div>
             <div className={style.info}>
-              <div className={style.title}>{productData.productName}</div>
+              <div className={style.title}>
+                <div>{productData.productName}</div>
+                {/* {productData.registeredQuantity < 10 && ( */}
+                <div style={{ color: "red" }}>품절 임박</div>
+                )}
+              </div>
               <div className={style.desc}>{productData.productDescription}</div>
               <div className={style.hr} />
               <div className={style.productPrice}>
@@ -201,19 +195,38 @@ export default function Page({ params }: Props) {
           </div>
           <div className={style.details}>
             {selectedMenu === 0 ? (
-              <Image
-                src={productData.productDetailsImageUrl}
-                alt="productDetailImg"
-                width={0}
-                height={0}
-                style={{
-                  cursor: "pointer",
-                  width: "80%",
-                  height: "80%",
-                }}
-              />
+              <>
+                <h2>상품 상세 이미지</h2>
+                <Image
+                  src={productData.productDetailsImageUrl}
+                  alt="productDetailImg"
+                  width={0}
+                  height={0}
+                  style={{
+                    cursor: "pointer",
+                    width: "100%",
+                    height: "100%",
+                    margin: "0 auto",
+                  }}
+                />
+
+                {productData.food && (
+                  <>
+                    <h2>잘 어울리는 안주</h2>
+                    {productData.food.map((it) => (
+                      <div key={it}>{it}</div>
+                    ))}
+                  </>
+                )}
+                {productData.concept && (
+                  <>
+                    <h2>잘 어울리는 컨셉</h2>
+                    {productData.concept}
+                  </>
+                )}
+              </>
             ) : selectedMenu === 1 ? (
-              <div></div>
+              <div>리뷰 </div>
             ) : (
               <div>
                 <h2>판매자정보</h2>
