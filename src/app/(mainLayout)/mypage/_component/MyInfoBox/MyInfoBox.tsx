@@ -58,7 +58,10 @@ export default function MyInfoBox() {
           <div className={style.infoTitle}>포인트</div>
           <div className={style.infoDesc}>{myInfo?.point}</div>
         </div>
-        <div className={style.infoDiv}>
+        <div
+          className={style.infoDiv}
+          onClick={() => router.push("/mypage/mycoupon")}
+        >
           <div className={style.infoTitle}>쿠폰</div>
           <div className={style.infoDesc}>쿠폰 받으러 가기</div>
         </div>
