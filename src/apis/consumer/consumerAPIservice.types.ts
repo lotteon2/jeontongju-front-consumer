@@ -70,7 +70,7 @@ export type GetMyMembershipResponseData = {
 };
 
 export type GetMyAddressListResponseData = {
-  addressId: number;
+  addressId?: number;
   basicAddress: string;
   addressDetail: string;
   zonecode: string;
@@ -96,3 +96,4 @@ export type GetMyAddressByAddressIdResponse =
   ApiResponse<GetMyAddressListResponseData>;
 
 export type DeleteMyAddressByAddressIdResponse = ApiResponse<string>;
+export type AddAddressResponse = ApiResponse<string>;
