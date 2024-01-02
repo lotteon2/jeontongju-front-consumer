@@ -66,7 +66,7 @@ export default function MyAddress() {
           {data?.data?.length > 0 ? (
             <div>
               {data?.data.map((it) => (
-                <MyAddressBox key={it.addressId} item={it} />
+                <MyAddressBox key={it.addressId} item={it} refetch={refetch} />
               ))}
             </div>
           ) : (

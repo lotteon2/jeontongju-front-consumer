@@ -1,0 +1,22 @@
+.myAddressBox {
+  box-shadow: 3px 3px 1px 1px #c0c0c0;
+  border-radius: 12px;
+  padding: 1rem;
+
+  .addressButtons {
+    float: right;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .isDefault {
+    white-space: nowrap;
+    color: #ffa1a1;
+  }
+
+  .desc {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+}

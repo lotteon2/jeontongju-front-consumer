@@ -63,7 +63,7 @@ const consumerAPI = {
   deleteMyAddressByAddressId: async (addressId: number) => {
     const { data } =
       await authAxiosInstance.delete<DeleteMyAddressByAddressIdResponse>(
-        `/consumer-service/api/consumers/addresses/${addressId}`
+        `/consumer-service/api/consumers/address/${addressId}`
       );
     return data;
   },
