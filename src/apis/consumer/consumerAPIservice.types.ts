@@ -69,6 +69,16 @@ export type GetMyMembershipResponseData = {
   paymentAmount: number;
 };
 
+export type GetMyAddressListResponseData = {
+  addressId: number;
+  basicAddress: string;
+  addressDetail: string;
+  zonecode: string;
+  recipientName: string;
+  recipientPhoneNumber: string;
+  isDefault: boolean;
+};
+
 export type GetMyInfoResponse = ApiResponse<GetMyInfoResponseData>;
 export type GetMyPointListResponse = ApiResponse<GetMyPointListResponseData>;
 export type GetMyCreditListResponse = ApiResponse<GetMyCreditListResponseData>;
@@ -77,3 +87,12 @@ export type GetMyInfoForStoreResponse =
 export type GetMyMembershipResponse = ApiResponse<
   Page<GetMyMembershipResponseData[]>
 >;
+
+export type GetMyAddressListResponse = ApiResponse<
+  GetMyAddressListResponseData[]
+>;
+
+export type GetMyAddressByAddressIdResponse =
+  ApiResponse<GetMyAddressListResponseData>;
+
+export type DeleteMyAddressByAddressIdResponse = ApiResponse<string>;

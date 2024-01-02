@@ -5,6 +5,9 @@ import {
   GetMyCreditListResponse,
   GetMyInfoForStoreResponse,
   GetMyMembershipResponse,
+  GetMyAddressListResponse,
+  GetMyAddressByAddressIdResponse,
+  DeleteMyAddressByAddressIdResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -40,6 +43,26 @@ const consumerAPI = {
     const { data } = await authAxiosInstance.get<GetMyMembershipResponse>(
       `consumer-service/api/consumers/subscription-history?page=${page}&size=${size}`
     );
+    return data;
+  },
+  getMyAddressList: async () => {
+    const { data } = await authAxiosInstance.get<GetMyAddressListResponse>(
+      `/consumer-service/api/consumers/addresses`
+    );
+    return data;
+  },
+  getMyAddressByAddressId: async (addressId: number) => {
+    const { data } =
+      await authAxiosInstance.get<GetMyAddressByAddressIdResponse>(
+        `/consumer-service/api/consumers/addresses/${addressId}`
+      );
+    return data;
+  },
+  deleteMyAddressByAddressId: async (addressId: number) => {
+    const { data } =
+      await authAxiosInstance.delete<DeleteMyAddressByAddressIdResponse>(
+        `/consumer-service/api/consumers/addresses/${addressId}`
+      );
     return data;
   },
 };

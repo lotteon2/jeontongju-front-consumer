@@ -14,7 +14,8 @@
       font-weight: 700;
     }
 
-    .membership {
+    .membership,
+    .myGoDetailButton {
       margin-top: 0.5rem;
       background: #f2cbf9;
       border-radius: 12px;
@@ -23,6 +24,10 @@
       padding: 0.3rem;
       color: white;
       cursor: pointer;
+    }
+
+    .myGoDetailButton {
+      width: 8rem;
     }
   }
 
