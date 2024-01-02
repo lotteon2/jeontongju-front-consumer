@@ -11,9 +11,10 @@ import { GetPopularProductsBySellerIdResponseData } from "@/apis/search/searchAP
 import searchAPI from "@/apis/search/searchAPIService";
 import ProductContainer from "../../_component/ProductContainer/ProductContainer";
 import PopularProducts from "../../_component/Seller/PopularContainer";
-import AllProducts from "../../_component/Seller/AllProducts";
+import AllProducts from "../_component/AllProducts";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AllShorts from "../_component/AllShorts";
 
 type Props = {
   params: { sellerId: string };
@@ -217,8 +218,10 @@ export default function Seller({ params }: Props) {
                   popularProducts={popularProducts}
                   popularReviewProducts={popularReviewProducts}
                 />
-              ) : (
+              ) : selectedMenu === 1 ? (
                 <AllProducts sellerId={parseInt(sellerId)} />
+              ) : (
+                <AllShorts sellerId={parseInt(sellerId)} />
               )}
             </div>
           </div>

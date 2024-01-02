@@ -15,7 +15,7 @@ const productAPI = {
     const { data } = await unAuthAxiosInstance.get<GetShortsListResponse>(
       `/product-service/api/sellers/${sellerId}/shorts?page=${page}&sort=shortsHits,desc&size=5`
     );
-    return data;
+    return data.data;
   },
   getShortsDetail: async (shortsId: number) => {
     const { data } = await unAuthAxiosInstance.get<GetShortDetailResponse>(

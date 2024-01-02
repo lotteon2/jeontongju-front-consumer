@@ -2,7 +2,7 @@
 import LoadingImg from "/public/loading.gif";
 import NotFoundImg from "/public/jeontongju_notfound.png";
 import { GetPopularProductsBySellerIdResponseData } from "@/apis/search/searchAPIService.types";
-import ProductContainer from "../ProductContainer/ProductContainer";
+import ProductContainer from "../../_component/ProductContainer/ProductContainer";
 import { Fragment, useEffect, useState } from "react";
 import searchAPI from "@/apis/search/searchAPIService";
 import style from "@/app/(mainLayout)/seller/[sellerId]/seller.module.css";

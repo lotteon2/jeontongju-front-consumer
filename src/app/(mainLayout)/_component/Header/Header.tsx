@@ -27,7 +27,6 @@ export default function Header() {
     if (typeof window !== "undefined") {
       if (localStorage.getItem("accessToken")) {
         setIsLogin(true);
-        // notificationAPI.connectNoti();
       }
     }
     if (data?.data) {
