@@ -63,7 +63,7 @@ export default function MyInfoBox() {
           onClick={() => router.push("/mypage/mycoupon")}
         >
           <div className={style.infoTitle}>쿠폰</div>
-          <div className={style.infoDesc}>쿠폰 받으러 가기</div>
+          <div className={style.infoDesc}>쿠폰함 가기</div>
         </div>
         <div
           className={style.infoDiv}

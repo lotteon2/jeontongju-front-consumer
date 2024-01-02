@@ -5,22 +5,25 @@ import { Page } from "@/constants/PageResponseType";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import { getMyCouponList } from "../_lib/getMyCouponList";
 import { useInView } from "react-intersection-observer";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import couponAPI from "@/apis/coupon/couponAPIService";
 import CouponBox from "../../_component/CouponBox/CouponBox";
 
 export default function MyCouponPage() {
+  const [selectedMenu, setSelectedMenu] = useState<"available" | "used">(
+    "available"
+  );
   const { data, fetchNextPage, hasNextPage, isFetching, refetch } =
     useInfiniteQuery<
       Page<GetMyCouponListResponseData[]>,
       Object,
       InfiniteData<Page<GetMyCouponListResponseData[]>>,
-      [_1: string, _2: string],
+      [_1: string, _2: string, _3: string],
       number
     >({
-      queryKey: ["coupon", "list"],
+      queryKey: ["coupon", "list", selectedMenu],
       queryFn: ({ pageParam = 0 }) =>
-        couponAPI.getMyCouponList(pageParam, "available", 10),
+        couponAPI.getMyCouponList(pageParam, selectedMenu, 10),
       initialPageParam: 0,
       getNextPageParam: (lastPage) =>
         lastPage.last === false ? lastPage.number + 1 : null,
@@ -42,9 +45,23 @@ export default function MyCouponPage() {
   return (
     <div className={style.myWishPage}>
       <h2 className={style.myWishHeader}>나의 쿠폰 내역</h2>
-      <div>
-        <div>사용가능</div>
-        <div>사용 / 만료</div>
+      <div className={style.couponHeader}>
+        <div
+          className={
+            selectedMenu === "available" ? style.selected : style.couponMenu
+          }
+          onClick={() => setSelectedMenu("available")}
+        >
+          사용가능
+        </div>
+        <div
+          className={
+            selectedMenu === "used" ? style.selected : style.couponMenu
+          }
+          onClick={() => setSelectedMenu("used")}
+        >
+          사용 / 만료
+        </div>
       </div>
       <div className={style.myWishList}>
         {data ? (
