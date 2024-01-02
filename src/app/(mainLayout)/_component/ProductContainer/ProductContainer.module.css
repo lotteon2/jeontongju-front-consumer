@@ -1,0 +1,30 @@
+.productContainer {
+  width: 20%;
+  height: 20%;
+  position: relative;
+
+  .isLiked {
+    position: absolute;
+    right: 10%;
+    top: 5%;
+    cursor: pointer;
+  }
+  .productImg {
+    border-radius: 4px;
+    margin-bottom: 1px;
+  }
+  .productName {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .capacityToPriceRatio {
+    color: gray;
+    margin-top: 0.5rem;
+  }
+
+  .sellerInfo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+}

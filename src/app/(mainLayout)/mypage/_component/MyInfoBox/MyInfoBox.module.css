@@ -1,0 +1,59 @@
+.myInfoBox {
+  border-radius: 12px;
+  margin-bottom: 1rem;
+
+  .infoHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+
+    .name {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .membership,
+    .myGoDetailButton {
+      margin-top: 0.5rem;
+      background: #f2cbf9;
+      border-radius: 12px;
+      width: 5rem;
+      text-align: center;
+      padding: 0.3rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    .myGoDetailButton {
+      width: 8rem;
+    }
+  }
+
+  .infoFooter {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    .infoDiv {
+      cursor: pointer;
+      flex: 1;
+      background-color: antiquewhite;
+      border-radius: 12px;
+      display: flex;
+      gap: 0.5rem;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+
+      .infoTitle {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .infoDesc {
+      }
+    }
+  }
+}

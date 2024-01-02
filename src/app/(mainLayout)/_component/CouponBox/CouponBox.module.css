@@ -1,0 +1,21 @@
+.couponBox {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  border-radius: 12px;
+  background-color: bisque;
+  padding: 1rem;
+  .couponName {
+    font-size: 1.5rem;
+  }
+
+  .discountAmount {
+    font-size: 1.3rem;
+  }
+
+  .expiredAt {
+    font-size: 0.8rem;
+    color: gray;
+  }
+}

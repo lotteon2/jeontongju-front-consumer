@@ -1,0 +1,29 @@
+.myWishPage {
+  .myWishList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    width: 100%;
+  }
+}
+
+.couponHeader {
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  justify-content: center;
+}
+.couponMenu {
+  background-color: bisque;
+  padding: 1rem 2rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #ffa1a1;
+  padding: 1rem 2rem;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+}

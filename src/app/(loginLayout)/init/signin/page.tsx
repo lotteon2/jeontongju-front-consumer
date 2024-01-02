@@ -1,13 +1,15 @@
 "use client";
 import KaKaoImg from "/public/kakao_login_medium_wide.png";
-import googleImg from "/public/google_login_medium_wide.png";
-import { ChangeEventHandler, useState } from "react";
+import googleImg from "/public/google_login.png";
+import { ChangeEventHandler, useEffect, useState } from "react";
 import style from "@/app/(loginLayout)/init/signin/signin.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -16,7 +18,8 @@ export default function SignIn() {
     try {
       const data = await authAPI.signIn({ email, password });
       if (data.code === 200) {
-        console.log("로그인 성공");
+        localStorage.setItem("accessToken", data.data.accessToken);
+        router.replace("/");
       } else {
         setMessage("아이디와 비밀번호가 일치하지 않습니다.");
       }
@@ -45,13 +48,15 @@ export default function SignIn() {
     console.log(e);
     window.location.href =
       "https://jeontongju-dev.shop/authentication-service/oauth2/authorization/google";
-    // window.location.href =
-    //   "https://accounts.google.com/o/oauth2/auth?" +
-    //   "client_id=239926923495-3v7i8t922da18fc2ftjrgt29acp1asr5.apps.googleusercontent.com&" +
-    //   "redirect_uri=https://jeontongju-dev.shop/authentication-service/login/oauth2/code/google&" +
-    //   "response_type=token&" +
-    //   "scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
   };
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      if (localStorage.getItem("accessToken")) {
+        router.replace("/");
+      }
+    }
+  }, []);
 
   return (
     <>
