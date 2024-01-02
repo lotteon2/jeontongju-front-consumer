@@ -6,9 +6,12 @@ import styles from "./Noti.module.scss";
 import Image from "next/image";
 import notificationAPI from "@/apis/notification/notificationAPIService";
 import { toast } from "react-toastify";
+import { NOTI, translateNoti } from "@/constants/NotiEnum";
 
 function Noti() {
-  const [newNoti, setNewNoti] = useState<string[]>([]);
+  const [newNoti, setNewNoti] = useState<
+    { notificationId: number; data: keyof typeof NOTI }[]
+  >([]);
   const [notiOpen, setNotiOpen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -39,17 +42,12 @@ function Noti() {
         eventSource.addEventListener("happy", (event: any) => {
           const newNoti = event.data;
           console.log("HI");
-          setNewNoti((prev) => [...prev, newNoti]);
+          setNewNoti((prev) => [...prev, JSON.parse(newNoti)]);
         });
 
         eventSource.addEventListener("connect", (event: any) => {
           console.log(event);
-          const { data: receivedConnectData } = event;
-          if (receivedConnectData === "SSE 연결이 완료되었습니다.") {
-            console.log("SSE CONNECTED");
-          } else {
-            console.log(event);
-          }
+          console.log("SSE CONNECTED");
         });
       };
 
@@ -60,6 +58,17 @@ function Noti() {
     }
   }, []);
 
+  const handleClickByNotificationId = async (id: number) => {
+    try {
+      const data = await notificationAPI.clickNoti(id);
+      if (data.code === 200) {
+        console.log("알림 읽음 처리 완료");
+        toast("알림이 읽음 처리되었어요");
+      }
+    } catch (error) {
+      toast("알림 읽음 처리에 실패했어요.");
+    }
+  };
   const handleOpenNoti = () => {
     setNotiOpen((notiOpen) => !notiOpen);
   };
@@ -94,15 +103,19 @@ function Noti() {
 
       {notiOpen ? (
         newNoti.length === 0 ? (
-          <div className={styles.alarmBox}>알람 확인 완료 끝!</div>
+          <div className={styles.alarmBox}>알림이 없어요!</div>
         ) : (
           <div className={styles.alarmBox}>
             <div className={styles.everyReadButton} onClick={handleAllRead}>
               전체 읽음
             </div>
             {newNoti.map((it, i) => (
-              <div className={styles.alarmDiv} key={i}>
-                {it}
+              <div
+                className={styles.alarmDiv}
+                key={i}
+                onClick={() => handleClickByNotificationId(it.notificationId)}
+              >
+                {translateNoti(it.data)}
               </div>
             ))}
           </div>
