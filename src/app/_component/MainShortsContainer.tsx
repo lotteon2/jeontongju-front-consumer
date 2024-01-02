@@ -13,7 +13,6 @@ export default function MainShortsContainer() {
   async function getAuction() {
     const data = await productAPI.getAllShorts(0, 5);
     setData(data.content);
-    console.log(data);
   }
   useEffect(() => {
     getAuction();
@@ -24,7 +23,10 @@ export default function MainShortsContainer() {
     <div className={style.mainShortsContainer}>
       <div className={style.mainShortsTop}>
         <h2>지금 뜨고 있는 쇼츠!</h2>
-        <div className={style.goList} onClick={() => router.push("/shorts/list")}>
+        <div
+          className={style.goList}
+          onClick={() => router.push("/shorts/list")}
+        >
           더 많은 쇼츠 보러가기
         </div>
       </div>
