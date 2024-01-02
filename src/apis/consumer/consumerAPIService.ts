@@ -8,6 +8,8 @@ import {
   GetMyAddressListResponse,
   GetMyAddressByAddressIdResponse,
   DeleteMyAddressByAddressIdResponse,
+  GetMyAddressListResponseData,
+  AddAddressResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -63,6 +65,13 @@ const consumerAPI = {
       await authAxiosInstance.delete<DeleteMyAddressByAddressIdResponse>(
         `/consumer-service/api/consumers/addresses/${addressId}`
       );
+    return data;
+  },
+  addMyAddress: async (params: GetMyAddressListResponseData) => {
+    const { data } = await authAxiosInstance.post<AddAddressResponse>(
+      `/consumer-service/api/consumers/addresses`,
+      params
+    );
     return data;
   },
 };
