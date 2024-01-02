@@ -83,7 +83,7 @@ export default function ShortsList() {
         {data?.pages?.map((page, index) => (
           <div className={style.snapScrollItem} key={index}>
             {page.content.map((short) => (
-              <ShortsDetail short={short} key={short.shortsId} />
+              <ShortsDetail short={short} key={short.shortsId} isMain={false} />
             ))}
           </div>
         ))}
