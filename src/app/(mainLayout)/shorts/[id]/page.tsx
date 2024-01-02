@@ -7,7 +7,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
 import { useEffect } from "react";
-export default function ShortsDetail({ short }: { short: Short }) {
+export default function ShortsDetail({
+  short,
+  isMain,
+}: {
+  short: Short;
+  isMain: boolean;
+}) {
   const router = useRouter();
 
   const handleShareKakao = async () => {
@@ -97,7 +103,10 @@ export default function ShortsDetail({ short }: { short: Short }) {
           }}
         />
       </Head>
-      <div className={style.shortsContainer}>
+      <div
+        className={style.shortsContainer}
+        style={{ height: isMain ? "auto" : "90dvh" }}
+      >
         <video
           autoPlay={true}
           muted={true}
@@ -112,7 +121,10 @@ export default function ShortsDetail({ short }: { short: Short }) {
             borderRadius: "10px",
           }}
         />
-        <div className={style.shortsBottom}>
+        <div
+          className={style.shortsBottom}
+          style={{ bottom: isMain ? "0" : "5rem" }}
+        >
           <div
             className={style.shortsTitle}
             onClick={() => router.push(`/${short.targetId}`)}

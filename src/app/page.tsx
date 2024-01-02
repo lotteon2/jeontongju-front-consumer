@@ -14,6 +14,9 @@ import Banner from "./_component/Banner";
 import Header from "./(mainLayout)/_component/Header/Header";
 import couponAPI from "@/apis/coupon/couponAPIService";
 import { toast } from "react-toastify";
+import ShortsList from "./(mainLayout)/shorts/list/page";
+import productAPI from "@/apis/product/productAPIService";
+import MainShortsContainer from "./_component/MainShortsContainer";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -21,8 +24,14 @@ export default async function Page() {
     queryKey: ["auction", "detail"],
     queryFn: () => auctionAPI.getAuctionDetailInfo(),
   });
+  await queryClient.prefetchQuery({
+    queryKey: ["shorts", "main"],
+    queryFn: () => productAPI.getAllShorts(0, 5),
+  });
+
   const dehydratedState = dehydrate(queryClient);
   queryClient.getQueryData(["auction", "detail"]);
+  queryClient.getQueryData(["shorts", "main"]);
 
   return (
     <>
@@ -32,6 +41,7 @@ export default async function Page() {
             <Header />
             <AuctionContainer />
             <Banner type="membership" href="/membership/buy" />
+            <MainShortsContainer />
             <Banner type="coupon" />
             <Banner type="crop" href="/event/crop" />
             <Banner type="cost" href="/event/cost" />

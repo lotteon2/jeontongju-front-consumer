@@ -296,6 +296,29 @@
     outline: none;
     color: black;
   }
+
+  .mainShortsContainer {
+    margin: 1rem 0;
+
+    .mainShortsTop {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .goList {
+        cursor: pointer;
+      }
+      .goList:hover {
+        color: #ffa1a1;
+      }
+    }
+  }
+
+  .shortsContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+  }
 }
 
 .slider {
