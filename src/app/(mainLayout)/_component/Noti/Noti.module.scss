@@ -47,7 +47,11 @@
   z-index: 100;
   background-color: white;
   max-height: 10rem;
+  min-height: 10rem;
   overflow-y: scroll;
+  font-size: 0.8rem;
+  max-width: 10rem;
+  min-width: 10rem;
 
   .alarmDiv {
     padding: 0.5rem 0;
