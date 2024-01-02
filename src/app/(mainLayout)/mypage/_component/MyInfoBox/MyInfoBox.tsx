@@ -49,6 +49,15 @@ export default function MyInfoBox() {
             {myInfo?.isRegularPayments ? "양반" : "나그네"}
           </div>
         </div>
+        <div>
+          <div
+            onClick={() => router.push("/mypage/myaddress")}
+            className={style.myGoDetailButton}
+          >
+            내 주소지 수정
+          </div>
+          <div className={style.myGoDetailButton}>내 정보 수정</div>
+        </div>
       </div>
       <div className={style.infoFooter}>
         <div
