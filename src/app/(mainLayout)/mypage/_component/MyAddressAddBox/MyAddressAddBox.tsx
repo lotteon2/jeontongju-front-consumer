@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import style from "@/app/(mainLayout)/mypage/_component/MyAddressAddBox/MyAddressAddBox.module.css";
+import AddressSearch from "@/app/_component/AddressSearch";
 type Props = {
   recipientName: string;
   setRecipientName: Dispatch<SetStateAction<string>>;
@@ -8,6 +9,12 @@ type Props = {
   isDefault: boolean;
   setIsDefault: Dispatch<SetStateAction<boolean>>;
   addAddress: () => Promise<void>;
+  zonecode: string;
+  setZonecode: Dispatch<SetStateAction<string>>;
+  basicAddress: string;
+  setBasicAddress: Dispatch<SetStateAction<string>>;
+  addressDetail: string;
+  setAddressDetail: Dispatch<SetStateAction<string>>;
 };
 export default function MyAddressAddBox({
   recipientName,
@@ -17,6 +24,12 @@ export default function MyAddressAddBox({
   isDefault,
   setIsDefault,
   addAddress,
+  zonecode,
+  setZonecode,
+  basicAddress,
+  setBasicAddress,
+  addressDetail,
+  setAddressDetail,
 }: Props) {
   return (
     <div className={style.myAddressBox}>
@@ -32,16 +45,26 @@ export default function MyAddressAddBox({
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
-      <div>
-        <label id="isDefault">기본 배송지로 선택</label>
+      <AddressSearch
+        zonecode={zonecode}
+        setZonecode={setZonecode}
+        address={basicAddress}
+        setAddress={setBasicAddress}
+        addressDetail={addressDetail}
+        setAddressDetail={setAddressDetail}
+      />
+      <div className={style.isDefault}>
         <input
           type="checkbox"
           id="isDefault"
           onChange={(e) => setIsDefault(e.target.checked ? true : false)}
           checked={isDefault}
         />
+        <label id="isDefault">기본 배송지로 선택</label>
       </div>
-      <div onClick={addAddress}>저장</div>
+      <div onClick={addAddress} className={style.addButton}>
+        추가하기
+      </div>
     </div>
   );
 }

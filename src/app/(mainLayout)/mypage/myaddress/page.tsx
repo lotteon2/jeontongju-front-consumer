@@ -34,7 +34,6 @@ export default function MyAddress() {
   };
 
   const handleAddAddress = async () => {
-    console.log("HERE");
     try {
       setIsLoading(true);
       const data = await consumerAPI.addMyAddress({
@@ -81,6 +80,12 @@ export default function MyAddress() {
             isDefault={isDefault}
             setIsDefault={setIsDefault}
             addAddress={handleAddAddress}
+            basicAddress={basicAddress}
+            setBasicAddress={setBasicAddress}
+            zonecode={zonecode}
+            setZonecode={setZonecode}
+            addressDetail={addressDetail}
+            setAddressDetail={setAddressDetail}
           />
         </div>
       ) : (
