@@ -46,6 +46,12 @@ export default function MyAddress() {
       });
       if (data.code === 200) {
         toast("주소지가 추가되었어요.");
+        setIsDefault(false);
+        setRecipientName("");
+        setPhoneNumber("");
+        setZonecode("");
+        setBasicAddress("");
+        setAddressDetail("");
         refetch();
       }
     } catch (err) {
