@@ -41,6 +41,7 @@ function Noti() {
 
         eventSource.addEventListener("happy", (event: any) => {
           const newNoti = event.data;
+          console.log(event);
           console.log("HI");
           setNewNoti((prev) => [...prev, JSON.parse(newNoti)]);
         });
