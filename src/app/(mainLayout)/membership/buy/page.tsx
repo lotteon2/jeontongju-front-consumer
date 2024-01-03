@@ -21,7 +21,6 @@ export default function MemberShip() {
 
   const handleMembershipPay = async () => {
     if (!isRegularPayment) {
-      console.log("here");
       const params = {
         paymentType: "SUBSCRIPTION",
         paymentMethod: "KAKAO",

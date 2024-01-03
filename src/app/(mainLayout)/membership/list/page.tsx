@@ -18,9 +18,16 @@ export default function MemberShipList() {
     useState<GetMyMembershipResponseData[]>();
   const [mounted, setMounted] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isLogin] = useMyInfoStore((state) => [state.isLogin]);
+  const [isLogin, isRegularPayment, setIsRegularPayment] = useMyInfoStore(
+    (state) => [
+      state.isLogin,
+      state.isRegularPayment,
+      state.dispatchIsRegularPayment,
+    ]
+  );
 
   useEffect(() => {
+    console.log("isRegularPayment", isRegularPayment);
     if (!isLogin) {
       toast("로그인한 유저만 접근할 수 있어요.");
       router.push("/init/signin");
@@ -40,9 +47,24 @@ export default function MemberShipList() {
     }
   };
 
+  // TODO : alert
+  const handleStopSubscription = async () => {
+    try {
+      setIsLoading(true);
+      const data = await consumerAPI.stopSubscription();
+      if (data.code === 200) {
+        toast("멤버십 구독이 해지되었어요.");
+        setIsRegularPayment(false);
+      }
+    } catch (err) {
+      toast("멤버십 구독 해지에 실패했어요.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     getMyMembership();
-    console.log("credit", memberships);
   }, [page, size]);
 
   return (
@@ -60,6 +82,11 @@ export default function MemberShipList() {
               />
             ))}
           </div>
+          {isRegularPayment && (
+            <div className={style.button} onClick={handleStopSubscription}>
+              멤버십 탈퇴하기
+            </div>
+          )}
         </div>
       ) : (
         <Image

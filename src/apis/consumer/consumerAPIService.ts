@@ -10,6 +10,7 @@ import {
   DeleteMyAddressByAddressIdResponse,
   GetMyAddressListResponseData,
   AddAddressResponse,
+  StopSubScriptionResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -71,6 +72,12 @@ const consumerAPI = {
     const { data } = await authAxiosInstance.post<AddAddressResponse>(
       `/consumer-service/api/consumers/addresses`,
       params
+    );
+    return data;
+  },
+  stopSubscription: async () => {
+    const { data } = await authAxiosInstance.delete<StopSubScriptionResponse>(
+      `/consumer-service/api/consumers/subscription`
     );
     return data;
   },
