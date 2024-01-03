@@ -65,6 +65,17 @@ export default function MyAddress() {
     getMyAddressList();
   }, []);
 
+  const isDisableToAddAddress = () => {
+    if (
+      !recipientName ||
+      !basicAddress ||
+      !zonecode ||
+      !phoneNumber ||
+      !recipientName
+    )
+      return true;
+    return false;
+  };
   return (
     <div>
       {!isLoading ? (
@@ -92,6 +103,7 @@ export default function MyAddress() {
             setZonecode={setZonecode}
             addressDetail={addressDetail}
             setAddressDetail={setAddressDetail}
+            isDisableToAddAddress={isDisableToAddAddress()}
           />
         </div>
       ) : (
