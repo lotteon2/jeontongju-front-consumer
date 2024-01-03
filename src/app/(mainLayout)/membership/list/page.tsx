@@ -18,13 +18,10 @@ export default function MemberShipList() {
     useState<GetMyMembershipResponseData[]>();
   const [mounted, setMounted] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isLogin, isRegularPayment, setIsRegularPayment] = useMyInfoStore(
-    (state) => [
-      state.isLogin,
-      state.isRegularPayment,
-      state.dispatchIsRegularPayment,
-    ]
-  );
+  const [isLogin, isRegularPayment] = useMyInfoStore((state) => [
+    state.isLogin,
+    state.isRegularPayment,
+  ]);
 
   useEffect(() => {
     console.log("isRegularPayment", isRegularPayment);
@@ -54,7 +51,6 @@ export default function MemberShipList() {
       const data = await consumerAPI.stopSubscription();
       if (data.code === 200) {
         toast("멤버십 구독이 해지되었어요.");
-        setIsRegularPayment(false);
       }
     } catch (err) {
       toast("멤버십 구독 해지에 실패했어요.");
