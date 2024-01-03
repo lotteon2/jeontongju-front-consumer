@@ -11,6 +11,7 @@ import {
   GetMyAddressListResponseData,
   AddAddressResponse,
   StopSubScriptionResponse,
+  EditMyAddressResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -71,6 +72,16 @@ const consumerAPI = {
   addMyAddress: async (params: GetMyAddressListResponseData) => {
     const { data } = await authAxiosInstance.post<AddAddressResponse>(
       `/consumer-service/api/consumers/addresses`,
+      params
+    );
+    return data;
+  },
+  editMyAddress: async (
+    addressId: number,
+    params: GetMyAddressListResponseData
+  ) => {
+    const { data } = await authAxiosInstance.put<EditMyAddressResponse>(
+      `/consumer-service/api/consumers/addresses/${addressId}`,
       params
     );
     return data;
