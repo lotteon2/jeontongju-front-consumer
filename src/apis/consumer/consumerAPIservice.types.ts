@@ -99,3 +99,4 @@ export type DeleteMyAddressByAddressIdResponse = ApiResponse<string>;
 export type AddAddressResponse = ApiResponse<string>;
 export type StopSubScriptionResponse = ApiResponse<string>;
 export type EditMyAddressResponse = ApiResponse<string>;
+export type WithDrawalResponse = ApiResponse<string>;
