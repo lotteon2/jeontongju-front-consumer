@@ -1,43 +1,42 @@
 "use client";
-import orderAPI from "@/apis/order/orderAPIService";
-import MyOrderBox from "../MyOrderBox/MyOrderBox";
 import style from "@/app/(mainLayout)/mypage/_component/MyList.module.css";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import reviewAPI from "@/apis/review/reviewAPIService";
+import MyReviewBox from "../MyReviewBox/MyReviewBox";
 
-export default function MyOrderList() {
+export default function MyReviewList() {
   const queryClient = useQueryClient();
   const router = useRouter();
 
   const { data, refetch } = useQuery({
-    queryKey: ["order", "list", "get"],
-    queryFn: () => orderAPI.getMyOrderList(0, 10, false),
+    queryKey: ["review", "list", "get"],
+    queryFn: () => reviewAPI.getMyReviewList(0, 5),
   });
 
   queryClient.prefetchInfiniteQuery({
-    queryKey: ["order", "list"],
-    queryFn: () => orderAPI.getMyOrderList(0, 10, false),
+    queryKey: ["review", "list"],
+    queryFn: () => reviewAPI.getMyReviewList(0, 5),
     initialPageParam: 0,
   });
 
   return (
     <div className={style.list}>
       <div className={style.listHeader}>
-        <h2>나의 주문 내역</h2>
+        <h2>나의 리뷰 내역</h2>
         <div
           className={style.goDetail}
-          onClick={() => router.push("/mypage/myorder")}
+          onClick={() => router.push("/mypage/myreview")}
         >
           자세히 보기
         </div>
       </div>
       {data ? (
         data.content.map((it) => (
-          <MyOrderBox params={it} key={it.order.ordersId} refetch={refetch} />
+          <MyReviewBox params={it} key={it.reviewId} refetch={refetch} />
         ))
       ) : (
-        <div>주문 내역이 없어요.</div>
+        <div>리뷰 내역이 없어요.</div>
       )}
     </div>
   );

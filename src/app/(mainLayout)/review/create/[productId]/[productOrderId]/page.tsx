@@ -54,7 +54,7 @@ export default function CreateReviewPage({ params }: Props) {
   };
 
   const isDisableToAddReview = () => {
-    if (!reviewContents || !reviewPhotoImageUrl || !concept) return true;
+    if (!reviewContents || !concept) return true;
     return false;
   };
 
@@ -64,6 +64,7 @@ export default function CreateReviewPage({ params }: Props) {
 
   return (
     <div className={style.addReviewPage}>
+      <div> ❗️ 리뷰 작성시 삭제, 수정이 되지 않아요.</div>
       {!isLoading ? (
         <>
           <div className={style.productName}>{product?.productName}</div>
