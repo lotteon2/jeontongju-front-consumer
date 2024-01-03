@@ -316,6 +316,7 @@
     display: flex;
     flex-wrap: nowrap;
     gap: 1rem;
+    height: 20rem;
   }
 }
 
