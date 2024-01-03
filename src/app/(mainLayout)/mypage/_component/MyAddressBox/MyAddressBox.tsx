@@ -1,11 +1,13 @@
+"use client";
 import FiSrCoffee from "/public/fi-sr-coffee.svg";
 import FiSrPencil from "/public/fi-sr-pencil.svg";
-import { GetMyCartListResponseData } from "@/apis/wishCart/wishAPIService.types";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import style from "@/app/(mainLayout)/mypage/_component/MyAddressBox/MyAddressBox.module.css";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import { GetMyAddressListResponseData } from "@/apis/consumer/consumerAPIservice.types";
+import { useState } from "react";
+import AddressSearch from "@/app/_component/AddressSearch";
 
 export default function MyAddressBox({
   item,
@@ -14,6 +16,20 @@ export default function MyAddressBox({
   item: GetMyAddressListResponseData;
   refetch: any;
 }) {
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [recipientName, setRecipientName] = useState<string>(
+    item.recipientName
+  );
+  const [basicAddress, setBasicAddress] = useState<string>(item.basicAddress);
+  const [addressDetail, setAddressDetail] = useState<string>(
+    item.addressDetail
+  );
+  const [zonecode, setZonecode] = useState<string>(item.zonecode);
+  const [phoneNumber, setPhoneNumber] = useState<string>(
+    item.recipientPhoneNumber
+  );
+  const [isDefault, setIsDefault] = useState<boolean>(item.isDefault);
+
   // TODO : alert
   const handleDeleteAddress = async () => {
     try {
@@ -25,44 +41,105 @@ export default function MyAddressBox({
     } catch (error) {}
   };
 
+  const handleEditAddress = async () => {
+    try {
+      const data = await consumerAPI.editMyAddress(item.addressId, {
+        isDefault,
+        recipientPhoneNumber: phoneNumber,
+        recipientName,
+        zonecode,
+        addressDetail,
+        basicAddress,
+      });
+      if (data.code === 200) {
+        toast("주소지가 수정 되었어요.");
+        setIsEdit(false);
+        refetch();
+      }
+    } catch (err) {}
+  };
+
   return (
     <div className={style.myAddressBox}>
-      <div className={style.addressButtons}>
-        <Image
-          alt="수정"
-          width={0}
-          height={0}
-          src={FiSrPencil}
-          style={{
-            cursor: "pointer",
-            width: "1rem",
-            height: "1rem",
-            position: "relative",
-          }}
-          onClick={handleDeleteAddress}
-        />
-        <Image
-          alt="삭제"
-          width={0}
-          height={0}
-          src={FiSrCoffee}
-          style={{
-            cursor: "pointer",
-            width: "1rem",
-            height: "1rem",
-            position: "relative",
-          }}
-          onClick={handleDeleteAddress}
-        />
-      </div>
-      <h2>{item.recipientName}</h2>
-      {item.isDefault && <div className={style.isDefault}>기본 배송지</div>}
-      <div className={style.desc}>
-        <div>{item.zonecode}</div>
-        <div>{item.basicAddress}</div>
-        <div>{item.addressDetail}</div>
-        <div>{item.recipientPhoneNumber}</div>
-      </div>
+      {!isEdit ? (
+        <div className={style.addressButtons}>
+          <Image
+            alt="수정"
+            width={0}
+            height={0}
+            src={FiSrPencil}
+            style={{
+              cursor: "pointer",
+              width: "1rem",
+              height: "1rem",
+              position: "relative",
+            }}
+            onClick={() => setIsEdit(true)}
+          />
+          <Image
+            alt="삭제"
+            width={0}
+            height={0}
+            src={FiSrCoffee}
+            style={{
+              cursor: "pointer",
+              width: "1rem",
+              height: "1rem",
+              position: "relative",
+            }}
+            onClick={handleDeleteAddress}
+          />
+        </div>
+      ) : (
+        <div className={style.addressButtons} onClick={handleEditAddress}>
+          저장
+        </div>
+      )}
+
+      {isEdit ? (
+        <>
+          <input
+            className={style.input}
+            placeholder="받는 사람"
+            value={recipientName}
+            onChange={(e) => setRecipientName(e.target.value)}
+          />
+          <input
+            className={style.input}
+            placeholder="휴대폰 번호"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+          <AddressSearch
+            zonecode={zonecode}
+            setZonecode={setZonecode}
+            address={basicAddress}
+            setAddress={setBasicAddress}
+            addressDetail={addressDetail}
+            setAddressDetail={setAddressDetail}
+          />
+          <div className={style.isDefault}>
+            <input
+              type="checkbox"
+              id="isDefault"
+              onChange={(e) => setIsDefault(e.target.checked ? true : false)}
+              checked={isDefault}
+            />
+            <label id="isDefault">기본 배송지로 선택</label>
+          </div>
+        </>
+      ) : (
+        <>
+          <h2>{item.recipientName}</h2>
+          {item.isDefault && <div className={style.isDefault}>기본 배송지</div>}
+          <div className={style.desc}>
+            <div>{item.zonecode}</div>
+            <div>{item.basicAddress}</div>
+            <div>{item.addressDetail}</div>
+            <div>{item.recipientPhoneNumber}</div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

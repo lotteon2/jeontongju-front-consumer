@@ -32,8 +32,6 @@ export default function MainProductContainer() {
       </div>
 
       <div className={style.shortsContainer}>
-        {/* {data?.pages?.map((page, i) => (
-          <Fragment key={i}> */}
         {data?.content.map((product: ProductData) => (
           <ProductContainer
             productName={product.productName}
@@ -46,8 +44,6 @@ export default function MainProductContainer() {
             refetch={refetch}
           />
         ))}
-        {/* </Fragment> */}
-        {/* ))} */}
       </div>
     </div>
   );
