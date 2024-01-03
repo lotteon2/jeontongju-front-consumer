@@ -36,7 +36,7 @@ const reviewAPI = {
     const { data } = await authAxiosInstance.get<GetMyReviewListResponse>(
       `/review-service/api/reviews?page=${page}&size=${size}`
     );
-    return data;
+    return data.data;
   },
 };
 export default reviewAPI;
