@@ -12,8 +12,6 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function MyOrderList() {
   const queryClient = useQueryClient();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [content, setContent] = useState<GetMyOrderListResponseData[]>();
   const router = useRouter();
 
   const { data, refetch } = useQuery({
@@ -38,22 +36,12 @@ export default function MyOrderList() {
           자세히 보기
         </div>
       </div>
-      {!isLoading ? (
-        data ? (
-          data.content.map((it) => (
-            <MyOrderBox params={it} key={it.order.ordersId} refetch={refetch} />
-          ))
-        ) : (
-          <div>주문 내역이 없어요.</div>
-        )
+      {data ? (
+        data.content.map((it) => (
+          <MyOrderBox params={it} key={it.order.ordersId} refetch={refetch} />
+        ))
       ) : (
-        <Image
-          src={LoadingImg}
-          alt="jeontongju-notfound"
-          width={0}
-          height={0}
-          style={{ cursor: "pointer", width: "80%", height: "80%" }}
-        />
+        <div>주문 내역이 없어요.</div>
       )}
     </div>
   );

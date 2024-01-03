@@ -1,6 +1,5 @@
 "use client";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
-import notificationAPI from "@/apis/notification/notificationAPIService";
 import style from "@/app/(mainLayout)/_component/Header/Header.module.css";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import { useQuery } from "@tanstack/react-query";
