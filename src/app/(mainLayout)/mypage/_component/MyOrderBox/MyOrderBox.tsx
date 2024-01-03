@@ -127,7 +127,7 @@ export default function MyOrderBox({
                       취소하기
                     </div>
                   )}
-                  {item.productOrderStatus === ORDER_STATE.CONFIRMED && (
+                  {item.isReviewAllowed && (
                     <div
                       className={style.orderStatusBox}
                       onClick={() =>
