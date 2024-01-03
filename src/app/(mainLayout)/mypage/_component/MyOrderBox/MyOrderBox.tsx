@@ -12,8 +12,10 @@ import { ORDER_STATE, translateOrderState } from "@/constants/OrderStatusEnum";
 
 export default function MyOrderBox({
   params,
+  refetch,
 }: {
   params: GetMyOrderListResponseData;
+  refetch: () => void;
 }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -25,6 +27,7 @@ export default function MyOrderBox({
       const data = await orderAPI.cancelMyOrderByProductOrderId(productOrderId);
       if (data.code === 200) {
         toast("결제 취소에 성공했어요.");
+        refetch();
       }
     } catch (error) {
       toast("결제 취소에 실패했어요");
@@ -40,6 +43,7 @@ export default function MyOrderBox({
       const data = await orderAPI.cancelMyOrderByOrderId(ordersId);
       if (data.code === 200) {
         toast("주문 취소에 성공했어요.");
+        refetch();
       }
     } catch (error) {
       toast("주문 취소에 실패했어요");
@@ -55,6 +59,7 @@ export default function MyOrderBox({
       const data = await orderAPI.confirmMyOrderByOrderId(productOrderId);
       if (data.code === 200) {
         toast("주문 확정에 성공했어요.");
+        refetch();
       }
     } catch (error) {
       toast("주문 확정에 실패했어요");
