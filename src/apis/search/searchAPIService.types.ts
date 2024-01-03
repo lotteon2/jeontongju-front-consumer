@@ -77,3 +77,5 @@ export type GetCostProductsResponse = ApiResponse<ProductData[]>;
 export type GetAllProductsBySellerIdResponse = ApiResponse<
   Page<GetPopularProductsBySellerIdResponseData[]>
 >;
+
+export type GetAllProductsResponse = ApiResponse<Page<ProductData[]>>;

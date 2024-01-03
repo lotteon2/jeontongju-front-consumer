@@ -6,6 +6,8 @@ import {
   GetPopularProductsBySellerIdResponse,
   GetProductDetailByProductIdResponse,
   GetCostProductsResponse,
+  GetALlProductsResponse,
+  GetAllProductsResponse,
 } from "./searchAPIService.types";
 
 const searchAPI = {
@@ -49,6 +51,16 @@ const searchAPI = {
       await authAxiosInstance.get<GetAllProductsBySellerIdResponse>(
         `/search-service/api/sellers/${sellerId}/products/all?sort=${sort}&size=${size}&page=${page}`
       );
+    return data.data;
+  },
+  getAllProducts: async (
+    page: number,
+    sort: keyof typeof SORT,
+    size: number
+  ) => {
+    const { data } = await authAxiosInstance.get<GetAllProductsResponse>(
+      `/search-service/api/products/all??page=${page}&sort=${sort}&size=${size}`
+    );
     return data.data;
   },
 };
