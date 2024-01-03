@@ -7,6 +7,7 @@ import searchAPI from "@/apis/search/searchAPIService";
 import { toast } from "react-toastify";
 import reviewAPI from "@/apis/review/reviewAPIService";
 import style from "@/app/(mainLayout)/review/create/[productId]/[productOrderId]/page.module.css";
+import ImageUploader from "@/app/_component/ImageUploader";
 
 type Props = {
   params: { productId: string; productOrderId: string };
@@ -72,6 +73,10 @@ export default function CreateReviewPage({ params }: Props) {
             value={reviewContents}
             onChange={(e) => setReviewContents(e.target.value)}
             placeholder="리뷰내용"
+          />
+          <ImageUploader
+            imageUrl={reviewPhotoImageUrl}
+            setImageUrl={setReviewPhotoImageUrl}
           />
           <button
             className={style.button}
