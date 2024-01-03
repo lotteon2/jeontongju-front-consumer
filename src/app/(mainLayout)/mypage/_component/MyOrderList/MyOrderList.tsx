@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import style from "@/app/(mainLayout)/mypage/_component/MyList.module.css";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 async function getOrderList() {
   const { data } = await orderAPI.getMyOrderList(0, 10, false);
@@ -15,9 +16,21 @@ async function getOrderList() {
 }
 
 export default function MyOrderList() {
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [content, setContent] = useState<GetMyOrderListResponseData[]>();
   const router = useRouter();
+
+  const { data, refetch } = useQuery({
+    queryKey: ["order", "list", "get"],
+    queryFn: () => orderAPI.getMyOrderList(0, 10, false),
+  });
+
+  queryClient.prefetchInfiniteQuery({
+    queryKey: ["order", "list"],
+    queryFn: () => orderAPI.getMyOrderList(0, 10, false),
+    initialPageParam: 0,
+  });
 
   const getMyOrderList = async () => {
     try {
@@ -47,10 +60,10 @@ export default function MyOrderList() {
         </div>
       </div>
       {!isLoading ? (
-        content ? (
-          content
-            .slice(0, 5)
-            .map((it) => <MyOrderBox params={it} key={it.order.ordersId} />)
+        data ? (
+          data.content.map((it) => (
+            <MyOrderBox params={it} key={it.order.ordersId} refetch={refetch} />
+          ))
         ) : (
           <div>주문 내역이 없어요.</div>
         )

@@ -11,7 +11,7 @@ const orderAPI = {
     const { data } = await authAxiosInstance.get<GetMyOrderListResponse>(
       `/order-service/api/order/consumer?page=${page}&size=${size}&isAuction=${isAuction}`
     );
-    return data;
+    return data.data;
   },
   cancelMyOrderByOrderId: async (ordersId: string) => {
     const { data } =
