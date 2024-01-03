@@ -10,11 +10,6 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-async function getOrderList() {
-  const { data } = await orderAPI.getMyOrderList(0, 10, false);
-  return { data };
-}
-
 export default function MyOrderList() {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -31,22 +26,6 @@ export default function MyOrderList() {
     queryFn: () => orderAPI.getMyOrderList(0, 10, false),
     initialPageParam: 0,
   });
-
-  const getMyOrderList = async () => {
-    try {
-      setIsLoading(true);
-      const { data } = await getOrderList();
-      setContent(data.content as GetMyOrderListResponseData[]);
-    } catch (err) {
-      toast("내 주문 내역을 불러오는데 실패했어요");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getMyOrderList();
-  }, []);
 
   return (
     <div className={style.list}>
