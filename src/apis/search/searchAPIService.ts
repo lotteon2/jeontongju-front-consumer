@@ -6,7 +6,6 @@ import {
   GetPopularProductsBySellerIdResponse,
   GetProductDetailByProductIdResponse,
   GetCostProductsResponse,
-  GetALlProductsResponse,
   GetAllProductsResponse,
 } from "./searchAPIService.types";
 
