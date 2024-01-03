@@ -4,7 +4,7 @@ import { UploadS3Response } from "./storageAPIservice.types";
 const storageAPI = {
   uploadImage: async (fileName: string) => {
     const { data } = await authAxiosInstance.post<UploadS3Response>(
-      `/file/${fileName}`
+      `/storage-service/api/file/${fileName}`
     );
     return data;
   },

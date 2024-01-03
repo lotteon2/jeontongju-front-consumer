@@ -20,7 +20,7 @@ export default function CreateReviewPage({ params }: Props) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [reviewContents, setReviewContents] = useState<string>("");
   const [reviewPhotoImageUrl, setReviewPhotoImageUrl] = useState<string>("");
-  const [concept, setConcept] = useState<string[]>([]);
+  const [concept, setConcept] = useState<string[]>(["TRIP"]);
 
   const getProductDetail = async () => {
     try {
@@ -40,7 +40,7 @@ export default function CreateReviewPage({ params }: Props) {
     try {
       const data = await reviewAPI.addReview({
         productId,
-        productOrderId: 1,
+        productOrderId: Number(productOrderId),
         reviewContents,
         reviewPhotoImageUrl,
         concept,
