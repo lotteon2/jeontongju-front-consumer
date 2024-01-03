@@ -41,3 +41,4 @@ export type SignInResponse = ApiResponse<SignInResponseData>;
 export type SignUpResponse = ApiResponse<string>;
 export type CheckMyEmailResponse = ApiResponse<{ authCode: string }>;
 export type UpdateMyPasswordBeforeLoginResponse = ApiResponse<string>;
+export type WithDrawalResponse = ApiResponse<string>;

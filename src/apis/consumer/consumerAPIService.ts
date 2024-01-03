@@ -12,7 +12,6 @@ import {
   AddAddressResponse,
   StopSubScriptionResponse,
   EditMyAddressResponse,
-  WithDrawalResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -90,12 +89,6 @@ const consumerAPI = {
   stopSubscription: async () => {
     const { data } = await authAxiosInstance.delete<StopSubScriptionResponse>(
       `/consumer-service/api/consumers/subscription`
-    );
-    return data;
-  },
-  withdrawal: async () => {
-    const { data } = await authAxiosInstance.delete<WithDrawalResponse>(
-      `/consumer-service/api/consumers`
     );
     return data;
   },

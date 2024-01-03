@@ -9,6 +9,7 @@ import {
   SignUpResponse,
   UpdateMyPasswordBeforeLoginResponse,
   UpdateMyPasswordParams,
+  WithDrawalResponse,
 } from "./authenticationAPIService.types";
 
 const authAPI = {
@@ -57,6 +58,12 @@ const authAPI = {
         "/authentication-service/api/password",
         { ...params, memberRole: "ROLE_CONSUMER" }
       );
+    return data;
+  },
+  withdrawal: async () => {
+    const { data } = await authAxiosInstance.delete<WithDrawalResponse>(
+      `/authentication-service/api/consumers`
+    );
     return data;
   },
 };

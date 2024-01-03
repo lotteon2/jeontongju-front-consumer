@@ -1,4 +1,5 @@
 "use client";
+import authAPI from "@/apis/authentication/authenticationAPIService";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -17,7 +18,7 @@ export default function MyInfo() {
   //TODO : alert
   const handleWithDrawal = async () => {
     try {
-      const data = await consumerAPI.withdrawal();
+      const data = await authAPI.withdrawal();
       if (data.code === 200) {
         toast("회원 탈퇴가 완료되었어요.");
         router.replace("/init/signin");
