@@ -56,7 +56,12 @@ export default function MyInfoBox() {
           >
             내 주소지 수정
           </div>
-          <div className={style.myGoDetailButton}>내 정보 수정</div>
+          <div
+            onClick={() => router.push("/mypage/myinfo")}
+            className={style.myGoDetailButton}
+          >
+            내 정보 수정
+          </div>
         </div>
       </div>
       <div className={style.infoFooter}>
