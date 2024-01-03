@@ -2,6 +2,7 @@ import { authAxiosInstance, unAuthAxiosInstance } from "../common";
 import {
   AddReviewParams,
   AddReviewResponse,
+  GetMyReviewListResponse,
   GetReviewListByProductIdResponse,
   LikeReviewResponse,
 } from "./reviewAPIService.types";
@@ -31,10 +32,11 @@ const reviewAPI = {
     );
     return data;
   },
-  getMyReviewList: async (page: number, sort: string, size: number) => {
+  getMyReviewList: async (page: number, size: number) => {
     const { data } = await authAxiosInstance.get<GetMyReviewListResponse>(
-      `/review-service/api/reviews?page=${page}&sort=${sort}&size=${size}`
+      `/review-service/api/reviews?page=${page}&size=${size}`
     );
     return data;
   },
 };
+export default reviewAPI;

@@ -116,15 +116,29 @@ export default function MyOrderBox({
                   <strong>
                     {translateOrderState(item.productOrderStatus)}
                   </strong>
-                  <div
-                    className={style.orderStatusBox}
-                    onClick={() =>
-                      handleCancelOrderByProductOrderId(item.productOrderId)
-                    }
-                  >
-                    {item.productOrderStatus === ORDER_STATE.ORDER &&
-                      "취소하기"}
-                  </div>
+
+                  {item.productOrderStatus === ORDER_STATE.ORDER && (
+                    <div
+                      className={style.orderStatusBox}
+                      onClick={() =>
+                        handleCancelOrderByProductOrderId(item.productOrderId)
+                      }
+                    >
+                      취소하기
+                    </div>
+                  )}
+                  {item.productOrderStatus === ORDER_STATE.CONFIRMED && (
+                    <div
+                      className={style.orderStatusBox}
+                      onClick={() =>
+                        router.push(
+                          `/review/create/${item.productId}/${item.productOrderId}`
+                        )
+                      }
+                    >
+                      리뷰 적기
+                    </div>
+                  )}
                 </div>
                 <div
                   className={style.orderStatusBox}

@@ -13,7 +13,7 @@ export interface AddReviewParams {
   productOrderId: number;
   reviewContents: string;
   reviewPhotoImageUrl: string;
-  concept: ["TRIP"];
+  concept: string[];
 }
 
 export type Review = {

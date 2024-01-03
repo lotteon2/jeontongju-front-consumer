@@ -33,13 +33,11 @@ export default function Page({ params }: Props) {
   );
 
   const handleClickCounter = (num: number) => {
-    console.log(num);
     setQuantity((prev) => (prev as number) + num);
     setTotal((prev) => prev + productData.productPrice * num);
   };
 
   const handleBlurInput = (quantity: number) => {
-    console.log(quantity);
     const newQuantity = quantity;
     setQuantity(newQuantity);
     setTotal(productData.productPrice * newQuantity);
