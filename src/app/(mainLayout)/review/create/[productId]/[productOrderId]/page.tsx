@@ -94,7 +94,7 @@ export default function CreateReviewPage({ params }: Props) {
           height={0}
           style={{ cursor: "pointer", width: "80%", height: "80%" }}
         />
-      )}{" "}
+      )}
     </div>
   );
 }

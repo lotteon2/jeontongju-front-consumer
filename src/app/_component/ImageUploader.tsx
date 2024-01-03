@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback, useEffect } from "react";
 import storageAPI from "@/apis/storage/storageAPIService";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 type Props = {
   imageUrl: string;
@@ -66,11 +67,15 @@ const ImageUploader = ({ imageUrl, setImageUrl }: Props) => {
         onChange={handleChangeFile}
         style={{ display: "none" }}
       />
-      <img
-        style={{ width: "10rem", height: "10rem" }}
-        src={imgSrc || ""}
-        alt="이미지"
-      />
+      {imgSrc ? (
+        <Image
+          style={{ width: "10rem", height: "10rem" }}
+          src={imgSrc}
+          alt="이미지"
+        />
+      ) : (
+        <div>이미지를 등록해주세요</div>
+      )}
     </button>
   );
 };
