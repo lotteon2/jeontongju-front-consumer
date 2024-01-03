@@ -5,7 +5,9 @@ export const SORT = {
   totalSalesCount: "판매 많은 순",
   stockQuantity: "재고 적은 순",
   capacityToPriceRatio: "가성비순",
-};
+} as const;
+
+type SORT = (typeof SORT)[keyof typeof SORT];
 
 export const SortOptions: { value: string; label: string }[] = [];
 Object.entries(SORT).forEach(([key, value]) =>
