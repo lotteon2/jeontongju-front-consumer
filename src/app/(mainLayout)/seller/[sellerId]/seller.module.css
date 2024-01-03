@@ -47,6 +47,7 @@
 
     .shortsParentWrapper {
       display: flex;
+      height: 20rem;
       width: 100%;
       gap: 1rem;
       flex-wrap: nowrap;
