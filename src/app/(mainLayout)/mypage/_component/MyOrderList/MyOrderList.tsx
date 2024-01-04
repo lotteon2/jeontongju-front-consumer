@@ -29,7 +29,7 @@ export default function MyOrderList() {
           className={style.goDetail}
           onClick={() => router.push("/mypage/myorder")}
         >
-          자세히 보기
+          자세히 보기 {">"}
         </div>
       </div>
       {data ? (

@@ -28,7 +28,7 @@ export default function MyReviewList() {
           className={style.goDetail}
           onClick={() => router.push("/mypage/myreview")}
         >
-          자세히 보기
+          자세히 보기 {">"}
         </div>
       </div>
       {data ? (

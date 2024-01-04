@@ -48,7 +48,7 @@ export default function MyCartList() {
           className={style.goDetail}
           onClick={() => router.push("/mypage/mycart")}
         >
-          자세히 보기
+          자세히 보기 {">"}
         </div>
       </div>
       <div className={style.listBody}>
