@@ -8,6 +8,7 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
+import TopButton from "../_component/TopButton/TopButton";
 
 export const metadata: Metadata = {
   title: "전통주점",
@@ -30,9 +31,10 @@ export default async function RootLayout({ children }: Props) {
   return (
     <RQProvider>
       <HydrationBoundary state={dehydratedState}>
-        <section>
+        <section s>
           <Header />
           {children}
+          <TopButton />
         </section>
       </HydrationBoundary>
     </RQProvider>

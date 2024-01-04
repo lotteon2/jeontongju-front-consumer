@@ -15,6 +15,7 @@ import Header from "./(mainLayout)/_component/Header/Header";
 import productAPI from "@/apis/product/productAPIService";
 import MainShortsContainer from "./_component/MainShortsContainer";
 import MainProductContainer from "./_component/MainProductContainer";
+import TopButton from "./_component/TopButton/TopButton";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ export default async function Page() {
             <MainProductContainer />
             <Banner type="crop" href="/event/crop" />
             <Banner type="cost" href="/event/cost" />
+            <TopButton />
           </HydrationBoundary>
         </RQProvider>
       </div>
