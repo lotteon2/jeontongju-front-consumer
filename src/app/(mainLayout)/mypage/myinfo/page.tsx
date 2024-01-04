@@ -21,6 +21,7 @@ export default function MyInfo() {
       const data = await authAPI.withdrawal();
       if (data.code === 200) {
         toast("회원 탈퇴가 완료되었어요.");
+        localStorage.removeItem("accessToken");
         router.replace("/init/signin");
       }
     } catch (error) {}
