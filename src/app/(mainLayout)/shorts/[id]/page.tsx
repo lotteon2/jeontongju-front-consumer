@@ -63,6 +63,11 @@ export default function ShortsDetail({
     script.async = true;
     document.head.appendChild(script);
 
+    const script_GA = document.createElement("script");
+    script_GA.src = "https://www.googletagmanager.com/gtag/js?id=G-4MJ6ZE1TXS";
+    script_GA.async = true;
+    document.head.appendChild(script_GA);
+
     script.onload = () => {
       const { Kakao } = window;
       if (Kakao && !Kakao.isInitialized()) {
@@ -72,19 +77,40 @@ export default function ShortsDetail({
 
     return () => {
       document.head.removeChild(script);
+      document.head.removeChild(script_GA);
     };
   }, []);
 
   return (
     <>
-      <Head>
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-4MJ6ZE1TXS`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+      {/* <Head> */}
+
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-4MJ6ZE1TXS`}
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-4MJ6ZE1TXS', {
+                  page_path: window.location.pathname,
+                });
+              `,
+        }}
+      />
+
+      {/* <Script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=G-4MJ6ZE1TXS`}
+      />
+      <Script
+        dangerouslySetInnerHTML={{
+          __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -100,9 +126,9 @@ export default function ShortsDetail({
                 });
                 
         `,
-          }}
-        />
-      </Head>
+        }}
+      /> */}
+      {/* </Head> */}
       <div
         className={style.shortsContainer}
         style={{ height: isMain ? "auto" : "90dvh" }}
