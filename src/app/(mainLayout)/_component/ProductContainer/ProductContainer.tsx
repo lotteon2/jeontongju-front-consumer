@@ -59,7 +59,7 @@ export default function ProductContainer({
           height={0}
           style={{
             cursor: "pointer",
-            width: "80%",
+            width: "100%",
             height: "80%",
             borderRadius: "12px",
           }}
