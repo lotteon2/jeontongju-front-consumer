@@ -16,17 +16,15 @@ export interface AddReviewParams {
   concept: string[];
 }
 
-export type Review = {
-  reviewId: number;
+export interface Review extends GetMyReviewListResponseData {
   name: string;
   profileImageUrl: string;
   reviewContents: string;
-  reviewPhotoImageUrl: string;
   concept: ["TRIP"];
   reviewSympathyCount: number;
   createdAt: string;
   isSympathy: boolean;
-};
+}
 
 export type GetMyReviewListResponseData = {
   reviewId: number;

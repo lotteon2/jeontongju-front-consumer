@@ -1,3 +1,4 @@
+import { REVIEW } from "@/constants/ReviewEnum";
 import { authAxiosInstance, unAuthAxiosInstance } from "../common";
 import {
   AddReviewParams,
@@ -18,13 +19,14 @@ const reviewAPI = {
   getReviewListByProductId: async (
     productId: string,
     page: number,
+    sort: keyof typeof REVIEW,
     size: number
   ) => {
     const { data } =
       await unAuthAxiosInstance.get<GetReviewListByProductIdResponse>(
-        `/review-service/api/products/${productId}/reviews?page=${page}&sort=sympathy,desc&size=${size}`
+        `/review-service/api/products/${productId}/reviews?page=${page}&sort=${sort},desc&size=${size}`
       );
-    return data;
+    return data.data;
   },
   likeReview: async (reviewId: number) => {
     const { data } = await authAxiosInstance.post<LikeReviewResponse>(
