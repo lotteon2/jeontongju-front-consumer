@@ -10,8 +10,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GetProductDetailByProductIdResponseData } from "@/apis/search/searchAPIService.types";
 import { useRouter } from "next/navigation";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import wishAPI from "@/apis/wishCart/wishAPIService";
+import ProductReviewContainer from "../_component/ProductReviewContainer/ProductReviewContainer";
 
 type Props = {
   params: { productId: string };
@@ -224,7 +225,7 @@ export default function Page({ params }: Props) {
                 )}
               </>
             ) : selectedMenu === 1 ? (
-              <div>리뷰 </div>
+              <ProductReviewContainer productId={productId} />
             ) : (
               <div>
                 <h2>판매자정보</h2>

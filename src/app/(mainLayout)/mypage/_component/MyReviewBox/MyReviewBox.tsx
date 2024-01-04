@@ -1,4 +1,7 @@
-import { GetMyReviewListResponseData } from "@/apis/review/reviewAPIService.types";
+import {
+  GetMyReviewListResponseData,
+  Review,
+} from "@/apis/review/reviewAPIService.types";
 import Image from "next/image";
 import style from "@/app/(mainLayout)/mypage/_component/MyReviewBox/MyReviewBox.module.css";
 import { useRouter } from "next/navigation";
@@ -7,7 +10,7 @@ export default function MyReviewBox({
   params,
   refetch,
 }: {
-  params: GetMyReviewListResponseData;
+  params: GetMyReviewListResponseData | Review;
   refetch: () => void;
 }) {
   const router = useRouter();

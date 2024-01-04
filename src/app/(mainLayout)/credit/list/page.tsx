@@ -1,7 +1,6 @@
 "use client";
 import loadingImg from "/public/loading.gif";
 import Image from "next/image";
-import Link from "next/link";
 import style from "@/app/(mainLayout)/credit/list/creditList.module.css";
 import { useEffect, useState } from "react";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
