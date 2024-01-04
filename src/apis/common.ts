@@ -39,7 +39,7 @@ authAxiosInstance.interceptors.response.use(
       originalRequest.config.headers.Authorization =
         window.localStorage.getItem("accessToken");
       originalRequest._retry = true;
-      return authAxiosInstance(originalRequest);
+      return unAuthAxiosInstance(originalRequest);
     }
     return Promise.reject(error);
   }
