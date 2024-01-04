@@ -17,7 +17,7 @@ export default function MyReviewBox({
   return (
     <div
       className={style.myReviewBox}
-      onClick={() => router.push(`/review/${params.reviewId}`)}
+      onClick={() => router.push(`/product/${params.productId}`)}
     >
       <div>
         <Image
