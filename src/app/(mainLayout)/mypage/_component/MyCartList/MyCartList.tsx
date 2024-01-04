@@ -53,7 +53,7 @@ export default function MyCartList() {
       </div>
       <div className={style.listBody}>
         {!isLoading ? (
-          data?.content ? (
+          data?.content.length > 0 ? (
             data.content.slice(0, 5)?.map((it, i) => (
               <Fragment key={i}>
                 <MyCartBox key={it.productId} item={it} refetch={refetch} />
