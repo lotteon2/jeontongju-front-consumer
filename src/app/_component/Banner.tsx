@@ -16,7 +16,6 @@ export default function Banner({
   href?: string;
 }) {
   const getCoupon = async () => {
-    console.log("HERE");
     if (typeof window !== "undefined") {
       if (!localStorage.getItem("accessToken")) {
         toast("로그인한 유저만 쿠폰 발급이 가능해요.");
@@ -30,6 +29,8 @@ export default function Banner({
             toast("아직 오픈 전이에요");
           } else if (data.data.isSoldOut) {
             toast("쿠폰이 매진되었어요");
+          } else if (data.data.isDuplicated) {
+            toast("쿠폰은 한 장만 발급받을 수 있어요.");
           }
         }
         return data;

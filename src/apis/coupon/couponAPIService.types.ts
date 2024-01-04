@@ -11,6 +11,7 @@ interface ApiResponse<T> {
 export type GetCouponResponseData = {
   isSoldOut: boolean;
   isOpen: boolean;
+  isDuplicated: boolean;
 };
 
 export type GetMyCouponListResponseData = {
