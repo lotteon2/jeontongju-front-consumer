@@ -27,7 +27,7 @@ export default function MainShortsContainer() {
           className={style.goList}
           onClick={() => router.push("/shorts/list")}
         >
-          더 많은 쇼츠 보러가기
+          더 많은 쇼츠 보러가기 {">"}
         </div>
       </div>
 

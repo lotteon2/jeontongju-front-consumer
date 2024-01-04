@@ -27,7 +27,7 @@ export default function MainProductContainer() {
           className={style.goList}
           onClick={() => router.push("/product/list")}
         >
-          더 많은 상품 보러가기
+          더 많은 상품 보러가기 {">"}
         </div>
       </div>
 
