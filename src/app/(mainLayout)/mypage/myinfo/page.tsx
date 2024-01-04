@@ -11,10 +11,11 @@ export default function MyInfo() {
     if (typeof window !== "undefined") {
       if (!localStorage.getItem("accessToken")) {
         toast("로그인한 유저만 접근할 수 있어요.");
-        router.replace("/init/signin");
+        router.replace("/");
       }
     }
   }, []);
+
   //TODO : alert
   const handleWithDrawal = async () => {
     try {
