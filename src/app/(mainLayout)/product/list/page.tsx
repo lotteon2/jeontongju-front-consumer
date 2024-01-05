@@ -10,11 +10,16 @@ import { SNACK, SnackOptions } from "@/constants/SnackTypeEnum";
 import { useInView } from "react-intersection-observer";
 import style from "@/app/(mainLayout)/product/list/productList.module.css";
 import { Select, Slider } from "antd";
+import { CONCEPT, ConceptOptions } from "@/constants/ConceptEnum";
+import { RAW_MATERIAL, RawMaterialOptions } from "@/constants/MaterialEnum";
 
 export default function ProductList() {
   const [sort, setSort] = useState<keyof typeof SORT>("_score");
-  const [rawMaterial, setRawMaterial] = useState<string>(null);
-  const [food, setFoods] = useState<keyof (typeof SNACK)[]>(null);
+  const [rawMaterial, setRawMaterial] = useState<(keyof typeof RAW_MATERIAL)[]>(
+    []
+  );
+  const [food, setFoods] = useState<(keyof typeof SNACK)[]>([]);
+  const [concepts, setConcepts] = useState<(keyof typeof CONCEPT)[]>([]);
   const [minPrice, setMinPrice] = useState<number>(null);
   const [maxPrice, setMaxPrice] = useState<number>(null);
   const [minAlcoholDegree, setMinAlcoholDegree] = useState<number>(null);
@@ -28,12 +33,13 @@ export default function ProductList() {
       [
         _1: string,
         _2: string,
-        _3: string,
-        _4: keyof (typeof SNACK)[],
+        _3: (keyof typeof RAW_MATERIAL)[],
+        _4: (keyof typeof SNACK)[],
         _5: number,
         _6: number,
         _7: number,
-        _8: number
+        _8: number,
+        _9: (keyof typeof CONCEPT)[]
       ],
       number
     >({
@@ -46,6 +52,7 @@ export default function ProductList() {
         maxPrice,
         minAlcoholDegree,
         maxAlcoholDegree,
+        concepts,
       ],
       queryFn: ({ pageParam = 0 }) =>
         searchAPI.getAllProducts(
@@ -57,7 +64,8 @@ export default function ProductList() {
           minPrice,
           maxPrice,
           minAlcoholDegree,
-          maxAlcoholDegree
+          maxAlcoholDegree,
+          concepts
         ),
       initialPageParam: 0,
       getNextPageParam: (lastPage) =>
@@ -111,6 +119,18 @@ export default function ProductList() {
           />
         </div>
         <div>
+          <div>원료</div>
+          <Select
+            mode="multiple"
+            placeholder=""
+            options={RawMaterialOptions}
+            onChange={setRawMaterial}
+            style={{ width: "100%" }}
+            value={rawMaterial}
+            allowClear
+          />
+        </div>
+        <div>
           <div>잘 어울리는 안주</div>
           <Select
             mode="multiple"
@@ -119,6 +139,18 @@ export default function ProductList() {
             onChange={setFoods}
             style={{ width: "100%" }}
             value={food}
+            allowClear
+          />
+        </div>
+        <div>
+          <div>잘 어울리는 컨셉</div>
+          <Select
+            mode="multiple"
+            placeholder=""
+            options={ConceptOptions}
+            onChange={setConcepts}
+            style={{ width: "100%" }}
+            value={concepts}
             allowClear
           />
         </div>

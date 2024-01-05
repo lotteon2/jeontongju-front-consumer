@@ -11,6 +11,7 @@ import {
 } from "./searchAPIService.types";
 import { SNACK } from "@/constants/SnackTypeEnum";
 import { CONCEPT } from "@/constants/ConceptEnum";
+import { RAW_MATERIAL } from "@/constants/MaterialEnum";
 
 const searchAPI = {
   getProductDetailByProductId: async (productId: string) => {
@@ -65,13 +66,13 @@ const searchAPI = {
     page: number,
     sort: keyof typeof SORT,
     size: number,
-    rawMaterial?: string,
-    food?: keyof (typeof SNACK)[],
+    rawMaterial?: (keyof typeof RAW_MATERIAL)[],
+    food?: (keyof typeof SNACK)[],
     minPrice?: number,
     maxPrice?: number,
     minAlcoholDegree?: number,
     maxAlcoholDegree?: number,
-    concept?: keyof typeof CONCEPT
+    concept?: (keyof typeof CONCEPT)[]
   ) => {
     const { data } = await authAxiosInstance.get<GetAllProductsResponse>(
       `/search-service/api/products/all??page=${page}&sort=${sort}&size=${size}&rawMaterial=${rawMaterial}&food=${food}&minPrice=${minPrice}&maxPrice=${maxPrice}&minAlcoholDegree=${minAlcoholDegree}&maxAlcoholDegree=${maxAlcoholDegree}&concept=${concept}`

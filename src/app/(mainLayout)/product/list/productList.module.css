@@ -5,7 +5,7 @@
   .productSideBar {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
 
     position: fixed;
     width: 20%;
