@@ -31,7 +31,7 @@ export type GetMyReviewListResponseData = {
   productId: string;
   productThumbnailImage: string;
   reviewContents: string;
-  reviewPhotoImageUrl: string;
+  reviewPhotoImageUrl?: string;
 };
 
 export type AddReviewResponse = ApiResponse<string>;

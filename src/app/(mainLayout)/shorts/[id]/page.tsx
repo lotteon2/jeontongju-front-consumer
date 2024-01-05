@@ -99,7 +99,12 @@ export default function ShortsDetail({
                 gtag('js', new Date());
                 gtag('config', 'G-4MJ6ZE1TXS', {
                   page_path: window.location.pathname,
+                  shortsId: ${short.shortsId}
                 });
+                gtag('event', 'watch_shorts', {
+                  'event_name': 'watch_shorts',
+                  'event_label': 'shortsId-${short.shortsId}'
+                })
               `,
         }}
       />

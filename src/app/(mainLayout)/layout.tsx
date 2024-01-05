@@ -31,7 +31,7 @@ export default async function RootLayout({ children }: Props) {
   return (
     <RQProvider>
       <HydrationBoundary state={dehydratedState}>
-        <section s>
+        <section style={{ position: "relative" }}>
           <Header />
           {children}
           <TopButton />

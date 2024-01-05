@@ -2,6 +2,7 @@ import LoadingImg from "/public/loading.gif";
 import reviewAPI from "@/apis/review/reviewAPIService";
 import { GetReviewListByProductIdResponseData } from "@/apis/review/reviewAPIService.types";
 import MyReviewBox from "@/app/(mainLayout)/mypage/_component/MyReviewBox/MyReviewBox";
+import ProductReviewBox from "@/app/(mainLayout)/review/_component/ProductReviewBox/ProductReviewBox";
 import Select from "@/app/_component/Select/Select";
 import { Page } from "@/constants/PageResponseType";
 import { REVIEW, ReviewOptions } from "@/constants/ReviewEnum";
@@ -20,7 +21,7 @@ export default function ProductReviewContainer({
     useInfiniteQuery<
       GetReviewListByProductIdResponseData,
       Object,
-      InfiniteData<Page<GetReviewListByProductIdResponseData>>,
+      InfiniteData<GetReviewListByProductIdResponseData>,
       [_1: string, _2: string, _3: string, _4: string],
       number
     >({
@@ -47,6 +48,8 @@ export default function ProductReviewContainer({
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
   console.log(ReviewOptions);
+  console.log(data?.pages[0]);
+  console.log(data?.pages[0]?.histories);
   const handleChangeSort = (e: any) => {
     setSort(e.target.value);
   };
@@ -59,10 +62,10 @@ export default function ProductReviewContainer({
           setValue={handleChangeSort}
         />
       </div>
-      {data?.pages[0]?.content && (
+      {data?.pages[0] && (
         <>
           <div>이 상품과 잘 어울리는 태그는</div>
-          {data?.pages[0]?.content?.representativeReview.map((it) => (
+          {data?.pages[0]?.representativeReview.map((it) => (
             <div key={it}>{it}</div>
           ))}
         </>
@@ -73,8 +76,8 @@ export default function ProductReviewContainer({
           data ? (
             data?.pages?.map((page, i) => (
               <Fragment key={i}>
-                {page?.content?.histories.content.map((it) => (
-                  <MyReviewBox
+                {page?.histories.content.map((it) => (
+                  <ProductReviewBox
                     key={it.reviewId}
                     params={it}
                     refetch={refetch}
