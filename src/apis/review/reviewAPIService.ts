@@ -23,7 +23,7 @@ const reviewAPI = {
     size: number
   ) => {
     const { data } =
-      await unAuthAxiosInstance.get<GetReviewListByProductIdResponse>(
+      await authAxiosInstance.get<GetReviewListByProductIdResponse>(
         `/review-service/api/products/${productId}/reviews?page=${page}&sort=${sort},desc&size=${size}`
       );
     return data.data;
