@@ -13,7 +13,7 @@ import {
 const searchAPI = {
   getProductDetailByProductId: async (productId: string) => {
     const { data } =
-      await unAuthAxiosInstance.get<GetProductDetailByProductIdResponse>(
+      await authAxiosInstance.get<GetProductDetailByProductIdResponse>(
         `/search-service/api/products/${productId}`
       );
     return data;

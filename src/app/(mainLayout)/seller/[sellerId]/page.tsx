@@ -3,7 +3,6 @@ import KakaoShareImg from "/public/kakaotalk_sharing_btn_small_ov.png";
 import LoadingImg from "/public/loading.gif";
 import NotFoundImg from "/public/jeontongju_notfound.png";
 import sellerAPI from "@/apis/seller/sellerAPIService";
-
 import { useEffect, useState } from "react";
 import style from "@/app/(mainLayout)/seller/[sellerId]/seller.module.css";
 import Image from "next/image";
@@ -13,6 +12,7 @@ import AllProducts from "../_component/AllProducts";
 import "react-toastify/dist/ReactToastify.css";
 import AllShorts from "../_component/AllShorts";
 import { useQuery } from "@tanstack/react-query";
+import SellerInfo from "../_component/SellerInfo";
 
 type Props = {
   params: { sellerId: string };
@@ -24,7 +24,7 @@ export default function Seller({ params }: Props) {
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
 
   const { data: sellerInfo } = useQuery({
-    queryKey: ["seller", "info"],
+    queryKey: ["seller", "info", "detail"],
     queryFn: () => sellerAPI.getSellerInfo(Number(sellerId)),
   });
 
@@ -188,8 +188,10 @@ export default function Seller({ params }: Props) {
                 />
               ) : selectedMenu === 1 ? (
                 <AllProducts sellerId={parseInt(sellerId)} />
-              ) : (
+              ) : selectedMenu === 2 ? (
                 <AllShorts sellerId={parseInt(sellerId)} />
+              ) : (
+                <SellerInfo sellerInfo={sellerInfo.data} />
               )}
             </div>
           </div>

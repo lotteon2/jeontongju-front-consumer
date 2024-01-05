@@ -53,4 +53,22 @@
       flex-wrap: nowrap;
     }
   }
+
+  .sellerInfo {
+    .sellerInfoContainer {
+      margin: 1rem;
+      border-bottom: 1px solid #ccc;
+      padding: 1rem 0;
+    }
+
+    .sellerInfoMiniHead {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .sellerInfoDiv {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5rem 0;
+    }
+  }
 }
