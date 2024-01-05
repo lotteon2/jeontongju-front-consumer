@@ -1,5 +1,4 @@
-import loadingImg from "/public/loading.gif";
-import Image from "next/image";
+import "@/app/(mainLayout)/globals.css";
 import style from "@/app/page.module.css";
 import Link from "next/link";
 import AuctionContainer from "./_component/AuctionContainer";
@@ -17,6 +16,7 @@ import MainShortsContainer from "./_component/MainShortsContainer";
 import MainProductContainer from "./_component/MainProductContainer";
 import TopButton from "./_component/TopButton/TopButton";
 import CartButton from "./_component/CartButton/CartButton";
+import MainReviewContainer from "./_component/MainReviewContainer";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -45,6 +45,7 @@ export default async function Page() {
             <Banner type="coupon" />
             <MainProductContainer />
             <Banner type="crop" href="/event/crop" />
+            <MainReviewContainer />
             <Banner type="cost" href="/event/cost" />
             <CartButton />
             <TopButton />
