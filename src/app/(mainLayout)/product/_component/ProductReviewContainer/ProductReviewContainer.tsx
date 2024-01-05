@@ -62,7 +62,7 @@ export default function ProductReviewContainer({
           setValue={handleChangeSort}
         />
       </div>
-      {data?.pages[0] && (
+      {data?.pages[0]?.representativeReview?.length > 0 && (
         <>
           <div>이 상품과 잘 어울리는 태그는</div>
           {data?.pages[0]?.representativeReview.map((it) => (
