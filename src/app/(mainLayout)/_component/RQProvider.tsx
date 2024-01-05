@@ -16,7 +16,7 @@ function RQProvider({ children }: Props) {
         queries: {
           refetchOnWindowFocus: true,
           retryOnMount: true,
-          refetchOnReconnect: false,
+          refetchOnReconnect: true,
           retry: false,
         },
       },
