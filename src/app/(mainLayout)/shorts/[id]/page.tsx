@@ -1,4 +1,5 @@
 "use client";
+import productAPI from "@/apis/product/productAPIService";
 import KakaoShareImg from "/public/kakaotalk_sharing_btn_small_ov.png";
 import { Short } from "@/apis/product/productAPIService.types";
 import style from "@/app/(mainLayout)/shorts/[id]/shortsDetail.module.css";
@@ -6,14 +7,20 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { useSearchParams } from "next/navigation";
 export default function ShortsDetail({
-  short,
+  params,
+  shorts,
   isMain,
 }: {
-  short: Short;
+  params: { id: string };
+  shorts: Short;
   isMain: boolean;
 }) {
+  const [short, setShort] = useState<Short>(shorts);
+  const { id } = params;
   const router = useRouter();
 
   const handleShareKakao = async () => {
@@ -56,7 +63,23 @@ export default function ShortsDetail({
       });
     }
   };
+  const getShorts = async () => {
+    try {
+      const data = await productAPI.getShortsDetail(params.id);
+      if (data.code === 200) {
+        setShort(data.data);
+      }
+    } catch (err) {
+      toast("해당 쇼츠가 없어요.");
+    }
+  };
 
+  useEffect(() => {
+    if (typeof short === "undefined") {
+      getShorts();
+      return;
+    }
+  }, []);
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://developers.kakao.com/sdk/js/kakao.js";
@@ -79,7 +102,7 @@ export default function ShortsDetail({
       document.head.removeChild(script);
       document.head.removeChild(script_GA);
     };
-  }, []);
+  }, [short]);
 
   return (
     <>
@@ -99,11 +122,11 @@ export default function ShortsDetail({
                 gtag('js', new Date());
                 gtag('config', 'G-4MJ6ZE1TXS', {
                   page_path: window.location.pathname,
-                  shortsId: ${short.shortsId}
+                  shortsId: ${id}
                 });
                 gtag('event', 'watch_shorts', {
                   'event_name': 'watch_shorts',
-                  'event_label': 'shortsId-${short.shortsId}'
+                  'event_label': 'shortsId-${id}'
                 })
               `,
         }}
@@ -142,7 +165,7 @@ export default function ShortsDetail({
           autoPlay={true}
           muted={true}
           loop={true}
-          src={short.shortsVideoUrl}
+          src={short?.shortsVideoUrl || ""}
           width={0}
           height={0}
           style={{
@@ -160,10 +183,10 @@ export default function ShortsDetail({
             className={style.shortsTitle}
             onClick={() => router.push(`/${short.targetId}`)}
           >
-            {short.shortsTitle}
+            {short?.shortsTitle}
           </div>
           <div className={style.shortsDescription}>
-            {short.shortsDescription}
+            {short?.shortsDescription}
           </div>
           <div onClick={handleShareKakao}>
             <Image

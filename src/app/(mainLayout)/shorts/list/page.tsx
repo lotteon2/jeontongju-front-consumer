@@ -10,13 +10,6 @@ import style from "@/app/(mainLayout)/shorts/list/shortsList.module.css";
 
 export default function ShortsList() {
   const snapScrollWrapperRef = useRef();
-  const [images, setImages] = useState([
-    { previewURL: "img/image1.jpg", type: "image" },
-    { previewURL: "video/video1.mp4", type: "video" },
-    { previewURL: "img/image2.jpg", type: "image" },
-    { previewURL: "video/video2.mp4", type: "video" },
-    { previewURL: "img/image3.png", type: "image" },
-  ]);
 
   const playVideo = (e) => {
     // snap-scroll-wrapper의 뷰포트에서 맨 위 Y좌표와 맨 아래 Y좌표를 구함
@@ -83,7 +76,11 @@ export default function ShortsList() {
         {data?.pages?.map((page, index) => (
           <div className={style.snapScrollItem} key={index}>
             {page.content.map((short) => (
-              <ShortsDetail short={short} key={short.shortsId} isMain={false} />
+              <ShortsDetail
+                shorts={short}
+                key={short.shortsId}
+                isMain={false}
+              />
             ))}
           </div>
         ))}
