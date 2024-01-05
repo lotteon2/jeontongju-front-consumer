@@ -35,6 +35,12 @@ export default function ProductContainer({
   const queryClient = useQueryClient();
 
   const handleLike = async () => {
+    if (typeof window !== "undefined") {
+      if (!localStorage.getItem("accessToken")) {
+        toast("로그인한 유저만 장바구니에 담을 수 있어요.");
+        return;
+      }
+    }
     try {
       const data = await wishAPI.addDeleteWish(productId);
       if (data.code === 200) {
@@ -45,6 +51,7 @@ export default function ProductContainer({
       toast("서버에 오류가 발생했어요.");
     }
   };
+
   return (
     <div className={style.productContainer}>
       <Script id="my-script">{`console.log('Rendering on client:', typeof window !== 'undefined');`}</Script>

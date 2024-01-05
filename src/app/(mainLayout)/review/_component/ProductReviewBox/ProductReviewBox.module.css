@@ -6,6 +6,12 @@
   border-radius: 12px;
   box-shadow: 3px 3px 1px 1px #c0c0c0;
 
+  .heartBox {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
   .userBox {
     display: flex;
     gap: 1rem;
