@@ -16,6 +16,7 @@ import productAPI from "@/apis/product/productAPIService";
 import MainShortsContainer from "./_component/MainShortsContainer";
 import MainProductContainer from "./_component/MainProductContainer";
 import TopButton from "./_component/TopButton/TopButton";
+import CartButton from "./_component/CartButton/CartButton";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -45,6 +46,7 @@ export default async function Page() {
             <MainProductContainer />
             <Banner type="crop" href="/event/crop" />
             <Banner type="cost" href="/event/cost" />
+            <CartButton />
             <TopButton />
           </HydrationBoundary>
         </RQProvider>

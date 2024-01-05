@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-query";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import TopButton from "../_component/TopButton/TopButton";
+import CartButton from "../_component/CartButton/CartButton";
 
 export const metadata: Metadata = {
   title: "전통주점",
@@ -34,6 +35,7 @@ export default async function RootLayout({ children }: Props) {
         <section style={{ position: "relative" }}>
           <Header />
           {children}
+          <CartButton />
           <TopButton />
         </section>
       </HydrationBoundary>
