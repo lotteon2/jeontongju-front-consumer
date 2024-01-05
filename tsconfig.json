@@ -34,6 +34,6 @@
     ".next/types/**/*.ts",
     "additional.d.ts",
     "src/app/(mainLayout)/_component/MemberShipBox"
-  ],
+, "src/app/(mainLayout)/_component/InputRange"  ],
   "exclude": ["node_modules"]
 }

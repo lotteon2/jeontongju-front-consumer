@@ -9,6 +9,9 @@ import {
   GetAllProductsResponse,
   GetBestReviewProducts,
 } from "./searchAPIService.types";
+import { SNACK } from "@/constants/SnackTypeEnum";
+import { CONCEPT } from "@/constants/ConceptEnum";
+import { RAW_MATERIAL } from "@/constants/MaterialEnum";
 
 const searchAPI = {
   getProductDetailByProductId: async (productId: string) => {
@@ -62,10 +65,17 @@ const searchAPI = {
   getAllProducts: async (
     page: number,
     sort: keyof typeof SORT,
-    size: number
+    size: number,
+    rawMaterial?: (keyof typeof RAW_MATERIAL)[],
+    food?: (keyof typeof SNACK)[],
+    minPrice?: number,
+    maxPrice?: number,
+    minAlcoholDegree?: number,
+    maxAlcoholDegree?: number,
+    concept?: (keyof typeof CONCEPT)[]
   ) => {
     const { data } = await authAxiosInstance.get<GetAllProductsResponse>(
-      `/search-service/api/products/all??page=${page}&sort=${sort}&size=${size}`
+      `/search-service/api/products/all??page=${page}&sort=${sort}&size=${size}&rawMaterial=${rawMaterial}&food=${food}&minPrice=${minPrice}&maxPrice=${maxPrice}&minAlcoholDegree=${minAlcoholDegree}&maxAlcoholDegree=${maxAlcoholDegree}&concept=${concept}`
     );
     return data.data;
   },

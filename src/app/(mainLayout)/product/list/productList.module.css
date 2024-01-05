@@ -1,0 +1,21 @@
+.productList {
+  position: relative;
+  height: 100vh;
+
+  .productSideBar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    position: fixed;
+    width: 20%;
+  }
+  .productRightBar {
+    margin-left: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
