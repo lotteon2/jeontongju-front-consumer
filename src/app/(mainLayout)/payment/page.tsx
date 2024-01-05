@@ -28,7 +28,7 @@ export default function Payment() {
   const [isDefault, setIsDefault] = useState<boolean>(false);
   const [isUsingDefaultAddress, setIsUsingDefaultAddress] =
     useState<boolean>(false);
-  const [point, setPoint] = useState<number>(0);
+  const [point, setPoint] = useState<number>(null);
   const [coupon, setCoupon] = useState<GetMyCouponListResponseData>(null);
 
   const { data: myDefaultAddress, refetch: refetchMyAddressForOrder } =
@@ -52,8 +52,8 @@ export default function Payment() {
       paymentType: "ORDER",
       paymentMethod: "KAKAO",
       pointUsageAmount: point,
-      couponCode: coupon.couponCode,
-      couponAmount: coupon.discountAmount,
+      couponCode: coupon?.couponCode,
+      couponAmount: coupon?.discountAmount,
       recipientName: "최성훈",
       recipientPhoneNumber: "01012345678",
       basicAddress: "서울특별시 서대문구 연희동 블라블라",
@@ -217,7 +217,9 @@ export default function Payment() {
           </div>
         </div>
       </div>
-      <button onClick={handlePay}>결제하기</button>
+      <button className={style.payButton} onClick={handlePay}>
+        결제하기
+      </button>
     </div>
   );
 }
