@@ -9,6 +9,7 @@ import ProductContainer from "../../_component/ProductContainer/ProductContainer
 import { SNACK } from "@/constants/SnackTypeEnum";
 import { useInView } from "react-intersection-observer";
 import style from "@/app/(mainLayout)/product/list/productList.module.css";
+import { Slider } from "antd";
 
 export default function ProductList() {
   const [sort, setSort] = useState<keyof typeof SORT>("_score");
@@ -76,19 +77,39 @@ export default function ProductList() {
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
+  const onChangeComplete = (value: number[]) => {
+    setMinAlcoholDegree(value[0]);
+    setMaxAlcoholDegree(value[1]);
+  };
+
+  const onChangeCompletePrice = (value: number[]) => {
+    setMinPrice(value[0]);
+    setMaxPrice(value[1]);
+  };
+
   return (
     <div className={style.productList}>
       <div className={style.productSideBar}>
-        <InputRange
-          props={{
-            minRange: 0,
-            maxRange: 100,
-            minValue: minAlcoholDegree,
-            maxValue: maxAlcoholDegree,
-            setMinValue: setMinAlcoholDegree,
-            setMaxValue: setMaxAlcoholDegree,
-          }}
-        />
+        <div>
+          <div>도수별(0~100)</div>
+          <Slider
+            min={0}
+            max={100}
+            range
+            step={10}
+            onChangeComplete={onChangeComplete}
+          />
+        </div>
+        <div>
+          <div>가격별(0~1,000,000)</div>
+          <Slider
+            min={0}
+            max={1000000}
+            range
+            step={100}
+            onChangeComplete={onChangeCompletePrice}
+          />
+        </div>
       </div>
       <div className={style.productRightBar}>
         {data?.pages.map((page, i) => (
