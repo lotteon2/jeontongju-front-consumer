@@ -1,0 +1,19 @@
+.productList {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+
+  .productSideBar {
+    flex-shrink: 1;
+    flex: 1;
+  }
+  .productRightBar {
+    flex-shrink: 3;
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
