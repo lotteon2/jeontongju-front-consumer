@@ -12,10 +12,10 @@ export default function CartButton() {
   const scrollToTop = () => {
     if (typeof window !== "undefined") {
       if (!localStorage.getItem("accessToken")) {
-  toast("로그인한 유저만 이용할 수 있어요.")    
-  return;
-}
-router.push("/mypage/mycart")
+        toast("로그인한 유저만 이용할 수 있어요.");
+        return;
+      }
+      router.push("/mypage/mycart");
     }
     window.scrollTo({
       top: 0,
@@ -33,7 +33,7 @@ router.push("/mypage/mycart")
           width={0}
           height={0}
           alt="top"
-          style={{ cursor: "pointer", width: "3rem", height: "3rem" }}
+          style={{ cursor: "pointer", width: "2rem", height: "3rem" }}
         />
       </button>
     </div>
