@@ -23,7 +23,7 @@ const searchAPI = {
     sort: "totalSalesCount" | "reviewCount"
   ) => {
     const { data } =
-      await unAuthAxiosInstance.get<GetPopularProductsBySellerIdResponse>(
+      await authAxiosInstance.get<GetPopularProductsBySellerIdResponse>(
         `/search-service/api/sellers/${sellerId}/products?sort=${sort},desc&size=5`
       );
 

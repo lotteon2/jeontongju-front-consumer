@@ -1,6 +1,5 @@
 import "@/app/(mainLayout)/globals.css";
 import style from "@/app/page.module.css";
-import Link from "next/link";
 import AuctionContainer from "./_component/AuctionContainer";
 import auctionAPI from "@/apis/auction/auctionAPIService";
 import {

@@ -3,18 +3,16 @@ import KakaoShareImg from "/public/kakaotalk_sharing_btn_small_ov.png";
 import LoadingImg from "/public/loading.gif";
 import NotFoundImg from "/public/jeontongju_notfound.png";
 import sellerAPI from "@/apis/seller/sellerAPIService";
-import { GetSellerInfoResponseData } from "@/apis/seller/sellerAPIService.types";
+
 import { useEffect, useState } from "react";
 import style from "@/app/(mainLayout)/seller/[sellerId]/seller.module.css";
 import Image from "next/image";
-import { GetPopularProductsBySellerIdResponseData } from "@/apis/search/searchAPIService.types";
 import searchAPI from "@/apis/search/searchAPIService";
-import ProductContainer from "../../_component/ProductContainer/ProductContainer";
 import PopularProducts from "../../_component/Seller/PopularContainer";
 import AllProducts from "../_component/AllProducts";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AllShorts from "../_component/AllShorts";
+import { useQuery } from "@tanstack/react-query";
 
 type Props = {
   params: { sellerId: string };
@@ -22,65 +20,31 @@ type Props = {
 
 export default function Seller({ params }: Props) {
   const { sellerId } = params;
-  const [sellerInfo, setSellerInfo] = useState<GetSellerInfoResponseData>(null);
   const [img, setImg] = useState<string>(LoadingImg);
-  const [popularProducts, setPopularProducts] =
-    useState<GetPopularProductsBySellerIdResponseData[]>(null);
-  const [popularReviewProducts, setPopularReviewProducts] =
-    useState<GetPopularProductsBySellerIdResponseData[]>(null);
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
-  const notify = (message: string) => toast(message);
 
-  const getSellerInfo = async (sellerId: number) => {
-    try {
-      setImg(LoadingImg);
-      const data = await sellerAPI.getSellerInfo(sellerId);
-      if (data.code === 200) {
-        setSellerInfo(data.data);
-        setImg("");
-      }
-    } catch (err) {
-      console.error(err);
-      setImg(NotFoundImg);
-    }
-  };
+  const { data: sellerInfo } = useQuery({
+    queryKey: ["seller", "info"],
+    queryFn: () => sellerAPI.getSellerInfo(Number(sellerId)),
+  });
 
-  const getPopularProducts = async (sellerId: number) => {
-    try {
-      setImg(LoadingImg);
-      const data = await searchAPI.getPopularProductsBySellerId(
-        sellerId,
+  const { data: popularProducts, refetch: refetchPopularProducts } = useQuery({
+    queryKey: ["seller", "popular", "products"],
+    queryFn: () =>
+      searchAPI.getPopularProductsBySellerId(
+        Number(sellerId),
         "totalSalesCount"
-      );
-      if (data.code === 200) {
-        setPopularProducts(data.data);
-        setImg("");
-      }
-    } catch (err) {
-      notify("판매 인기 상품 불러오는데 실패했어요");
-      console.error(err);
-    }
+      ),
+  });
 
-    try {
-      setImg(LoadingImg);
-      const data = await searchAPI.getPopularProductsBySellerId(
-        sellerId,
-        "reviewCount"
-      );
-      if (data.code === 200) {
-        setPopularReviewProducts(data.data);
-        setImg("");
-      }
-    } catch (err) {
-      console.error(err);
-      notify("리뷰 인기 상품 불러오는데 실패했어요");
-      setImg(NotFoundImg);
-    }
-  };
+  const { data: popularReviewProducts, refetch: refetchPopularReviewProducts } =
+    useQuery({
+      queryKey: ["seller", "review", "products"],
+      queryFn: () =>
+        searchAPI.getPopularProductsBySellerId(Number(sellerId), "reviewCount"),
+    });
 
   useEffect(() => {
-    getSellerInfo(parseInt(params.sellerId));
-    getPopularProducts(parseInt(params.sellerId));
     const script = document.createElement("script");
     script.src = "https://developers.kakao.com/sdk/js/kakao.js";
     script.async = true;
@@ -112,9 +76,9 @@ export default function Seller({ params }: Props) {
           window.Kakao.Share.sendDefault({
             objectType: "feed",
             content: {
-              title: `전통주점, ${sellerInfo.storeName}`,
-              description: `${sellerInfo.storeDescription}`,
-              imageUrl: `${sellerInfo.storeImageUrl}`,
+              title: `전통주점, ${sellerInfo?.data.storeName}`,
+              description: `${sellerInfo?.data.storeDescription}`,
+              imageUrl: `${sellerInfo?.data.storeImageUrl}`,
               link: {
                 mobileWebUrl: `https://consumer.jeontongju-dev.shop/seller/${sellerId}`,
                 webUrl: `https://developers.kakao.com/seller/${sellerId}`,
@@ -127,9 +91,9 @@ export default function Seller({ params }: Props) {
       await window.Kakao.Share.sendDefault({
         objectType: "feed",
         content: {
-          title: `전통주점, ${sellerInfo.storeName}`,
-          description: `${sellerInfo.storeDescription}`,
-          imageUrl: `${sellerInfo.storeImageUrl}`,
+          title: `전통주점, ${sellerInfo?.data.storeName}`,
+          description: `${sellerInfo?.data.storeDescription}`,
+          imageUrl: `${sellerInfo?.data.storeImageUrl}`,
           link: {
             mobileWebUrl: `https://consumer.jeontongju-dev.shop/seller/${sellerId}`,
             webUrl: `https://developers.kakao.com/seller/${sellerId}`,
@@ -145,7 +109,7 @@ export default function Seller({ params }: Props) {
         <div className={style.sellerPage}>
           <div className={style.sellerHeader}>
             <Image
-              src={sellerInfo.storeImageUrl}
+              src={sellerInfo.data.storeImageUrl}
               alt="seller-thumbnail"
               width={0}
               height={0}
@@ -156,8 +120,8 @@ export default function Seller({ params }: Props) {
                 borderRadius: "50%",
               }}
             />
-            <div className={style.storeName}>{sellerInfo.storeName}</div>
-            <div>{sellerInfo.storeDescription}</div>
+            <div className={style.storeName}>{sellerInfo.data.storeName}</div>
+            <div>{sellerInfo.data.storeDescription}</div>
             <div className={style.shareBtns}>
               <div onClick={handleShareKakao}>
                 <Image
@@ -215,8 +179,12 @@ export default function Seller({ params }: Props) {
             <div className={style.sellerSub}>
               {selectedMenu === 0 ? (
                 <PopularProducts
-                  popularProducts={popularProducts}
-                  popularReviewProducts={popularReviewProducts}
+                  refetchPopularProducts={refetchPopularProducts}
+                  refetchPopularReviewProducts={refetchPopularReviewProducts}
+                  popularProducts={popularProducts ? popularProducts.data : []}
+                  popularReviewProducts={
+                    popularReviewProducts ? popularReviewProducts.data : []
+                  }
                 />
               ) : selectedMenu === 1 ? (
                 <AllProducts sellerId={parseInt(sellerId)} />
