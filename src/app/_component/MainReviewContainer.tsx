@@ -21,7 +21,7 @@ export default function MainReviewContainer() {
         <h2>리뷰가 많이 달리는 상품들!</h2>
         <div
           className={style.goList}
-          onClick={() => router.push("/products/list")}
+          onClick={() => router.push("/product/list")}
         >
           더 많은 상품 보러가기 {">"}
         </div>
