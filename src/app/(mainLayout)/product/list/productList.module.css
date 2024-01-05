@@ -1,15 +1,17 @@
 .productList {
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
+  position: relative;
+  height: 100vh;
 
   .productSideBar {
-    flex-shrink: 1;
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    position: fixed;
+    width: 20%;
   }
   .productRightBar {
-    flex-shrink: 3;
-    flex: 3;
+    margin-left: 25%;
     display: flex;
     align-items: center;
     justify-content: center;

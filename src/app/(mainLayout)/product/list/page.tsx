@@ -6,15 +6,15 @@ import { SORT } from "@/constants/SortEnum";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
 import ProductContainer from "../../_component/ProductContainer/ProductContainer";
-import { SNACK } from "@/constants/SnackTypeEnum";
+import { SNACK, SnackOptions } from "@/constants/SnackTypeEnum";
 import { useInView } from "react-intersection-observer";
 import style from "@/app/(mainLayout)/product/list/productList.module.css";
-import { Slider } from "antd";
+import { Select, Slider } from "antd";
 
 export default function ProductList() {
   const [sort, setSort] = useState<keyof typeof SORT>("_score");
   const [rawMaterial, setRawMaterial] = useState<string>(null);
-  const [food, setFood] = useState<keyof typeof SNACK>(null);
+  const [food, setFoods] = useState<keyof (typeof SNACK)[]>(null);
   const [minPrice, setMinPrice] = useState<number>(null);
   const [maxPrice, setMaxPrice] = useState<number>(null);
   const [minAlcoholDegree, setMinAlcoholDegree] = useState<number>(null);
@@ -29,7 +29,7 @@ export default function ProductList() {
         _1: string,
         _2: string,
         _3: string,
-        _4: keyof typeof SNACK,
+        _4: keyof (typeof SNACK)[],
         _5: number,
         _6: number,
         _7: number,
@@ -108,6 +108,18 @@ export default function ProductList() {
             range
             step={100}
             onChangeComplete={onChangeCompletePrice}
+          />
+        </div>
+        <div>
+          <div>잘 어울리는 안주</div>
+          <Select
+            mode="multiple"
+            placeholder=""
+            options={SnackOptions}
+            onChange={setFoods}
+            style={{ width: "100%" }}
+            value={food}
+            allowClear
           />
         </div>
       </div>

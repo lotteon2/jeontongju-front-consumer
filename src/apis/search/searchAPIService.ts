@@ -66,7 +66,7 @@ const searchAPI = {
     sort: keyof typeof SORT,
     size: number,
     rawMaterial?: string,
-    food?: keyof typeof SNACK,
+    food?: keyof (typeof SNACK)[],
     minPrice?: number,
     maxPrice?: number,
     minAlcoholDegree?: number,
