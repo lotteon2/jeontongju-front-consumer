@@ -139,6 +139,9 @@ export default function Page({ params }: Props) {
                       products: JSON.stringify([
                         {
                           productId,
+                          productImg: productData.productThumbnailImageUrl,
+                          productName: productData.productName,
+                          productPrice: productData.productPrice,
                           productCount: quantity,
                         },
                       ]),
