@@ -24,13 +24,14 @@ export default function Banner({
         const data = await couponAPI.getCoupon();
         if (data.code === 200) {
           toast("쿠폰이 발급되었어요");
-        } else if (data.code === 400) {
+          console.log(data);
           if (!data.data.isOpen) {
             toast("아직 오픈 전이에요");
           } else if (data.data.isSoldOut) {
             toast("쿠폰이 매진되었어요");
           } else if (data.data.isDuplicated) {
             toast("쿠폰은 한 장만 발급받을 수 있어요.");
+            return;
           }
         }
         return data;
