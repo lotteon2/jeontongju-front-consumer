@@ -42,15 +42,7 @@ export default function Banner({
   return type === "coupon" ? (
     <div onClick={getCoupon}>
       <Image
-        src={
-          type === "membership"
-            ? membershipBannerImg
-            : type === "cost"
-            ? eventCostImg
-            : type === "coupon"
-            ? eventCouponImg
-            : eventCropImg
-        }
+        src={eventCouponImg}
         width={0}
         height={0}
         alt={type || "banner"}
@@ -65,8 +57,6 @@ export default function Banner({
             ? membershipBannerImg
             : type === "cost"
             ? eventCostImg
-            : type === "coupon"
-            ? eventCouponImg
             : eventCropImg
         }
         width={0}
