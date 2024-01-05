@@ -33,7 +33,12 @@ export default function MainShortsContainer() {
 
       <div className={style.shortsContainer}>
         {data?.map((short) => (
-          <ShortsDetail short={short} key={short.shortsId} isMain={true} />
+          <ShortsDetail
+            params={{ id: short.shortsId }}
+            shorts={short}
+            key={short.shortsId}
+            isMain={true}
+          />
         ))}
       </div>
     </div>

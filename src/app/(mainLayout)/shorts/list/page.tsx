@@ -77,6 +77,7 @@ export default function ShortsList() {
           <div className={style.snapScrollItem} key={index}>
             {page.content.map((short) => (
               <ShortsDetail
+                params={{ id: short.shortsId }}
                 shorts={short}
                 key={short.shortsId}
                 isMain={false}
