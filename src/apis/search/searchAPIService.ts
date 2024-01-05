@@ -7,6 +7,7 @@ import {
   GetProductDetailByProductIdResponse,
   GetCostProductsResponse,
   GetAllProductsResponse,
+  GetBestReviewProducts,
 } from "./searchAPIService.types";
 
 const searchAPI = {
@@ -29,14 +30,20 @@ const searchAPI = {
     return data;
   },
   getCropProducts: async () => {
-    const { data } = await unAuthAxiosInstance.get<GetCropProductsResponse>(
+    const { data } = await authAxiosInstance.get<GetCropProductsResponse>(
       `/search-service/api/products/cereal-crops?sort=totalSalesCount,desc&size=10`
     );
     return data;
   },
   getCostProducts: async () => {
-    const { data } = await unAuthAxiosInstance.get<GetCostProductsResponse>(
+    const { data } = await authAxiosInstance.get<GetCostProductsResponse>(
       `/search-service/api/products?sort=capacityToPriceRatio,asc&size=6`
+    );
+    return data;
+  },
+  getBestReviewProducts: async () => {
+    const { data } = await authAxiosInstance.get<GetBestReviewProducts>(
+      `/search-service/api/products?sort=reviewCount,desc&size=6`
     );
     return data;
   },

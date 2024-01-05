@@ -79,3 +79,4 @@ export type GetAllProductsBySellerIdResponse = ApiResponse<
 >;
 
 export type GetAllProductsResponse = ApiResponse<Page<ProductData[]>>;
+export type GetBestReviewProducts = ApiResponse<ProductData[]>;
