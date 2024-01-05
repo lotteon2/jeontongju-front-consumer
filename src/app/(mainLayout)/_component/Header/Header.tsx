@@ -5,9 +5,13 @@ import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Noti from "../Noti/Noti";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 export default function Header() {
+  const router = useRouter();
+  const [search, setSearch] = useState<string>("");
   const { data } = useQuery({
     queryKey: ["consumer", "myinfo"],
     queryFn: () => consumerAPI.getMyInfoForStore(),
@@ -35,6 +39,17 @@ export default function Header() {
     }
   }, [data]);
 
+  const handleSearch = (e) => {
+    if (e.key === "Enter" || e.keycode === 13) {
+      if (search.length < 2) {
+        toast("2글자 이상 입력해주세요");
+      }
+      router.push(`/search?keyword=${encodeURIComponent(search)}`);
+    } else {
+      setSearch(e.target.value);
+    }
+  };
+
   return (
     <div className={style.header}>
       <div className={style.topnav}>
@@ -50,6 +65,9 @@ export default function Header() {
             type="text"
             placeholder="전통주점은 전상품 무료배송"
             className={style.input}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={handleSearch}
+            value={search}
           />
           <Image
             alt="search"

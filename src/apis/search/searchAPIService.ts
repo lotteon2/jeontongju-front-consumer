@@ -79,5 +79,25 @@ const searchAPI = {
     );
     return data.data;
   },
+  getAllProductsBySearch: async (
+    search: string,
+    page: number,
+    sort: keyof typeof SORT,
+    size: number,
+    rawMaterial?: (keyof typeof RAW_MATERIAL)[],
+    food?: (keyof typeof SNACK)[],
+    minPrice?: number,
+    maxPrice?: number,
+    minAlcoholDegree?: number,
+    maxAlcoholDegree?: number,
+    concept?: (keyof typeof CONCEPT)[]
+  ) => {
+    const { data } = await authAxiosInstance.get<GetAllProductsResponse>(
+      `/search-service/api/products/search?query=${encodeURI(
+        search
+      )}&page=${page}&sort=${sort}&size=${size}&rawMaterial=${rawMaterial}&food=${food}&minPrice=${minPrice}&maxPrice=${maxPrice}&minAlcoholDegree=${minAlcoholDegree}&maxAlcoholDegree=${maxAlcoholDegree}&concept=${concept}`
+    );
+    return data.data;
+  },
 };
 export default searchAPI;
