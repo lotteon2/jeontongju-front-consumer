@@ -22,8 +22,15 @@ export type GetMyCouponListResponseData = {
   minOrderPrice: number;
 };
 
+export type GetMyCouponListForOrderResponseData = {
+  totalCount: 3;
+  availableCount: 2;
+  coupons: GetMyCouponListResponseData[];
+};
 export type GetCouponResponse = ApiResponse<GetCouponResponseData>;
 
 export type GetMyCouponListResponse = ApiResponse<
   Page<GetMyCouponListResponseData[]>
 >;
+export type GetMyCouponListForOrderResponse =
+  ApiResponse<GetMyCouponListForOrderResponseData>;

@@ -5,6 +5,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 
   .input::-webkit-input-placeholder {
     font-family: "Jua";

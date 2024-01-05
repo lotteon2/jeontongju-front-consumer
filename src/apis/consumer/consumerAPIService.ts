@@ -12,6 +12,7 @@ import {
   AddAddressResponse,
   StopSubScriptionResponse,
   EditMyAddressResponse,
+  GetMyAddressForOrderResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -46,6 +47,12 @@ const consumerAPI = {
   getMyMembershipList: async (page: number, size: number) => {
     const { data } = await authAxiosInstance.get<GetMyMembershipResponse>(
       `consumer-service/api/consumers/subscription-history?page=${page}&size=${size}`
+    );
+    return data;
+  },
+  getMyAddressForOrder: async () => {
+    const { data } = await authAxiosInstance.get<GetMyAddressForOrderResponse>(
+      `/consumer-service/api/consumers/addresses`
     );
     return data;
   },

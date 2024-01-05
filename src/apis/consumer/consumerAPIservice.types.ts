@@ -91,6 +91,8 @@ export type GetMyMembershipResponse = ApiResponse<
 export type GetMyAddressListResponse = ApiResponse<
   GetMyAddressListResponseData[]
 >;
+export type GetMyAddressForOrderResponse =
+  ApiResponse<GetMyAddressListResponseData>;
 
 export type GetMyAddressByAddressIdResponse =
   ApiResponse<GetMyAddressListResponseData>;

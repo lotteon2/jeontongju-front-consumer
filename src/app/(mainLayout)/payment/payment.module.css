@@ -3,6 +3,7 @@
     box-shadow: 3px 3px 1px 1px #c0c0c0;
     border-radius: 12px;
     padding: 1rem;
+    margin-bottom: 1rem;
 
     .paymentHeader {
       font-size: 1.8rem;
@@ -16,6 +17,26 @@
 
       .productName {
         font-size: 1.5rem;
+      }
+    }
+
+    .pointBox {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      height: 3rem;
+
+      .input {
+        font-size: 17px;
+        border-radius: 12px;
+        padding: 0.6rem;
+        outline: none;
+      }
+
+      .inputDesc {
+        height: 3rem;
+        line-height: 3rem;
       }
     }
   }
