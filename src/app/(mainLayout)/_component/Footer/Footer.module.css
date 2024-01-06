@@ -1,0 +1,43 @@
+.companyInfo {
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 30px;
+  gap: 1rem;
+
+  @media only screen and (min-width: 200px) and (max-width: 480px) {
+    flex-direction: column;
+  }
+
+  .logoArea {
+    float: left;
+    width: 234px;
+    padding-top: 4px;
+    flex: 1;
+  }
+
+  .infoWrapper {
+    display: flex;
+    justify-content: space-between;
+    flex: 2;
+    color: #c0c0c0;
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      flex-direction: column;
+      font-size: 0.5rem;
+    }
+  }
+
+  .company {
+    margin-right: 3rem;
+  }
+
+  .customer {
+    margin-left: 3rem;
+    color: #c0c0c0;
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      margin-left: 0;
+      font-size: 0.5rem;
+    }
+  }
+}

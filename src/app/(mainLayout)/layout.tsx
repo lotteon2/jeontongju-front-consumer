@@ -10,6 +10,7 @@ import {
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import TopButton from "../_component/TopButton/TopButton";
 import CartButton from "../_component/CartButton/CartButton";
+import Footer from "./_component/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "전통주점",
@@ -37,6 +38,7 @@ export default async function RootLayout({ children }: Props) {
           {children}
           <CartButton />
           <TopButton />
+          <Footer />
         </section>
       </HydrationBoundary>
     </RQProvider>

@@ -39,6 +39,11 @@
   top: 45px;
   border: 2px solid;
   padding: 15px;
+
+  @media only screen and (min-width: 200px) and (max-width: 480px) {
+    width: 300px;
+    margin: 0 auto;
+  }
 }
 
 .autoSearchData {
