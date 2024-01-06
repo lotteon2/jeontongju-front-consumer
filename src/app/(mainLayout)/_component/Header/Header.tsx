@@ -64,7 +64,7 @@ export default function Header() {
         <Link href={"/shorts/list"}>쇼츠</Link>
         <Link href={"/seller/list"}>셀러</Link>
         <Link href={"/auction/list"}>경매</Link>
-        <div className={style.searchBar}>
+        <div className={style.searchContainer}>
           {/* <Search
             placeholder="전통주점은 전상품 무료베송"
             enterButton={Search}
@@ -85,8 +85,19 @@ export default function Header() {
             alt="search"
             width={32}
             height={32}
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "10px",
+              cursor: "pointer",
+            }}
             src="https://static.lotteon.com/p/common/foCommon/assets/img/icon_search_black.svg"
           />
+          <div className={style.autoSearchContainer}>
+            <ul>
+              <li className={style.autoSearchData}></li>
+            </ul>
+          </div>
         </div>
       </div>
       <div className={style.headerBottom}>
