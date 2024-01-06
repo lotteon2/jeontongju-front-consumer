@@ -205,7 +205,7 @@ export default function Payment() {
               onChange={(e) => setPoint(Number(e.target.value))}
             />
             <div className={style.inputDesc}>
-              사용가능 {myPoint?.data ? myPoint?.data : 0} 포인트
+              사용가능 {myPoint ? myPoint?.data.availablePoints : 0} 포인트
             </div>
           </div>
           <div>
