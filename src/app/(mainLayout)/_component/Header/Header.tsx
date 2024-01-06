@@ -86,6 +86,7 @@ export default function Header() {
             <div className={style.autoSearchContainer}>
               {autoSearchKeyword?.data.map((it) => (
                 <ul
+                  key={it.productId}
                   style={{ listStyle: "none", padding: "0", cursor: "pointer" }}
                   onClick={() => router.push(`/product/${it.productId}`)}
                 >
