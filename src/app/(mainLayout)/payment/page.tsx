@@ -47,6 +47,11 @@ export default function Payment() {
     queryFn: () => couponAPI.getMyCouponListForOrder(totalAmount),
   });
 
+  const { data: myPoint, refetch: refetchMyPoint } = useQuery({
+    queryKey: ["consumer", "myPoint", "order"],
+    queryFn: () => consumerAPI.getMyPointForOrder(totalAmount),
+  });
+
   const handlePay = async () => {
     const params = {
       paymentType: "ORDER",
@@ -79,6 +84,8 @@ export default function Payment() {
   const handleCheckCoupon = (coupon: GetMyCouponListResponseData) => {
     setCoupon(coupon);
   };
+
+  console.log("here", myCoupons?.data.coupons);
 
   const handleAddAddress = async () => {
     try {
@@ -197,21 +204,22 @@ export default function Payment() {
               value={point}
               onChange={(e) => setPoint(Number(e.target.value))}
             />
-            <div className={style.inputDesc}>
-              사용가능 {myInfo?.data.point} 포인트
-            </div>
+            <div className={style.inputDesc}>사용가능 {myPoint} 포인트</div>
           </div>
           <div>
             {myCoupons?.data.coupons.map((myCoupon) => (
               <div
+                className={style.couponSelectBox}
                 onClick={() => handleCheckCoupon(myCoupon)}
                 key={myCoupon.couponCode}
               >
                 <input
                   type="radio"
-                  checked={coupon.couponCode === myCoupon.couponCode}
+                  checked={
+                    coupon ? coupon.couponCode === myCoupon.couponCode : false
+                  }
                 />
-                <CouponBox coupon={myCoupon} key={coupon.couponCode} />
+                <CouponBox coupon={myCoupon} key={myCoupon.couponCode} />
               </div>
             ))}
           </div>

@@ -53,4 +53,10 @@
     font-weight: 900;
     background-color: #ffa1a1;
   }
+
+  .couponSelectBox {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
 }

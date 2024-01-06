@@ -13,6 +13,7 @@ import {
   StopSubScriptionResponse,
   EditMyAddressResponse,
   GetMyAddressForOrderResponse,
+  GetMyPointForOrderResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -96,6 +97,13 @@ const consumerAPI = {
   stopSubscription: async () => {
     const { data } = await authAxiosInstance.delete<StopSubScriptionResponse>(
       `/consumer-service/api/consumers/subscription`
+    );
+    return data;
+  },
+  getMyPointForOrder: async (totalAmount: number) => {
+    const { data } = await authAxiosInstance.post<GetMyPointForOrderResponse>(
+      `/consumer-service/api/consumers/point-available`,
+      { totalAmount }
     );
     return data;
   },
