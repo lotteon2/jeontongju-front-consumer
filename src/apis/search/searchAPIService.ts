@@ -9,6 +9,7 @@ import {
   GetAllProductsResponse,
   GetBestReviewProducts,
   GetAutoCompleteForSearchResponse,
+  GetHolidayProductsResponse,
 } from "./searchAPIService.types";
 import { SNACK } from "@/constants/SnackTypeEnum";
 import { CONCEPT } from "@/constants/ConceptEnum";
@@ -36,6 +37,12 @@ const searchAPI = {
   getCropProducts: async () => {
     const { data } = await authAxiosInstance.get<GetCropProductsResponse>(
       `/search-service/api/products/cereal-crops?sort=totalSalesCount,desc&size=10`
+    );
+    return data;
+  },
+  getHolidayProducts: async () => {
+    const { data } = await authAxiosInstance.get<GetHolidayProductsResponse>(
+      `/search-service/api/products/holiday`
     );
     return data;
   },
