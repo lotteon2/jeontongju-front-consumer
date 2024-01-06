@@ -102,7 +102,7 @@ const consumerAPI = {
   },
   getMyPointForOrder: async (totalAmount: number) => {
     const { data } = await authAxiosInstance.post<GetMyPointForOrderResponse>(
-      `/consumer-service/api/consumers/point-available`,
+      `/consumer-service/api/consumers/points-available`,
       { totalAmount }
     );
     return data;
