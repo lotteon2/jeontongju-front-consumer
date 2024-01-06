@@ -204,7 +204,9 @@ export default function Payment() {
               value={point}
               onChange={(e) => setPoint(Number(e.target.value))}
             />
-            <div className={style.inputDesc}>사용가능 {myPoint} 포인트</div>
+            <div className={style.inputDesc}>
+              사용가능 {myPoint?.data ? myPoint?.data : 0} 포인트
+            </div>
           </div>
           <div>
             {myCoupons?.data.coupons.map((myCoupon) => (
