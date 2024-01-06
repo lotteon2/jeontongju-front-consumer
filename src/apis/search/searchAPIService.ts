@@ -8,6 +8,7 @@ import {
   GetCostProductsResponse,
   GetAllProductsResponse,
   GetBestReviewProducts,
+  GetAutoCompleteForSearchResponse,
 } from "./searchAPIService.types";
 import { SNACK } from "@/constants/SnackTypeEnum";
 import { CONCEPT } from "@/constants/ConceptEnum";
@@ -98,6 +99,13 @@ const searchAPI = {
       )}&page=${page}&sort=${sort}&size=${size}&rawMaterial=${rawMaterial}&food=${food}&minPrice=${minPrice}&maxPrice=${maxPrice}&minAlcoholDegree=${minAlcoholDegree}&maxAlcoholDegree=${maxAlcoholDegree}&concept=${concept}`
     );
     return data.data;
+  },
+  getAutoCompleteForSearch: async (keyword: string) => {
+    const { data } =
+      await authAxiosInstance.get<GetAutoCompleteForSearchResponse>(
+        `/search-service/api/products/search/auto?query=${keyword}`
+      );
+    return data;
   },
 };
 export default searchAPI;

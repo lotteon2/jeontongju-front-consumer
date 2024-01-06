@@ -10,8 +10,7 @@ import Noti from "../Noti/Noti";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { Input } from "antd";
-
-const { Search } = Input;
+import searchAPI from "@/apis/search/searchAPIService";
 
 export default function Header() {
   const router = useRouter();
@@ -19,6 +18,11 @@ export default function Header() {
   const { data } = useQuery({
     queryKey: ["consumer", "myinfo"],
     queryFn: () => consumerAPI.getMyInfoForStore(),
+  });
+
+  const { data: autoSearchKeyword, refetch } = useQuery({
+    queryKey: ["search", "keyword", search],
+    queryFn: () => searchAPI.getAutoCompleteForSearch(search),
   });
 
   const [setMemberId, isLogin, setIsLogin, setIsAdult, setIsRegularPayment] =
@@ -56,23 +60,9 @@ export default function Header() {
 
   return (
     <div className={style.header}>
-      <div className={style.topnav}>
-        <Link href={"/"} className={style.active}>
-          Home
-        </Link>
-        <Link href={"/product/list"}>전체 상품</Link>
-        <Link href={"/shorts/list"}>쇼츠</Link>
-        <Link href={"/seller/list"}>셀러</Link>
-        <Link href={"/auction/list"}>경매</Link>
+      <div className={style.headerTop}>
+        <div onClick={() => router.push("/")}>로고자리</div>
         <div className={style.searchContainer}>
-          {/* <Search
-            placeholder="전통주점은 전상품 무료베송"
-            enterButton={Search}
-            size="large"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onSearch={handleSearch}
-          /> */}
           <input
             type="text"
             placeholder="전통주점은 전상품 무료배송"
@@ -87,32 +77,65 @@ export default function Header() {
             height={32}
             style={{
               position: "absolute",
-              right: "10px",
-              top: "10px",
+              right: "5px",
               cursor: "pointer",
             }}
             src="https://static.lotteon.com/p/common/foCommon/assets/img/icon_search_black.svg"
           />
-          <div className={style.autoSearchContainer}>
-            <ul>
-              <li className={style.autoSearchData}></li>
-            </ul>
-          </div>
+          {autoSearchKeyword?.data?.length > 0 && (
+            <div className={style.autoSearchContainer}>
+              {autoSearchKeyword?.data.map((it) => (
+                <ul
+                  style={{ listStyle: "none", padding: "0", cursor: "pointer" }}
+                  onClick={() => router.push(`/product/${it.productId}`)}
+                >
+                  <li className={style.autoSearchData}>
+                    <div>
+                      <Image
+                        src={it.productThumbnailImageUrl}
+                        alt="img"
+                        width={30}
+                        height={30}
+                        style={{
+                          position: "absolute",
+                          right: "5px",
+                          cursor: "pointer",
+                        }}
+                      />
+                    </div>
+                    <div>{it.productName}</div>
+                  </li>
+                </ul>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className={style.headerRight}>
+          {isLogin ? (
+            <>
+              <Noti />
+              <Link href={"/mypage"}>마이페이지</Link>
+              <Link href={"/init/logout"}>로그아웃</Link>
+            </>
+          ) : (
+            <>
+              <Link href={"/init/signin"}>로그인</Link>
+              <Link href={"/init/signup"}>회원가입</Link>
+            </>
+          )}
         </div>
       </div>
-      <div className={style.headerBottom}>
-        {isLogin ? (
-          <>
-            <Noti />
-            <Link href={"/mypage"}>마이페이지</Link>
-            <Link href={"/init/logout"}>로그아웃</Link>
-          </>
-        ) : (
-          <>
-            <Link href={"/init/signin"}>로그인</Link>
-            <Link href={"/init/signup"}>회원가입</Link>
-          </>
-        )}
+
+      <div className={style.header}>
+        <div className={style.topnav}>
+          <Link href={"/"} className={style.active}>
+            Home
+          </Link>
+          <Link href={"/product/list"}>전체 상품</Link>
+          <Link href={"/shorts/list"}>쇼츠</Link>
+          <Link href={"/seller/list"}>셀러</Link>
+          <Link href={"/auction/list"}>경매</Link>
+        </div>
       </div>
     </div>
   );
