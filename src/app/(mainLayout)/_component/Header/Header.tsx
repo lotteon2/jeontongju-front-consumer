@@ -9,6 +9,10 @@ import { useEffect, useState } from "react";
 import Noti from "../Noti/Noti";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { Input } from "antd";
+
+const { Search } = Input;
+
 export default function Header() {
   const router = useRouter();
   const [search, setSearch] = useState<string>("");
@@ -61,6 +65,14 @@ export default function Header() {
         <Link href={"/seller/list"}>셀러</Link>
         <Link href={"/auction/list"}>경매</Link>
         <div className={style.searchBar}>
+          {/* <Search
+            placeholder="전통주점은 전상품 무료베송"
+            enterButton={Search}
+            size="large"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onSearch={handleSearch}
+          /> */}
           <input
             type="text"
             placeholder="전통주점은 전상품 무료배송"

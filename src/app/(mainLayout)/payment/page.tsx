@@ -65,7 +65,7 @@ export default function Payment() {
       addressDetail: "101",
       zoneCode: "12345",
       totalAmount,
-      realAmount, // 실금액 - 쿠폰금액 - 포인트금액
+      realAmount: totalAmount - coupon?.discountAmount - point, // 실금액 - 쿠폰금액 - 포인트금액
       titleName: products[0].productName,
       products: Array.from(products),
     };
