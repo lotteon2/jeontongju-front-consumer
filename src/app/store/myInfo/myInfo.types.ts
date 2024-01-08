@@ -10,6 +10,7 @@ export interface MyInfoState {
   credit: number;
   phoneNumber: string;
   isAddressDefault: boolean;
+  isPaymentReservation: boolean;
 }
 
 export interface MyInfoDispatcher extends MyInfoState {
@@ -20,5 +21,6 @@ export interface MyInfoDispatcher extends MyInfoState {
   dispatchIsAdult: (value: boolean) => void;
   dispatchIsRegularPayment: (value: boolean) => void;
   dispatchPoint: (value: number) => void;
+  dispatchIsPaymentReservation: (value: boolean) => void;
   clear: () => void;
 }

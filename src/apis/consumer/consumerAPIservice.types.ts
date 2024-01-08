@@ -58,6 +58,7 @@ export type GetMyInfoForStoreResponseData = {
   phoneNumber: string;
   isAddressDefault: boolean;
   memberId: number;
+  isPaymentReservation: boolean;
 };
 
 export type GetMyMembershipResponseData = {

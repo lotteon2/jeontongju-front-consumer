@@ -10,19 +10,29 @@ import PaidMemberShipBox from "../../_component/PaidMemberShipBox/PaidMemberShip
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import { useRouter } from "next/navigation";
 import { Alert } from "@/app/_component/Alert";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function MemberShipList() {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [page, setPage] = useState<number>(0);
   const [size, setSize] = useState<number>(10);
   const [memberships, setMemberships] =
     useState<GetMyMembershipResponseData[]>();
   const [mounted, setMounted] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isLogin, isRegularPayment] = useMyInfoStore((state) => [
-    state.isLogin,
-    state.isRegularPayment,
-  ]);
+  const [isLogin, isRegularPayment, isPaymentReservation] = useMyInfoStore(
+    (state) => [
+      state.isLogin,
+      state.isRegularPayment,
+      state.isPaymentReservation,
+    ]
+  );
+
+  const { refetch } = useQuery({
+    queryKey: ["consumer", "myinfo"],
+    queryFn: () => consumerAPI.getMyInfoForStore(),
+  });
 
   useEffect(() => {
     console.log("isRegularPayment", isRegularPayment);
@@ -50,6 +60,7 @@ export default function MemberShipList() {
       const data = await consumerAPI.stopSubscription();
       if (data.code === 200) {
         toast("멤버십 구독이 해지되었어요.");
+        refetch();
       }
     } catch (err) {
       toast("멤버십 구독 해지에 실패했어요.");
@@ -91,7 +102,7 @@ export default function MemberShipList() {
               />
             ))}
           </div>
-          {isRegularPayment && (
+          {isRegularPayment && isPaymentReservation && (
             <div className={style.button} onClick={handleStopSubscriptionAlert}>
               멤버십 탈퇴하기
             </div>

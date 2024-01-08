@@ -32,14 +32,21 @@ export default function Header() {
     queryFn: () => searchAPI.getAutoCompleteForSearch(search),
   });
 
-  const [setMemberId, isLogin, setIsLogin, setIsAdult, setIsRegularPayment] =
-    useMyInfoStore((state) => [
-      state.dispatchMemberId,
-      state.isLogin,
-      state.dispatchIsLogin,
-      state.dispatchIsAdult,
-      state.dispatchIsRegularPayment,
-    ]);
+  const [
+    setMemberId,
+    isLogin,
+    setIsLogin,
+    setIsAdult,
+    setIsRegularPayment,
+    setIsPaymentReservation,
+  ] = useMyInfoStore((state) => [
+    state.dispatchMemberId,
+    state.isLogin,
+    state.dispatchIsLogin,
+    state.dispatchIsAdult,
+    state.dispatchIsRegularPayment,
+    state.dispatchIsPaymentReservation,
+  ]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -51,6 +58,7 @@ export default function Header() {
       setMemberId(data.data.memberId);
       setIsAdult(data.data.isAdult);
       setIsRegularPayment(data.data.isRegularPayment);
+      setIsPaymentReservation(data.data.isPaymentReservation);
     }
   }, [data]);
 
