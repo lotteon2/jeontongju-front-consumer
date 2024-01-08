@@ -63,7 +63,7 @@ export default function MemberShipList() {
         text: "해지시 철회할 수 없어요.",
         submitBtnText: "해지하기",
       }).then((res) => {
-        handleStopSubscription();
+        if (res.isConfirmed) handleStopSubscription();
       });
     } catch (err) {
       toast("멤버십 구독 해지에 실패했어요.");
