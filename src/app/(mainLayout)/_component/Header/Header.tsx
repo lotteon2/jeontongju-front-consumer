@@ -5,6 +5,7 @@ import FiSrAltSvg from "/public/fi-sr-play-alt.svg";
 import FiSrAltActiveSvg from "/public/fi-sr-play-alt-active.svg";
 import FiSrLiveSvg from "/public/fi-sr-live.svg";
 import FiSrLiveActiveSvg from "/public/fi-sr-live-active.svg";
+import FiSrSellersSvg from "/public/fi-sr-sellers.svg";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import style from "@/app/(mainLayout)/_component/Header/Header.module.css";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
@@ -189,9 +190,9 @@ export default function Header() {
               style={{
                 cursor: "pointer",
               }}
-              src={FiSrAltSvg}
+              src={FiSrSellersSvg}
             />
-            <div>쇼츠</div>
+            <div>셀러</div>
           </Link>
           <Link href={"/auction/list"}>
             <Image
