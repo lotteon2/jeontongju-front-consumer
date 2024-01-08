@@ -1,6 +1,6 @@
 .productContainer {
   width: 20%;
-  height: 20rem;
+  height: 25rem;
   position: relative;
   @media only screen and (min-width: 200px) and (max-width: 480px) {
     height: 10rem;
