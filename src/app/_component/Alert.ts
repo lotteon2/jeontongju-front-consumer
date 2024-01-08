@@ -11,7 +11,7 @@ export const Alert = async (params: AlertParams) => {
     title: params.title,
     text: params.text,
     iconHtml:
-      '<a><img src="https://i.ibb.co/gFW7m2H/danger.png" alt="danger"></a>',
+      '<a><img src="https://i.ibb.co/gFW7m2H/danger.png" alt="danger" width="5rem" height="5rem"></a>',
     showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
     confirmButtonColor: "#DC2626", // confrim 버튼 색깔 지정
     cancelButtonColor: "#808080", // cancel 버튼 색깔 지정

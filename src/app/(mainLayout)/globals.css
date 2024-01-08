@@ -29,3 +29,24 @@ body {
     font-family: "__Jua_fe7685";
   }
 }
+
+.swal2-icon {
+  border: none;
+}
+
+.swal2-modal {
+  border-radius: 30px;
+}
+.swal2-confirm {
+  width: 150px;
+  font-family: "__Jua_fe7685";
+}
+.swal2-cancel {
+  width: 150px;
+  font-family: "__Jua_fe7685";
+}
+
+.swal2-image {
+  width: 5rem;
+  height: 5rem;
+}
