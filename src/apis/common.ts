@@ -1,4 +1,5 @@
 import axios from "axios";
+import authAPI from "./authentication/authenticationAPIService";
 const baseURL = `${process.env.NEXT_PUBLIC_API_END_POINT}`;
 
 const authAxiosInstance = axios.create({
@@ -34,10 +35,12 @@ authAxiosInstance.interceptors.response.use(
   },
   async function (error) {
     const originalRequest = error.config;
-    if (error.response.code === 401) {
+    console.log("error", error);
+    if (error.response.status === 418) {
       console.log("here");
-      originalRequest.config.headers.Authorization =
-        window.localStorage.getItem("accessToken");
+      const data = await authAPI.refreshAuth();
+
+      originalRequest.config.headers.Authorization = data.accessToken;
       originalRequest._retry = true;
       return unAuthAxiosInstance(originalRequest);
     }
