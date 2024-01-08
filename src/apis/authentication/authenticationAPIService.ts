@@ -3,6 +3,7 @@ import {
   CheckEmailParams,
   CheckEmailResponse,
   CheckMyEmailResponse,
+  CheckMyPasswordIsAuthResponse,
   SignInParams,
   SignInResponse,
   SignUpParams,
@@ -22,7 +23,8 @@ const authAPI = {
   },
   refreshAuth: async () => {
     const { data } = await authAxiosInstance.put(
-      `/authentication-service/api/access-token`
+      `/authentication-service/api/access-token`,
+      { cookie: document.cookie }
     );
     return data;
   },
@@ -64,6 +66,13 @@ const authAPI = {
     const { data } = await authAxiosInstance.delete<WithDrawalResponse>(
       `/authentication-service/api/consumers`
     );
+    return data;
+  },
+  checkMyPasswordIsAuth: async () => {
+    const { data } =
+      await authAxiosInstance.post<CheckMyPasswordIsAuthResponse>(
+        `/authentication-service/api/password/auth`
+      );
     return data;
   },
 };
