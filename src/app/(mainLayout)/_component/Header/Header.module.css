@@ -3,7 +3,7 @@
 }
 
 .searchContainer {
-  width: 30rem;
+  width: 30vw;
   position: relative;
   border-radius: 12px;
   border-style: solid;
@@ -33,12 +33,13 @@
   z-index: 3;
   max-height: 50vh;
   overflow-y: scroll;
-  width: 400px;
+  width: 30vw;
   background-color: #fff;
   position: absolute;
-  top: 45px;
-  border: 2px solid;
+  top: 46px;
+  border: 1px solid;
   padding: 15px;
+  border-radius: 12px;
 
   @media only screen and (min-width: 200px) and (max-width: 480px) {
     width: 300px;
@@ -59,6 +60,10 @@
 
 .topnav {
   overflow: hidden;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .topnav a {
@@ -126,7 +131,6 @@
     border: 1px solid #ccc;
   }
 }
-/* } */
 
 .headerTop {
   display: flex;
@@ -138,4 +142,10 @@
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

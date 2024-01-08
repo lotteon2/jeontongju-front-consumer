@@ -1,4 +1,10 @@
 "use client";
+import FiSrHomeSvg from "/public/fi-sr-home.svg";
+import FiSrHomeActiveSvg from "/public/fi-sr-home-active.svg";
+import FiSrAltSvg from "/public/fi-sr-play-alt.svg";
+import FiSrAltActiveSvg from "/public/fi-sr-play-alt-active.svg";
+import FiSrLiveSvg from "/public/fi-sr-live.svg";
+import FiSrLiveActiveSvg from "/public/fi-sr-live-active.svg";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import style from "@/app/(mainLayout)/_component/Header/Header.module.css";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
@@ -133,13 +139,64 @@ export default function Header() {
 
       <div className={style.header}>
         <div className={style.topnav}>
-          <Link href={"/"} className={style.active}>
-            Home
+          <Link href={"/"} className={style.menu}>
+            <Image
+              alt="search"
+              width={32}
+              height={32}
+              style={{
+                cursor: "pointer",
+              }}
+              src={FiSrHomeSvg}
+            />
+            <div>홈</div>
           </Link>
-          <Link href={"/product/list"}>전체 상품</Link>
-          <Link href={"/shorts/list"}>쇼츠</Link>
-          <Link href={"/seller/list"}>셀러</Link>
-          <Link href={"/auction/list"}>경매</Link>
+          <Link href={"/product/list"} className={style.menu}>
+            <Image
+              alt="products"
+              width={32}
+              height={32}
+              style={{ cursor: "pointer" }}
+              src={FiSrAltActiveSvg}
+            />
+            <div>전체 상품</div>
+          </Link>
+          <Link href={"/shorts/list"} className={style.menu}>
+            <Image
+              alt="products"
+              width={32}
+              height={32}
+              style={{
+                cursor: "pointer",
+              }}
+              src={FiSrAltSvg}
+            />
+            <div>쇼츠</div>
+          </Link>
+          <Link href={"/seller/list"}>
+            <Image
+              alt="products"
+              width={32}
+              height={32}
+              style={{
+                cursor: "pointer",
+              }}
+              src={FiSrAltSvg}
+            />
+            <div>쇼츠</div>
+          </Link>
+          <Link href={"/auction/list"}>
+            <Image
+              alt="products"
+              width={32}
+              height={32}
+              style={{
+                cursor: "pointer",
+              }}
+              src={FiSrLiveSvg}
+            />
+            <div>라이브</div>
+          </Link>
         </div>
       </div>
     </div>
