@@ -35,9 +35,7 @@ authAxiosInstance.interceptors.response.use(
   },
   async function (error) {
     const originalRequest = error.config;
-    console.log("error", error);
     if (error.response.status === 418) {
-      console.log("here");
       const data = await authAPI.refreshAuth();
 
       originalRequest.config.headers.Authorization = data.accessToken;
