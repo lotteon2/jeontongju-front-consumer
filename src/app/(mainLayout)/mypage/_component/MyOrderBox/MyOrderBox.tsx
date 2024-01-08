@@ -9,6 +9,7 @@ import orderAPI from "@/apis/order/orderAPIService";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { ORDER_STATE, translateOrderState } from "@/constants/OrderStatusEnum";
+import { Alert } from "@/app/_component/Alert";
 
 export default function MyOrderBox({
   params,
@@ -20,7 +21,22 @@ export default function MyOrderBox({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  //TODO : alert
+  const handleCancelOrderByProductOrderIdAlert = async (
+    productOrderId: number
+  ) => {
+    try {
+      Alert({
+        title: "정말로 결제를 취소하시겠어요?",
+        text: "취소시 철회할 수 없어요.",
+        submitBtnText: "취소하기",
+      }).then((res) => {
+        if (res.isConfirmed) handleCancelOrderByProductOrderId(productOrderId);
+      });
+    } catch (err) {
+      toast("결제 취소에 실패했어요.");
+    }
+  };
+
   const handleCancelOrderByProductOrderId = async (productOrderId: number) => {
     try {
       setIsLoading(true);
@@ -121,7 +137,9 @@ export default function MyOrderBox({
                     <div
                       className={style.orderStatusBox}
                       onClick={() =>
-                        handleCancelOrderByProductOrderId(item.productOrderId)
+                        handleCancelOrderByProductOrderIdAlert(
+                          item.productOrderId
+                        )
                       }
                     >
                       취소하기
