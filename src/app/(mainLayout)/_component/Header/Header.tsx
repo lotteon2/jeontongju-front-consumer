@@ -15,6 +15,7 @@ import searchAPI from "@/apis/search/searchAPIService";
 export default function Header() {
   const router = useRouter();
   const [search, setSearch] = useState<string>("");
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState<boolean>(true);
   const { data } = useQuery({
     queryKey: ["consumer", "myinfo"],
     queryFn: () => consumerAPI.getMyInfoForStore(),
@@ -51,10 +52,13 @@ export default function Header() {
     if (e.key === "Enter" || e.keycode === 13) {
       if (search.length < 2) {
         toast("2글자 이상 입력해주세요");
+        return;
       }
       router.push(`/search?keyword=${encodeURIComponent(search)}`);
+      setIsSearchBarOpen(false);
     } else {
       setSearch(e.target.value);
+      setIsSearchBarOpen(true);
     }
   };
 
@@ -82,7 +86,7 @@ export default function Header() {
             }}
             src="https://static.lotteon.com/p/common/foCommon/assets/img/icon_search_black.svg"
           />
-          {autoSearchKeyword?.data?.length > 0 && (
+          {autoSearchKeyword?.data?.length > 0 && isSearchBarOpen && (
             <div className={style.autoSearchContainer}>
               {autoSearchKeyword?.data.map((it) => (
                 <ul
