@@ -8,6 +8,7 @@ import consumerAPI from "@/apis/consumer/consumerAPIService";
 import { GetMyAddressListResponseData } from "@/apis/consumer/consumerAPIservice.types";
 import { useState } from "react";
 import AddressSearch from "@/app/_component/AddressSearch";
+import { Alert } from "@/app/_component/Alert";
 
 export default function MyAddressBox({
   item,
@@ -30,7 +31,6 @@ export default function MyAddressBox({
   );
   const [isDefault, setIsDefault] = useState<boolean>(item.isDefault);
 
-  // TODO : alert
   const handleDeleteAddress = async () => {
     try {
       const data = await consumerAPI.deleteMyAddressByAddressId(item.addressId);
@@ -39,6 +39,20 @@ export default function MyAddressBox({
         refetch();
       }
     } catch (error) {}
+  };
+
+  const handleDeleteAddressAlert = async () => {
+    try {
+      Alert({
+        title: "정말로 주소지를 삭제하시겠어요?",
+        text: "삭제시 철회할 수 없어요.",
+        submitBtnText: "삭제하기",
+      }).then((res) => {
+        if (res.isConfirmed) handleDeleteAddress();
+      });
+    } catch (err) {
+      toast("주소지 삭제에 실패했어요.");
+    }
   };
 
   const handleEditAddress = async () => {
@@ -87,7 +101,7 @@ export default function MyAddressBox({
               height: "1rem",
               position: "relative",
             }}
-            onClick={handleDeleteAddress}
+            onClick={handleDeleteAddressAlert}
           />
         </div>
       ) : (
