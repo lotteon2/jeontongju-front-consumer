@@ -55,6 +55,7 @@
   text-align: center;
   line-height: 20vh;
   font-size: 2rem;
+  border-radius: 12px;
 
   @media only screen and (min-width: 200px) and (max-width: 480px) {
     height: 10vh;
