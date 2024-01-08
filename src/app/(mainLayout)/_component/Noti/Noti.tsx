@@ -48,7 +48,9 @@ function Noti() {
         });
 
         eventSource.addEventListener("connect", (event: any) => {
+          const newNoti = event.data;
           console.log(event);
+          setNewNoti((prev) => [JSON.parse(newNoti)]);
           console.log("SSE CONNECTED");
         });
       };
