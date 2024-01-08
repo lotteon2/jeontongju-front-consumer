@@ -16,6 +16,7 @@ import MainProductContainer from "./_component/MainProductContainer";
 import TopButton from "./_component/TopButton/TopButton";
 import CartButton from "./_component/CartButton/CartButton";
 import MainReviewContainer from "./_component/MainReviewContainer";
+import Footer from "./(mainLayout)/_component/Footer/Footer";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -48,6 +49,7 @@ export default async function Page() {
             <Banner type="cost" href="/event/cost" />
             <CartButton />
             <TopButton />
+            <Footer />
           </HydrationBoundary>
         </RQProvider>
       </div>

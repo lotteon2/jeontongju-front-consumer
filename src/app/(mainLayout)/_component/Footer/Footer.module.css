@@ -5,6 +5,7 @@
   width: 100%;
   padding-top: 30px;
   gap: 1rem;
+  margin-top: 10rem;
 
   @media only screen and (min-width: 200px) and (max-width: 480px) {
     flex-direction: column;
