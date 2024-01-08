@@ -1,6 +1,7 @@
 "use client";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
+import { Alert } from "@/app/_component/Alert";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
@@ -16,7 +17,20 @@ export default function MyInfo() {
     }
   }, []);
 
-  //TODO : alert
+  const handleWithDrawalAlert = async () => {
+    try {
+      Alert({
+        title: "정말로 탈퇴하시겠어요?",
+        text: "탈퇴시 철회할 수 없어요.",
+        submitBtnText: "탈퇴하기",
+      }).then((res) => {
+        if (res.isConfirmed) handleWithDrawal();
+      });
+    } catch (err) {
+      toast("탈퇴에 실패했어요.");
+    }
+  };
+
   const handleWithDrawal = async () => {
     try {
       const data = await authAPI.withdrawal();
@@ -30,7 +44,7 @@ export default function MyInfo() {
 
   return (
     <div>
-      <div onClick={handleWithDrawal}>회원 탈퇴</div>
+      <div onClick={handleWithDrawalAlert}>회원 탈퇴</div>
     </div>
   );
 }
