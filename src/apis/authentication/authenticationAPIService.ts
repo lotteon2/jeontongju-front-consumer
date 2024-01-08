@@ -1,4 +1,8 @@
-import { authAxiosInstance, unAuthAxiosInstance } from "../common";
+import {
+  authAxiosInstance,
+  getCookieForRefresh,
+  unAuthAxiosInstance,
+} from "../common";
 import {
   CheckEmailParams,
   CheckEmailResponse,
@@ -24,7 +28,7 @@ const authAPI = {
   refreshAuth: async () => {
     const { data } = await authAxiosInstance.put(
       `/authentication-service/api/access-token`,
-      { cookie: document.cookie }
+      { cookie: getCookieForRefresh() }
     );
     return data;
   },

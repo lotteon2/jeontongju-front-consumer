@@ -46,4 +46,14 @@ authAxiosInstance.interceptors.response.use(
   }
 );
 
-export { authAxiosInstance, unAuthAxiosInstance };
+function getCookieForRefresh() {
+  function escape(s) {
+    return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, "\\$1");
+  }
+  var match = document.cookie.match(
+    RegExp("(?:^|;\\s*)" + escape("refreshToken") + "=([^;]*)")
+  );
+  return match ? match[1] : null;
+}
+
+export { authAxiosInstance, unAuthAxiosInstance, getCookieForRefresh };
