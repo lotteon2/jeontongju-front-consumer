@@ -52,7 +52,20 @@ export default function MyOrderBox({
     }
   };
 
-  //TODO : alert
+  const handleCancelOrderByOrdersIdAlert = async (ordersId: string) => {
+    try {
+      Alert({
+        title: "정말로 주문을 취소하시겠어요?",
+        text: "취소시 철회할 수 없어요.",
+        submitBtnText: "취소하기",
+      }).then((res) => {
+        if (res.isConfirmed) handleCancelOrderByOrdersId(ordersId);
+      });
+    } catch (err) {
+      toast("주문 취소에 실패했어요.");
+    }
+  };
+
   const handleCancelOrderByOrdersId = async (ordersId: string) => {
     try {
       setIsLoading(true);
@@ -96,7 +109,7 @@ export default function MyOrderBox({
                   <div
                     className={style.orderStatusBox}
                     onClick={() =>
-                      handleCancelOrderByOrdersId(params.order?.ordersId)
+                      handleCancelOrderByOrdersIdAlert(params.order?.ordersId)
                     }
                   >
                     주문 전체 취소하기
