@@ -20,10 +20,10 @@ export default function ProductList() {
   );
   const [food, setFoods] = useState<(keyof typeof SNACK)[]>([]);
   const [concepts, setConcepts] = useState<(keyof typeof CONCEPT)[]>([]);
-  const [minPrice, setMinPrice] = useState<number>(null);
-  const [maxPrice, setMaxPrice] = useState<number>(null);
-  const [minAlcoholDegree, setMinAlcoholDegree] = useState<number>(null);
-  const [maxAlcoholDegree, setMaxAlcoholDegree] = useState<number>(null);
+  const [minPrice, setMinPrice] = useState<number>(-1);
+  const [maxPrice, setMaxPrice] = useState<number>(-1);
+  const [minAlcoholDegree, setMinAlcoholDegree] = useState<number>(-1);
+  const [maxAlcoholDegree, setMaxAlcoholDegree] = useState<number>(-1);
 
   const { data, fetchNextPage, hasNextPage, isFetching, refetch } =
     useInfiniteQuery<
@@ -122,7 +122,7 @@ export default function ProductList() {
           <div>원료</div>
           <Select
             mode="multiple"
-            placeholder=""
+            placeholder="원료를 선택해주세요"
             options={RawMaterialOptions}
             onChange={setRawMaterial}
             style={{ width: "100%" }}
@@ -134,7 +134,7 @@ export default function ProductList() {
           <div>잘 어울리는 안주</div>
           <Select
             mode="multiple"
-            placeholder=""
+            placeholder="안주를 선택해주세요"
             options={SnackOptions}
             onChange={setFoods}
             style={{ width: "100%" }}
@@ -146,7 +146,7 @@ export default function ProductList() {
           <div>잘 어울리는 컨셉</div>
           <Select
             mode="multiple"
-            placeholder=""
+            placeholder="컨셉을 선택해주세요"
             options={ConceptOptions}
             onChange={setConcepts}
             style={{ width: "100%" }}

@@ -21,5 +21,5 @@ export const RAW_MATERIAL = {
 
 export const RawMaterialOptions: SelectProps["options"] = [];
 Object.entries(RAW_MATERIAL).forEach(([key, value]) =>
-  RawMaterialOptions.push({ value: key, label: value })
+  RawMaterialOptions.push({ value: value, label: value })
 );

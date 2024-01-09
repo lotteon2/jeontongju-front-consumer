@@ -18,5 +18,5 @@ export const CONCEPT = {
 
 export const ConceptOptions: { value: string; label: string }[] = [];
 Object.entries(CONCEPT).forEach(([key, value]) =>
-  ConceptOptions.push({ value: key, label: value })
+  ConceptOptions.push({ value: value, label: value })
 );
