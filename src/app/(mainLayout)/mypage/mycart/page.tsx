@@ -9,9 +9,12 @@ import { getMyCartList } from "../_lib/getMyCartList";
 import MyCartBox from "../_component/MyCartBox/MyCartBox";
 import wishAPI from "@/apis/wishCart/wishAPIService";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import Loading from "@/app/_component/Loading/Loading";
 
 export default function MyCartpage() {
-  const { data, fetchNextPage, hasNextPage, isFetching, refetch } =
+  const router = useRouter();
+  const { data, fetchNextPage, hasNextPage, isFetching, refetch, isLoading } =
     useInfiniteQuery<
       Page<GetMyCartListResponseData[]>,
       Object,
@@ -39,6 +42,15 @@ export default function MyCartpage() {
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (!localStorage.getItem("accessToken")) {
+        toast("로그인한 유저만 접근할 수 있어요.");
+        router.replace("/");
+      }
+    }
+  }, []);
+
   const handleDeleteAllMyCart = async () => {
     try {
       const data = await wishAPI.deleteAllCart();
@@ -57,19 +69,28 @@ export default function MyCartpage() {
         전체 삭제
       </div>
       <div className={style.myWishList}>
-        {data ? (
+        {data?.pages &&
           data?.pages?.map((page, i) => (
             <Fragment key={i}>
               {page?.content.map((it) => (
                 <MyCartBox key={it.productId} item={it} refetch={refetch} />
               ))}
             </Fragment>
-          ))
-        ) : (
-          <div>장바구니 목록이 없어요</div>
+          ))}
+        {data?.pages[0]?.content.length === 0 && (
+          <div className={style.desc}>
+            <div>장바구니가 비었어요</div>
+            <div
+              className={style.goDesc}
+              onClick={() => router.push("/product/list")}
+            >
+              상품 구경하러가기
+            </div>
+          </div>
         )}
       </div>
       <div ref={ref} style={{ height: 50 }} />
+      {isLoading && <Loading />}
     </div>
   );
 }

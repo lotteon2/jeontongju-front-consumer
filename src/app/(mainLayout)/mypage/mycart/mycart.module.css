@@ -12,4 +12,18 @@
   .myWishList {
     margin-bottom: 2rem;
   }
+
+  .desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .goDesc {
+    padding: 1rem;
+    background-color: #ffa1a1;
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+  }
 }
