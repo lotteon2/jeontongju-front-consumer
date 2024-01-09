@@ -3,11 +3,16 @@ import authAPI from "@/apis/authentication/authenticationAPIService";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import { Alert } from "@/app/_component/Alert";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import style from "@/app/(mainLayout)/mypage/myinfo/myinfo.module.css";
+import EditMyInfo from "./_component/EditMyInfo/EditMyInfo";
+import Withdraw from "./_component/Withdraw/Withdraw";
 
 export default function MyInfo() {
   const router = useRouter();
+  const [selectedMenu, setSelectedMenu] = useState<number>(0);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (!localStorage.getItem("accessToken")) {
@@ -17,34 +22,39 @@ export default function MyInfo() {
     }
   }, []);
 
-  const handleWithDrawalAlert = async () => {
-    try {
-      Alert({
-        title: "정말로 탈퇴하시겠어요?",
-        text: "탈퇴시 철회할 수 없어요.",
-        submitBtnText: "탈퇴하기",
-      }).then((res) => {
-        if (res.isConfirmed) handleWithDrawal();
-      });
-    } catch (err) {
-      toast("탈퇴에 실패했어요.");
-    }
-  };
-
-  const handleWithDrawal = async () => {
-    try {
-      const data = await authAPI.withdrawal();
-      if (data.code === 200) {
-        toast("회원 탈퇴가 완료되었어요.");
-        localStorage.removeItem("accessToken");
-        router.replace("/init/signin");
-      }
-    } catch (error) {}
-  };
-
   return (
-    <div>
-      <div onClick={handleWithDrawalAlert}>회원 탈퇴</div>
+    <div className={style.myInfoPage}>
+      <div className={style.menus}>
+        <div
+          className={selectedMenu === 1 ? style.selected : style.menu}
+          onClick={() => setSelectedMenu(1)}
+        >
+          내 정보 수정하기
+        </div>
+        <div
+          className={selectedMenu === 2 ? style.selected : style.menu}
+          onClick={() => setSelectedMenu(2)}
+        >
+          내 비밀번호 변경하기
+        </div>
+        <div
+          className={selectedMenu === 3 ? style.selected : style.menu}
+          onClick={() => setSelectedMenu(3)}
+        >
+          탈퇴하기
+        </div>
+      </div>
+      <div className={style.myInfoContent}>
+        {selectedMenu === 1 ? (
+          <EditMyInfo />
+        ) : selectedMenu === 2 ? (
+          <div> </div>
+        ) : selectedMenu === 3 ? (
+          <Withdraw />
+        ) : (
+          <div>냥</div>
+        )}
+      </div>
     </div>
   );
 }

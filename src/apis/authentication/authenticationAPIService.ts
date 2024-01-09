@@ -72,10 +72,11 @@ const authAPI = {
     );
     return data;
   },
-  checkMyPasswordIsAuth: async () => {
+  checkMyPasswordIsAuth: async (password: string) => {
     const { data } =
       await authAxiosInstance.post<CheckMyPasswordIsAuthResponse>(
-        `/authentication-service/api/password/auth`
+        `/authentication-service/api/password/auth`,
+        { originalPassword: password }
       );
     return data;
   },

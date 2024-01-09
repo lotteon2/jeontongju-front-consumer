@@ -1,0 +1,48 @@
+.myInfoPage {
+  display: flex;
+  gap: 1rem;
+
+  .menus {
+    flex: 1;
+    border-right: 1px solid gray;
+
+    .menu {
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+
+    .menu:hover {
+      margin-bottom: 1rem;
+      color: #ffa1a1;
+    }
+
+    .selected {
+      margin-bottom: 1rem;
+      color: #ffa1a1;
+    }
+  }
+  .myInfoContent {
+    flex: 3;
+  }
+
+  .editMyInfo {
+    .checkPasswordInput {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
+
+  .withDraw {
+    .withDrawButton {
+      color: #c0c0c0;
+      padding: 1rem;
+      margin-top: 10rem;
+    }
+
+    .withDrawButton:hover {
+      color: red;
+    }
+  }
+}
