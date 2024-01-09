@@ -167,7 +167,7 @@ export default function Header() {
               width={32}
               height={32}
               style={{ cursor: "pointer" }}
-              src={FiSrAltActiveSvg}
+              src={FiSrProductsSvg}
             />
             <div>전체 상품</div>
           </Link>
@@ -179,7 +179,7 @@ export default function Header() {
               style={{
                 cursor: "pointer",
               }}
-              src={FiSrProductsSvg}
+              src={FiSrAltSvg}
             />
             <div>쇼츠</div>
           </Link>
