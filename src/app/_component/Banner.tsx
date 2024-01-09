@@ -23,18 +23,21 @@ export default function Banner({
       } else {
         const data = await couponAPI.getCoupon();
         if (data.code === 200) {
-          toast("쿠폰이 발급되었어요");
           console.log(data);
           if (!data.data.isOpen) {
             toast("아직 오픈 전이에요");
+            return;
           } else if (data.data.isSoldOut) {
             toast("쿠폰이 매진되었어요");
+            return;
           } else if (data.data.isDuplicated) {
             toast("쿠폰은 한 장만 발급받을 수 있어요.");
             return;
+          } else {
+            toast("쿠폰이 발급되었어요.");
+            return;
           }
         }
-        return data;
       }
     }
   };
