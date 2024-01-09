@@ -83,7 +83,7 @@ const searchAPI = {
     concept?: (keyof typeof CONCEPT)[]
   ) => {
     const { data } = await authAxiosInstance.get<GetAllProductsResponse>(
-      `/search-service/api/products/all??page=${page}&sort=${sort}&size=${size}&rawMaterial=${rawMaterial}&food=${food}&minPrice=${minPrice}&maxPrice=${maxPrice}&minAlcoholDegree=${minAlcoholDegree}&maxAlcoholDegree=${maxAlcoholDegree}&concept=${concept}`
+      `/search-service/api/products/all?page=${page}&sort=${sort}&size=${size}&rawMaterial=${rawMaterial}&food=${food}&minPrice=${minPrice}&maxPrice=${maxPrice}&minAlcoholDegree=${minAlcoholDegree}&maxAlcoholDegree=${maxAlcoholDegree}&concept=${concept}`
     );
     return data.data;
   },
