@@ -96,82 +96,84 @@ export default function ProductList() {
   };
 
   return (
-    <div className={style.productList}>
-      <div className={style.productSideBar}>
-        <div>
-          <div>도수별(0~100)</div>
-          <Slider
-            min={0}
-            max={100}
-            range
-            step={10}
-            onChangeComplete={onChangeComplete}
-          />
+    <div>
+      <div className={style.productList}>
+        <div className={style.productSideBar}>
+          <div>
+            <div>도수별(0~100)</div>
+            <Slider
+              min={0}
+              max={100}
+              range
+              step={10}
+              onChangeComplete={onChangeComplete}
+            />
+          </div>
+          <div>
+            <div>가격별(0~1,000,000)</div>
+            <Slider
+              min={0}
+              max={1000000}
+              range
+              step={100}
+              onChangeComplete={onChangeCompletePrice}
+            />
+          </div>
+          <div>
+            <div>원료</div>
+            <Select
+              mode="multiple"
+              placeholder="원료를 선택해주세요"
+              options={RawMaterialOptions}
+              onChange={setRawMaterial}
+              style={{ width: "100%" }}
+              value={rawMaterial}
+              allowClear
+            />
+          </div>
+          <div>
+            <div>잘 어울리는 안주</div>
+            <Select
+              mode="multiple"
+              placeholder="안주를 선택해주세요"
+              options={SnackOptions}
+              onChange={setFoods}
+              style={{ width: "100%" }}
+              value={food}
+              allowClear
+            />
+          </div>
+          <div>
+            <div>잘 어울리는 컨셉</div>
+            <Select
+              mode="multiple"
+              placeholder="컨셉을 선택해주세요"
+              options={ConceptOptions}
+              onChange={setConcepts}
+              style={{ width: "100%" }}
+              value={concepts}
+              allowClear
+            />
+          </div>
         </div>
-        <div>
-          <div>가격별(0~1,000,000)</div>
-          <Slider
-            min={0}
-            max={1000000}
-            range
-            step={100}
-            onChangeComplete={onChangeCompletePrice}
-          />
+        <div className={style.productRightBar}>
+          {data?.pages.map((page, i) => (
+            <Fragment key={i}>
+              {page.content.map((product) => (
+                <ProductContainer
+                  productName={product.productName}
+                  productId={product.productId}
+                  productImg={product.productThumbnailImageUrl}
+                  price={product.productPrice}
+                  capacityToPriceRatio={product.capacityToPriceRatio}
+                  key={product.productId}
+                  isLikes={product.isLikes}
+                  refetch={refetch}
+                />
+              ))}
+            </Fragment>
+          ))}
         </div>
-        <div>
-          <div>원료</div>
-          <Select
-            mode="multiple"
-            placeholder="원료를 선택해주세요"
-            options={RawMaterialOptions}
-            onChange={setRawMaterial}
-            style={{ width: "100%" }}
-            value={rawMaterial}
-            allowClear
-          />
-        </div>
-        <div>
-          <div>잘 어울리는 안주</div>
-          <Select
-            mode="multiple"
-            placeholder="안주를 선택해주세요"
-            options={SnackOptions}
-            onChange={setFoods}
-            style={{ width: "100%" }}
-            value={food}
-            allowClear
-          />
-        </div>
-        <div>
-          <div>잘 어울리는 컨셉</div>
-          <Select
-            mode="multiple"
-            placeholder="컨셉을 선택해주세요"
-            options={ConceptOptions}
-            onChange={setConcepts}
-            style={{ width: "100%" }}
-            value={concepts}
-            allowClear
-          />
-        </div>
-      </div>
-      <div className={style.productRightBar}>
-        {data?.pages.map((page, i) => (
-          <Fragment key={i}>
-            {page.content.map((product) => (
-              <ProductContainer
-                productName={product.productName}
-                productId={product.productId}
-                productImg={product.productThumbnailImageUrl}
-                price={product.productPrice}
-                capacityToPriceRatio={product.capacityToPriceRatio}
-                key={product.productId}
-                isLikes={product.isLikes}
-                refetch={refetch}
-              />
-            ))}
-          </Fragment>
-        ))}
         <div ref={ref} style={{ height: 50 }} />
       </div>
     </div>

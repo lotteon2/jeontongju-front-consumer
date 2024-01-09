@@ -1,7 +1,4 @@
 .productList {
-  position: relative;
-  height: 100vh;
-
   .productSideBar {
     display: flex;
     flex-direction: column;

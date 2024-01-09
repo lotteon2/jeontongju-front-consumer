@@ -3,6 +3,7 @@ import styles from "@/app/page.module.css";
 import Script from "next/script";
 import Link from "next/link";
 import NextServer from "next/script";
+import Footer from "../(mainLayout)/_component/Footer/Footer";
 
 export default function LoginLayout({
   children,
@@ -16,6 +17,7 @@ export default function LoginLayout({
         <a href="/">LOGO</a>
       </header>
       {children}
+      <Footer />
       <Script
         src="https://code.jquery.com/jquery-1.12.4.min.js"
         strategy="worker"
