@@ -26,7 +26,7 @@ function Noti() {
         "https://jeontongju-dev.shop/notification-service/api/notifications/connect",
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `${accessToken}`,
             Connection: "keep-alive",
             Accept: "text/event-stream",
           },
