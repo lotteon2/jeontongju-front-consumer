@@ -19,5 +19,5 @@ export const SNACK = {
 
 export const SnackOptions: { value: string; label: string }[] = [];
 Object.entries(SNACK).forEach(([key, value]) =>
-  SnackOptions.push({ value: value, label: value })
+  SnackOptions.push({ value: key, label: value })
 );
