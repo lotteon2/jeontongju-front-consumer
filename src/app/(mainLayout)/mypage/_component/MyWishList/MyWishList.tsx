@@ -53,7 +53,7 @@ export default function MyWishList() {
       </div>
       <div className={style.listBody}>
         {!isLoading ? (
-          data?.content ? (
+          data?.content?.slice(0, 5)?.length > 0 ? (
             data.content.slice(0, 5)?.map((it, i) => (
               <Fragment key={i}>
                 <ProductContainer

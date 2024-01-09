@@ -41,22 +41,22 @@ export default function EditMyPassword() {
     setOriginalPassword(e.target.value);
   };
 
-  const handleUpdatePassword =async () => {
+  const handleUpdatePassword = async () => {
     try {
       const data = await authAPI.updateMyPasswordAfterLogin(newPassword);
-      if(data.code === 200) {
-        toast("비밀번호가 변경되었어요.")
+      if (data.code === 200) {
+        toast("비밀번호가 변경되었어요.");
       }
     } catch (error) {
-      toast("비밀번호 변경에 실패했어요.")
+      toast("비밀번호 변경에 실패했어요.");
     }
   };
 
   const handlePasswordIsSame = () => {
     if (newPassword === checkNewPassword) {
+      setIsAbleToPassword(true);
       toast("비밀번호가 일치해요.");
-    }
-    else toast("비밀번호가 일치하지 않아요.");
+    } else toast("비밀번호가 일치하지 않아요.");
   };
 
   return (
@@ -93,8 +93,12 @@ export default function EditMyPassword() {
               </Button>
             </div>
             <div>
-              {isAbleToUpdatePassword && <Button onClick={handleUpdatePassword} >비밀번호 변경하기</Button>}
-              </div>
+              {isAbleToUpdatePassword && (
+                <Button onClick={handleUpdatePassword}>
+                  비밀번호 변경하기
+                </Button>
+              )}
+            </div>
           </div>
         ) : (
           <div>
