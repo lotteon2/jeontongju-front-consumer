@@ -3,10 +3,18 @@ import { Button, Input } from "antd";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import style from "@/app/(mainLayout)/mypage/myinfo/myinfo.module.css";
+import ImageUploader from "@/app/_component/ImageUploader";
+import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 
 export default function EditMyInfo() {
   const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [imageUrl, setImageUrl] = useState<string>("");
   const [originalPassword, setOriginalPassword] = useState<string>("");
+
+  const [profileImageUrl, isSocial] = useMyInfoStore((state) => [
+    state.profileImageUrl,
+    state.isSocial,
+  ]);
 
   const checkIsAuth = async () => {
     try {
@@ -30,7 +38,12 @@ export default function EditMyInfo() {
   return (
     <div className={style.editMyInfo}>
       {isAuth ? (
-        <div>냥</div>
+        <div>
+          <ImageUploader
+            imageUrl={imageUrl || profileImageUrl}
+            setImageUrl={setImageUrl}
+          />
+        </div>
       ) : (
         <div>
           <div>기존 비밀번호를 입력해주세요</div>

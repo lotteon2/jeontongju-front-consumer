@@ -59,6 +59,7 @@ export type GetMyInfoForStoreResponseData = {
   isAddressDefault: boolean;
   memberId: number;
   isPaymentReservation: boolean;
+  isSocial: boolean;
 };
 
 export type GetMyMembershipResponseData = {
@@ -105,3 +106,4 @@ export type EditMyAddressResponse = ApiResponse<string>;
 export type GetMyPointForOrderResponse = ApiResponse<{
   availablePoints: number;
 }>;
+export type EditMyProfileImgResponse = ApiResponse<string>;

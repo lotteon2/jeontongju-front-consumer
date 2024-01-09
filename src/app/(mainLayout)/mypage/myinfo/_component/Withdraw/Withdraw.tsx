@@ -3,9 +3,18 @@ import { Alert } from "@/app/_component/Alert";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import { toast } from "react-toastify";
 import style from "@/app/(mainLayout)/mypage/myinfo/myinfo.module.css";
+import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import consumerAPI from "@/apis/consumer/consumerAPIService";
+import Loading from "@/app/_component/Loading/Loading";
 
 export default function Withdraw() {
-  const name = useMyInfoStore((state) => state.name);
+  const router = useRouter();
+
+  const { data, refetch, isLoading } = useQuery({
+    queryKey: ["consumer", "myinfo"],
+    queryFn: () => consumerAPI.getMyInfoForStore(),
+  });
 
   const handleWithDrawal = async () => {
     try {
@@ -13,6 +22,7 @@ export default function Withdraw() {
       if (data.code === 200) {
         toast("회원 탈퇴가 완료되었어요.");
         localStorage.removeItem("accessToken");
+        refetch();
         router.replace("/init/signin");
       }
     } catch (error) {}
@@ -35,7 +45,7 @@ export default function Withdraw() {
   return (
     <div className={style.withDraw}>
       <div>
-        <h2>{name}님, 탈퇴하기 전에 확인해주세요. </h2>
+        <h2>{data?.data.name}님, 탈퇴하기 전에 확인해주세요. </h2>
         <article>
           <h3>멤버십 안내</h3>
           <ul>멤버십 가입 기간과 상관없이 환불되지 않아요.</ul>
@@ -55,8 +65,11 @@ export default function Withdraw() {
           </ul>
           <ul>새로운 아이디로 가입하여 서비스를 이용해주세요.</ul>
         </article>
-        <div className={style.withDrawButton} onClick={handleWithDrawalAlert}>그럼에도 불구하고 탈퇴하기</div>
+        <div className={style.withDrawButton} onClick={handleWithDrawalAlert}>
+          그럼에도 불구하고 탈퇴하기
+        </div>
       </div>
+      {isLoading && <Loading />}
     </div>
   );
 }

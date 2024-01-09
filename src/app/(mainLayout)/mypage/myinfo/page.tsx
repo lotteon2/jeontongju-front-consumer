@@ -8,11 +8,11 @@ import { toast } from "react-toastify";
 import style from "@/app/(mainLayout)/mypage/myinfo/myinfo.module.css";
 import EditMyInfo from "./_component/EditMyInfo/EditMyInfo";
 import Withdraw from "./_component/Withdraw/Withdraw";
+import { useQuery } from "@tanstack/react-query";
 
 export default function MyInfo() {
   const router = useRouter();
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (!localStorage.getItem("accessToken")) {
@@ -29,7 +29,7 @@ export default function MyInfo() {
           className={selectedMenu === 1 ? style.selected : style.menu}
           onClick={() => setSelectedMenu(1)}
         >
-          내 정보 수정하기
+          내 이미지 수정하기
         </div>
         <div
           className={selectedMenu === 2 ? style.selected : style.menu}

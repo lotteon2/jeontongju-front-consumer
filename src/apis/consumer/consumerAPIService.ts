@@ -14,6 +14,7 @@ import {
   EditMyAddressResponse,
   GetMyAddressForOrderResponse,
   GetMyPointForOrderResponse,
+  EditMyProfileImgResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -104,6 +105,13 @@ const consumerAPI = {
     const { data } = await authAxiosInstance.post<GetMyPointForOrderResponse>(
       `/consumer-service/api/consumers/points-available`,
       { totalAmount }
+    );
+    return data;
+  },
+  editMyProfileImg: async (profileImageUrl: string) => {
+    const { data } = await authAxiosInstance.post<EditMyProfileImgResponse>(
+      `/consumer-service/api/consumers`,
+      { profileImageUrl }
     );
     return data;
   },
