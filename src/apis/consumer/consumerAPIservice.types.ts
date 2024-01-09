@@ -58,6 +58,7 @@ export type GetMyInfoForStoreResponseData = {
   phoneNumber: string;
   isAddressDefault: boolean;
   memberId: number;
+  isPaymentReservation: boolean;
 };
 
 export type GetMyMembershipResponseData = {
@@ -91,9 +92,16 @@ export type GetMyMembershipResponse = ApiResponse<
 export type GetMyAddressListResponse = ApiResponse<
   GetMyAddressListResponseData[]
 >;
+export type GetMyAddressForOrderResponse =
+  ApiResponse<GetMyAddressListResponseData>;
 
 export type GetMyAddressByAddressIdResponse =
   ApiResponse<GetMyAddressListResponseData>;
 
 export type DeleteMyAddressByAddressIdResponse = ApiResponse<string>;
 export type AddAddressResponse = ApiResponse<string>;
+export type StopSubScriptionResponse = ApiResponse<string>;
+export type EditMyAddressResponse = ApiResponse<string>;
+export type GetMyPointForOrderResponse = ApiResponse<{
+  availablePoints: number;
+}>;

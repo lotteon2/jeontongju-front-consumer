@@ -27,13 +27,18 @@ export default function MainShortsContainer() {
           className={style.goList}
           onClick={() => router.push("/shorts/list")}
         >
-          더 많은 쇼츠 보러가기
+          더 많은 쇼츠 보러가기 {">"}
         </div>
       </div>
 
       <div className={style.shortsContainer}>
         {data?.map((short) => (
-          <ShortsDetail short={short} key={short.shortsId} isMain={true} />
+          <ShortsDetail
+            params={{ id: short.shortsId }}
+            shorts={short}
+            key={short.shortsId}
+            isMain={true}
+          />
         ))}
       </div>
     </div>

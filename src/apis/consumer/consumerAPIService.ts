@@ -10,6 +10,10 @@ import {
   DeleteMyAddressByAddressIdResponse,
   GetMyAddressListResponseData,
   AddAddressResponse,
+  StopSubScriptionResponse,
+  EditMyAddressResponse,
+  GetMyAddressForOrderResponse,
+  GetMyPointForOrderResponse,
 } from "./consumerAPIservice.types";
 
 const consumerAPI = {
@@ -47,6 +51,12 @@ const consumerAPI = {
     );
     return data;
   },
+  getMyAddressForOrder: async () => {
+    const { data } = await authAxiosInstance.get<GetMyAddressForOrderResponse>(
+      `/consumer-service/api/consumers/addresses`
+    );
+    return data;
+  },
   getMyAddressList: async () => {
     const { data } = await authAxiosInstance.get<GetMyAddressListResponse>(
       `/consumer-service/api/consumers/addresses`
@@ -63,7 +73,7 @@ const consumerAPI = {
   deleteMyAddressByAddressId: async (addressId: number) => {
     const { data } =
       await authAxiosInstance.delete<DeleteMyAddressByAddressIdResponse>(
-        `/consumer-service/api/consumers/addresses/${addressId}`
+        `/consumer-service/api/consumers/address/${addressId}`
       );
     return data;
   },
@@ -71,6 +81,29 @@ const consumerAPI = {
     const { data } = await authAxiosInstance.post<AddAddressResponse>(
       `/consumer-service/api/consumers/addresses`,
       params
+    );
+    return data;
+  },
+  editMyAddress: async (
+    addressId: number,
+    params: GetMyAddressListResponseData
+  ) => {
+    const { data } = await authAxiosInstance.put<EditMyAddressResponse>(
+      `/consumer-service/api/consumers/addresses/${addressId}`,
+      params
+    );
+    return data;
+  },
+  stopSubscription: async () => {
+    const { data } = await authAxiosInstance.delete<StopSubScriptionResponse>(
+      `/consumer-service/api/consumers/subscription`
+    );
+    return data;
+  },
+  getMyPointForOrder: async (totalAmount: number) => {
+    const { data } = await authAxiosInstance.post<GetMyPointForOrderResponse>(
+      `/consumer-service/api/consumers/points-available`,
+      { totalAmount }
     );
     return data;
   },

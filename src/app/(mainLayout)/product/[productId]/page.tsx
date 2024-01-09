@@ -10,8 +10,9 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GetProductDetailByProductIdResponseData } from "@/apis/search/searchAPIService.types";
 import { useRouter } from "next/navigation";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import wishAPI from "@/apis/wishCart/wishAPIService";
+import ProductReviewContainer from "../_component/ProductReviewContainer/ProductReviewContainer";
 
 type Props = {
   params: { productId: string };
@@ -33,13 +34,11 @@ export default function Page({ params }: Props) {
   );
 
   const handleClickCounter = (num: number) => {
-    console.log(num);
     setQuantity((prev) => (prev as number) + num);
     setTotal((prev) => prev + productData.productPrice * num);
   };
 
   const handleBlurInput = (quantity: number) => {
-    console.log(quantity);
     const newQuantity = quantity;
     setQuantity(newQuantity);
     setTotal(productData.productPrice * newQuantity);
@@ -140,6 +139,9 @@ export default function Page({ params }: Props) {
                       products: JSON.stringify([
                         {
                           productId,
+                          productImg: productData.productThumbnailImageUrl,
+                          productName: productData.productName,
+                          productPrice: productData.productPrice,
                           productCount: quantity,
                         },
                       ]),
@@ -226,7 +228,7 @@ export default function Page({ params }: Props) {
                 )}
               </>
             ) : selectedMenu === 1 ? (
-              <div>리뷰 </div>
+              <ProductReviewContainer productId={productId} />
             ) : (
               <div>
                 <h2>판매자정보</h2>

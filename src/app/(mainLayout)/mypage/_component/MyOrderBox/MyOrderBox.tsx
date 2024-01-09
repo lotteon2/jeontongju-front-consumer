@@ -9,22 +9,41 @@ import orderAPI from "@/apis/order/orderAPIService";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { ORDER_STATE, translateOrderState } from "@/constants/OrderStatusEnum";
+import { Alert } from "@/app/_component/Alert";
 
 export default function MyOrderBox({
   params,
+  refetch,
 }: {
   params: GetMyOrderListResponseData;
+  refetch: () => void;
 }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  //TODO : alert
+  const handleCancelOrderByProductOrderIdAlert = async (
+    productOrderId: number
+  ) => {
+    try {
+      Alert({
+        title: "정말로 결제를 취소하시겠어요?",
+        text: "취소시 철회할 수 없어요.",
+        submitBtnText: "취소하기",
+      }).then((res) => {
+        if (res.isConfirmed) handleCancelOrderByProductOrderId(productOrderId);
+      });
+    } catch (err) {
+      toast("결제 취소에 실패했어요.");
+    }
+  };
+
   const handleCancelOrderByProductOrderId = async (productOrderId: number) => {
     try {
       setIsLoading(true);
       const data = await orderAPI.cancelMyOrderByProductOrderId(productOrderId);
       if (data.code === 200) {
         toast("결제 취소에 성공했어요.");
+        refetch();
       }
     } catch (error) {
       toast("결제 취소에 실패했어요");
@@ -33,13 +52,27 @@ export default function MyOrderBox({
     }
   };
 
-  //TODO : alert
+  const handleCancelOrderByOrdersIdAlert = async (ordersId: string) => {
+    try {
+      Alert({
+        title: "정말로 주문을 취소하시겠어요?",
+        text: "취소시 철회할 수 없어요.",
+        submitBtnText: "취소하기",
+      }).then((res) => {
+        if (res.isConfirmed) handleCancelOrderByOrdersId(ordersId);
+      });
+    } catch (err) {
+      toast("주문 취소에 실패했어요.");
+    }
+  };
+
   const handleCancelOrderByOrdersId = async (ordersId: string) => {
     try {
       setIsLoading(true);
       const data = await orderAPI.cancelMyOrderByOrderId(ordersId);
       if (data.code === 200) {
         toast("주문 취소에 성공했어요.");
+        refetch();
       }
     } catch (error) {
       toast("주문 취소에 실패했어요");
@@ -55,6 +88,7 @@ export default function MyOrderBox({
       const data = await orderAPI.confirmMyOrderByOrderId(productOrderId);
       if (data.code === 200) {
         toast("주문 확정에 성공했어요.");
+        refetch();
       }
     } catch (error) {
       toast("주문 확정에 실패했어요");
@@ -75,7 +109,7 @@ export default function MyOrderBox({
                   <div
                     className={style.orderStatusBox}
                     onClick={() =>
-                      handleCancelOrderByOrdersId(params.order?.ordersId)
+                      handleCancelOrderByOrdersIdAlert(params.order?.ordersId)
                     }
                   >
                     주문 전체 취소하기
@@ -111,15 +145,31 @@ export default function MyOrderBox({
                   <strong>
                     {translateOrderState(item.productOrderStatus)}
                   </strong>
-                  <div
-                    className={style.orderStatusBox}
-                    onClick={() =>
-                      handleCancelOrderByProductOrderId(item.productOrderId)
-                    }
-                  >
-                    {item.productOrderStatus === ORDER_STATE.ORDER &&
-                      "취소하기"}
-                  </div>
+
+                  {item.productOrderStatus === ORDER_STATE.ORDER && (
+                    <div
+                      className={style.orderStatusBox}
+                      onClick={() =>
+                        handleCancelOrderByProductOrderIdAlert(
+                          item.productOrderId
+                        )
+                      }
+                    >
+                      취소하기
+                    </div>
+                  )}
+                  {item.isReviewAllowed && (
+                    <div
+                      className={style.orderStatusBox}
+                      onClick={() =>
+                        router.push(
+                          `/review/create/${item.productId}/${item.productOrderId}`
+                        )
+                      }
+                    >
+                      리뷰 적기
+                    </div>
+                  )}
                 </div>
                 <div
                   className={style.orderStatusBox}

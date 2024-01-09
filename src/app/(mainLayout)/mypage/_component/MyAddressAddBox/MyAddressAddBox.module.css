@@ -5,6 +5,14 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
+
+  .input::-webkit-input-placeholder {
+    font-family: "Jua";
+  }
+  .input::placeholder {
+    font-family: "Jua";
+  }
 
   .inputLabel:focus-within {
     color: red;
@@ -33,6 +41,12 @@
     border-radius: 12px;
     white-space: nowrap;
     background-color: #ffa1a1;
-    width: 3rem;
+    width: 5rem;
+    font-family: "__Jua_fe7685";
+  }
+
+  .addButton:disabled {
+    background-color: #c0c0c0;
+    cursor: none;
   }
 }

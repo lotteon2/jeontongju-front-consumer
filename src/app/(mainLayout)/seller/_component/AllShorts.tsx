@@ -56,8 +56,9 @@ export default function AllShorts({ sellerId }: { sellerId: number }) {
                   }}
                 >
                   <ShortsDetail
+                    params={{ id: short.shortsId }}
                     key={short.shortsId}
-                    short={short}
+                    shorts={short}
                     isMain={true}
                   />
                 </div>

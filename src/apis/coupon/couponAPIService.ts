@@ -1,6 +1,7 @@
 import { authAxiosInstance } from "../common";
 import {
   GetCouponResponse,
+  GetMyCouponListForOrderResponse,
   GetMyCouponListResponse,
 } from "./couponAPIService.types";
 
@@ -16,6 +17,14 @@ const couponAPI = {
       `/coupon-service/api/coupons?search=${sort}&page=${page}&size=${size}`
     );
     return data.data;
+  },
+  getMyCouponListForOrder: async (totalAmount: number) => {
+    const { data } =
+      await authAxiosInstance.post<GetMyCouponListForOrderResponse>(
+        `/coupon-service/api/consumers/coupons-count`,
+        { totalAmount }
+      );
+    return data;
   },
 };
 

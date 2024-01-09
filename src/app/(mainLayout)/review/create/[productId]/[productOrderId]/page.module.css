@@ -1,0 +1,43 @@
+.addReviewPage {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.productName {
+  font-size: 2rem;
+}
+
+.input {
+  resize: none;
+  height: 20rem;
+  border-radius: 12px;
+  font-size: 17px;
+  margin-top: 16px;
+  padding: 0.6rem;
+  outline: none;
+  border: 1px solid #ccc;
+  width: 80%;
+  font-family: "Jua";
+}
+
+.button {
+  margin: 2rem;
+  width: 4rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1rem;
+  background-color: #ffa1a1;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 900;
+}
+
+.button:disabled {
+  background-color: #c0c0c0;
+  cursor: none;
+}

@@ -21,7 +21,6 @@ export default function MemberShip() {
 
   const handleMembershipPay = async () => {
     if (!isRegularPayment) {
-      console.log("here");
       const params = {
         paymentType: "SUBSCRIPTION",
         paymentMethod: "KAKAO",
@@ -65,7 +64,7 @@ export default function MemberShip() {
                   alt="delivery"
                   width={0}
                   height={0}
-                  style={{ cursor: "pointer", width: "30%", height: "30%" }}
+                  style={{ width: "30%", height: "30%" }}
                 ></Image>
               </div>
               <div className={style.benefitSection__gift}>
@@ -76,7 +75,7 @@ export default function MemberShip() {
                   alt="gift"
                   width={0}
                   height={0}
-                  style={{ cursor: "pointer", width: "30%", height: "30%" }}
+                  style={{ width: "30%", height: "30%" }}
                 ></Image>
               </div>
               <div className={style.benefitSection__point}>
@@ -87,7 +86,7 @@ export default function MemberShip() {
                   alt="gift"
                   width={0}
                   height={0}
-                  style={{ cursor: "pointer", width: "30%", height: "30%" }}
+                  style={{ width: "30%", height: "30%" }}
                 ></Image>
               </div>
             </section>

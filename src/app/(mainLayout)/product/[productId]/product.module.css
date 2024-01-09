@@ -120,6 +120,12 @@
     padding: 1rem 2rem;
     border-radius: 3px;
     cursor: pointer;
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      font-size: 0.7rem;
+      height: 2rem;
+      line-height: 2rem;
+      white-space: nowrap;
+    }
   }
 
   .selected {
@@ -128,6 +134,12 @@
     border-radius: 3px;
     color: white;
     cursor: pointer;
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      font-size: 0.7rem;
+      height: 2rem;
+      line-height: 2rem;
+      white-space: nowrap;
+    }
   }
 }
 

@@ -1,14 +1,20 @@
-import { authAxiosInstance, unAuthAxiosInstance } from "../common";
+import {
+  authAxiosInstance,
+  getCookieForRefresh,
+  unAuthAxiosInstance,
+} from "../common";
 import {
   CheckEmailParams,
   CheckEmailResponse,
   CheckMyEmailResponse,
+  CheckMyPasswordIsAuthResponse,
   SignInParams,
   SignInResponse,
   SignUpParams,
   SignUpResponse,
   UpdateMyPasswordBeforeLoginResponse,
   UpdateMyPasswordParams,
+  WithDrawalResponse,
 } from "./authenticationAPIService.types";
 
 const authAPI = {
@@ -21,7 +27,8 @@ const authAPI = {
   },
   refreshAuth: async () => {
     const { data } = await authAxiosInstance.put(
-      `/authentication-service/api/access-token`
+      `/authentication-service/api/access-token`,
+      { cookie: getCookieForRefresh() }
     );
     return data;
   },
@@ -56,6 +63,19 @@ const authAPI = {
       await unAuthAxiosInstance.patch<UpdateMyPasswordBeforeLoginResponse>(
         "/authentication-service/api/password",
         { ...params, memberRole: "ROLE_CONSUMER" }
+      );
+    return data;
+  },
+  withdrawal: async () => {
+    const { data } = await authAxiosInstance.delete<WithDrawalResponse>(
+      `/authentication-service/api/consumers`
+    );
+    return data;
+  },
+  checkMyPasswordIsAuth: async () => {
+    const { data } =
+      await authAxiosInstance.post<CheckMyPasswordIsAuthResponse>(
+        `/authentication-service/api/password/auth`
       );
     return data;
   },

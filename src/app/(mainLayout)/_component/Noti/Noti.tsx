@@ -7,10 +7,12 @@ import Image from "next/image";
 import notificationAPI from "@/apis/notification/notificationAPIService";
 import { toast } from "react-toastify";
 import { NOTI, translateNoti } from "@/constants/NotiEnum";
+import { useRouter } from "next/navigation";
 
 function Noti() {
+  const router = useRouter();
   const [newNoti, setNewNoti] = useState<
-    { notificationId: number; data: keyof typeof NOTI }[]
+    { notificationId: number; data: keyof typeof NOTI; redirectUrl: string }[]
   >([]);
   const [notiOpen, setNotiOpen] = useState<boolean>(false);
 
@@ -24,7 +26,7 @@ function Noti() {
         "https://jeontongju-dev.shop/notification-service/api/notifications/connect",
         {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `${accessToken}`,
             Connection: "keep-alive",
             Accept: "text/event-stream",
           },
@@ -41,12 +43,17 @@ function Noti() {
 
         eventSource.addEventListener("happy", (event: any) => {
           const newNoti = event.data;
-          console.log("HI");
+          console.log(event);
           setNewNoti((prev) => [...prev, JSON.parse(newNoti)]);
         });
 
         eventSource.addEventListener("connect", (event: any) => {
+          const newNoti = event.data;
+          if (JSON.parse(newNoti).notificationId !== null) {
+            setNewNoti((prev) => [JSON.parse(newNoti)]);
+          }
           console.log(event);
+          // setNewNoti((prev) => [JSON.parse(newNoti)]);
           console.log("SSE CONNECTED");
         });
       };
@@ -58,11 +65,12 @@ function Noti() {
     }
   }, []);
 
-  const handleClickByNotificationId = async (id: number) => {
+  const handleClickByNotificationId = async (id: number, url: string) => {
     try {
       const data = await notificationAPI.clickNoti(id);
       if (data.code === 200) {
         console.log("알림 읽음 처리 완료");
+        router.replace(url);
         toast("알림이 읽음 처리되었어요");
       }
     } catch (error) {
@@ -113,7 +121,9 @@ function Noti() {
               <div
                 className={styles.alarmDiv}
                 key={i}
-                onClick={() => handleClickByNotificationId(it.notificationId)}
+                onClick={() =>
+                  handleClickByNotificationId(it.notificationId, it.redirectUrl)
+                }
               >
                 {translateNoti(it.data)}
               </div>

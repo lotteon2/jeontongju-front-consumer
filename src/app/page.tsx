@@ -1,7 +1,5 @@
-import loadingImg from "/public/loading.gif";
-import Image from "next/image";
+import "@/app/(mainLayout)/globals.css";
 import style from "@/app/page.module.css";
-import Link from "next/link";
 import AuctionContainer from "./_component/AuctionContainer";
 import auctionAPI from "@/apis/auction/auctionAPIService";
 import {
@@ -12,11 +10,13 @@ import {
 import RQProvider from "./(mainLayout)/_component/RQProvider";
 import Banner from "./_component/Banner";
 import Header from "./(mainLayout)/_component/Header/Header";
-import couponAPI from "@/apis/coupon/couponAPIService";
-import { toast } from "react-toastify";
-import ShortsList from "./(mainLayout)/shorts/list/page";
 import productAPI from "@/apis/product/productAPIService";
 import MainShortsContainer from "./_component/MainShortsContainer";
+import MainProductContainer from "./_component/MainProductContainer";
+import TopButton from "./_component/TopButton/TopButton";
+import CartButton from "./_component/CartButton/CartButton";
+import MainReviewContainer from "./_component/MainReviewContainer";
+import Footer from "./(mainLayout)/_component/Footer/Footer";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -43,8 +43,13 @@ export default async function Page() {
             <Banner type="membership" href="/membership/buy" />
             <MainShortsContainer />
             <Banner type="coupon" />
+            <MainProductContainer />
             <Banner type="crop" href="/event/crop" />
+            <MainReviewContainer />
             <Banner type="cost" href="/event/cost" />
+            <CartButton />
+            <TopButton />
+            <Footer />
           </HydrationBoundary>
         </RQProvider>
       </div>

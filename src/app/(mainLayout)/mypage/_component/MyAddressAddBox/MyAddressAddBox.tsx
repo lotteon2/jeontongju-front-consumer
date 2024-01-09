@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import style from "@/app/(mainLayout)/mypage/_component/MyAddressAddBox/MyAddressAddBox.module.css";
 import AddressSearch from "@/app/_component/AddressSearch";
 type Props = {
+  isDisableToAddAddress: boolean;
   recipientName: string;
   setRecipientName: Dispatch<SetStateAction<string>>;
   phoneNumber: string;
@@ -17,6 +18,7 @@ type Props = {
   setAddressDetail: Dispatch<SetStateAction<string>>;
 };
 export default function MyAddressAddBox({
+  isDisableToAddAddress,
   recipientName,
   setRecipientName,
   phoneNumber,
@@ -62,9 +64,13 @@ export default function MyAddressAddBox({
         />
         <label id="isDefault">기본 배송지로 선택</label>
       </div>
-      <div onClick={addAddress} className={style.addButton}>
+      <button
+        disabled={isDisableToAddAddress}
+        onClick={addAddress}
+        className={style.addButton}
+      >
         추가하기
-      </div>
+      </button>
     </div>
   );
 }

@@ -1,0 +1,50 @@
+.select::-ms-expand {
+  display: none;
+}
+
+.select {
+  font-family: "Jua";
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  background-size: 20px;
+  padding: 5px 30px 5px 10px;
+  border-radius: 4px;
+  outline: 0 none;
+  background: url("/public/arrow.jpeg") no-repeat 95% 50%;
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.select .option {
+  background: black;
+  color: #fff;
+  padding: 3px 0;
+  font-family: "Jua";
+}
+
+.select:hover {
+  border-color: #888;
+}
+
+.select:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
+
+.select:disabled {
+  opacity: 0.5;
+}
+
+/* label {
+  margin-bottom: 1rem;
+  font-family: "Jua";
+}
+
+option {
+  font-family: "Jua";
+} */

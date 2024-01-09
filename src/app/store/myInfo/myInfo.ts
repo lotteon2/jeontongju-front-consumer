@@ -14,6 +14,7 @@ const initialState: MyInfoState = {
   credit: 0,
   phoneNumber: "",
   isAddressDefault: false,
+  isPaymentReservation: false,
 };
 
 export const useMyInfoStore = create(
@@ -39,6 +40,9 @@ export const useMyInfoStore = create(
     },
     dispatchPoint: (value: number) => {
       set({ point: value });
+    },
+    dispatchIsPaymentReservation: (value: boolean) => {
+      set({ isPaymentReservation: value });
     },
     clear: () => set({ ...initialState }, true),
   }))

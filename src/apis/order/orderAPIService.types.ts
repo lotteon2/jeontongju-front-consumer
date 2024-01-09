@@ -28,6 +28,7 @@ export type GetMyOrderListResponseData = {
     productThumbnailImageUrl: string;
     sellerId: number;
     sellerName: string;
+    isReviewAllowed: boolean;
   }[];
   payment: {
     minusPointAmount: number;

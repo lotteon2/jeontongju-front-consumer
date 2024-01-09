@@ -1,0 +1,15 @@
+.myPage {
+  .myPageBody {
+    display: flex;
+    position: relative;
+
+    .leftBar {
+      position: fixed;
+      width: 10%;
+    }
+    .rightBar {
+      width: 100%;
+      margin-left: 15%;
+    }
+  }
+}

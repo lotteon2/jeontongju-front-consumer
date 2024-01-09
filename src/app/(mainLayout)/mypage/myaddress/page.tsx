@@ -46,6 +46,12 @@ export default function MyAddress() {
       });
       if (data.code === 200) {
         toast("주소지가 추가되었어요.");
+        setIsDefault(false);
+        setRecipientName("");
+        setPhoneNumber("");
+        setZonecode("");
+        setBasicAddress("");
+        setAddressDetail("");
         refetch();
       }
     } catch (err) {
@@ -59,6 +65,17 @@ export default function MyAddress() {
     getMyAddressList();
   }, []);
 
+  const isDisableToAddAddress = () => {
+    if (
+      !recipientName ||
+      !basicAddress ||
+      !zonecode ||
+      !phoneNumber ||
+      !recipientName
+    )
+      return true;
+    return false;
+  };
   return (
     <div>
       {!isLoading ? (
@@ -66,7 +83,7 @@ export default function MyAddress() {
           {data?.data?.length > 0 ? (
             <div>
               {data?.data.map((it) => (
-                <MyAddressBox key={it.addressId} item={it} />
+                <MyAddressBox key={it.addressId} item={it} refetch={refetch} />
               ))}
             </div>
           ) : (
@@ -86,6 +103,7 @@ export default function MyAddress() {
             setZonecode={setZonecode}
             addressDetail={addressDetail}
             setAddressDetail={setAddressDetail}
+            isDisableToAddAddress={isDisableToAddAddress()}
           />
         </div>
       ) : (

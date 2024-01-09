@@ -48,7 +48,7 @@ export default function MyWishList() {
           className={style.goDetail}
           onClick={() => router.push("/mypage/mywish")}
         >
-          자세히 보기
+          자세히 보기 {">"}
         </div>
       </div>
       <div className={style.listBody}>

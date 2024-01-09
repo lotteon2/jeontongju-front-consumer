@@ -1,3 +1,5 @@
+import FiSrHeartSVG from "/public/fi-sr-heart.svg";
+import FiSrHeartFullSVG from "/public/fi-sr-heart-fill.svg";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
@@ -33,6 +35,12 @@ export default function ProductContainer({
   const queryClient = useQueryClient();
 
   const handleLike = async () => {
+    if (typeof window !== "undefined") {
+      if (!localStorage.getItem("accessToken")) {
+        toast("로그인한 유저만 장바구니에 담을 수 있어요.");
+        return;
+      }
+    }
     try {
       const data = await wishAPI.addDeleteWish(productId);
       if (data.code === 200) {
@@ -43,12 +51,24 @@ export default function ProductContainer({
       toast("서버에 오류가 발생했어요.");
     }
   };
+
   return (
     <div className={style.productContainer}>
       <Script id="my-script">{`console.log('Rendering on client:', typeof window !== 'undefined');`}</Script>
       {isLogin && (
         <div onClick={handleLike} className={style.isLiked}>
-          {isLikes ? "❤️" : "🤍"}
+          <Image
+            alt="bell"
+            width={0}
+            height={0}
+            src={isLikes ? FiSrHeartFullSVG : FiSrHeartSVG}
+            style={{
+              cursor: "pointer",
+              width: "1rem",
+              height: "1rem",
+              position: "relative",
+            }}
+          />
         </div>
       )}
       <Link href={`/product/${productId}`}>
@@ -59,8 +79,8 @@ export default function ProductContainer({
           height={0}
           style={{
             cursor: "pointer",
-            width: "80%",
-            height: "80%",
+            width: "100%",
+            height: "70%",
             borderRadius: "12px",
           }}
         />

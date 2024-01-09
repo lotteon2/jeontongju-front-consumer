@@ -1,9 +1,10 @@
 import axios from "axios";
+import authAPI from "./authentication/authenticationAPIService";
 const baseURL = `${process.env.NEXT_PUBLIC_API_END_POINT}`;
 
 const authAxiosInstance = axios.create({
   baseURL,
-  withCredentials: false,
+  withCredentials: true,
   headers: {
     "Content-Type": `application/json;charset=UTF-8`,
     Accept: "application/json",
@@ -34,15 +35,25 @@ authAxiosInstance.interceptors.response.use(
   },
   async function (error) {
     const originalRequest = error.config;
-    if (error.response.code === 401) {
-      console.log("here");
-      originalRequest.config.headers.Authorization =
-        window.localStorage.getItem("accessToken");
+    if (error.response.status === 418) {
+      const data = await authAPI.refreshAuth();
+
+      originalRequest.config.headers.Authorization = data.accessToken;
       originalRequest._retry = true;
-      return authAxiosInstance(originalRequest);
+      return unAuthAxiosInstance(originalRequest);
     }
     return Promise.reject(error);
   }
 );
 
-export { authAxiosInstance, unAuthAxiosInstance };
+function getCookieForRefresh() {
+  function escape(s) {
+    return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, "\\$1");
+  }
+  var match = document.cookie.match(
+    RegExp("(?:^|;\\s*)" + escape("refreshToken") + "=([^;]*)")
+  );
+  return match ? match[1] : null;
+}
+
+export { authAxiosInstance, unAuthAxiosInstance, getCookieForRefresh };

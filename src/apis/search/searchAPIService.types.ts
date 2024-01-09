@@ -65,6 +65,12 @@ export type GetCropProductsResponseData = {
   corn: ProductData[];
 };
 
+export type GetAutoCompleteForSearchResponseData = {
+  productId: string;
+  productName: string;
+  productThumbnailImageUrl: string;
+};
+
 export type GetProductDetailByProductIdResponse =
   ApiResponse<GetProductDetailByProductIdResponseData>;
 
@@ -74,6 +80,13 @@ export type GetPopularProductsBySellerIdResponse = ApiResponse<
 
 export type GetCropProductsResponse = ApiResponse<GetCropProductsResponseData>;
 export type GetCostProductsResponse = ApiResponse<ProductData[]>;
+export type GetHolidayProductsResponse = ApiResponse<ProductData[]>;
 export type GetAllProductsBySellerIdResponse = ApiResponse<
   Page<GetPopularProductsBySellerIdResponseData[]>
+>;
+
+export type GetAllProductsResponse = ApiResponse<Page<ProductData[]>>;
+export type GetBestReviewProducts = ApiResponse<ProductData[]>;
+export type GetAutoCompleteForSearchResponse = ApiResponse<
+  GetAutoCompleteForSearchResponseData[]
 >;

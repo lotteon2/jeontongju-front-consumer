@@ -1,0 +1,23 @@
+.scrollContainer {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  z-index: 1;
+  width: 3rem;
+  height: 3rem;
+}
+
+.top {
+  font-weight: bold;
+  font-size: 15px;
+  padding: 15px 10px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid rgb(210, 204, 193);
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+.top:hover {
+  color: rgb(142, 26, 26);
+}

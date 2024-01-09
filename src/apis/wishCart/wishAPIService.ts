@@ -16,7 +16,7 @@ const wishAPI = {
     );
     return data;
   },
-  deleteAllWish: async (page: number, size: number) => {
+  deleteAllWish: async () => {
     const { data } = await authAxiosInstance.delete<DeleteAllWishResponse>(
       `/wish-cart-service/api/wish/all`
     );

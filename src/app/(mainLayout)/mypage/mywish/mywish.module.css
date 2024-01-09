@@ -1,4 +1,14 @@
 .myWishPage {
+  .deleteButton {
+    margin-bottom: 2rem;
+    cursor: pointer;
+    text-align: right;
+  }
+
+  .deleteButton:hover {
+    color: red;
+  }
+
   .myWishList {
     display: flex;
     flex-wrap: wrap;

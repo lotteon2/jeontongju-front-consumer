@@ -9,18 +9,33 @@ import { GetMyMembershipResponseData } from "@/apis/consumer/consumerAPIservice.
 import PaidMemberShipBox from "../../_component/PaidMemberShipBox/PaidMemberShipBox";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import { useRouter } from "next/navigation";
+import { Alert } from "@/app/_component/Alert";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function MemberShipList() {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [page, setPage] = useState<number>(0);
   const [size, setSize] = useState<number>(10);
   const [memberships, setMemberships] =
     useState<GetMyMembershipResponseData[]>();
   const [mounted, setMounted] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isLogin] = useMyInfoStore((state) => [state.isLogin]);
+  const [isLogin, isRegularPayment, isPaymentReservation] = useMyInfoStore(
+    (state) => [
+      state.isLogin,
+      state.isRegularPayment,
+      state.isPaymentReservation,
+    ]
+  );
+
+  const { refetch } = useQuery({
+    queryKey: ["consumer", "myinfo"],
+    queryFn: () => consumerAPI.getMyInfoForStore(),
+  });
 
   useEffect(() => {
+    console.log("isRegularPayment", isRegularPayment);
     if (!isLogin) {
       toast("로그인한 유저만 접근할 수 있어요.");
       router.push("/init/signin");
@@ -40,9 +55,36 @@ export default function MemberShipList() {
     }
   };
 
+  const handleStopSubscription = async () => {
+    try {
+      const data = await consumerAPI.stopSubscription();
+      if (data.code === 200) {
+        toast("멤버십 구독이 해지되었어요.");
+        refetch();
+      }
+    } catch (err) {
+      toast("멤버십 구독 해지에 실패했어요.");
+    }
+  };
+  const handleStopSubscriptionAlert = async () => {
+    try {
+      setIsLoading(true);
+      Alert({
+        title: "정말로 구독을 해지하시겠어요?",
+        text: "해지시 철회할 수 없어요.",
+        submitBtnText: "해지하기",
+      }).then((res) => {
+        if (res.isConfirmed) handleStopSubscription();
+      });
+    } catch (err) {
+      toast("멤버십 구독 해지에 실패했어요.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     getMyMembership();
-    console.log("credit", memberships);
   }, [page, size]);
 
   return (
@@ -60,6 +102,11 @@ export default function MemberShipList() {
               />
             ))}
           </div>
+          {isRegularPayment && isPaymentReservation && (
+            <div className={style.button} onClick={handleStopSubscriptionAlert}>
+              멤버십 탈퇴하기
+            </div>
+          )}
         </div>
       ) : (
         <Image

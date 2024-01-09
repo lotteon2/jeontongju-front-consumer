@@ -7,6 +7,8 @@ import ProductContainer from "../../_component/ProductContainer/ProductContainer
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import style from "@/app/(mainLayout)/mypage/mywish/mywish.module.css";
+import wishAPI from "@/apis/wishCart/wishAPIService";
+import { toast } from "react-toastify";
 export default function MyWishPage() {
   const { data, fetchNextPage, hasNextPage, isFetching, refetch } =
     useInfiniteQuery<
@@ -30,6 +32,16 @@ export default function MyWishPage() {
     delay: 0,
   });
 
+  const handleDeleteAllMyWish = async () => {
+    try {
+      const data = await wishAPI.deleteAllWish();
+      if (data.code === 200) {
+        toast("찜 내역이 전부 비워졌어요.");
+        refetch();
+      }
+    } catch (error) {}
+  };
+
   useEffect(() => {
     if (inView) {
       !isFetching && hasNextPage && fetchNextPage();
@@ -39,26 +51,26 @@ export default function MyWishPage() {
   return (
     <div className={style.myWishPage}>
       <h2 className={style.myWishHeader}>나의 찜 내역</h2>
+      <div className={style.deleteButton} onClick={handleDeleteAllMyWish}>
+        전체 삭제
+      </div>
       <div className={style.myWishList}>
-        {data ? (
-          data?.pages?.map((page, i) => (
-            <Fragment key={i}>
-              {page?.content.map((it) => (
-                <ProductContainer
-                  key={it.productId}
-                  isLikes={it.isLikes}
-                  productId={it.productId}
-                  productImg={it.productThumbnailImageUrl}
-                  price={it.productPrice}
-                  productName={it.productName}
-                  refetch={refetch}
-                />
-              ))}
-            </Fragment>
-          ))
-        ) : (
-          <div>찜 목록이 없어요</div>
-        )}
+        {data?.pages?.map((page, i) => (
+          <Fragment key={i}>
+            {page?.content.map((it) => (
+              <ProductContainer
+                key={it.productId}
+                isLikes={it.isLikes}
+                productId={it.productId}
+                productImg={it.productThumbnailImageUrl}
+                price={it.productPrice}
+                productName={it.productName}
+                refetch={refetch}
+              />
+            ))}
+          </Fragment>
+        ))}
+        {!data?.pages[0]?.content.length && <div>찜 목록이 없어요</div>}
       </div>
       <div ref={ref} style={{ height: 50 }} />
     </div>
