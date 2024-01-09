@@ -39,15 +39,13 @@ export default function SignIn() {
 
   const handleKakaoLogin = (e: any) => {
     e.preventDefault();
-    window.location.href =
-      "https://jeontongju-dev.shop/authentication-service/oauth2/authorization/kakao";
+    window.location.href = `${process.env.NEXT_PUBLIC_API_END_POINT}/authentication-service/oauth2/authorization/kakao`;
   };
 
   const handleGoogleLogin = (e: any) => {
     e.preventDefault();
     console.log(e);
-    window.location.href =
-      "https://jeontongju-dev.shop/authentication-service/oauth2/authorization/google";
+    window.location.href = `${process.env.NEXT_PUBLIC_API_END_POINT}/authentication-service/oauth2/authorization/google`;
   };
 
   useEffect(() => {
