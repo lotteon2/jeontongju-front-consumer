@@ -1,4 +1,5 @@
 "use client";
+import type { Metadata, ResolvingMetadata } from "next";
 import { useInfiniteQuery, InfiniteData } from "@tanstack/react-query";
 import { Page } from "@/constants/PageResponseType";
 import { GetMyCartListResponseData } from "@/apis/wishCart/wishAPIService.types";

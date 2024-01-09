@@ -23,6 +23,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
+import SEO from "@/app/_component/SEO";
 
 interface RemoteParticipantWithVideo {
   participant: IRemoteParticipant;
@@ -219,79 +220,72 @@ const AuctionDetail = ({ params }: Props) => {
   }, []);
 
   return (
-    <div className={style.auctionPage}>
-      {status === "ING" ? (
-        <>
-          <div className={style.auctionLeft}>
-            <ul id="remote-container" className={style.remoteContainer}></ul>
-            <div className={style.chat}>
-              {chat.map((it, idx) => (
-                <div className={style.chatBox} key={idx}>
-                  <Image src={it.memberProfileImage || ""} alt="img" />
-                  <span className={style.chatName}>{it.memberNickname}</span>
-                  <span className={style.chatMessage}>{it.message}</span>
-                </div>
-              ))}
-              {isLogin && (
-                <div className={style.bottomInput}>
-                  <input
-                    className={style.chatInput}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                  />
-                  <button className={style.inputButton} onClick={sendMessage}>
-                    입력
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className={style.auctionRight}>
-            <div className={style.todayAuctionBox}>
-              <h3 className={style.auctionName}>{auctionName}</h3>
-            </div>
-
-            <div className={style.bidInfo}>
-              <h2>현재 입찰 내역</h2>
-              <div>
-                {auctionInfo.map((it, idx) => (
-                  <div key={idx}>{it.auctionProductList}</div>
+    <>
+    <SEO title="라이브 경매" desc={auctionName} />
+      <div className={style.auctionPage}>
+        {status === "ING" ? (
+          <>
+            <div className={style.auctionLeft}>
+              <ul id="remote-container" className={style.remoteContainer}></ul>
+              <div className={style.chat}>
+                {chat.map((it, idx) => (
+                  <div className={style.chatBox} key={idx}>
+                    <Image src={it.memberProfileImage || ""} alt="img" />
+                    <span className={style.chatName}>{it.memberNickname}</span>
+                    <span className={style.chatMessage}>{it.message}</span>
+                  </div>
                 ))}
+                {isLogin && (
+                  <div className={style.bottomInput}>
+                    <input
+                      className={style.chatInput}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                    <button className={style.inputButton} onClick={sendMessage}>
+                      입력
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
-            {isLogin && (
-              <>
-                <div className={style.bidInput}>
-                  <input
-                    className={style.chatInput}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                  />
-                  <button className={style.inputButton} onClick={sendMessage}>
-                    입찰
-                  </button>
+            <div className={style.auctionRight}>
+              <div className={style.todayAuctionBox}>
+                <h3 className={style.auctionName}>{auctionName}</h3>
+              </div>
+
+              <div className={style.bidInfo}>
+                <h2>현재 입찰 내역</h2>
+                <div>
+                  {auctionInfo.map((it, idx) => (
+                    <div key={idx}>{it.auctionProductList}</div>
+                  ))}
                 </div>
-                <button
-                  className={style.inputBidButton}
-                  onClick={bidAskingPrice}
-                >
-                  현재가 + 호가만큼 입찰하기
-                </button>
-              </>
-            )}
-            <ToastContainer />
-          </div>
-        </>
-      ) : status === "BEFORE" ? (
-        <video
-          autoPlay={true}
-          muted={true}
-          loop={true}
-          style={{ width: "100%", height: "100%" }}
-          src={LiveBeforeImg}
-        />
-      ) : (
-        <>
+              </div>
+              {isLogin && (
+                <>
+                  <div className={style.bidInput}>
+                    <input
+                      className={style.chatInput}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                    <button className={style.inputButton} onClick={sendMessage}>
+                      입찰
+                    </button>
+                  </div>
+                  <button
+                    className={style.inputBidButton}
+                    onClick={bidAskingPrice}
+                  >
+                    현재가 + 호가만큼 입찰하기
+                  </button>
+                </>
+              )}
+              <ToastContainer />
+            </div>
+          </>
+        ) : status === "BEFORE" ? (
           <video
             autoPlay={true}
             muted={true}
@@ -299,10 +293,20 @@ const AuctionDetail = ({ params }: Props) => {
             style={{ width: "100%", height: "100%" }}
             src={LiveBeforeImg}
           />
-          <span>종료된 방송이에요.</span>
-        </>
-      )}
-    </div>
+        ) : (
+          <>
+            <video
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              style={{ width: "100%", height: "100%" }}
+              src={LiveBeforeImg}
+            />
+            <span>종료된 방송이에요.</span>
+          </>
+        )}
+      </div>
+    </>
   );
 };
 export default AuctionDetail;

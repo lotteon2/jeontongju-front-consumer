@@ -2,7 +2,7 @@
 import MyInfoBox from "./_component/MyInfoBox/MyInfoBox";
 import MyOrderList from "./_component/MyOrderList/MyOrderList";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { Metadata, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import MyWishList from "./_component/MyWishList/MyWishList";
 import { QueryClient } from "@tanstack/react-query";

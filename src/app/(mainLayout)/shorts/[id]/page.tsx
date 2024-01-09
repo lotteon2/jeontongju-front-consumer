@@ -3,7 +3,6 @@ import productAPI from "@/apis/product/productAPIService";
 import KakaoShareImg from "/public/kakaotalk_sharing_btn_small_ov.png";
 import { Short } from "@/apis/product/productAPIService.types";
 import style from "@/app/(mainLayout)/shorts/[id]/shortsDetail.module.css";
-import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Script from "next/script";
@@ -106,8 +105,6 @@ export default function ShortsDetail({
 
   return (
     <>
-      {/* <Head> */}
-
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=G-4MJ6ZE1TXS`}
@@ -131,32 +128,6 @@ export default function ShortsDetail({
               `,
         }}
       />
-
-      {/* <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=G-4MJ6ZE1TXS`}
-      />
-      <Script
-        dangerouslySetInnerHTML={{
-          __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'G-4MJ6ZE1TXS', {
-                  page_path: window.location.pathname,
-                  shortsId: ${short.shortsId}
-                });
-
-                gtag('event', 'watch_shorts', {
-                  'event_name' : 'watch_shorts',
-                  'event_label' : 'shortsId-${short.shortsId}'
-                });
-                
-        `,
-        }}
-      /> */}
-      {/* </Head> */}
       <div
         className={style.shortsContainer}
         style={{ height: isMain ? "auto" : "90dvh" }}

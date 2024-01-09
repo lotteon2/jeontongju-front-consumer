@@ -1,5 +1,6 @@
 "use client";
 import paymentAPI from "@/apis/payment/paymentAPIService";
+import SEO from "@/app/_component/SEO";
 import { useRouter } from "next/navigation";
 
 export default function BuyCredit() {
@@ -25,8 +26,11 @@ export default function BuyCredit() {
   };
 
   return (
-    <div>
-      <button onClick={handleBuyCredit}>크레딧 결제</button>
-    </div>
+    <>
+    <SEO title="크레딧 구매" desc="크레딧으로 경매를 즐겨보세요." />
+      <div>
+        <button onClick={handleBuyCredit}>크레딧 결제</button>
+      </div>
+    </>
   );
 }
