@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import style from "@/app/(mainLayout)/mypage/myinfo/myinfo.module.css";
 import EditMyInfo from "./_component/EditMyInfo/EditMyInfo";
 import Withdraw from "./_component/Withdraw/Withdraw";
-import { useQuery } from "@tanstack/react-query";
+import EditMyPassword from "./_component/EditMyPassword/EditMyPassword";
 
 export default function MyInfo() {
   const router = useRouter();
@@ -48,7 +48,7 @@ export default function MyInfo() {
         {selectedMenu === 1 ? (
           <EditMyInfo />
         ) : selectedMenu === 2 ? (
-          <div> </div>
+          <EditMyPassword />
         ) : selectedMenu === 3 ? (
           <Withdraw />
         ) : (

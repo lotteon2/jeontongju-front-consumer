@@ -4,17 +4,19 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import style from "@/app/(mainLayout)/mypage/myinfo/myinfo.module.css";
 import ImageUploader from "@/app/_component/ImageUploader";
-import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
+import consumerAPI from "@/apis/consumer/consumerAPIService";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "@/app/_component/Loading/Loading";
 
 export default function EditMyInfo() {
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");
   const [originalPassword, setOriginalPassword] = useState<string>("");
 
-  const [profileImageUrl, isSocial] = useMyInfoStore((state) => [
-    state.profileImageUrl,
-    state.isSocial,
-  ]);
+  const { data: myInfo, isLoading } = useQuery({
+    queryKey: ["consumer", "myinfo"],
+    queryFn: () => consumerAPI.getMyInfoForStore(),
+  });
 
   const checkIsAuth = async () => {
     try {
@@ -36,11 +38,12 @@ export default function EditMyInfo() {
     setOriginalPassword(e.target.value);
   };
   return (
+    <>
     <div className={style.editMyInfo}>
-      {isAuth ? (
+      {(isAuth && !myInfo?.data.isSocial) || myInfo?.data.isSocial ? (
         <div>
           <ImageUploader
-            imageUrl={imageUrl || profileImageUrl}
+            imageUrl={imageUrl || myInfo?.data.profileImageUrl}
             setImageUrl={setImageUrl}
           />
         </div>
@@ -59,5 +62,8 @@ export default function EditMyInfo() {
         </div>
       )}
     </div>
+    {isLoading && <Loading />}
+    </>
+   
   );
 }

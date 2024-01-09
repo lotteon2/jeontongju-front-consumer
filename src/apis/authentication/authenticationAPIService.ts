@@ -12,6 +12,7 @@ import {
   SignInResponse,
   SignUpParams,
   SignUpResponse,
+  UpdateMyPasswordAfterLoginResponse,
   UpdateMyPasswordBeforeLoginResponse,
   UpdateMyPasswordParams,
   WithDrawalResponse,
@@ -77,6 +78,14 @@ const authAPI = {
       await authAxiosInstance.post<CheckMyPasswordIsAuthResponse>(
         `/authentication-service/api/password/auth`,
         { originalPassword: password }
+      );
+    return data;
+  },
+  updateMyPasswordAfterLogin: async (newPassword: string) => {
+    const { data } =
+      await authAxiosInstance.patch<UpdateMyPasswordAfterLoginResponse>(
+        `/authentication-service/api/password/change`,
+        { newPassword }
       );
     return data;
   },
