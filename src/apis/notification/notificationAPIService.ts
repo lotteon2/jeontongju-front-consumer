@@ -21,8 +21,7 @@ const notificationAPI = {
     return data;
   },
   readAllNoti: async () => {
-    const { data } = await auth
-    AxiosInstance.patch<ReadAllNotiResponse>(
+    const { data } = await authAxiosInstance.patch<ReadAllNotiResponse>(
       `/notification-service/api/notifications`
     );
     return data;
