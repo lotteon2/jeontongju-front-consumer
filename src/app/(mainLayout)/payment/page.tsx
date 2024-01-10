@@ -28,7 +28,7 @@ export default function Payment() {
   const [isDefault, setIsDefault] = useState<boolean>(false);
   const [isUsingDefaultAddress, setIsUsingDefaultAddress] =
     useState<boolean>(false);
-  const [point, setPoint] = useState<number>(0);
+  const [point, setPoint] = useState<number>(null);
   const [coupon, setCoupon] = useState<GetMyCouponListResponseData>(null);
 
   const { data: myDefaultAddress, refetch: refetchMyAddressForOrder } =
@@ -65,7 +65,10 @@ export default function Payment() {
       addressDetail: "101",
       zoneCode: "12345",
       totalAmount,
-      realAmount: totalAmount - coupon?.discountAmount - point, // 실금액 - 쿠폰금액 - 포인트금액
+      realAmount:
+        totalAmount -
+        (coupon ? coupon?.discountAmount : 0) -
+        (point ? point : 0), // 실금액 - 쿠폰금액 - 포인트금액
       titleName: products[0].productName,
       products: Array.from(products),
     };
