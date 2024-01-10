@@ -28,6 +28,7 @@ export type SignInResponseData = {
 
 export type CheckEmailResponseData = {
   authCode: string;
+  isSocial: boolean;
 };
 
 export interface UpdateMyPasswordParams {

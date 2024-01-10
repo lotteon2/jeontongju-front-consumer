@@ -35,7 +35,7 @@ export default function SignUp() {
           setIsAbleToMerge(true);
           return;
         }
-        if (data.failure === "DUPLICATED_SOCIAL_EMAIL") {
+        if (data.data.isSocial) {
           toast("소셜 회원가입이 되어있으므로 계정 통합이 진행돼요!");
         }
         setAuthcode(data.data.authCode);
