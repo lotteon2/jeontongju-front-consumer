@@ -9,6 +9,7 @@ import style from "@/app/(mainLayout)/mypage/_component/MyList.module.css";
 import { toast } from "react-toastify";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getMyCartList } from "../../_lib/getMyCartList";
+import { getMyWishList } from "../../_lib/getMyWishList";
 
 export default function MyWishList() {
   const queryClient = useQueryClient();
@@ -21,7 +22,7 @@ export default function MyWishList() {
 
   queryClient.prefetchInfiniteQuery({
     queryKey: ["wish", "list"],
-    queryFn: getMyCartList,
+    queryFn: getMyWishList,
     initialPageParam: 0,
   });
 
