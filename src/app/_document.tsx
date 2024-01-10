@@ -15,6 +15,8 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        <meta name="theme-color" content="#ffa1a1" />
+        <link rel="manifest" href="/manifest.json" />
         <script
           src="https://apis.google.com/js/platform.js"
           async
