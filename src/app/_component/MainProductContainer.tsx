@@ -12,7 +12,19 @@ export default function MainProductContainer() {
   const [mounted, setMounted] = useState<boolean>(false);
   const { data, refetch } = useQuery({
     queryKey: ["product", "list"],
-    queryFn: () => searchAPI.getAllProducts(0, "totalSalesCount", 5),
+    queryFn: () =>
+      searchAPI.getAllProducts(
+        0,
+        "totalSalesCount",
+        5,
+        [],
+        [],
+        -1,
+        -1,
+        -1,
+        -1,
+        []
+      ),
   });
 
   useEffect(() => {
