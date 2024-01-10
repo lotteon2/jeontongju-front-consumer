@@ -81,7 +81,22 @@ export default function MyOrderBox({
     }
   };
 
-  //TODO : alert
+  const handleConfirmOrderByProductOrderIdAlert = async (
+    productOrderId: number
+  ) => {
+    try {
+      Alert({
+        title: "정말로 주문을 확정하시겠어요?",
+        text: "확정시 철회할 수 없어요.",
+        submitBtnText: "확정하기",
+      }).then((res) => {
+        if (res.isConfirmed) handleConfirmOrderByProductOrderId(productOrderId);
+      });
+    } catch (err) {
+      toast("주문 확정에 실패했어요.");
+    }
+  };
+
   const handleConfirmOrderByProductOrderId = async (productOrderId: number) => {
     try {
       setIsLoading(true);
@@ -174,7 +189,7 @@ export default function MyOrderBox({
                 <div
                   className={style.orderStatusBox}
                   onClick={() =>
-                    handleConfirmOrderByProductOrderId(item.productOrderId)
+                    handleConfirmOrderByProductOrderIdAlert(item.productOrderId)
                   }
                 >
                   {item.productOrderStatus === ORDER_STATE.COMPLETED &&
