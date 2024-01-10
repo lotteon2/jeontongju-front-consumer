@@ -185,9 +185,8 @@ export default function SignUp() {
                   checked={isMerge === true}
                   name="isMerge"
                   onChange={(e) => setIsMerge(e.target.value === "true")}
-                >
-                  통합
-                </input>
+                />
+
                 <input
                   type="radio"
                   value="false"
