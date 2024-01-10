@@ -61,6 +61,9 @@ export default function Header() {
       setIsAdult(data.data.isAdult);
       setIsRegularPayment(data.data.isRegularPayment);
       setIsPaymentReservation(data.data.isPaymentReservation);
+      if (!data?.data.name) {
+        router.replace("/init/adult");
+      }
     }
   }, [data]);
 

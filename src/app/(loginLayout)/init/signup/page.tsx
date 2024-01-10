@@ -6,6 +6,7 @@ import Image from "next/image";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Script from "next/script";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const router = useRouter();
@@ -93,9 +94,9 @@ export default function SignUp() {
     if (success) {
       console.log(response);
       setImpUid(responseImpUid);
-      //   Toast(true, "성인인증이 완료되었습니다");
+      toast("성인 인증이 완료되었어요.");
     } else {
-      //   Toast(false, errorMsg)
+      toast("성인 인증에 실패했어요.");
     }
   };
 

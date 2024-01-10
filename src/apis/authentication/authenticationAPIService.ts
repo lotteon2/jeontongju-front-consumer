@@ -4,6 +4,7 @@ import {
   unAuthAxiosInstance,
 } from "../common";
 import {
+  AdultCheckAfterLoginResponse,
   CheckEmailParams,
   CheckEmailResponse,
   CheckMyEmailResponse,
@@ -86,6 +87,14 @@ const authAPI = {
       await authAxiosInstance.patch<UpdateMyPasswordAfterLoginResponse>(
         `/authentication-service/api/password/change`,
         { newPassword }
+      );
+    return data;
+  },
+  adultCheckAfterLogin: async (impUid: string) => {
+    const { data } =
+      await authAxiosInstance.patch<AdultCheckAfterLoginResponse>(
+        `/authentication-service/api/consumers/adult-certification`,
+        { impUid }
       );
     return data;
   },

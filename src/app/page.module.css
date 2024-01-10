@@ -1,9 +1,9 @@
 .loginContainer {
   height: 100dvh;
-  width: 100dvw;
+  width: 80vw;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  margin: 0 auto;
 }
 
 .loginHeader {
@@ -379,4 +379,11 @@
 
 .swal2-icon {
   border: none;
+}
+
+.adultPage {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  gap: 1rem;
 }
