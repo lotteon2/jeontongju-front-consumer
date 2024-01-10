@@ -33,6 +33,7 @@ export default function SignUp() {
         if (data.failure === "DUPLICATED_EMAIL") {
           toast("이미 있는 아이디에요.");
           setIsAbleToMerge(true);
+          setIsClickedCheckEmail(false);
           return;
         }
         if (data.data.isSocial) {
