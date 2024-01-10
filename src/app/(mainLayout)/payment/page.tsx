@@ -12,6 +12,7 @@ import consumerAPI from "@/apis/consumer/consumerAPIService";
 import couponAPI from "@/apis/coupon/couponAPIService";
 import CouponBox from "../_component/CouponBox/CouponBox";
 import { GetMyCouponListResponseData } from "@/apis/coupon/couponAPIService.types";
+import { Input } from "antd";
 
 export default function Payment() {
   const router = useRouter();
@@ -51,6 +52,8 @@ export default function Payment() {
     queryKey: ["consumer", "myPoint", "order"],
     queryFn: () => consumerAPI.getMyPointForOrder(totalAmount),
   });
+
+  useEffect(() => {}, [isUsingDefaultAddress]);
 
   const handlePay = async () => {
     const params = {
@@ -206,9 +209,10 @@ export default function Payment() {
         <div className={style.paymentBox}>
           <div className={style.paymentHeader}>포인트 및 쿠폰</div>
           <div className={style.pointBox}>
-            <input
+            <Input
               className={style.input}
               value={point}
+              max={myPoint ? myPoint?.data.availablePoints : 0}
               onChange={(e) => setPoint(Number(e.target.value))}
             />
             <div className={style.inputDesc}>
