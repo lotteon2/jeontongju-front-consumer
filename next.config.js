@@ -69,10 +69,10 @@ const nextConfig = {
   },
 };
 
-config.externals.push({
-  "agora-electron-sdk": "commonjs2 agora-electron-sdk",
-  "agora-rdc-core": "commonjs2 agora-rdc-core",
-});
+// config.externals.push({
+//   "agora-electron-sdk": "commonjs2 agora-electron-sdk",
+//   "agora-rdc-core": "commonjs2 agora-rdc-core",
+// });
 
 const runtimeCaching = require("next-pwa/cache");
 const prod = process.env.NODE_ENV === "production";
