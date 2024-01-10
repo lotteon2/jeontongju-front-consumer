@@ -31,9 +31,10 @@ export default function SignUp() {
       const data = await authAPI.checkEmail({ email });
       if (data.code === 200) {
         setAuthcode(data.data.authCode);
+        toast("해당 메일로 코드가 발송되었어요");
         console.log("이메일 발송 완료");
         setIsClickedCheckEmail(true);
-        if (data.failure === "DUPLICATED-EMAIL") {
+        if (data.failure === "DUPLICATED_EMAIL") {
           setIsAbleToMerge(true);
         }
       }
