@@ -1,12 +1,8 @@
 "use client";
 // Import necessary components and hooks from Agora SDK and React
 import {
-  LocalVideoTrack,
   RemoteUser,
   useJoin,
-  useLocalCameraTrack,
-  useLocalMicrophoneTrack,
-  usePublish,
   useRTCClient,
   useRemoteUsers,
   useClientEvent,

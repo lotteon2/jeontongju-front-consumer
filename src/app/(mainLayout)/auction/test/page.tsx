@@ -1,6 +1,6 @@
 "use client";
 // Import necessary modules
-import { AgoraRTCProvider, useRTCClient } from "agora-rtc-react";
+import { AgoraRTCProvider } from "agora-rtc-react";
 import AgoraRTC from "agora-rtc-sdk-ng";
 import { AgoraManager } from "./AgoraManager";
 import config from "./config";
