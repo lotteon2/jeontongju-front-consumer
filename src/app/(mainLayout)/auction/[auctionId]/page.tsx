@@ -3,7 +3,7 @@ import LiveBeforeImg from "/public/live_before.mp4";
 import ConnectLive from "@connectlive/connectlive-web-sdk";
 import { AgoraRTCProvider, useRTCClient } from "agora-rtc-react";
 import AgoraRTC from "agora-rtc-sdk-ng";
-import { AgoraManager } from "../test/AgoraManager";
+// import { AgoraManager } from "../test/AgoraManager";
 import config from "../test/config";
 import { Client } from "stompjs";
 import Stomp from "webstomp-client";
