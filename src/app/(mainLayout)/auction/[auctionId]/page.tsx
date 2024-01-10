@@ -157,7 +157,7 @@ const AuctionDetail = ({ params }: Props) => {
         {status === "ING" ? (
           <>
             <div className={style.auctionLeft}>
-              <AuctionPage />
+              {/* <AuctionPage /> */}
               <div className={style.chat}>
                 {chat.map((it, idx) => (
                   <div className={style.chatBox} key={idx}>
