@@ -1,9 +1,9 @@
 {
   "theme_color": "#ffa1a1",
   "background_color": "#f69435",
-  "display": "browser",
+  "display": "fullscreen",
   "scope": "/",
-  "start_url": "/",
+  "start_url": "https://consumer.jeontongju.shop/",
   "name": "Jeontongjujum",
   "short_name": "\uc804\ud1b5\uc8fc\uc810",
   "description": "\uc804\ud1b5\uc8fc, \ub9c8\uce68\ud45c\ub97c \ucc0d\ub2e4",
