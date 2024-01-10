@@ -23,16 +23,8 @@ interface AgoraContextType {
 const AgoraContext = createContext<AgoraContextType | null>(null);
 
 // AgoraProvider component to provide the Agora context to its children
-export const AgoraProvider: React.FC<AgoraContextType> = ({
-  children,
-  localCameraTrack,
-  localMicrophoneTrack,
-}) => (
-  <AgoraContext.Provider
-    value={{ localCameraTrack, localMicrophoneTrack, children }}
-  >
-    {children}
-  </AgoraContext.Provider>
+export const AgoraProvider: React.FC<AgoraContextType> = ({ children }) => (
+  <AgoraContext.Provider value={{ children }}>{children}</AgoraContext.Provider>
 );
 
 // Custom hook to access the Agora context
