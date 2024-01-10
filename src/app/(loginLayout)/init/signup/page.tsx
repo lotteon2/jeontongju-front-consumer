@@ -33,15 +33,15 @@ export default function SignUp() {
         if (data.failure === "DUPLICATED_EMAIL") {
           toast("이미 있는 아이디에요.");
           setIsClickedCheckEmail(true);
-          return;
+        } else {
+          if (data.data.isSocial) {
+            toast("소셜 회원가입이 되어있으므로 계정 통합이 진행돼요!");
+          }
+          setAuthcode(data.data.authCode);
+          toast("해당 메일로 코드가 발송되었어요");
+          console.log("이메일 발송 완료");
+          setIsClickedCheckEmail(true);
         }
-        if (data.data.isSocial) {
-          toast("소셜 회원가입이 되어있으므로 계정 통합이 진행돼요!");
-        }
-        setAuthcode(data.data.authCode);
-        toast("해당 메일로 코드가 발송되었어요");
-        console.log("이메일 발송 완료");
-        setIsClickedCheckEmail(true);
       }
     } catch (error) {
       console.error("이메일 메일 발송 실패");
