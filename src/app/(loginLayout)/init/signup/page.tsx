@@ -49,8 +49,11 @@ export default function SignUp() {
   };
 
   const checkAuthcode = async () => {
-    if (code === authCode) setIsCheckedEmail(true);
-    else {
+    if (code === authCode) {
+      toast("인증되었어요.");
+      setIsCheckedEmail(true);
+    } else {
+      toast("인증코드를 다시 확인해주세요.");
       setIsCheckedEmail(false);
     }
   };
