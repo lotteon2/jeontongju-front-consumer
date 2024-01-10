@@ -70,6 +70,10 @@ export default function Payment() {
       products: Array.from(products),
     };
     try {
+      console.log(totalAmount);
+      console.log(coupon?.discountAmount);
+      console.log(point);
+      console.log(totalAmount - coupon?.discountAmount - point);
       const data = await paymentAPI.kakaoPay(params);
       if (data.message) {
         console.error(data.message);
