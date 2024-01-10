@@ -29,7 +29,7 @@ export default function Payment() {
   const [isDefault, setIsDefault] = useState<boolean>(false);
   const [isUsingDefaultAddress, setIsUsingDefaultAddress] =
     useState<boolean>(false);
-  const [point, setPoint] = useState<number>(null);
+  const [point, setPoint] = useState<number>(0);
   const [coupon, setCoupon] = useState<GetMyCouponListResponseData>(null);
 
   const { data: myDefaultAddress, refetch: refetchMyAddressForOrder } =
@@ -37,6 +37,8 @@ export default function Payment() {
       queryKey: ["address", "default"],
       queryFn: () => consumerAPI.getMyAddressForOrder(),
     });
+
+  console.log("myDefaultAddress", myDefaultAddress);
 
   const { data: myInfo, refetch: refetchMyInfo } = useQuery({
     queryKey: ["consumer", "myinfo"],
@@ -137,6 +139,15 @@ export default function Payment() {
     return false;
   };
 
+  const handleChangePoint = (e) => {
+    if (Number(e.target.value) > Number(myPoint?.data.availablePoints)) {
+      toast("사용 가능 포인트보다 더 쓸 수 없어요.");
+      setPoint(myPoint?.data.availablePoints);
+    } else {
+      setPoint(Number(e.target.value));
+    }
+  };
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (!localStorage.getItem("accessToken")) {
@@ -209,11 +220,11 @@ export default function Payment() {
         <div className={style.paymentBox}>
           <div className={style.paymentHeader}>포인트 및 쿠폰</div>
           <div className={style.pointBox}>
-            <Input
+            <input
               className={style.input}
               value={point}
-              max={myPoint ? myPoint?.data.availablePoints : 0}
-              onChange={(e) => setPoint(Number(e.target.value))}
+              disabled={myPoint?.data.availablePoints === 0}
+              onChange={handleChangePoint}
             />
             <div className={style.inputDesc}>
               사용가능 {myPoint ? myPoint?.data.availablePoints : 0} 포인트

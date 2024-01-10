@@ -54,7 +54,7 @@ const consumerAPI = {
   },
   getMyAddressForOrder: async () => {
     const { data } = await authAxiosInstance.get<GetMyAddressForOrderResponse>(
-      `/consumer-service/api/consumers/addresses`
+      `/consumer-service/api/consumers/addresses/default`
     );
     return data;
   },
