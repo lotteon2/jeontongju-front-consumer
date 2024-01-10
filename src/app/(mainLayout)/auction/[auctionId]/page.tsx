@@ -17,11 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import SEO from "@/app/_component/SEO";
-
-interface RemoteParticipantWithVideo {
-  participant: IRemoteParticipant;
-  videos: IRemoteVideo[];
-}
+import AuctionPage from "../test/page";
 
 type Props = {
   params: { auctionId: string };
@@ -58,9 +54,6 @@ const AuctionDetail = ({ params }: Props) => {
   const [status, setStatus] = useState<"ING" | "BEFORE" | "AFTER">();
   const [auctionInfo, setAuctionInfo] = useState<AuctionData[]>([]);
   const [chat, setChat] = useState<ChatData[]>([]);
-  const [remoteParticipant, setRemoteParticipant] = useState<
-    RemoteParticipantWithVideo[]
-  >([]);
   const notify = (message: string) => toast(message);
 
   useEffect(() => {
@@ -71,7 +64,7 @@ const AuctionDetail = ({ params }: Props) => {
   }, []);
   const connectChatInfo = () => {
     console.log("auction");
-    const serverURL = "https://jeontongju-dev.shop/auction-service";
+    const serverURL = "https://jeontongju.shop/auction-service";
     let socket = new SockJS(`${serverURL}/chat`);
     const stompClient = Stomp.over(socket);
     stompClient.connect(
@@ -92,7 +85,7 @@ const AuctionDetail = ({ params }: Props) => {
 
   const connectBidInfo = () => {
     console.log("auction");
-    const serverURL = "https://jeontongju-dev.shop/auction-service";
+    const serverURL = "https://jeontongju.shop/auction-service";
     let socket = new SockJS(`${serverURL}/chat`);
     const stompClient = Stomp.over(socket);
     stompClient.connect(
@@ -164,9 +157,7 @@ const AuctionDetail = ({ params }: Props) => {
         {status === "ING" ? (
           <>
             <div className={style.auctionLeft}>
-              <AgoraRTCProvider client={agoraEngine}>
-                <AgoraManager config={config}></AgoraManager>
-              </AgoraRTCProvider>
+              <AuctionPage />
               <div className={style.chat}>
                 {chat.map((it, idx) => (
                   <div className={style.chatBox} key={idx}>
