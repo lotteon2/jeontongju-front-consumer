@@ -7,6 +7,7 @@ import eventCostImg from "/public/event_cost.png";
 import eventCropImg from "/public/event_crop.png";
 import { toast } from "react-toastify";
 import couponAPI from "@/apis/coupon/couponAPIService";
+import style from "@/app/page.module.css";
 
 export default function Banner({
   type,
@@ -43,7 +44,7 @@ export default function Banner({
   };
 
   return type === "coupon" ? (
-    <div onClick={getCoupon}>
+    <div onClick={getCoupon} className={style.banner}>
       <Image
         src={eventCouponImg}
         width={0}
@@ -53,20 +54,22 @@ export default function Banner({
       />
     </div>
   ) : (
-    <Link href={href}>
-      <Image
-        src={
-          type === "membership"
-            ? membershipBannerImg
-            : type === "cost"
-            ? eventCostImg
-            : eventCropImg
-        }
-        width={0}
-        height={0}
-        alt={type || "banner"}
-        style={{ cursor: "pointer", width: "100%", height: "20%" }}
-      />
-    </Link>
+    <div className={style.banner}>
+      <Link href={href}>
+        <Image
+          src={
+            type === "membership"
+              ? membershipBannerImg
+              : type === "cost"
+              ? eventCostImg
+              : eventCropImg
+          }
+          width={0}
+          height={0}
+          alt={type || "banner"}
+          style={{ cursor: "pointer", width: "100%", height: "20%" }}
+        />
+      </Link>
+    </div>
   );
 }
