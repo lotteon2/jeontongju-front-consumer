@@ -23,10 +23,10 @@ export default function SearchPage() {
   );
   const [food, setFoods] = useState<(keyof typeof SNACK)[]>([]);
   const [concepts, setConcepts] = useState<(keyof typeof CONCEPT)[]>([]);
-  const [minPrice, setMinPrice] = useState<number>(null);
-  const [maxPrice, setMaxPrice] = useState<number>(null);
-  const [minAlcoholDegree, setMinAlcoholDegree] = useState<number>(null);
-  const [maxAlcoholDegree, setMaxAlcoholDegree] = useState<number>(null);
+  const [minPrice, setMinPrice] = useState<number>(-1);
+  const [maxPrice, setMaxPrice] = useState<number>(-1);
+  const [minAlcoholDegree, setMinAlcoholDegree] = useState<number>(-1);
+  const [maxAlcoholDegree, setMaxAlcoholDegree] = useState<number>(-1);
 
   const { data, fetchNextPage, hasNextPage, isFetching, refetch } =
     useInfiniteQuery<
