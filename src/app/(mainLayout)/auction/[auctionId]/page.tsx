@@ -1,17 +1,10 @@
 "use client";
 import LiveBeforeImg from "/public/live_before.mp4";
 import ConnectLive from "@connectlive/connectlive-web-sdk";
-import type {
-  IRoom,
-  ILocalMedia,
-  IRemoteVideo,
-  IRemoteParticipant,
-  IRoomEventConnected,
-  IRoomEventParticipantLeft,
-  IRoomEventParticipantEntered,
-  IRoomEventRemoteVideoPublished,
-  IRoomEventRemoteVideoUnpublished,
-} from "@connectlive/connectlive-web-sdk";
+import { AgoraRTCProvider, useRTCClient } from "agora-rtc-react";
+import AgoraRTC from "agora-rtc-sdk-ng";
+import { AgoraManager } from "../test/AgoraManager";
+import config from "../test/config";
 import { Client } from "stompjs";
 import Stomp from "webstomp-client";
 import SockJS from "sockjs-client";
@@ -51,6 +44,10 @@ interface AuctionData {
 const AuctionDetail = ({ params }: Props) => {
   const router = useRouter();
   const { auctionId } = params;
+  const agoraEngine = useRTCClient(
+    AgoraRTC.createClient({ codec: "vp8", mode: config.selectedProduct })
+  );
+
   const [isLogin, memberId] = useMyInfoStore((state) => [
     state.isLogin,
     state.memberId,
@@ -115,64 +112,6 @@ const AuctionDetail = ({ params }: Props) => {
     setStompClient(stompClient);
   };
 
-  const addRemoteVideoNode = (videos: IRemoteVideo[]): void => {
-    const remoteContainer =
-      document.querySelector<HTMLUListElement>("#remote-container")!;
-
-    videos.forEach((video) => {
-      const videoItem = document.createElement("li");
-      videoItem.id = video.participantId;
-
-      const videoHeader = document.createElement("h3");
-      videoHeader.innerHTML = `Presenter`;
-      // addLog(`Join the webinar`);
-
-      const remoteVideo = video.attach()!;
-      remoteVideo.id = "remote-video";
-
-      videoItem.appendChild(videoHeader);
-      videoItem.appendChild(remoteVideo);
-      remoteContainer.appendChild(videoItem);
-    });
-  };
-
-  const createConferenceGuestOptions = async (room: IRoom) => {
-    room.on("connected", async (evt: IRoomEventConnected) => {
-      if (!evt.remoteParticipants.length) {
-        alert("No webinar starts yet");
-      }
-
-      evt.remoteParticipants.forEach(async (participant) => {
-        let videos: IRemoteVideo[] = [];
-        const unsubscribedVideos = participant.getUnsubscribedVideos();
-
-        if (unsubscribedVideos.length) {
-          const videoIds = unsubscribedVideos.map((video) =>
-            video.getVideoId()
-          );
-          videos = await room!.subscribe(videoIds);
-        }
-
-        setRemoteParticipant([...remoteParticipant, { participant, videos }]);
-        addRemoteVideoNode(participant.videos);
-      });
-    });
-  };
-
-  const connectKaKaoILive = async () => {
-    try {
-      await ConnectLive.signIn({
-        serviceId: "ICLEXMPLPUBL",
-        serviceSecret: "ICLEXMPLPUBL0KEY:YOUR0SRVC0SECRET",
-      });
-      const room = ConnectLive.createRoom();
-      createConferenceGuestOptions(room);
-      await room.connect(auctionId.replaceAll("-", ""));
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   const sendMessage = () => {
     if (!message) return;
     const msg = {
@@ -195,7 +134,6 @@ const AuctionDetail = ({ params }: Props) => {
         if (data.data.status === "ING") {
           connectChatInfo();
           connectBidInfo();
-          connectKaKaoILive();
         }
       }
     } catch (error) {
@@ -221,12 +159,14 @@ const AuctionDetail = ({ params }: Props) => {
 
   return (
     <>
-    <SEO title="라이브 경매" desc={auctionName} />
+      <SEO title="라이브 경매" desc={auctionName} />
       <div className={style.auctionPage}>
         {status === "ING" ? (
           <>
             <div className={style.auctionLeft}>
-              <ul id="remote-container" className={style.remoteContainer}></ul>
+              <AgoraRTCProvider client={agoraEngine}>
+                <AgoraManager config={config}></AgoraManager>
+              </AgoraRTCProvider>
               <div className={style.chat}>
                 {chat.map((it, idx) => (
                   <div className={style.chatBox} key={idx}>
