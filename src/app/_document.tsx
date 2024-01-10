@@ -1,5 +1,6 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import Script from "next/script";
+import manifest from "../../public/manifest.json";
 
 declare global {
   interface Window {
@@ -16,7 +17,7 @@ export default function Document() {
     <Html>
       <Head>
         <meta name="theme-color" content="#ffa1a1" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="../../public/manifest.json" />
         <script
           src="https://apis.google.com/js/platform.js"
           async
