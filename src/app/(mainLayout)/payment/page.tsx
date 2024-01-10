@@ -28,7 +28,7 @@ export default function Payment() {
   const [isDefault, setIsDefault] = useState<boolean>(false);
   const [isUsingDefaultAddress, setIsUsingDefaultAddress] =
     useState<boolean>(false);
-  const [point, setPoint] = useState<number>(null);
+  const [point, setPoint] = useState<number>(0);
   const [coupon, setCoupon] = useState<GetMyCouponListResponseData>(null);
 
   const { data: myDefaultAddress, refetch: refetchMyAddressForOrder } =
