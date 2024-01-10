@@ -30,13 +30,15 @@ export default function SignUp() {
     try {
       const data = await authAPI.checkEmail({ email });
       if (data.code === 200) {
+        if (data.failure === "DUPLICATED_EMAIL") {
+          toast("이미 있는 아이디에요.");
+          setIsAbleToMerge(true);
+          return;
+        }
         setAuthcode(data.data.authCode);
         toast("해당 메일로 코드가 발송되었어요");
         console.log("이메일 발송 완료");
         setIsClickedCheckEmail(true);
-        if (data.failure === "DUPLICATED_EMAIL") {
-          setIsAbleToMerge(true);
-        }
       }
     } catch (error) {
       console.error("이메일 메일 발송 실패");
@@ -180,7 +182,7 @@ export default function SignUp() {
                   name="isMerge"
                   onChange={(e) => setIsMerge(e.target.value === "true")}
                 >
-                  공개
+                  통합
                 </input>
                 <input
                   type="radio"
@@ -189,7 +191,7 @@ export default function SignUp() {
                   name="isMerge"
                   onChange={(e) => setIsMerge(e.target.value === "true")}
                 >
-                  비공개
+                  비통합
                 </input>
               </>
             )}
