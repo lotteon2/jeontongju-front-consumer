@@ -32,8 +32,7 @@ export default function SignUp() {
       if (data.code === 200) {
         if (data.failure === "DUPLICATED_EMAIL") {
           toast("이미 있는 아이디에요.");
-          setIsAbleToMerge(true);
-          setIsClickedCheckEmail(false);
+          setIsClickedCheckEmail(true);
           return;
         }
         if (data.data.isSocial) {
@@ -177,27 +176,7 @@ export default function SignUp() {
                 </button>
               </div>
             )}
-            {isAbleToMerge && (
-              <>
-                <input
-                  type="radio"
-                  value="true"
-                  checked={isMerge === true}
-                  name="isMerge"
-                  onChange={(e) => setIsMerge(e.target.value === "true")}
-                />
-
-                <input
-                  type="radio"
-                  value="false"
-                  checked={isMerge === false}
-                  name="isMerge"
-                  onChange={(e) => setIsMerge(e.target.value === "true")}
-                >
-                  비통합
-                </input>
-              </>
-            )}
+            {isAbleToMerge && <></>}
             <div className={style.inputDiv}>
               <label className={style.inputLabel} htmlFor="password">
                 비밀번호
