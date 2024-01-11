@@ -63,31 +63,31 @@
     justify-content: space-between;
     gap: 1rem;
   }
+}
 
-  .quantityInput {
-    display: flex;
-    align-items: center;
-    .button {
-      padding: 0 0.5rem;
-      border-radius: 5px;
-    }
+.quantityInput {
+  display: flex;
+  align-items: center;
+  .button {
+    padding: 0 0.5rem;
+    border-radius: 5px;
+  }
 
-    .button:disabled {
-      opacity: 0.5;
-      cursor: none;
-    }
+  .button:disabled {
+    opacity: 0.5;
+    cursor: none;
+  }
 
-    .input {
-      border: none;
-      font-size: 17px;
-      outline: none;
-      margin: 0 auto;
-    }
+  .input {
+    border: none;
+    font-size: 17px;
+    outline: none;
+    margin: 0 auto;
+  }
 
-    .button:disabled,
-    .button:hover {
-      background-color: #c0c0c0;
-    }
+  .button:disabled,
+  .button:hover {
+    background-color: #c0c0c0;
   }
 }
 

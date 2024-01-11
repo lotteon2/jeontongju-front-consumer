@@ -45,7 +45,7 @@ export default function MyCartBox({
 
   return (
     <div className={style.myCartBox}>
-      <div>
+      <div className={style.deleteButton}>
         <Image
           alt="삭제"
           width={0}
@@ -71,7 +71,7 @@ export default function MyCartBox({
         </div>
         <div>
           <div className={style.productName}>{item.productName}</div>
-          <div>{item.productPrice}</div>
+          <div>{item.productPrice}원</div>
         </div>
       </div>
       <div className={style.qualityInputBox}>

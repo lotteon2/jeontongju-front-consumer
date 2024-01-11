@@ -9,8 +9,27 @@
     color: red;
   }
 
+  .myCartBody {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .myWishRightBar {
+      box-shadow: 3px 3px 1px 1px #c0c0c0;
+      border-radius: 12px;
+      padding: 1rem;
+      flex: 1;
+
+      .myWishInner {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+  }
+
   .myWishList {
     margin-bottom: 2rem;
+    flex: 2;
   }
 
   .desc {
@@ -27,7 +46,6 @@
     cursor: pointer;
   }
 
-  .qualityInputBox{
-    
+  .qualityInputBox {
   }
 }

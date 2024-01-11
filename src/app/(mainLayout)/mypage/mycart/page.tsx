@@ -69,40 +69,43 @@ export default function MyCartpage() {
       <div className={style.deleteButton} onClick={handleDeleteAllMyCart}>
         전체 삭제
       </div>
-      <div className={style.myWishList}>
-        {data?.pages &&
-          data?.pages?.map((page, i) => (
-            <Fragment key={i}>
-              {page?.content.map((it) => (
-                <MyCartBox key={it.productId} item={it} refetch={refetch} />
-              ))}
-            </Fragment>
-          ))}
-        <div ref={ref} style={{ height: 50 }} />
-        {data?.pages[0]?.content.length === 0 && (
-          <div className={style.desc}>
-            <div>장바구니가 비었어요</div>
-            <div
-              className={style.goDesc}
-              onClick={() => router.push("/product/list")}
-            >
-              상품 구경하러가기
+      <div className={style.myCartBody}>
+        <div className={style.myWishList}>
+          {data?.pages &&
+            data?.pages?.map((page, i) => (
+              <Fragment key={i}>
+                {page?.content.map((it) => (
+                  <MyCartBox key={it.productId} item={it} refetch={refetch} />
+                ))}
+              </Fragment>
+            ))}
+          <div ref={ref} style={{ height: 50 }} />
+          {data?.pages[0]?.content.length === 0 && (
+            <div className={style.desc}>
+              <div>장바구니가 비었어요</div>
+              <div
+                className={style.goDesc}
+                onClick={() => router.push("/product/list")}
+              >
+                상품 구경하러가기
+              </div>
             </div>
+          )}
+        </div>
+        <div className={style.myWishRightBar}>
+          <h2>주문 예상 금액</h2>
+          <div className={style.myWishInner}>
+            <div>총 상품 가격</div>
+            <div>{totalAmount}</div>
           </div>
-        )}
-      </div>
-      <div className={style.myWishRightBar}>
-        <div>주문 예상 금액</div>
-        <div>
-          <div>총 상품 가격</div>
-          <div>{totalAmount}</div>
+          <div className={style.myWishInner}>
+            <div>총 배송비</div>
+            <div>전통주점은 언제나 무료배송!</div>
+          </div>
+          <div>구매하기</div>
         </div>
-        <div>
-          <div>총 배송비</div>
-          <div>전통주점은 언제나 무료배송!</div>
-        </div>
-        <div>구매하기</div>
       </div>
+
       {isLoading && <Loading />}
     </div>
   );

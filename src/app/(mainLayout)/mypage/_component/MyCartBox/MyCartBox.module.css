@@ -3,6 +3,9 @@
   border-radius: 12px;
   padding: 1rem;
 
+  .deleteButton {
+    float: right;
+  }
   .myCartBody {
     display: flex;
     flex-direction: row;
@@ -11,6 +14,17 @@
 
     .productName {
       font-size: 1.3rem;
+    }
+  }
+
+  .qualityInputBox {
+    display: flex;
+    align-items: center;
+
+    gap: 2rem;
+    .quantityInput {
+      display: flex;
+      align-items: center;
     }
   }
 }
