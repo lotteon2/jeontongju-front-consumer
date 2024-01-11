@@ -1,8 +1,18 @@
+import Image from "next/image";
+import logoImg from "/public/logo.png";
 import style from "@/app/(mainLayout)/_component/Footer/Footer.module.css";
 export default function Footer() {
   return (
     <div className={style.companyInfo}>
-      <h2 className={style.logoArea}>로고자리</h2>
+      <h2 className={style.logoArea}>
+        <Image
+          src={logoImg}
+          width={0}
+          height={0}
+          alt="logo"
+          style={{ width: "5rem", height: "5rem" }}
+        />
+      </h2>
       <div className={style.infoWrapper}>
         <div className={style.company}>
           <h3>전통주점</h3>
