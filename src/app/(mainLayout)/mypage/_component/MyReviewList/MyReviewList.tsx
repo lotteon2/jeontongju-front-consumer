@@ -31,7 +31,7 @@ export default function MyReviewList() {
           자세히 보기 {">"}
         </div>
       </div>
-      {data?.content ? (
+      {data?.content?.length > 0 ? (
         data.content.map((it) => (
           <MyReviewBox params={it} key={it.reviewId} refetch={refetch} />
         ))

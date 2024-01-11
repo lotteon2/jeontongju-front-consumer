@@ -1,4 +1,5 @@
 "use client";
+import NotFoundImg from "/public/jeontongju_notfound.png";
 import { useSearchParams } from "next/navigation";
 import { ProductData } from "@/apis/search/searchAPIService.types";
 import { Page } from "@/constants/PageResponseType";
@@ -14,6 +15,7 @@ import { CONCEPT, ConceptOptions } from "@/constants/ConceptEnum";
 import { RAW_MATERIAL, RawMaterialOptions } from "@/constants/MaterialEnum";
 import searchAPI from "@/apis/search/searchAPIService";
 import Script from "next/script";
+import Image from "next/image";
 
 export default function SearchPage() {
   const params = useSearchParams();
@@ -163,6 +165,15 @@ export default function SearchPage() {
           </div>
         </div>
         <div className={style.productRightBar}>
+          {data?.pages[0].content.length !== 0 && (
+            <Image
+              src={NotFoundImg}
+              alt="notfound"
+              width={0}
+              height={0}
+              style={{ width: "80%", height: "80%" }}
+            />
+          )}
           {data?.pages.map((page, i) => (
             <Fragment key={i}>
               {page.content.map((product) => (
