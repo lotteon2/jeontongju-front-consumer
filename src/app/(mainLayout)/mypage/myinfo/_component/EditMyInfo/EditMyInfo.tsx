@@ -12,7 +12,9 @@ export default function EditMyInfo() {
   const [isAuth, setIsAuth] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");
   const [originalPassword, setOriginalPassword] = useState<string>("");
-
+  const [isLoadingUploadImg, setIsLoadingUploadImg] = useState<boolean>(false);
+  const [isLoadingUpdatePassword, setIsLoadingUpdatePassword] =
+    useState<boolean>(false);
   const { data: myInfo, isLoading } = useQuery({
     queryKey: ["consumer", "myinfo"],
     queryFn: () => consumerAPI.getMyInfoForStore(),
@@ -20,6 +22,7 @@ export default function EditMyInfo() {
 
   const checkIsAuth = async () => {
     try {
+      setIsLoadingUpdatePassword(true);
       const data = await authAPI.checkMyPasswordIsAuth(originalPassword);
       if (data.code === 200) {
         toast("본인 확인이 완료되었어요!");
@@ -27,6 +30,8 @@ export default function EditMyInfo() {
       }
     } catch (error) {
       toast("비밀번호가 일치하지않아요.");
+    } finally {
+      setIsLoadingUpdatePassword(false);
     }
   };
 
@@ -37,33 +42,60 @@ export default function EditMyInfo() {
     }
     setOriginalPassword(e.target.value);
   };
+
+  const handleUpdateMyProfileImg = async () => {
+    try {
+      setIsLoadingUploadImg(true);
+      const data = await consumerAPI.editMyProfileImg(imageUrl);
+      if (data.code === 200) {
+        toast("이미지가 업로드되었어요");
+      }
+    } catch (err) {
+      toast("이미지가 업로드에 실패했어요");
+    } finally {
+      setIsLoadingUploadImg(false);
+    }
+  };
+
   return (
     <>
-    <div className={style.editMyInfo}>
-      {(isAuth && !myInfo?.data.isSocial) || myInfo?.data.isSocial ? (
-        <div>
-          <ImageUploader
-            imageUrl={imageUrl || myInfo?.data.profileImageUrl}
-            setImageUrl={setImageUrl}
-          />
-        </div>
-      ) : (
-        <div>
-          <div>기존 비밀번호를 입력해주세요</div>
-          <div className={style.checkPasswordInput}>
-            <Input
-              value={originalPassword}
-              onChange={handleChangePassword}
-              placeholder="기존 비밀번호"
-              type="password"
+      <div className={style.editMyInfo}>
+        {(isAuth && !myInfo?.data.isSocial) || myInfo?.data.isSocial ? (
+          <div>
+            <ImageUploader
+              imageUrl={imageUrl || myInfo?.data.profileImageUrl}
+              setImageUrl={setImageUrl}
             />
-            <Button onClick={checkIsAuth}>확인</Button>
+            <Button
+              onClick={handleUpdateMyProfileImg}
+              disabled={!imageUrl}
+              loading={isLoadingUploadImg}
+            >
+              저장
+            </Button>
           </div>
-        </div>
-      )}
-    </div>
-    {isLoading && <Loading />}
+        ) : (
+          <div>
+            <div>기존 비밀번호를 입력해주세요</div>
+            <div className={style.checkPasswordInput}>
+              <Input
+                value={originalPassword}
+                onChange={handleChangePassword}
+                placeholder="기존 비밀번호"
+                type="password"
+              />
+              <Button
+                onClick={checkIsAuth}
+                disabled={!originalPassword}
+                loading={isLoadingUpdatePassword}
+              >
+                확인
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
+      {isLoading && <Loading />}
     </>
-   
   );
 }
