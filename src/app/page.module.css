@@ -278,7 +278,6 @@
       .auctionRight {
         flex: 2;
         width: 40%;
-        padding: 1rem;
         display: flex;
 
         .productName {
