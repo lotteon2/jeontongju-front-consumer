@@ -151,7 +151,12 @@ const AuctionDetail = ({ params }: Props) => {
     setIsDisableToBid(true);
     setTimeout(() => setIsDisableToBid(false), 3000);
     try {
-      const data = await auctionAPI.bid({ auctionId, bidPrice: 2000 });
+      const data = await auctionAPI.bid({
+        auctionId,
+        bidPrice:
+          Number(auctionInfo?.bidHistoryList[0].bidPrice) +
+          Number(auctionInfo?.askingPrice),
+      });
       if (data.code === 200) {
         console.log("입찰 성공");
       }
