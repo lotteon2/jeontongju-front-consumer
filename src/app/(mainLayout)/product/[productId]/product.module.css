@@ -111,9 +111,11 @@
 
 .menus {
   display: flex;
-  gap: 2rem;
+  position: sticky;
+  top: 0;
   justify-content: center;
   margin: 2rem 0;
+  background-color: #fff;
 
   .menu {
     background-color: bisque;
