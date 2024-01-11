@@ -21,6 +21,7 @@ import Noti from "../Noti/Noti";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import searchAPI from "@/apis/search/searchAPIService";
+import productAPI from "@/apis/product/productAPIService";
 
 export default function Header() {
   const router = useRouter();
@@ -34,6 +35,11 @@ export default function Header() {
   const { data: autoSearchKeyword, refetch } = useQuery({
     queryKey: ["search", "keyword", search],
     queryFn: () => searchAPI.getAutoCompleteForSearch(search),
+  });
+
+  const { data: category } = useQuery({
+    queryKey: ["product", "category"],
+    queryFn: () => productAPI.getCategories(),
   });
 
   const [
@@ -91,7 +97,7 @@ export default function Header() {
             src={logoImg}
             width={0}
             height={0}
-            alt="loading"
+            alt="logo"
             style={{ cursor: "pointer", width: "5rem", height: "5rem" }}
           />
         </div>
@@ -159,7 +165,6 @@ export default function Header() {
           )}
         </div>
       </div>
-
       <div className={style.header}>
         <div className={style.topnav}>
           <div className={style.menu}>
@@ -172,7 +177,21 @@ export default function Header() {
               }}
               src={FiSrMenuBurger}
             />
-            <div>카테고리</div>
+            <div className={style.categoryMenu}>
+              카테고리
+              <div className={style.categories}>
+                {category?.data.map((cate) => (
+                  <div
+                    className={style.cate}
+                    key={cate.value}
+                    role="presentation"
+                    onClick={() => router.push(`/category/${cate.value}`)}
+                  >
+                    {cate.label}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
           <Link href={"/"} className={style.menu}>
             <Image

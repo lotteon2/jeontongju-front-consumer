@@ -19,5 +19,10 @@ export type Short = {
   targetId: string;
 };
 
+export type GetCategoriesResponseData = Category[];
+
+type Category = { value: string; label: string };
+
 export type GetShortDetailResponse = ApiResponse<Short>;
 export type GetShortsListResponse = ApiResponse<Page<Short[]>>;
+export type GetCategoriesResponse = ApiResponse<GetCategoriesResponseData>;

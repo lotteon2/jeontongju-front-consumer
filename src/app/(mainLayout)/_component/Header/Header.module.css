@@ -141,3 +141,19 @@
   flex-direction: column;
   align-items: center;
 }
+
+.categoryMenu {
+  .categories {
+    position: absolute;
+    top: 16.5vh;
+    z-index: 3;
+    padding: 1rem;
+    background: #c0c0c0;
+    box-shadow: 3px 3px 1px 1px #c0c0c0;
+    border-radius: 12px;
+  }
+  .cate:hover {
+    color: white;
+    cursor: pointer;
+  }
+}

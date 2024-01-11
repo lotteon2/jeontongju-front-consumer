@@ -2,6 +2,8 @@
 import { useRouter } from "next/navigation";
 import not_found from "/public/not_found.mp4";
 import { NextPage } from "next";
+import Header from "./(mainLayout)/_component/Header/Header";
+import Footer from "./(mainLayout)/_component/Footer/Footer";
 
 const NotFound: NextPage = () => {
   const router = useRouter();
@@ -24,6 +26,7 @@ const NotFound: NextPage = () => {
           borderRadius: "5px",
         }}
       />
+      <Footer />
     </div>
   );
 };

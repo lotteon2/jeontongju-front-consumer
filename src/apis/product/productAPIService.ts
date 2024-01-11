@@ -1,5 +1,6 @@
 import { authAxiosInstance, unAuthAxiosInstance } from "../common";
 import {
+  GetCategoriesResponse,
   GetShortDetailResponse,
   GetShortsListResponse,
 } from "./productAPIService.types";
@@ -20,6 +21,12 @@ const productAPI = {
   getShortsDetail: async (shortsId: number) => {
     const { data } = await unAuthAxiosInstance.get<GetShortDetailResponse>(
       `/product-service/api/shorts/${shortsId}`
+    );
+    return data;
+  },
+  getCategories: async () => {
+    const { data } = await unAuthAxiosInstance.get<GetCategoriesResponse>(
+      `/product-service/api/categories`
     );
     return data;
   },
