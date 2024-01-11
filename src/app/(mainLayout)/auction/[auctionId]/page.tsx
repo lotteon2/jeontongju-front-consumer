@@ -57,9 +57,11 @@ const AuctionDetail = ({ params }: Props) => {
   const notify = (message: string) => toast(message);
 
   useEffect(() => {
-    if (!isLogin) {
-      toast("로그인한 유저만 접근할 수 있어요.");
-      router.push("/init/signin");
+    if (typeof window !== "undefined") {
+      if (!localStorage.getItem("accessToken")) {
+        toast("로그인한 유저만 접근할 수 있어요.");
+        router.push("/init/signin");
+      }
     }
   }, []);
   const connectChatInfo = () => {
@@ -119,8 +121,6 @@ const AuctionDetail = ({ params }: Props) => {
     try {
       const data = await auctionAPI.enterAuction(auctionId);
       if (data.code === 200) {
-        notify("입장에 성공했어요");
-        console.log("성공");
         setAuctionName(data.data.auctionName);
         setStatus(data.data.status);
         console.log(data.data.status);
