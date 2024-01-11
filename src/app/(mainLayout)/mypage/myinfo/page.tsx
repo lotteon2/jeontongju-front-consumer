@@ -9,10 +9,17 @@ import style from "@/app/(mainLayout)/mypage/myinfo/myinfo.module.css";
 import EditMyInfo from "./_component/EditMyInfo/EditMyInfo";
 import Withdraw from "./_component/Withdraw/Withdraw";
 import EditMyPassword from "./_component/EditMyPassword/EditMyPassword";
+import { useQuery } from "@tanstack/react-query";
 
 export default function MyInfo() {
   const router = useRouter();
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
+
+  const { data: myInfo, isLoading } = useQuery({
+    queryKey: ["consumer", "myinfo"],
+    queryFn: () => consumerAPI.getMyInfoForStore(),
+  });
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (!localStorage.getItem("accessToken")) {
@@ -31,12 +38,15 @@ export default function MyInfo() {
         >
           내 이미지 수정하기
         </div>
-        <div
-          className={selectedMenu === 2 ? style.selected : style.menu}
-          onClick={() => setSelectedMenu(2)}
-        >
-          내 비밀번호 변경하기
-        </div>
+        {!myInfo?.data.isSocial && (
+          <div
+            className={selectedMenu === 2 ? style.selected : style.menu}
+            onClick={() => setSelectedMenu(2)}
+          >
+            내 비밀번호 변경하기
+          </div>
+        )}
+
         <div
           className={selectedMenu === 3 ? style.selected : style.menu}
           onClick={() => setSelectedMenu(3)}
