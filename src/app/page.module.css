@@ -252,6 +252,7 @@
     text-decoration: none;
     outline: none;
     color: black;
+    margin-top: 5vh;
 
     .auctionHeader {
       font-size: 1.4rem;
