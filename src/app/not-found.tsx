@@ -1,13 +1,31 @@
-import Link from "next/link";
+"use client";
+import { useRouter } from "next/navigation";
+import not_found from "/public/not_found.mp4";
 import { NextPage } from "next";
 
 const NotFound: NextPage = () => {
-    return (
-        <div>
-            <div>이 페이지는 존재하지 않습니다. 다른 페이지를 검색해 보세요.</div>
-            <Link href="/search">검색</Link>
-        </div>
-    )
-}
+  const router = useRouter();
+  return (
+    <div
+      onClick={() => router.push("/")}
+      style={{ width: "70vw", margin: "0 auto" }}
+    >
+      <video
+        src={not_found}
+        autoPlay={true}
+        muted={true}
+        loop={true}
+        width={0}
+        height={0}
+        style={{
+          width: "100%",
+          height: "80%",
+          cursor: "pointer",
+          borderRadius: "5px",
+        }}
+      />
+    </div>
+  );
+};
 
 export default NotFound;

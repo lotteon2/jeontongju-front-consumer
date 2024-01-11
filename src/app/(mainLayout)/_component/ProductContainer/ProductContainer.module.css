@@ -1,0 +1,41 @@
+.productContainer {
+  width: 20%;
+  height: 25rem;
+  position: relative;
+  @media only screen and (min-width: 200px) and (max-width: 480px) {
+    height: 10rem;
+    margin: 1rem 0;
+    margin-bottom: 3rem;
+    width: 40%;
+  }
+  .isLiked {
+    position: absolute;
+    right: 10%;
+    top: 5%;
+    cursor: pointer;
+  }
+  .productImg {
+    border-radius: 4px;
+    margin-bottom: 1px;
+  }
+  .productName {
+    font-size: 1.1rem;
+    font-weight: 700;
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      font-size: 0.8rem;
+    }
+  }
+  .capacityToPriceRatio {
+    color: gray;
+    margin-top: 0.5rem;
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      font-size: 0.5rem;
+    }
+  }
+
+  .sellerInfo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+}

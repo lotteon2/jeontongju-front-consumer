@@ -6,6 +6,7 @@ import Image from "next/image";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import Script from "next/script";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const router = useRouter();
@@ -29,11 +30,17 @@ export default function SignUp() {
     try {
       const data = await authAPI.checkEmail({ email });
       if (data.code === 200) {
-        setAuthcode(data.data.authCode);
-        console.log("이메일 발송 완료");
-        setIsClickedCheckEmail(true);
-        if (data.failure === "DUPLICATED-EMAIL") {
-          setIsAbleToMerge(true);
+        if (data.failure === "DUPLICATED_EMAIL") {
+          toast("이미 있는 아이디에요.");
+          setIsClickedCheckEmail(true);
+        } else {
+          if (data.data.isSocial) {
+            toast("소셜 회원가입이 되어있으므로 계정 통합이 진행돼요!");
+          }
+          setAuthcode(data.data.authCode);
+          toast("해당 메일로 코드가 발송되었어요");
+          console.log("이메일 발송 완료");
+          setIsClickedCheckEmail(true);
         }
       }
     } catch (error) {
@@ -42,8 +49,11 @@ export default function SignUp() {
   };
 
   const checkAuthcode = async () => {
-    if (code === authCode) setIsCheckedEmail(true);
-    else {
+    if (code === authCode) {
+      toast("인증되었어요.");
+      setIsCheckedEmail(true);
+    } else {
+      toast("인증코드를 다시 확인해주세요.");
       setIsCheckedEmail(false);
     }
   };
@@ -93,9 +103,9 @@ export default function SignUp() {
     if (success) {
       console.log(response);
       setImpUid(responseImpUid);
-      //   Toast(true, "성인인증이 완료되었습니다");
+      toast("성인 인증이 완료되었어요.");
     } else {
-      //   Toast(false, errorMsg)
+      toast("성인 인증에 실패했어요.");
     }
   };
 
@@ -169,28 +179,7 @@ export default function SignUp() {
                 </button>
               </div>
             )}
-            {isAbleToMerge && (
-              <>
-                <input
-                  type="radio"
-                  value="true"
-                  checked={isMerge === true}
-                  name="isMerge"
-                  onChange={(e) => setIsMerge(e.target.value === "true")}
-                >
-                  공개
-                </input>
-                <input
-                  type="radio"
-                  value="false"
-                  checked={isMerge === false}
-                  name="isMerge"
-                  onChange={(e) => setIsMerge(e.target.value === "true")}
-                >
-                  비공개
-                </input>
-              </>
-            )}
+            {isAbleToMerge && <></>}
             <div className={style.inputDiv}>
               <label className={style.inputLabel} htmlFor="password">
                 비밀번호
@@ -224,7 +213,6 @@ export default function SignUp() {
             width={0}
             height={0}
             src={adultValidImg}
-            preview={false}
             style={{ cursor: "pointer", width: "100%", height: "auto" }}
             onClick={handleAdultValid}
           />

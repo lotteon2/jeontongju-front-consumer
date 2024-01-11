@@ -32,7 +32,7 @@ const nextConfig = {
     // minimumCacheTTL is in seconds, must be integer 0 or more
     minimumCacheTTL: 60,
     // ordered list of acceptable optimized image formats (mime types)
-    formats: ["image/webp"],
+    formats: ["image/avif", "image/webp"],
     // enable dangerous use of SVG images
     dangerouslyAllowSVG: false,
     // set the Content-Security-Policy header
@@ -43,9 +43,47 @@ const nextConfig = {
     remotePatterns: [],
     // when true, every image will be unoptimized
     unoptimized: true,
+    minimumCacheTTL: 60,
+  },
+  webpack: (
+    config,
+    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
+  ) => {
+    // config.module.rules.push({
+    //   test: /\.(gif|svg|jpg|png)$/, // add whatever files you wanna use within this regEx
+    //   use: ["file-loader"],
+    // });
+    // config.module.rules.push({
+    //   test: /^.*\/(robots\.txt|sitemap(-\d+)?\.xml)$/,
+    //   loader: "ignore-loader",
+    // });
+    // config.module.rules.push({
+    //   test: /\.(png|jpe?g|gif)$/i,
+    //   use: [
+    //     {
+    //       loader: "file-loader",
+    //     },
+    //   ],
+    // });
+    return config;
   },
 };
 
-const withImages = require("next-images");
+// config.externals.push({
+//   "agora-electron-sdk": "commonjs2 agora-electron-sdk",
+//   "agora-rdc-core": "commonjs2 agora-rdc-core",
+// });
 
-module.exports = withImages(nextConfig);
+const runtimeCaching = require("next-pwa/cache");
+const prod = process.env.NODE_ENV === "production";
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  disable: prod ? false : true,
+  skipWaiting: true,
+});
+
+const withImages = require("next-images");
+const withVideos = require("next-videos");
+
+module.exports = withPWA(withVideos(withImages(nextConfig)));

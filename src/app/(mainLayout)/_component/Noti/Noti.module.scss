@@ -1,0 +1,65 @@
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.background {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  width: 400px;
+}
+
+.slide-in {
+  animation: slideInRight 0.5s ease forwards;
+}
+
+.slide-out {
+  animation: slideOutRight 0.5s ease forwards;
+}
+
+.alarmBox {
+  border: 1px solid #ccc;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  position: absolute;
+  z-index: 100;
+  background-color: white;
+  max-height: 10rem;
+  min-height: 10rem;
+  overflow-y: scroll;
+  font-size: 0.8rem;
+  max-width: 10rem;
+  min-width: 10rem;
+
+  .alarmDiv {
+    padding: 0.5rem 0;
+  }
+}
+
+.everyReadButton {
+  text-align: right;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}

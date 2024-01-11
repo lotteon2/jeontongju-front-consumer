@@ -1,0 +1,74 @@
+.sellerPage {
+  .sellerHeader {
+    background-color: #c0c0c0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 0.5rem;
+
+    .shareBtns {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+  .storeName {
+    font-size: 1.3rem;
+  }
+
+  .sellerMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    .selected {
+      color: #ffa1a1;
+    }
+  }
+
+  .products {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .shorts {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+
+    .shortsParentWrapper {
+      display: flex;
+      height: 20rem;
+      width: 100%;
+      gap: 1rem;
+      flex-wrap: nowrap;
+    }
+  }
+
+  .sellerInfo {
+    .sellerInfoContainer {
+      margin: 1rem;
+      border-bottom: 1px solid #ccc;
+      padding: 1rem 0;
+    }
+
+    .sellerInfoMiniHead {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .sellerInfoDiv {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5rem 0;
+    }
+  }
+}

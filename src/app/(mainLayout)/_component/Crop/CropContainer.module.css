@@ -1,0 +1,65 @@
+.cropContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+
+  .cropHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    .cropMenu {
+      background-color: bisque;
+      padding: 1rem 2rem;
+      border-radius: 3px;
+      cursor: pointer;
+      @media only screen and (min-width: 200px) and (max-width: 480px) {
+        word-break: keep-all;
+        padding: 1rem 1rem;
+      }
+    }
+
+    .selected {
+      background-color: #ffa1a1;
+      padding: 1rem 2rem;
+      border-radius: 3px;
+      color: white;
+      cursor: pointer;
+      @media only screen and (min-width: 200px) and (max-width: 480px) {
+        word-break: keep-all;
+        padding: 1rem 1rem;
+      }
+    }
+  }
+
+  .cropBody {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+
+.costBody {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.banner {
+  width: 100%;
+  background: bisque;
+  height: 20vh;
+  text-align: center;
+  line-height: 20vh;
+  font-size: 2rem;
+  border-radius: 12px;
+
+  @media only screen and (min-width: 200px) and (max-width: 480px) {
+    height: 10vh;
+    line-height: 10vh;
+    font-size: 1.8rem;
+  }
+}

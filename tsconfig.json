@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["@emotion/react/types/css-prop"],
+    "types": ["@tanstack/react-query", "@types/gtag.js"],
     "typeRoots": ["src/types"],
     "baseUrl": ".",
     "allowJs": true,
@@ -32,7 +32,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "additional.d.ts"
-  ],
+    "additional.d.ts",
+    "src/app/(mainLayout)/_component/MemberShipBox"
+, "src/app/(mainLayout)/_component/InputRange"  ],
   "exclude": ["node_modules"]
 }

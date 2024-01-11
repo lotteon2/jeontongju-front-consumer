@@ -24,7 +24,7 @@
   background: #ffffff;
   position: relative;
   top: 5%;
-  max-width: 80vw;
+  max-width: 70vw;
   min-width: 600px;
   border-radius: 16px;
   display: flex;
@@ -47,6 +47,11 @@
 .modalBody {
   flex: 1;
   padding: 0 80px;
+}
+
+.message {
+  color: red;
+  text-align: center;
 }
 
 .inputDiv {

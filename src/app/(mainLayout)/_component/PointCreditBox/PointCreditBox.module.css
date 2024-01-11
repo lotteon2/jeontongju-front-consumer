@@ -1,0 +1,21 @@
+.creditBox {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 5rem;
+  background-color: #ececec;
+  border-radius: 12px;
+  padding: 1rem 3rem;
+  margin-bottom: 1rem;
+
+  .left {
+    font-size: 2rem;
+  }
+
+  .right {
+    .desc {
+      margin-top: 0.5rem;
+      color: gray;
+    }
+  }
+}

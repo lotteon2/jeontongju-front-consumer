@@ -1,0 +1,26 @@
+.productReviewBox {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 3px 3px 1px 1px #c0c0c0;
+
+  .heartBox {
+    display: flex;
+    justify-content: end;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .userBox {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .date {
+      color: #ccc;
+      font-size: 0.8rem;
+    }
+  }
+}

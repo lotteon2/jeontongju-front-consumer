@@ -1,14 +1,22 @@
-import { authAxiosInstance, unAuthAxiosInstance } from "../common";
 import {
+  authAxiosInstance,
+  getCookieForRefresh,
+  unAuthAxiosInstance,
+} from "../common";
+import {
+  AdultCheckAfterLoginResponse,
   CheckEmailParams,
   CheckEmailResponse,
   CheckMyEmailResponse,
+  CheckMyPasswordIsAuthResponse,
   SignInParams,
   SignInResponse,
   SignUpParams,
   SignUpResponse,
+  UpdateMyPasswordAfterLoginResponse,
   UpdateMyPasswordBeforeLoginResponse,
   UpdateMyPasswordParams,
+  WithDrawalResponse,
 } from "./authenticationAPIService.types";
 
 const authAPI = {
@@ -21,7 +29,8 @@ const authAPI = {
   },
   refreshAuth: async () => {
     const { data } = await authAxiosInstance.put(
-      `/authentication-service/api/access-token`
+      `/authentication-service/api/access-token`,
+      { cookie: getCookieForRefresh() }
     );
     return data;
   },
@@ -56,6 +65,36 @@ const authAPI = {
       await unAuthAxiosInstance.patch<UpdateMyPasswordBeforeLoginResponse>(
         "/authentication-service/api/password",
         { ...params, memberRole: "ROLE_CONSUMER" }
+      );
+    return data;
+  },
+  withdrawal: async () => {
+    const { data } = await authAxiosInstance.delete<WithDrawalResponse>(
+      `/authentication-service/api/consumers`
+    );
+    return data;
+  },
+  checkMyPasswordIsAuth: async (password: string) => {
+    const { data } =
+      await authAxiosInstance.post<CheckMyPasswordIsAuthResponse>(
+        `/authentication-service/api/password/auth`,
+        { originalPassword: password }
+      );
+    return data;
+  },
+  updateMyPasswordAfterLogin: async (newPassword: string) => {
+    const { data } =
+      await authAxiosInstance.patch<UpdateMyPasswordAfterLoginResponse>(
+        `/authentication-service/api/password/change`,
+        { newPassword }
+      );
+    return data;
+  },
+  adultCheckAfterLogin: async (impUid: string) => {
+    const { data } =
+      await authAxiosInstance.patch<AdultCheckAfterLoginResponse>(
+        `/authentication-service/api/consumers/adult-certification`,
+        { impUid }
       );
     return data;
   },

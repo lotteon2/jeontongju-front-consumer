@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  width: 100dvw;
+  height: 100dvh;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: black;
+  white-space: nowrap;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+  color: #ffa1a1;
+}
+
+body {
+  width: 70vw;
+  margin: 0 auto;
+  font-family: "Jua";
+  font-family: "__Jua_fe7685";
+
+  .Toastify__toast-body {
+    font-family: "__Jua_fe7685";
+  }
+}
+
+.swal2-icon {
+  border: none;
+}
+
+.swal2-modal {
+  border-radius: 30px;
+}
+.swal2-confirm {
+  width: 150px;
+  font-family: "__Jua_fe7685";
+}
+.swal2-cancel {
+  width: 150px;
+  font-family: "__Jua_fe7685";
+}
+
+.swal2-image {
+  width: 5rem;
+  height: 5rem;
+}

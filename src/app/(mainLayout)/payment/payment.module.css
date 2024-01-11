@@ -1,0 +1,63 @@
+.paymentPage {
+  .paymentBox {
+    box-shadow: 3px 3px 1px 1px #c0c0c0;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    .paymentHeader {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .paymentProductBox {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      .productName {
+        font-size: 1.5rem;
+      }
+    }
+
+    .pointBox {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      height: 3rem;
+
+      .input {
+        font-size: 17px;
+        border-radius: 12px;
+        padding: 0.6rem;
+        outline: none;
+        border: 1px solid #c0c0c0;
+      }
+
+      .inputDesc {
+        height: 3rem;
+        line-height: 3rem;
+      }
+    }
+  }
+
+  .payButton {
+    width: 100%;
+    margin: 2rem 0;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: white;
+    font-weight: 900;
+    background-color: #ffa1a1;
+  }
+
+  .couponSelectBox {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+}

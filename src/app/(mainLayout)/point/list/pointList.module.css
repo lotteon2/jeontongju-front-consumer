@@ -1,0 +1,62 @@
+.creditList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .button {
+    margin: 2rem;
+    width: 10rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: #f2cbf9;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 900;
+  }
+
+  .creditHeader {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+
+    .creditTitle {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+
+  .creditBtns {
+    display: flex;
+    gap: 1rem;
+    .button {
+      background-color: #ececec;
+    }
+
+    .selectedButton {
+      margin: 2rem;
+      width: 10rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      font-size: 1rem;
+      background-color: #ffa1a1;
+      color: white;
+      margin: 0 auto;
+      text-align: center;
+      font-weight: 900;
+    }
+  }
+  .credits {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+}

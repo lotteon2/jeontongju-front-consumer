@@ -1,0 +1,25 @@
+.shortsContainer {
+  display: flex;
+  position: relative;
+  justify-content: center;
+
+  .shortsBottom {
+    position: absolute;
+    color: white;
+    width: 80%;
+
+    .shortsTitle {
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .shortsDescription {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
