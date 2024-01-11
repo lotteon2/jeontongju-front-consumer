@@ -4,7 +4,7 @@ import ConnectLive from "@connectlive/connectlive-web-sdk";
 import { AgoraRTCProvider, useRTCClient } from "agora-rtc-react";
 import AgoraRTC from "agora-rtc-sdk-ng";
 // import { AgoraManager } from "../test/AgoraManager";
-// import config from "../test/config";
+import config from "../_component/config";
 import { Client } from "stompjs";
 import Stomp from "webstomp-client";
 import SockJS from "sockjs-client";

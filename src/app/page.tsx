@@ -39,11 +39,11 @@ export default async function Page() {
         <RQProvider>
           <HydrationBoundary state={dehydratedState}>
             <Header />
-            <AuctionContainer />
-            <Banner type="membership" href="/membership/buy" />
-            <MainShortsContainer />
-            <Banner type="coupon" />
             <MainProductContainer />
+            <Banner type="membership" href="/membership/buy" />
+            <AuctionContainer />
+            <Banner type="coupon" />
+            <MainShortsContainer />
             <Banner type="crop" href="/event/crop" />
             <MainReviewContainer />
             <Banner type="cost" href="/event/cost" />
