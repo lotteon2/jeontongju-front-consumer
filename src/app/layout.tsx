@@ -9,7 +9,6 @@ const jua = Jua({ subsets: ["latin"], display: "swap", weight: "400" });
 export const metadata: Metadata = {
   title: "전통주점",
   description: "전통주, 마침표를 찍다.",
-  manifest: "./manifest.json",
 };
 
 export default function RootLayout({
