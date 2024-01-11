@@ -1,4 +1,5 @@
 "use client";
+import logoImg from "/public/logo.png";
 import FiSrHomeSvg from "/public/fi-sr-home.svg";
 import FiSrHomeActiveSvg from "/public/fi-sr-home-active.svg";
 import FiSrAltSvg from "/public/fi-sr-play-alt.svg";
@@ -84,7 +85,15 @@ export default function Header() {
   return (
     <div className={style.header}>
       <div className={style.headerTop}>
-        <div onClick={() => router.push("/")}>로고자리</div>
+        <div onClick={() => router.push("/")}>
+          <Image
+            src={logoImg}
+            width={0}
+            height={0}
+            alt="loading"
+            style={{ cursor: "pointer", width: "5rem", height: "5rem" }}
+          />
+        </div>
         <div className={style.searchContainer}>
           <input
             type="text"

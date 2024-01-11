@@ -85,7 +85,6 @@ export default function ProductContainer({
           }}
         />
         <div className={style.productName}>
-          {" "}
           {productName.length > 10
             ? productName.slice(0, 10) + "..."
             : productName}

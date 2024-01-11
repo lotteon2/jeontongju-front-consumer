@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
 import styles from "@/app/page.module.css";
 import Script from "next/script";
 import Link from "next/link";
 import NextServer from "next/script";
 import Footer from "../(mainLayout)/_component/Footer/Footer";
+import Image from "next/image";
 
 export default function LoginLayout({
   children,
@@ -13,7 +13,7 @@ export default function LoginLayout({
   return (
     <div className={styles.loginContainer}>
       <header className={styles.loginHeader}>
-        <Link href="/">LOGO</Link>
+        <Link href="/"></Link>
         <a href="/">LOGO</a>
       </header>
       {children}

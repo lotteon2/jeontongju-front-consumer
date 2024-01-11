@@ -74,7 +74,7 @@ export default function MyCartBox({
           <div>{item.productPrice}</div>
         </div>
       </div>
-      <div>
+      <div className={style.qualityInputBox}>
         <QualityInput
           quantity={quantity}
           stock={100}
@@ -82,7 +82,7 @@ export default function MyCartBox({
           setQuantity={setQuantity}
           onBlur={handleBlurInput}
         />
-        <div>{total}</div>
+        <div>{total} 원</div>
       </div>
     </div>
   );
