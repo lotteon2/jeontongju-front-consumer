@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import SEO from "@/app/_component/SEO";
 import AuctionPage from "../test/page";
+import { Button } from "antd";
 
 type Props = {
   params: { auctionId: string };
@@ -51,6 +52,7 @@ type MemberAuction = {
 const AuctionDetail = ({ params }: Props) => {
   const router = useRouter();
   const { auctionId } = params;
+  const [isDisableToBid, setIsDisableToBid] = useState(false);
   const agoraEngine = useRTCClient(
     AgoraRTC.createClient({ codec: "vp8", mode: config.selectedProduct })
   );
@@ -107,7 +109,7 @@ const AuctionDetail = ({ params }: Props) => {
         stompClient.subscribe(`/sub/bid-info/${auctionId}`, (res) => {
           console.log("[BID] 구독으로 받은 메시지 입니다.", res.body);
           const auctionData = JSON.parse(res.body);
-          setAuctionInfo((prev) => [...auctionData]);
+          setAuctionInfo((prev) => auctionData);
         });
       },
       (error) => {
@@ -146,8 +148,10 @@ const AuctionDetail = ({ params }: Props) => {
   };
 
   const bidAskingPrice = async () => {
+    setIsDisableToBid(true);
+    setTimeout(() => setIsDisableToBid(false), 3000);
     try {
-      const data = await auctionAPI.bid({ auctionId, bidPrice: 1500 });
+      const data = await auctionAPI.bid({ auctionId, bidPrice: 2000 });
       if (data.code === 200) {
         console.log("입찰 성공");
       }
@@ -240,12 +244,14 @@ const AuctionDetail = ({ params }: Props) => {
                       입찰
                     </button>
                   </div> */}
-                  <button
+                  <Button
                     className={style.inputBidButton}
                     onClick={bidAskingPrice}
+                    disabled={isDisableToBid}
+                    loading={isDisableToBid}
                   >
                     현재가 + 호가만큼 입찰하기
-                  </button>
+                  </Button>
                 </>
               )}
               <ToastContainer />
