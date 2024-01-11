@@ -95,7 +95,6 @@ const AuctionDetail = ({ params }: Props) => {
       (frame) => {
         stompClient.subscribe(`/sub/bid-info/${auctionId}`, (res) => {
           console.log("[BID] 구독으로 받은 메시지 입니다.", res.body);
-          // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
           const auctionData = JSON.parse(res.body);
           setAuctionInfo((prev) => [...prev, auctionData]);
         });
@@ -142,6 +141,7 @@ const AuctionDetail = ({ params }: Props) => {
         console.log("입찰 성공");
       }
     } catch (error) {
+      toast("입찰에 실패했어요.");
       console.error("입찰 실패");
     }
   };
@@ -161,7 +161,15 @@ const AuctionDetail = ({ params }: Props) => {
               <div className={style.chat}>
                 {chat.map((it, idx) => (
                   <div className={style.chatBox} key={idx}>
-                    <Image src={it.memberProfileImage || ""} alt="img" />
+                    <Image
+                      src={it.memberProfileImage || ""}
+                      alt="img"
+                      width="20"
+                      height="20"
+                      style={{
+                        borderRadius: "50%",
+                      }}
+                    />
                     <span className={style.chatName}>{it.memberNickname}</span>
                     <span className={style.chatMessage}>{it.message}</span>
                   </div>

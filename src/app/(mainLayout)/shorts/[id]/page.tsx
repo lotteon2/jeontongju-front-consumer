@@ -142,37 +142,38 @@ export default function ShortsDetail({
           style={{
             width: "100%",
             height: "100%",
-            cursor: "pointer",
             borderRadius: "10px",
           }}
         />
-        <div
-          className={style.shortsBottom}
-          style={{ bottom: isMain ? "0" : "5rem" }}
-        >
+        {!isMain && (
           <div
-            className={style.shortsTitle}
-            onClick={() => router.push(`/${short.targetId}`)}
+            className={style.shortsBottom}
+            style={{ bottom: isMain ? "0" : "5rem" }}
           >
-            {short?.shortsTitle}
+            <div
+              className={style.shortsTitle}
+              onClick={() => router.push(`/${short.targetId}`)}
+            >
+              {short?.shortsTitle}
+            </div>
+            <div className={style.shortsDescription}>
+              {short?.shortsDescription}
+            </div>
+            <div onClick={handleShareKakao}>
+              <Image
+                src={KakaoShareImg}
+                alt="kakaoShare"
+                width={0}
+                height={0}
+                style={{
+                  cursor: "pointer",
+                  width: "2rem",
+                  height: "2rem",
+                }}
+              />
+            </div>
           </div>
-          <div className={style.shortsDescription}>
-            {short?.shortsDescription}
-          </div>
-          <div onClick={handleShareKakao}>
-            <Image
-              src={KakaoShareImg}
-              alt="kakaoShare"
-              width={0}
-              height={0}
-              style={{
-                cursor: "pointer",
-                width: "2rem",
-                height: "2rem",
-              }}
-            />
-          </div>
-        </div>
+        )}
       </div>
     </>
   );
