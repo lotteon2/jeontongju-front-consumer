@@ -173,6 +173,9 @@ export default function ProductList() {
               ))}
             </Fragment>
           ))}
+          {!data?.pages[0]?.content.length && (
+            <div>해당 상품 목록이 없어요</div>
+          )}
         </div>
         <div ref={ref} style={{ height: 50 }} />
       </div>

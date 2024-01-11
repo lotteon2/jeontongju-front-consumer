@@ -190,6 +190,7 @@ export default function SearchPage() {
               ))}
             </Fragment>
           ))}
+          {!data?.pages[0]?.content.length && <div>해당 상품이 없어요</div>}
           <div ref={ref} style={{ height: 50 }} />
         </div>
       </div>
