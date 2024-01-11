@@ -10,6 +10,7 @@ import {
   GetBestReviewProducts,
   GetAutoCompleteForSearchResponse,
   GetHolidayProductsResponse,
+  GetAllProductListForCategoryIdResponse,
 } from "./searchAPIService.types";
 import { SNACK } from "@/constants/SnackTypeEnum";
 import { CONCEPT } from "@/constants/ConceptEnum";
@@ -113,6 +114,25 @@ const searchAPI = {
         `/search-service/api/products/search/auto?query=${keyword}`
       );
     return data;
+  },
+  getAllProductListForCategoryId: async (
+    categoryId: number,
+    page: number,
+    sort: keyof typeof SORT,
+    size: number,
+    rawMaterial?: (keyof typeof RAW_MATERIAL)[],
+    food?: (keyof typeof SNACK)[],
+    minPrice?: number,
+    maxPrice?: number,
+    minAlcoholDegree?: number,
+    maxAlcoholDegree?: number,
+    concept?: (keyof typeof CONCEPT)[]
+  ) => {
+    const { data } =
+      await authAxiosInstance.get<GetAllProductListForCategoryIdResponse>(
+        `/search-service/api/products/categories?id=${categoryId}&page=${page}&sort=${sort}&size=${size}&rawMaterial=${rawMaterial}&food=${food}&minPrice=${minPrice}&maxPrice=${maxPrice}&concept=${concept}&minAlcoholDegree=${minAlcoholDegree}&maxAlcoholDegree=${maxAlcoholDegree}`
+      );
+    return data.data;
   },
 };
 export default searchAPI;

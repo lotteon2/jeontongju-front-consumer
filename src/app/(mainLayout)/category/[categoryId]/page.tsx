@@ -6,7 +6,6 @@ import { Page } from "@/constants/PageResponseType";
 import { SORT } from "@/constants/SortEnum";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
-import ProductContainer from "../_component/ProductContainer/ProductContainer";
 import { SNACK, SnackOptions } from "@/constants/SnackTypeEnum";
 import { useInView } from "react-intersection-observer";
 import style from "@/app/(mainLayout)/product/list/productList.module.css";
@@ -16,10 +15,14 @@ import { RAW_MATERIAL, RawMaterialOptions } from "@/constants/MaterialEnum";
 import searchAPI from "@/apis/search/searchAPIService";
 import Script from "next/script";
 import Image from "next/image";
+import ProductContainer from "../../_component/ProductContainer/ProductContainer";
 
-export default function SearchPage() {
-  const params = useSearchParams();
-  const keywordParam = params.get("keyword");
+type Props = {
+  params: { categoryId: string };
+};
+
+export default function CategoryPage({ params }: Props) {
+  const { categoryId } = params;
   const [sort, setSort] = useState<keyof typeof SORT>("_score");
   const [rawMaterial, setRawMaterial] = useState<(keyof typeof RAW_MATERIAL)[]>(
     []
@@ -51,7 +54,7 @@ export default function SearchPage() {
     >({
       queryKey: [
         "search",
-        "all",
+        "category",
         rawMaterial,
         food,
         minPrice,
@@ -61,8 +64,8 @@ export default function SearchPage() {
         concepts,
       ],
       queryFn: ({ pageParam = 0 }) =>
-        searchAPI.getAllProductsBySearch(
-          decodeURIComponent(keywordParam),
+        searchAPI.getAllProductListForCategoryId(
+          Number(categoryId),
           pageParam,
           sort,
           10,
@@ -92,6 +95,7 @@ export default function SearchPage() {
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
+  useEffect(() => {}, [params]);
   const onChangeComplete = (value: number[]) => {
     setMinAlcoholDegree(value[0]);
     setMaxAlcoholDegree(value[1]);

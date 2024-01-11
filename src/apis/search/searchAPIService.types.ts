@@ -90,3 +90,6 @@ export type GetBestReviewProducts = ApiResponse<ProductData[]>;
 export type GetAutoCompleteForSearchResponse = ApiResponse<
   GetAutoCompleteForSearchResponseData[]
 >;
+export type GetAllProductListForCategoryIdResponse = ApiResponse<
+  Page<ProductData[]>
+>;
