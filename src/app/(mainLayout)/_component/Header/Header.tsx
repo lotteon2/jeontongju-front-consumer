@@ -26,6 +26,7 @@ import productAPI from "@/apis/product/productAPIService";
 export default function Header() {
   const router = useRouter();
   const [search, setSearch] = useState<string>("");
+  const [isShowCategoryMenu, setIsShowCategoryMenu] = useState<boolean>(false);
   const [isSearchBarOpen, setIsSearchBarOpen] = useState<boolean>(true);
   const { data } = useQuery({
     queryKey: ["consumer", "myinfo"],
@@ -87,6 +88,14 @@ export default function Header() {
       setSearch(e.target.value);
       setIsSearchBarOpen(true);
     }
+  };
+
+  const handleShowCategory = () => {
+    setIsShowCategoryMenu(true);
+  };
+
+  const handleHideCategory = () => {
+    setIsShowCategoryMenu(false);
   };
 
   return (
@@ -167,7 +176,11 @@ export default function Header() {
       </div>
       <div className={style.header}>
         <div className={style.topnav}>
-          <div className={style.menu}>
+          <div
+            className={style.menu}
+            onMouseOver={handleShowCategory}
+            onMouseLeave={handleHideCategory}
+          >
             <Image
               alt="search"
               width={32}
@@ -179,18 +192,20 @@ export default function Header() {
             />
             <div className={style.categoryMenu}>
               카테고리
-              <div className={style.categories}>
-                {category?.data.map((cate) => (
-                  <div
-                    className={style.cate}
-                    key={cate.value}
-                    role="presentation"
-                    onClick={() => router.push(`/category/${cate.value}`)}
-                  >
-                    {cate.label}
-                  </div>
-                ))}
-              </div>
+              {isShowCategoryMenu && (
+                <div className={style.categories}>
+                  {category?.data.map((cate) => (
+                    <div
+                      className={style.cate}
+                      key={cate.value}
+                      role="presentation"
+                      onClick={() => router.push(`/category/${cate.value}`)}
+                    >
+                      {cate.label}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <Link href={"/"} className={style.menu}>

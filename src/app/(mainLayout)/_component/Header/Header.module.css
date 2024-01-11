@@ -148,12 +148,15 @@
     top: 16.5vh;
     z-index: 3;
     padding: 1rem;
-    background: #c0c0c0;
+    background: #fff;
     box-shadow: 3px 3px 1px 1px #c0c0c0;
     border-radius: 12px;
   }
+  .cate {
+    margin: 0.3rem 0;
+  }
   .cate:hover {
-    color: white;
+    color: #ffa1a1;
     cursor: pointer;
   }
 }
