@@ -33,9 +33,20 @@ interface AuctionData {
   auctionProductList: {
     auctionProductId: string;
     auctionProductName: string;
+    auctionStartingPrice: number;
     state: "ING" | "BEFORE" | "AFTER";
   }[];
+  askingPrice: number;
+  bidHistoryList: MemberAuction[];
 }
+
+type MemberAuction = {
+  memberId: number;
+  nickname: string;
+  profileImage: string;
+  auctionProductId: string;
+  bidPrice: number;
+};
 
 const AuctionDetail = ({ params }: Props) => {
   const router = useRouter();
@@ -52,7 +63,7 @@ const AuctionDetail = ({ params }: Props) => {
   const [stompClient, setStompClient] = useState<null | Client>(null);
   const [auctionName, setAuctionName] = useState<string>("");
   const [status, setStatus] = useState<"ING" | "BEFORE" | "AFTER">();
-  const [auctionInfo, setAuctionInfo] = useState<AuctionData[]>([]);
+  const [auctionInfo, setAuctionInfo] = useState<AuctionData>();
   const [chat, setChat] = useState<ChatData[]>([]);
   const notify = (message: string) => toast(message);
 
@@ -96,7 +107,7 @@ const AuctionDetail = ({ params }: Props) => {
         stompClient.subscribe(`/sub/bid-info/${auctionId}`, (res) => {
           console.log("[BID] 구독으로 받은 메시지 입니다.", res.body);
           const auctionData = JSON.parse(res.body);
-          setAuctionInfo((prev) => [...prev, auctionData]);
+          setAuctionInfo((prev) => [...auctionData]);
         });
       },
       (error) => {
@@ -136,7 +147,7 @@ const AuctionDetail = ({ params }: Props) => {
 
   const bidAskingPrice = async () => {
     try {
-      const data = await auctionAPI.bid({ auctionId, bidPrice: 1000 });
+      const data = await auctionAPI.bid({ auctionId, bidPrice: 1500 });
       if (data.code === 200) {
         console.log("입찰 성공");
       }
@@ -191,13 +202,29 @@ const AuctionDetail = ({ params }: Props) => {
             <div className={style.auctionRight}>
               <div className={style.todayAuctionBox}>
                 <h3 className={style.auctionName}>{auctionName}</h3>
+                <div>
+                  {auctionInfo?.auctionProductList.map(
+                    (auctionProduct, idx) => (
+                      <div key={idx}>
+                        <div>{auctionProduct.auctionProductName}</div>
+                        <div>
+                          시작가 | {auctionProduct.auctionStartingPrice}원
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
               </div>
 
               <div className={style.bidInfo}>
                 <h2>현재 입찰 내역</h2>
                 <div>
-                  {auctionInfo.map((it, idx) => (
-                    <div key={idx}>{it.auctionProductList}</div>
+                  {auctionInfo?.bidHistoryList.map((bidHistory, idx) => (
+                    <div key={idx}>
+                      <div>{bidHistory.profileImage}</div>
+                      <div>{bidHistory.nickname}</div>
+                      <div>{bidHistory.bidPrice}</div>
+                    </div>
                   ))}
                 </div>
               </div>

@@ -4,7 +4,8 @@
     flex-direction: column;
     gap: 2rem;
 
-    position: absolute;
+    position: sticky;
+    top: 0;
     top: 16vh;
     width: 20%;
   }
