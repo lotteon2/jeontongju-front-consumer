@@ -30,7 +30,7 @@ function Noti() {
             Connection: "keep-alive",
             Accept: "text/event-stream",
           },
-          heartbeatTimeout: 86400000,
+          heartbeatTimeout: 6000,
           withCredentials: true,
         }
       );
