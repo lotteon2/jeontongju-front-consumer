@@ -84,7 +84,12 @@ export default function ProductContainer({
             borderRadius: "12px",
           }}
         />
-        <div className={style.productName}>{productName}</div>
+        <div className={style.productName}>
+          {" "}
+          {productName.length > 10
+            ? productName.slice(0, 10) + "..."
+            : productName}
+        </div>
         <div className={style.price}>{price}</div>
         {sellerProfileImg && (
           <div className={style.sellerInfo}>

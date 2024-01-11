@@ -6,6 +6,7 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import style from "@/app/(mainLayout)/mypage/_component/MyCartBox/MyCartBox.module.css";
 import { useState } from "react";
+import QualityInput from "@/app/(mainLayout)/_component/QualityInput/QualityInput";
 
 export default function MyCartBox({
   item,
