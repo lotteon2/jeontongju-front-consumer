@@ -61,7 +61,6 @@ export default function MyPage() {
           <div id="myCart">
             <MyCartList />
           </div>
-
           <div id="myReview">
             <MyReviewList />
           </div>

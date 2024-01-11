@@ -218,7 +218,7 @@ export default function Header() {
               }}
               src={FiSrSellersSvg}
             />
-            <div>셀러</div>
+            <div>주모</div>
           </Link>
           <Link href={"/auction/list"}>
             <Image

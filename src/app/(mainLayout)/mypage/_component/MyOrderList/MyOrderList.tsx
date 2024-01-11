@@ -32,7 +32,7 @@ export default function MyOrderList() {
           자세히 보기 {">"}
         </div>
       </div>
-      {data ? (
+      {data?.content?.length > 0 ? (
         data.content.map((it) => (
           <MyOrderBox params={it} key={it.order.ordersId} refetch={refetch} />
         ))

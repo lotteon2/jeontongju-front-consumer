@@ -4,7 +4,8 @@
     flex-direction: column;
     gap: 2rem;
 
-    position: fixed;
+    position: absolute;
+    top: 16vh;
     width: 20%;
   }
   .productRightBar {
