@@ -59,8 +59,8 @@
 }
 
 .bottomInput {
-  position: absolute;
-  bottom: 5%;
+  position: sticky;
+  bottom: 0;
   width: 100%;
   display: flex;
 
@@ -119,7 +119,7 @@
   flex-direction: column;
   height: 40%;
   max-height: 40%;
-  position: relative;
+  min-height: 40%;
   overflow-y: scroll;
 }
 

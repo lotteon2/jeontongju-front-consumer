@@ -59,4 +59,10 @@
     flex-direction: column;
     margin: 0 auto;
   }
+
+  .credits {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+  }
 }
