@@ -265,20 +265,22 @@
       gap: 1rem;
       .auctionLeft {
         flex: 1;
+      }
+      .auctionTitle {
+        font-size: 1.2rem;
+      }
 
-        .auctionTitle {
-          font-size: 1.2rem;
-        }
-
-        .auctionDesc {
-          font-size: 0.8rem;
-          color: gray;
-        }
+      .auctionDesc {
+        font-size: 0.8rem;
+        color: gra y;
       }
       .auctionRight {
         flex: 2;
         width: 40%;
         display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-direction: column;
 
         .productName {
           font-weight: 700;

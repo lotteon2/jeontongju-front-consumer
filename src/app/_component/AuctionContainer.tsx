@@ -16,10 +16,10 @@ import { useEffect, useState } from "react";
 export default function AuctionContainer() {
   const settings = {
     infinite: true,
-    speed: 2000,
+    speed: 4000,
     autoplay: true,
     pauseOnHover: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 4000,
     arrows: false,
     slidesToShow: 1,
   };
@@ -59,12 +59,12 @@ export default function AuctionContainer() {
                     borderRadius: "5px",
                   }}
                 />
+              </div>
+              <div className={style.auctionRight}>
                 <div className={style.auctionTitle}>{data?.auction.title}</div>
                 <div className={style.auctionDesc}>
                   {data?.auction.startDate.slice(0, 10)} 오후 5시
                 </div>
-              </div>
-              <div className={style.auctionRight}>
                 <Slider {...settings} className={style.slider}>
                   {data?.productList?.map((product: AuctionProduct) => (
                     <div

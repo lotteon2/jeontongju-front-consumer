@@ -1,5 +1,6 @@
 "use client";
 import logoImg from "/public/logo.png";
+import FiSrMenuBurger from "/public/fi-sr-menu-burger.svg";
 import FiSrHomeSvg from "/public/fi-sr-home.svg";
 import FiSrHomeActiveSvg from "/public/fi-sr-home-active.svg";
 import FiSrAltSvg from "/public/fi-sr-play-alt.svg";
@@ -161,6 +162,18 @@ export default function Header() {
 
       <div className={style.header}>
         <div className={style.topnav}>
+          <div className={style.menu}>
+            <Image
+              alt="search"
+              width={32}
+              height={32}
+              style={{
+                cursor: "pointer",
+              }}
+              src={FiSrMenuBurger}
+            />
+            <div>카테고리</div>
+          </div>
           <Link href={"/"} className={style.menu}>
             <Image
               alt="search"
