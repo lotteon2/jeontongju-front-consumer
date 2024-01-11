@@ -66,7 +66,7 @@ const AuctionDetail = ({ params }: Props) => {
   }, []);
   const connectChatInfo = () => {
     console.log("auction");
-    const serverURL = "https://jeontongju.shop/auction-service";
+    const serverURL = "https://api.jeontongju.shop/auction-service";
     let socket = new SockJS(`${serverURL}/chat`);
     const stompClient = Stomp.over(socket);
     stompClient.connect(
@@ -87,7 +87,7 @@ const AuctionDetail = ({ params }: Props) => {
 
   const connectBidInfo = () => {
     console.log("auction");
-    const serverURL = "https://jeontongju.shop/auction-service";
+    const serverURL = "https://api.jeontongju.shop/auction-service";
     let socket = new SockJS(`${serverURL}/chat`);
     const stompClient = Stomp.over(socket);
     stompClient.connect(
@@ -195,7 +195,7 @@ const AuctionDetail = ({ params }: Props) => {
               </div>
               {isLogin && (
                 <>
-                  <div className={style.bidInput}>
+                  {/* <div className={style.bidInput}>
                     <input
                       className={style.chatInput}
                       value={message}
@@ -204,7 +204,7 @@ const AuctionDetail = ({ params }: Props) => {
                     <button className={style.inputButton} onClick={sendMessage}>
                       입찰
                     </button>
-                  </div>
+                  </div> */}
                   <button
                     className={style.inputBidButton}
                     onClick={bidAskingPrice}

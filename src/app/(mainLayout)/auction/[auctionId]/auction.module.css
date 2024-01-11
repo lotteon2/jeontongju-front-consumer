@@ -1,6 +1,7 @@
 .auctionPage {
   display: flex;
   height: 100vh;
+  gap: 1rem;
 }
 
 .auctionLeft {
@@ -117,7 +118,7 @@
   height: 40%;
   max-height: 40%;
   position: relative;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .chatBox::before {
