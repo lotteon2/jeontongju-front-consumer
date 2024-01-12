@@ -1,6 +1,6 @@
 import FiSrBellSVG from "/public/fi-sr-bell.svg";
 import NewFiSrBellSVG from "/public/fi-sr-new-bell.svg";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { EventSourcePolyfill, NativeEventSource } from "event-source-polyfill";
 import styles from "./Noti.module.scss";
 import Image from "next/image";
@@ -11,10 +11,25 @@ import { useRouter } from "next/navigation";
 
 function Noti() {
   const router = useRouter();
+
+  const notiRef = useRef(null);
   const [newNoti, setNewNoti] = useState<
     { notificationId: number; data: keyof typeof NOTI; redirectUrl: string }[]
   >([]);
   const [notiOpen, setNotiOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (notiRef.current && !notiRef.current.contains(event.target)) {
+        setNotiOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -94,7 +109,7 @@ function Noti() {
   };
 
   return (
-    <div>
+    <div ref={notiRef}>
       <Image
         alt="bell"
         width={0}
