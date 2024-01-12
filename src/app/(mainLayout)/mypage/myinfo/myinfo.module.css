@@ -26,6 +26,11 @@
   }
 
   .editMyInfo {
+    .editMyProfileImg {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .checkPasswordInput {
       display: flex;
       align-items: center;

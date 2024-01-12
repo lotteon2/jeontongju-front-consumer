@@ -61,7 +61,7 @@ export default function EditMyInfo() {
     <>
       <div className={style.editMyInfo}>
         {(isAuth && !myInfo?.data.isSocial) || myInfo?.data.isSocial ? (
-          <div>
+          <div className={style.editMyProfileImg}>
             <ImageUploader
               imageUrl={imageUrl || myInfo?.data.profileImageUrl}
               setImageUrl={setImageUrl}

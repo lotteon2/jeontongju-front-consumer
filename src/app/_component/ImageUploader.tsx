@@ -69,6 +69,8 @@ const ImageUploader = ({ imageUrl, setImageUrl }: Props) => {
       />
       {imgSrc ? (
         <Image
+          width="0"
+          height="0"
           style={{ width: "10rem", height: "10rem" }}
           src={imgSrc}
           alt="이미지"
