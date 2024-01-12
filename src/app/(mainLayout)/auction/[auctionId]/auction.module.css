@@ -36,8 +36,10 @@
     align-items: center;
     justify-content: center;
 
-    .bidInfoInner{
-      display: ;
+    .bidInfoInner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
   }
 }
