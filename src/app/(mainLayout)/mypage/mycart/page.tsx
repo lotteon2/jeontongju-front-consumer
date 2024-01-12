@@ -138,7 +138,12 @@ export default function MyCartpage() {
                 realAmount: totalAmount,
                 totalAmount: totalAmount,
                 isCart: true,
-                products: JSON.stringify(selectedCart),
+                products: JSON.stringify(
+                  selectedCart.map((cart) => ({
+                    productCount: cart.amount,
+                    productId: cart.productId,
+                  }))
+                ),
               },
             }}
           >
