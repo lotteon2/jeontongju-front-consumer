@@ -16,6 +16,7 @@ type Props = {
   setBasicAddress: Dispatch<SetStateAction<string>>;
   addressDetail: string;
   setAddressDetail: Dispatch<SetStateAction<string>>;
+  isMyPage: boolean;
 };
 export default function MyAddressAddBox({
   isDisableToAddAddress,
@@ -32,6 +33,7 @@ export default function MyAddressAddBox({
   setBasicAddress,
   addressDetail,
   setAddressDetail,
+  isMyPage,
 }: Props) {
   return (
     <div className={style.myAddressBox}>
@@ -64,13 +66,15 @@ export default function MyAddressAddBox({
         />
         <label id="isDefault">기본 배송지로 선택</label>
       </div>
-      <button
-        disabled={isDisableToAddAddress}
-        onClick={addAddress}
-        className={style.addButton}
-      >
-        추가하기
-      </button>
+      {isMyPage && (
+        <button
+          disabled={isDisableToAddAddress}
+          onClick={addAddress}
+          className={style.addButton}
+        >
+          추가하기
+        </button>
+      )}
     </div>
   );
 }

@@ -60,4 +60,8 @@
     gap: 1rem;
     margin: 1rem 0;
   }
+
+  .myDefaultAddressAddBox {
+    margin-top: 1rem;
+  }
 }

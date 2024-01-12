@@ -92,6 +92,7 @@ const AuctionDetail = ({ params }: Props) => {
       router.push("/mypage/myaddress");
     }
   }, [myInfo]);
+  
   const connectChatInfo = () => {
     console.log("auction");
     const serverURL = "https://api.jeontongju.shop/auction-service";

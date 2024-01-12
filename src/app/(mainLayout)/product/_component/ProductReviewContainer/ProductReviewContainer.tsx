@@ -65,9 +65,11 @@ export default function ProductReviewContainer({
       {data?.pages[0]?.representativeReview?.length > 0 && (
         <>
           <div>이 상품과 잘 어울리는 태그는</div>
-          {data?.pages[0]?.representativeReview.map((it) => (
-            <div key={it}>{it}</div>
-          ))}
+          <div>
+            {data?.pages[0]?.representativeReview.map((it) => (
+              <div key={it}>{it}</div>
+            ))}
+          </div>
         </>
       )}
 

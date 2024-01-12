@@ -96,18 +96,22 @@ export default function Page({ params }: Props) {
                 height={0}
                 style={{
                   borderRadius: "12px",
-                  cursor: "pointer",
                   width: "30rem",
                   height: "auto",
+                  opacity: productData.isSoldOut ? 0.4 : 1,
                 }}
               />
+              {productData.isSoldOut && (
+                <div className={style.soldOut}>품절</div>
+              )}
             </div>
             <div className={style.info}>
               <div className={style.title}>
                 <div>{productData.productName}</div>
-                {productData.registeredQuantity < 10 && (
-                  <div style={{ color: "red" }}>품절 임박</div>
-                )}
+                {!productData.isSoldOut &&
+                  productData.registeredQuantity < 10 && (
+                    <div style={{ color: "red" }}>품절 임박</div>
+                  )}
               </div>
               <div className={style.desc}>{productData.productDescription}</div>
               <div className={style.hr} />
@@ -125,32 +129,37 @@ export default function Page({ params }: Props) {
                 />
                 <div>{total}원</div>
               </div>
-              <div className={style.btnGroup}>
-                <div className={style.button} onClick={handleAddCart}>
-                  장바구니 담기
+              {!productData.isSoldOut ? (
+                <div className={style.btnGroup}>
+                  <div className={style.button} onClick={handleAddCart}>
+                    장바구니 담기
+                  </div>
+                  <Link
+                    className={style.button}
+                    href={{
+                      pathname: "/payment",
+                      query: {
+                        realAmount: total,
+                        totalAmount: total,
+                        products: JSON.stringify([
+                          {
+                            productId,
+                            productImg: productData.productThumbnailImageUrl,
+                            productName: productData.productName,
+                            productPrice: productData.productPrice,
+                            productCount: quantity,
+                          },
+                        ]),
+                      },
+                    }}
+                  >
+                    바로 구매하기
+                  </Link>
                 </div>
-                <Link
-                  className={style.button}
-                  href={{
-                    pathname: "/payment",
-                    query: {
-                      realAmount: total,
-                      totalAmount: total,
-                      products: JSON.stringify([
-                        {
-                          productId,
-                          productImg: productData.productThumbnailImageUrl,
-                          productName: productData.productName,
-                          productPrice: productData.productPrice,
-                          productCount: quantity,
-                        },
-                      ]),
-                    },
-                  }}
-                >
-                  바로 구매하기
-                </Link>
-              </div>
+              ) : (
+                <div>품절된 상품이에요</div>
+              )}
+
               <div className={style.hr} />
               <div>리뷰 적립시 3% 추가 적립</div>
               <Link

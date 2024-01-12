@@ -1,16 +1,12 @@
 .myPage {
+  .leftBar {
+    width: auto;
+  }
   .myPageBody {
     display: flex;
-    position: relative;
-
-    .leftBar {
-      position: sticky;
-      left: 0;
-      top: 0;
-      width: 10%;
-    }
     .rightBar {
       width: 100%;
+      top: 0;
       margin-left: 20%;
     }
   }

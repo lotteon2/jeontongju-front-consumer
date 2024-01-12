@@ -90,6 +90,7 @@ export default function MyAddress() {
             <div>주소가 없어요</div>
           )}
           <MyAddressAddBox
+            isMyPage={true}
             setRecipientName={setRecipientName}
             recipientName={recipientName}
             phoneNumber={phoneNumber}

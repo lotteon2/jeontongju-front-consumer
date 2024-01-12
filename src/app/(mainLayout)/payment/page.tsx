@@ -194,6 +194,7 @@ export default function Payment() {
               />
             ) : (
               <MyAddressAddBox
+                isMyPage={false}
                 setRecipientName={setRecipientName}
                 recipientName={recipientName}
                 phoneNumber={phoneNumber}
@@ -212,7 +213,7 @@ export default function Payment() {
             )}
           </div>
           {myDefaultAddress?.data?.addressId && (
-            <div>
+            <div className={style.myDefaultAddressAddBox}>
               <input
                 id="defaultAddress"
                 type="checkbox"

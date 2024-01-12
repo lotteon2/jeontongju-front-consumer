@@ -25,32 +25,32 @@ export default function MyPage() {
     <div className={style.myPage}>
       <MyInfoBox />
       <div className={style.myPageBody}>
-        <Anchor
-          className={style.leftBar}
-          affix={false}
-          items={[
-            {
-              key: "1",
-              href: "#myWish",
-              title: "나의 찜 내역",
-            },
-            {
-              key: "2",
-              href: "#myOrder",
-              title: "나의 주문 내역",
-            },
-            {
-              key: "3",
-              href: "#myCart",
-              title: "나의 장바구니 내역",
-            },
-            {
-              key: "3",
-              href: "#myReview",
-              title: "나의 리뷰 내역",
-            },
-          ]}
-        />
+      <Anchor
+        className={style.leftBar}
+        affix={true}
+        items={[
+          {
+            key: "1",
+            href: "#myWish",
+            title: "찜 내역",
+          },
+          {
+            key: "2",
+            href: "#myOrder",
+            title: "주문 내역",
+          },
+          {
+            key: "3",
+            href: "#myCart",
+            title: "장바구니 내역",
+          },
+          {
+            key: "3",
+            href: "#myReview",
+            title: "리뷰 내역",
+          },
+        ]}
+      />
         <div className={style.rightBar}>
           <div id="myWish">
             <MyWishList />

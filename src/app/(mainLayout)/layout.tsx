@@ -35,10 +35,12 @@ export default async function RootLayout({ children }: Props) {
       <HydrationBoundary state={dehydratedState}>
         <section style={{ position: "relative" }}>
           <Header />
-          {children}
-          <CartButton />
-          <TopButton />
-          <Footer />
+          <div style={{ marginTop: "3rem" }}>
+            {children}
+            <CartButton />
+            <TopButton />
+            <Footer />
+          </div>
         </section>
       </HydrationBoundary>
     </RQProvider>
