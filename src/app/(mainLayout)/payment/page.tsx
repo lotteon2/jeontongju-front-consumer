@@ -211,7 +211,7 @@ export default function Payment() {
               />
             )}
           </div>
-          {myDefaultAddress && (
+          {myDefaultAddress?.data?.addressId && (
             <div>
               <input
                 id="defaultAddress"
