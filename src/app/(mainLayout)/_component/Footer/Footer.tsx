@@ -1,5 +1,6 @@
-import Image from "next/image";
+"use client";
 import logoImg from "/public/logo.png";
+import Image from "next/image";
 import style from "@/app/(mainLayout)/_component/Footer/Footer.module.css";
 export default function Footer() {
   return (
