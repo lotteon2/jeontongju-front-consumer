@@ -200,7 +200,7 @@ export default function Payment() {
               <div>
                 <div className={style.productName}>{product.productName}</div>
                 <div>{product.productPrice} 원</div>
-                <div>{product.amount} 개</div>
+                <div>{product.productCount} 개</div>
               </div>
             </div>
           ))}
