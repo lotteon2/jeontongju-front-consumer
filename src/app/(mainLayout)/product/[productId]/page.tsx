@@ -1,4 +1,5 @@
 "use client";
+import UserDefaultImg from "/public/UserDefault.png";
 import LoadingImg from "/public/loading.gif";
 import NotFoundImg from "/public/jeontongju_notfound.png";
 import searchAPI from "@/apis/search/searchAPIService";

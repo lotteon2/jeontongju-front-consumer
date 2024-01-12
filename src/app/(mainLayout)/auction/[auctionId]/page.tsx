@@ -1,4 +1,5 @@
 "use client";
+import UserDefaultImg from "/public/UserDefault.png";
 import LiveBeforeImg from "/public/live_before.mp4";
 import ConnectLive from "@connectlive/connectlive-web-sdk";
 import { AgoraRTCProvider, useRTCClient } from "agora-rtc-react";
@@ -92,7 +93,7 @@ const AuctionDetail = ({ params }: Props) => {
       router.push("/mypage/myaddress");
     }
   }, [myInfo]);
-  
+
   const connectChatInfo = () => {
     console.log("auction");
     const serverURL = "https://api.jeontongju.shop/auction-service";
@@ -198,7 +199,7 @@ const AuctionDetail = ({ params }: Props) => {
                 {chat.map((it, idx) => (
                   <div className={style.chatBox} key={idx}>
                     <Image
-                      src={it.memberProfileImage || ""}
+                      src={it.memberProfileImage || UserDefaultImg}
                       alt="img"
                       width="20"
                       height="20"
@@ -246,7 +247,12 @@ const AuctionDetail = ({ params }: Props) => {
                 <div>
                   {auctionInfo?.bidHistoryList.map((bidHistory, idx) => (
                     <div key={idx}>
-                      <div>{bidHistory.profileImage}</div>
+                      <Image
+                        src={bidHistory.profileImage || UserDefaultImg}
+                        width="10"
+                        height="10"
+                        alt="bidUser"
+                      />
                       <div>{bidHistory.nickname}</div>
                       <div>{bidHistory.bidPrice}</div>
                     </div>

@@ -1,3 +1,4 @@
+import UserDefaultImg from "/public/UserDefault.png";
 import FiSrHeartSVG from "/public/fi-sr-heart.svg";
 import FiSrHeartFullSVG from "/public/fi-sr-heart-fill.svg";
 import { Review } from "@/apis/review/reviewAPIService.types";
@@ -35,7 +36,7 @@ export default function ProductReviewBox({
         <div className={style.userBox}>
           <div>
             <Image
-              src={params.profileImageUrl}
+              src={params.profileImageUrl || UserDefaultImg}
               alt="img"
               width={0}
               height={0}
