@@ -142,6 +142,7 @@ export default function Page({ params }: Props) {
                       query: {
                         realAmount: total,
                         totalAmount: total,
+                        isCart: false,
                         products: JSON.stringify([
                           {
                             productId,

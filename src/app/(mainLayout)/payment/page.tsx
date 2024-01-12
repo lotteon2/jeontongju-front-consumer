@@ -21,6 +21,7 @@ export default function Payment() {
   const products = JSON.parse(params.get("products"));
   const totalAmount = params.get("totalAmount");
   const realAmount = params.get("realAmount");
+  const isCart = params.get("isCart");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [recipientName, setRecipientName] = useState<string>("");
   const [basicAddress, setBasicAddress] = useState<string>("");
@@ -93,6 +94,7 @@ export default function Payment() {
         (point ? point : 0), // 실금액 - 쿠폰금액 - 포인트금액
       titleName: products.length > 0 ? `${products[0].productName}외 ${products.length - 1} 개`: products[0].productName,
       products: Array.from(products),
+      isCart: 
     };
     try {
       console.log(totalAmount);

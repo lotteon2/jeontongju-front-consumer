@@ -137,6 +137,7 @@ export default function MyCartpage() {
               query: {
                 realAmount: totalAmount,
                 totalAmount: totalAmount,
+                isCart: true,
                 products: JSON.stringify(selectedCart),
               },
             }}
