@@ -51,17 +51,14 @@ export default function MyAuctionList() {
         </div>
       </div>
       <div className={style.myWishList}>
-        {data ? (
-          data?.pages?.map((page, i) => (
-            <Fragment key={i}>
-              {page?.content.map((it) => (
-                <div key={it.auctionId}>{it.auctionName}</div>
-              ))}
-            </Fragment>
-          ))
-        ) : (
-          <div>내 경매 내역이 없어요</div>
-        )}
+        {data?.pages?.map((page, i) => (
+          <Fragment key={i}>
+            {page?.content.map((it) => (
+              <div key={it.auctionId}>{it.auctionName}</div>
+            ))}
+          </Fragment>
+        ))}
+        {!data?.pages[0]?.content.length && <div>나의 경매 목록이 없어요</div>}
       </div>
       <div ref={ref} style={{ height: 50 }} />
     </div>
