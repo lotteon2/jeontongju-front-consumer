@@ -13,6 +13,7 @@ import couponAPI from "@/apis/coupon/couponAPIService";
 import CouponBox from "../_component/CouponBox/CouponBox";
 import { GetMyCouponListResponseData } from "@/apis/coupon/couponAPIService.types";
 import { Input } from "antd";
+import { ProductData } from "@/apis/search/searchAPIService.types";
 
 export default function Payment() {
   const router = useRouter();
@@ -90,7 +91,7 @@ export default function Payment() {
         totalAmount -
         (coupon ? coupon?.discountAmount : 0) -
         (point ? point : 0), // 실금액 - 쿠폰금액 - 포인트금액
-      titleName: products[0].productName,
+      titleName: products.length > 0 ? `${products[0].productName}외 ${products.length - 1} 개`: products[0].productName,
       products: Array.from(products),
     };
     try {
@@ -177,23 +178,27 @@ export default function Payment() {
     <div className={style.paymentPage}>
       <div>
         <div className={style.paymentBox}>
-          <div className={style.paymentHeader}>주문 상품 총 1개</div>
-          <div className={style.paymentProductBox}>
-            <div>
-              <Image
-                src={products[0].productImg}
-                alt="img"
-                width={100}
-                height={100}
-                style={{ borderRadius: "12px" }}
-              />
-            </div>
-            <div>
-              <div className={style.productName}>{products[0].productName}</div>
-              <div>{products[0].productPrice} 원</div>
-              <div>{products[0].productCount} 개</div>
-            </div>
+          <div className={style.paymentHeader}>
+            주문 상품 총 {products.length}개
           </div>
+          {products.map((product) => (
+            <div className={style.paymentProductBox} key={product.productId}>
+              <div>
+                <Image
+                  src={product.productThumbnailImageUrl}
+                  alt="img"
+                  width={100}
+                  height={100}
+                  style={{ borderRadius: "12px" }}
+                />
+              </div>
+              <div>
+                <div className={style.productName}>{product.productName}</div>
+                <div>{product.productPrice} 원</div>
+                <div>{product.amount} 개</div>
+              </div>
+            </div>
+          ))}
         </div>
         <div className={style.paymentBox}>
           <div className={style.paymentHeader}>배송지</div>
