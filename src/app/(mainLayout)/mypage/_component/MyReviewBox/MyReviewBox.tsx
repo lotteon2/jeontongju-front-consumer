@@ -34,18 +34,21 @@ export default function MyReviewBox({
         />
       </div>
       <div>
-        <Image
-          src={params.reviewPhotoImageUrl}
-          alt="img"
-          width={0}
-          height={0}
-          style={{
-            cursor: "pointer",
-            width: "5rem",
-            height: "5rem",
-            borderRadius: "8px",
-          }}
-        />
+        {params.reviewPhotoImageUrl && (
+          <Image
+            src={params.reviewPhotoImageUrl}
+            alt="img"
+            width={0}
+            height={0}
+            style={{
+              cursor: "pointer",
+              width: "5rem",
+              height: "5rem",
+              borderRadius: "8px",
+            }}
+          />
+        )}
+
         <div>{params.reviewContents}</div>
       </div>
     </div>
