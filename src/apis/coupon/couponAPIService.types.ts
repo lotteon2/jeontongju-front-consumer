@@ -23,8 +23,7 @@ export type GetMyCouponListResponseData = {
 };
 
 export type GetMyCouponListForOrderResponseData = {
-  totalCount: 3;
-  availableCount: 2;
+  availableCount: number;
   coupons: GetMyCouponListResponseData[];
 };
 export type GetCouponResponse = ApiResponse<GetCouponResponseData>;

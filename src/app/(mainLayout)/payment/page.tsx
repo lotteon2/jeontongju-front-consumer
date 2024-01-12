@@ -246,6 +246,7 @@ export default function Payment() {
                 <CouponBox coupon={myCoupon} key={myCoupon.couponCode} />
               </div>
             ))}
+            {myCoupons?.data.availableCount === 0 && <div>사용가능한 쿠폰이 없어요.</div>}
           </div>
         </div>
       </div>
