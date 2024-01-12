@@ -68,8 +68,12 @@ const AuctionDetail = ({ params }: Props) => {
   const [auctionInfo, setAuctionInfo] = useState<AuctionData>();
   const [chat, setChat] = useState<ChatData[]>([]);
   const notify = (message: string) => toast(message);
+  const serverURL = "https://api.jeontongju.shop/auction-service";
+  let socket = new SockJS(`${serverURL}/chat`);
+  // let stompClient = Stomp.over(socket);
 
   useEffect(() => {
+    setStompClient(Stomp.over(socket));
     if (typeof window !== "undefined") {
       if (!localStorage.getItem("accessToken")) {
         toast("로그인한 유저만 접근할 수 있어요.");
@@ -79,9 +83,6 @@ const AuctionDetail = ({ params }: Props) => {
   }, []);
   const connectChatInfo = () => {
     console.log("auction");
-    const serverURL = "https://api.jeontongju.shop/auction-service";
-    let socket = new SockJS(`${serverURL}/chat`);
-    const stompClient = Stomp.over(socket);
     stompClient.connect(
       {},
       (frame) => {
@@ -100,9 +101,7 @@ const AuctionDetail = ({ params }: Props) => {
 
   const connectBidInfo = () => {
     console.log("auction");
-    const serverURL = "https://api.jeontongju.shop/auction-service";
-    let socket = new SockJS(`${serverURL}/chat`);
-    const stompClient = Stomp.over(socket);
+    // const serverURL = "https://api.jeontongju.shop/auction-service";
     stompClient.connect(
       {},
       (frame) => {

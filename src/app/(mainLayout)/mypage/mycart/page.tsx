@@ -16,6 +16,9 @@ import Link from "next/link";
 export default function MyCartpage() {
   const router = useRouter();
   const [totalAmount, setTotalAmount] = useState<number>(0);
+  const [selectedCart, setSelectedCart] = useState<GetMyCartListResponseData[]>(
+    []
+  );
   const { data, fetchNextPage, hasNextPage, isFetching, refetch, isLoading } =
     useInfiniteQuery<
       Page<GetMyCartListResponseData[]>,
@@ -66,8 +69,14 @@ export default function MyCartpage() {
   const handleUpdateSum = (e, it: GetMyCartListResponseData) => {
     if (e.target.checked) {
       setTotalAmount((prev) => prev + it.amount * it.productPrice);
+      setSelectedCart((prev) => [...prev, it]);
     } else {
       setTotalAmount((prev) => prev - it.amount * it.productPrice);
+      const updatedCart = selectedCart.filter(
+        (cart) => cart.productId !== it.productId
+      );
+      console.log(updatedCart);
+      setSelectedCart(updatedCart);
     }
   };
   useEffect(() => {
@@ -128,19 +137,11 @@ export default function MyCartpage() {
               query: {
                 realAmount: totalAmount,
                 totalAmount: totalAmount,
-                products: JSON.stringify([
-                  // {
-                  //   productId,
-                  //   productImg: productData.productThumbnailImageUrl,
-                  //   productName: productData.productName,
-                  //   productPrice: productData.productPrice,
-                  //   productCount: quantity,
-                  // },
-                ]),
+                products: JSON.stringify(selectedCart),
               },
             }}
           >
-            바로 구매하기
+            결제하기
           </Link>
         </div>
       </div>
