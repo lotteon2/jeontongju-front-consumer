@@ -109,7 +109,7 @@ const consumerAPI = {
     return data;
   },
   editMyProfileImg: async (profileImageUrl: string) => {
-    const { data } = await authAxiosInstance.post<EditMyProfileImgResponse>(
+    const { data } = await authAxiosInstance.patch<EditMyProfileImgResponse>(
       `/consumer-service/api/consumers`,
       { profileImageUrl }
     );
