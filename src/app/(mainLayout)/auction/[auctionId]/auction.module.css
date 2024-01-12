@@ -16,6 +16,7 @@
     background-color: #ffe2e2;
     height: 20%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
@@ -31,8 +32,13 @@
     background-color: #ffe2e2;
     height: 30%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    .bidInfoInner{
+      display: ;
+    }
   }
 }
 

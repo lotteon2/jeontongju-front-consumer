@@ -37,7 +37,7 @@ interface AuctionData {
   auctionProductList: {
     auctionProductId: string;
     auctionProductName: string;
-    auctionStartingPrice: number;
+    startingPrice: number;
     state: "ING" | "BEFORE" | "AFTER";
   }[];
   askingPrice: number;
@@ -233,9 +233,7 @@ const AuctionDetail = ({ params }: Props) => {
                     (auctionProduct, idx) => (
                       <div key={idx}>
                         <div>{auctionProduct.auctionProductName}</div>
-                        <div>
-                          시작가 | {auctionProduct.auctionStartingPrice}원
-                        </div>
+                        <div>시작가 | {auctionProduct.startingPrice}원</div>
                       </div>
                     )
                   )}
@@ -245,8 +243,9 @@ const AuctionDetail = ({ params }: Props) => {
               <div className={style.bidInfo}>
                 <h2>현재 입찰 내역</h2>
                 <div>
-                  {auctionInfo?.bidHistoryList.map((bidHistory, idx) => (
-                    <div key={idx}>
+                  {auctionInfo?.bidHistoryList.slice(0,5).map((bidHistory, idx) => (
+                    <div key={idx} className={style.bidInfoInner}>
+                      <div>{idx}</div>
                       <Image
                         src={bidHistory.profileImage || UserDefaultImg}
                         width="10"
