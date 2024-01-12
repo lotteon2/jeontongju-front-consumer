@@ -150,7 +150,7 @@ export default function Page({ params }: Props) {
                               productData.productThumbnailImageUrl,
                             productName: productData.productName,
                             productPrice: productData.productPrice,
-                            amount: quantity,
+                            productCount: quantity,
                           },
                         ]),
                       },
