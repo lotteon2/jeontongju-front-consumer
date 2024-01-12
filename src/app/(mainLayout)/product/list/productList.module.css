@@ -1,12 +1,14 @@
 .productList {
+  display: flex;
+
   .productSideBar {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 
-    position: sticky;
-    top: 0;
-    top: 16vh;
+    /* position: sticky; */
+    /* top: 0; */
+    /* top: 16vh; */
     width: 20%;
   }
   .productRightBar {

@@ -174,7 +174,7 @@ export default function Header() {
           )}
         </div>
       </div>
-      <div className={style.header}>
+      <div>
         <div className={style.topnav}>
           <div
             className={style.menu}
