@@ -1,3 +1,5 @@
+"use client";
+import UserDefaultImg from "/public/UserDefault.png";
 import type { Metadata } from "next";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import { GetMyInfoResponseData } from "@/apis/consumer/consumerAPIservice.types";
@@ -34,7 +36,7 @@ export default function MyInfoBox() {
         <div className={style.infoHeader}>
           <div>
             <Image
-              src={myInfo?.data.profileImageUrl}
+              src={myInfo?.data.profileImageUrl || UserDefaultImg}
               alt="img"
               width="100"
               height="100"

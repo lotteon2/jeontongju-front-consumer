@@ -56,12 +56,22 @@ export default function Payment() {
   });
 
   useEffect(() => {
-    setRecipientName(myDefaultAddress?.data.recipientName);
-    setPhoneNumber(myDefaultAddress?.data.recipientPhoneNumber);
-    setBasicAddress(myDefaultAddress?.data.basicAddress);
-    setAddressDetail(myDefaultAddress?.data.addressDetail);
-    setZonecode(myDefaultAddress?.data.zonecode);
+    if (isUsingDefaultAddress) {
+      setRecipientName(myDefaultAddress?.data.recipientName);
+      setPhoneNumber(myDefaultAddress?.data.recipientPhoneNumber);
+      setBasicAddress(myDefaultAddress?.data.basicAddress);
+      setAddressDetail(myDefaultAddress?.data.addressDetail);
+      setZonecode(myDefaultAddress?.data.zonecode);
+    } else {
+      setRecipientName("");
+      setPhoneNumber("");
+      setBasicAddress("");
+      setAddressDetail("");
+      setZonecode("");
+    }
   }, [isUsingDefaultAddress]);
+
+  console.log(products);
 
   const handlePay = async () => {
     const params = {
@@ -162,6 +172,7 @@ export default function Payment() {
       }
     }
   }, []);
+
   return (
     <div className={style.paymentPage}>
       <div>

@@ -30,6 +30,7 @@ export default function ProductReviewBox({
       toast("리뷰 공감에 실패했어요");
     }
   };
+
   return (
     <div className={style.productReviewBox}>
       <div>
