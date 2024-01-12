@@ -92,9 +92,12 @@ export default function Payment() {
         totalAmount -
         (coupon ? coupon?.discountAmount : 0) -
         (point ? point : 0), // 실금액 - 쿠폰금액 - 포인트금액
-      titleName: products.length > 0 ? `${products[0].productName}외 ${products.length - 1} 개`: products[0].productName,
+      titleName:
+        products.length > 0
+          ? `${products[0].productName}외 ${products.length - 1} 개`
+          : products[0].productName,
       products: Array.from(products),
-      isCart: 
+      isCart,
     };
     try {
       console.log(totalAmount);
