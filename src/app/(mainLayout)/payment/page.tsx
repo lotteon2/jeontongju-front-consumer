@@ -55,7 +55,13 @@ export default function Payment() {
     queryFn: () => consumerAPI.getMyPointForOrder(totalAmount),
   });
 
-  useEffect(() => {}, [isUsingDefaultAddress]);
+  useEffect(() => {
+    setRecipientName(myDefaultAddress?.data.recipientName);
+    setPhoneNumber(myDefaultAddress?.data.recipientPhoneNumber);
+    setBasicAddress(myDefaultAddress?.data.basicAddress);
+    setAddressDetail(myDefaultAddress?.data.addressDetail);
+    setZonecode(myDefaultAddress?.data.zonecode);
+  }, [isUsingDefaultAddress]);
 
   const handlePay = async () => {
     const params = {
@@ -64,11 +70,11 @@ export default function Payment() {
       pointUsageAmount: point,
       couponCode: coupon?.couponCode,
       couponAmount: coupon?.discountAmount,
-      recipientName: "최성훈",
-      recipientPhoneNumber: "01012345678",
-      basicAddress: "서울특별시 서대문구 연희동 블라블라",
-      addressDetail: "101",
-      zoneCode: "12345",
+      recipientName,
+      recipientPhoneNumber: phoneNumber,
+      basicAddress,
+      addressDetail,
+      zoneCode: zonecode,
       totalAmount,
       realAmount:
         totalAmount -
@@ -246,7 +252,9 @@ export default function Payment() {
                 <CouponBox coupon={myCoupon} key={myCoupon.couponCode} />
               </div>
             ))}
-            {myCoupons?.data.availableCount === 0 && <div>사용가능한 쿠폰이 없어요.</div>}
+            {myCoupons?.data.availableCount === 0 && (
+              <div>사용가능한 쿠폰이 없어요.</div>
+            )}
           </div>
         </div>
       </div>
