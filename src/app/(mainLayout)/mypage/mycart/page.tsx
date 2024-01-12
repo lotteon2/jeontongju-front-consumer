@@ -11,6 +11,7 @@ import wishAPI from "@/apis/wishCart/wishAPIService";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/_component/Loading/Loading";
+import Link from "next/link";
 
 export default function MyCartpage() {
   const router = useRouter();
@@ -61,6 +62,18 @@ export default function MyCartpage() {
       }
     } catch (error) {}
   };
+
+  const handleUpdateSum = (e, it: GetMyCartListResponseData) => {
+    if (e.target.checked) {
+      setTotalAmount((prev) => prev + it.amount * it.productPrice);
+    } else {
+      setTotalAmount((prev) => prev - it.amount * it.productPrice);
+    }
+  };
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <div className={style.myCartPage}>
       <div className={style.myWishHeader}>
@@ -75,7 +88,13 @@ export default function MyCartpage() {
             data?.pages?.map((page, i) => (
               <Fragment key={i}>
                 {page?.content.map((it) => (
-                  <MyCartBox key={it.productId} item={it} refetch={refetch} />
+                  <div className={style.cartInnerBox} key={it.productId}>
+                    <input
+                      type="checkbox"
+                      onChange={(e) => handleUpdateSum(e, it)}
+                    />
+                    <MyCartBox key={it.productId} item={it} refetch={refetch} />
+                  </div>
                 ))}
               </Fragment>
             ))}
@@ -96,13 +115,33 @@ export default function MyCartpage() {
           <h2>주문 예상 금액</h2>
           <div className={style.myWishInner}>
             <div>총 상품 가격</div>
-            <div>{totalAmount}</div>
+            <div>{totalAmount} 원</div>
           </div>
           <div className={style.myWishInner}>
             <div>총 배송비</div>
             <div>전통주점은 언제나 무료배송!</div>
           </div>
-          <div>구매하기</div>
+          <Link
+            className={style.button}
+            href={{
+              pathname: "/payment",
+              query: {
+                realAmount: totalAmount,
+                totalAmount: totalAmount,
+                products: JSON.stringify([
+                  // {
+                  //   productId,
+                  //   productImg: productData.productThumbnailImageUrl,
+                  //   productName: productData.productName,
+                  //   productPrice: productData.productPrice,
+                  //   productCount: quantity,
+                  // },
+                ]),
+              },
+            }}
+          >
+            바로 구매하기
+          </Link>
         </div>
       </div>
 

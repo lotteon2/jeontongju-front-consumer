@@ -30,6 +30,11 @@
   .myWishList {
     margin-bottom: 2rem;
     flex: 2;
+
+    .cartInnerBox {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .desc {

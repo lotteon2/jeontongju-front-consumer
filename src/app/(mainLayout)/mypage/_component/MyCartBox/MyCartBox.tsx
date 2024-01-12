@@ -31,7 +31,7 @@ export default function MyCartBox({
   const handleClickCounter = async (num: number) => {
     setQuantity((prev) => (prev as number) + num);
     setTotal((prev) => prev + item.productPrice * num);
-    const data = await wishAPI.updateCart(item.productId, item.amount);
+    const data = await wishAPI.updateCart(item.productId, quantity);
     if (data.code !== 200) {
       toast("수량 수정에 실패했어요.");
     }
