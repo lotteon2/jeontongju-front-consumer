@@ -42,7 +42,7 @@ export default function MyAuctionList() {
   return (
     <div className={style.list}>
       <div className={style.listHeader}>
-        <h2>나의 경매내역</h2>
+        <h2>나의 경매 참여 내역</h2>
         <div
           className={style.goDetail}
           onClick={() => router.push("/mypage/myauction")}
