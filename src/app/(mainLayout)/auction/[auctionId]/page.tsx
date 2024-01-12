@@ -87,7 +87,7 @@ const AuctionDetail = ({ params }: Props) => {
 
   useEffect(() => {
     console.log(myInfo);
-    if (!myInfo?.data.isAddressDefault) {
+    if (typeof myInfo !== "undefined" && !myInfo?.data.isAddressDefault) {
       toast("기본 주소지를 설정해야 경매에 입장할 수 있어요.");
       router.push("/mypage/myaddress");
     }
