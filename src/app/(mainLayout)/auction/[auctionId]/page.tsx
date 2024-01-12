@@ -19,6 +19,8 @@ import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import SEO from "@/app/_component/SEO";
 import AuctionPage from "../test/page";
 import { Button } from "antd";
+import { useQuery } from "@tanstack/react-query";
+import consumerAPI from "@/apis/consumer/consumerAPIService";
 
 type Props = {
   params: { auctionId: string };
@@ -57,6 +59,11 @@ const AuctionDetail = ({ params }: Props) => {
     AgoraRTC.createClient({ codec: "vp8", mode: config.selectedProduct })
   );
 
+  const { data: myInfo, isLoading } = useQuery({
+    queryKey: ["consumer", "myinfo"],
+    queryFn: () => consumerAPI.getMyInfoForStore(),
+  });
+
   const [isLogin, memberId] = useMyInfoStore((state) => [
     state.isLogin,
     state.memberId,
@@ -77,6 +84,14 @@ const AuctionDetail = ({ params }: Props) => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    console.log(myInfo);
+    if (!myInfo?.data.isAddressDefault) {
+      toast("기본 주소지를 설정해야 경매에 입장할 수 있어요.");
+      router.push("/mypage/myaddress");
+    }
+  }, [myInfo]);
   const connectChatInfo = () => {
     console.log("auction");
     const serverURL = "https://api.jeontongju.shop/auction-service";
