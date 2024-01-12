@@ -69,7 +69,7 @@ export default function PointList() {
               className={type === "acc" ? style.selectedButton : style.button}
               onClick={() => setType("acc")}
             >
-              충전 내역
+              적립 내역
             </div>
             <div
               className={type === "use" ? style.selectedButton : style.button}
