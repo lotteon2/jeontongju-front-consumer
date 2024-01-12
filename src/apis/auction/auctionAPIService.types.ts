@@ -1,3 +1,5 @@
+import { Page } from "@/constants/PageResponseType";
+
 interface ApiResponse<T> {
   code: number;
   message: string;
@@ -44,7 +46,23 @@ export interface GetAuctionDetailInfoResponseData {
   };
   productList: AuctionProduct[];
 }
+
+export type GetMyAuctionListResponseData = {
+  auctionId: string;
+  auctionName: string;
+  productName: string;
+  productImageUrl: string;
+  startingPrice: number;
+  lastBidPrice: number;
+  myLastBidPrice: number;
+  isBid: boolean;
+  bidDate: string;
+};
+
 export type EnterAuctionResponse = ApiResponse<EnterAuctionResponseData>;
 export type GetAuctionDetailInfoResponse =
   ApiResponse<GetAuctionDetailInfoResponseData>;
 export type BidResponse = ApiResponse<string>;
+export type GetMyAuctionListResponse = ApiResponse<
+  Page<GetMyAuctionListResponseData[]>
+>;

@@ -49,6 +49,11 @@ export default function MyPage() {
             href: "#myReview",
             title: "리뷰 내역",
           },
+          {
+            key: "4",
+            href: "#myAuction",
+            title: "경매 내역",
+          },
         ]}
       />
         <div className={style.rightBar}>
@@ -62,6 +67,9 @@ export default function MyPage() {
             <MyCartList />
           </div>
           <div id="myReview">
+            <MyReviewList />
+          </div>
+          <div id="myAuction">
             <MyReviewList />
           </div>
         </div>

@@ -4,6 +4,7 @@ import {
   BidResponse,
   EnterAuctionResponse,
   GetAuctionDetailInfoResponse,
+  GetMyAuctionListResponse,
 } from "./auctionAPIService.types";
 
 const auctionAPI = {
@@ -25,6 +26,12 @@ const auctionAPI = {
     const { data } = await authAxiosInstance.post<BidResponse>(
       `auction-service/api/auction/bid`,
       params
+    );
+    return data;
+  },
+  GetMyAuctionList: async () => {
+    const { data } = await authAxiosInstance.get<GetMyAuctionListResponse>(
+      `auction-service/api/auction/bid/consumer`
     );
     return data;
   },

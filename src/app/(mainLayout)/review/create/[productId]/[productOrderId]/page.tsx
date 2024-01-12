@@ -8,12 +8,14 @@ import { toast } from "react-toastify";
 import reviewAPI from "@/apis/review/reviewAPIService";
 import style from "@/app/(mainLayout)/review/create/[productId]/[productOrderId]/page.module.css";
 import ImageUploader from "@/app/_component/ImageUploader";
+import { useRouter } from "next/navigation";
 
 type Props = {
   params: { productId: string; productOrderId: string };
 };
 
 export default function CreateReviewPage({ params }: Props) {
+  const navigate = useRouter();
   const { productId, productOrderId } = params;
   const [product, setProduct] =
     useState<GetProductDetailByProductIdResponseData>();
@@ -47,6 +49,7 @@ export default function CreateReviewPage({ params }: Props) {
       });
       if (data.code === 200) {
         toast("구매 후기 등록에 성공했어요.");
+        navigate('/mypage')
       }
     } catch (error) {
       toast("구매 후기 등록에 실패했어요");
