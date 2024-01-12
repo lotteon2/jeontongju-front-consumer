@@ -142,6 +142,7 @@ export default function MyCartpage() {
                   selectedCart.map((cart) => ({
                     productCount: cart.amount,
                     productId: cart.productId,
+                    productName: cart.productName,
                     productThumbnailImageUrl: cart.productThumbnailImageUrl,
                     productPrice: cart.productPrice,
                   }))

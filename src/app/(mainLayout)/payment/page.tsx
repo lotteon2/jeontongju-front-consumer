@@ -93,7 +93,7 @@ export default function Payment() {
         (coupon ? coupon?.discountAmount : 0) -
         (point ? point : 0), // 실금액 - 쿠폰금액 - 포인트금액
       titleName:
-        products.length > 0
+        products.length > 1
           ? `${products[0].productName}외 ${products.length - 1} 개`
           : products[0].productName,
       products: Array.from(products),
