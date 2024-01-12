@@ -9,6 +9,8 @@ import reviewAPI from "@/apis/review/reviewAPIService";
 import style from "@/app/(mainLayout)/review/create/[productId]/[productOrderId]/page.module.css";
 import ImageUploader from "@/app/_component/ImageUploader";
 import { useRouter } from "next/navigation";
+import { CONCEPT, ConceptOptions } from "@/constants/ConceptEnum";
+import { Select } from "antd";
 
 type Props = {
   params: { productId: string; productOrderId: string };
@@ -22,7 +24,7 @@ export default function CreateReviewPage({ params }: Props) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [reviewContents, setReviewContents] = useState<string>("");
   const [reviewPhotoImageUrl, setReviewPhotoImageUrl] = useState<string>("");
-  const [concept, setConcept] = useState<string[]>(["TRIP"]);
+  const [concepts, setConcepts] = useState<(keyof typeof CONCEPT)[]>([]);
 
   const getProductDetail = async () => {
     try {
@@ -49,7 +51,7 @@ export default function CreateReviewPage({ params }: Props) {
       });
       if (data.code === 200) {
         toast("구매 후기 등록에 성공했어요.");
-        navigate('/mypage')
+        navigate("/mypage");
       }
     } catch (error) {
       toast("구매 후기 등록에 실패했어요");
@@ -78,9 +80,23 @@ export default function CreateReviewPage({ params }: Props) {
             onChange={(e) => setReviewContents(e.target.value)}
             placeholder="리뷰내용"
           />
+          <div>🍶 다른 고객분들을 위해 사진을 첨부해주세요.</div>
+          <div>사진 리뷰는 500원, 글 리뷰는 300원이 적립되어요.</div>
           <ImageUploader
             imageUrl={reviewPhotoImageUrl}
             setImageUrl={setReviewPhotoImageUrl}
+          />
+          <div>
+            👥 다른 고객분들을 위해 이 술과 잘 어울리는 컨셉을 선택해주세요.
+          </div>
+          <Select
+            mode="multiple"
+            placeholder="잘 어울리는 컨셉"
+            options={ConceptOptions}
+            onChange={setConcepts}
+            style={{ width: "100%" }}
+            value={concepts}
+            allowClear
           />
           <button
             className={style.button}
