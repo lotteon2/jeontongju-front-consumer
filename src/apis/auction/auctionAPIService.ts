@@ -29,11 +29,11 @@ const auctionAPI = {
     );
     return data;
   },
-  GetMyAuctionList: async () => {
+  GetMyAuctionList: async (page: number, size: number) => {
     const { data } = await authAxiosInstance.get<GetMyAuctionListResponse>(
-      `auction-service/api/auction/bid/consumer`
+      `auction-service/api/auction/bid/consumer?page=${page}&size=${size}`
     );
-    return data;
+    return data.data;
   },
 };
 export default auctionAPI;
