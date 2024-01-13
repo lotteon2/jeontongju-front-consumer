@@ -2,7 +2,9 @@
 import { ChangeEventHandler, useState } from "react";
 import style from "@/app/(loginLayout)/init/findMyPassword/findMyPassword.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
+import { useRouter } from "next/navigation";
 export default function FindMyPassword() {
+  const navigate = useRouter();
   const [email, setEmail] = useState<string>("");
   const [authCode, setAuthcode] = useState<string>("");
   const [inputAuthCode, setInputAuthCode] = useState<string>("");
@@ -55,7 +57,7 @@ export default function FindMyPassword() {
       const result = await authAPI.updateMyPasswordBeforeLogin(params);
       if (result.code === 200) {
         console.log(true, "비밀번호가 변경되었어요.");
-        // navigate("/init/login");
+        navigate("/");
       }
     }
   };
@@ -97,13 +99,13 @@ export default function FindMyPassword() {
             value={inputAuthCode}
             onChange={onChangeInputAuthCode}
             type="text"
-            placeholder=""
+            placeholder="유효코드"
           />
           <button
             disabled={authUser !== false && authCode !== null}
             onClick={onSubmitAuthCode}
             type="button"
-          ></button>
+          >인증</button>
         </>
       )}
       {authCode && authUser && (
