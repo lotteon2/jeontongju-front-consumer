@@ -23,7 +23,6 @@ export default function ProductReviewBox({
     try {
       const data = await reviewAPI.likeReview(params.reviewId);
       if (data.code === 200) {
-        toast("소중한 공감 감사해요!");
         refetch();
       }
     } catch (err) {
