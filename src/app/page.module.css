@@ -23,6 +23,17 @@
   min-height: 100vh;
 }
 
+:where(.css-dev-only-do-not-override-dkbvqv).ant-anchor-wrapper
+  .ant-anchor
+  .ant-anchor-link-title:only-child {
+  font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
+}
+
+.ant-form-item-label {
+  font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
+  text-align: left !important;
+}
+
 .description {
   display: inherit;
   justify-content: inherit;

@@ -19,6 +19,10 @@ a:active {
   color: #ffa1a1;
 }
 
+:where(.css-dev-only-do-not-override-dkbvqv).ant-anchor-wrapper .ant-anchor {
+  font-family: "__Jua_fe7685";
+}
+
 body {
   width: 80vw;
   margin: 0 auto;
