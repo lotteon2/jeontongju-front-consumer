@@ -1,94 +1,115 @@
 "use client";
 import loadingImg from "/public/loading.gif";
 import Image from "next/image";
-import Link from "next/link";
 import style from "@/app/(mainLayout)/point/list/pointList.module.css";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
-import { Trade } from "@/apis/consumer/consumerAPIservice.types";
+import { GetMyPointListResponseData } from "@/apis/consumer/consumerAPIservice.types";
 import CreditBox from "../../_component/PointCreditBox/PointCreditBox";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
+import { useInView } from "react-intersection-observer";
+import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 
 export default function PointList() {
   const router = useRouter();
+
   const [type, setType] = useState<"acc" | "use">("acc");
-  const [currentPoint, setCurrentPoint] = useState<number>();
-  const [accPoint, setAccPoint] = useState<number>();
-  const [usePoint, setUsePoint] = useState<number>();
-  const [page, setPage] = useState<number>(0);
-  const [size, setSize] = useState<number>(10);
-  const [points, setPoints] = useState<Trade[]>();
-  const [mounted, setMounted] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const { data, fetchNextPage, hasNextPage, isFetching, isLoading } =
+    useInfiniteQuery<
+      GetMyPointListResponseData,
+      Object,
+      InfiniteData<GetMyPointListResponseData>,
+      [_1: string, _2: string, _3: string],
+      number
+    >({
+      queryKey: ["credit", "list", type],
+      queryFn: ({ pageParam = 0 }) =>
+        consumerAPI.getMyPointList(type, pageParam, 10),
+      initialPageParam: 0,
+      getNextPageParam: (lastPage) =>
+        lastPage.histories.last === false
+          ? lastPage.histories.number + 1
+          : null,
+      staleTime: 60 * 1000,
+      gcTime: 300 * 1000,
+    });
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+    delay: 0,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      !isFetching && hasNextPage && fetchNextPage();
+    }
+  }, [inView, isFetching, hasNextPage, fetchNextPage]);
+
   const [isLogin] = useMyInfoStore((state) => [state.isLogin]);
 
   useEffect(() => {
-    setMounted(true);
-    if (!isLogin) {
-      toast("로그인한 유저만 접근할 수 있어요.");
-      router.push("/init/signin");
+    if (typeof window !== "undefined") {
+      if (!localStorage.getItem("accessToken")) {
+        toast("로그인한 유저만 접근할 수 있어요.");
+        router.push("/init/signin");
+      }
     }
   }, []);
 
-  const getMyCredit = async () => {
-    try {
-      setIsLoading(true);
-      const data = await consumerAPI.getMyPointList(type, page, size);
-      setPoints((prev) => data.data?.histories.content);
-      setCurrentPoint(data.data.point);
-      setAccPoint(data.data.totalAcc);
-      setUsePoint(data.data.totalUse);
-    } catch (err) {
-      toast("포인트 내역을 불러오는데 실패했어요.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-
   return (
     <>
-      {mounted && !isLoading ? (
-        <div className={style.creditList}>
-          <div className={style.creditHeader}>
-            <div className={style.creditTitle}>포인트 내역</div>
-            <div>
-              <div>현재 내 포인트 | {currentPoint}</div>
-              <div>총 적립 포인트 | {accPoint}</div>
-              <div>총 사용 포인트 | {usePoint}</div>
-            </div>
-          </div>
-          <div className={style.creditBtns}>
-            <div
-              className={type === "acc" ? style.selectedButton : style.button}
-              onClick={() => setType("acc")}
-            >
-              적립 내역
-            </div>
-            <div
-              className={type === "use" ? style.selectedButton : style.button}
-              onClick={() => setType("use")}
-            >
-              사용 내역
-            </div>
-          </div>
-          <div className={style.credits}>
-            {points?.map((point) => (
-              <CreditBox params={point} key={point.tradeId} />
-            ))}
+      <div className={style.creditList}>
+        <div className={style.creditHeader}>
+          <div className={style.creditTitle}>포인트 내역</div>
+          <div>
+            <div>현재 내 포인트 | {data?.pages[0].point}</div>
+            <div>총 적립 포인트 | {data?.pages[0].totalAcc}</div>
+            <div>총 사용 포인트 | {data?.pages[0].totalUse}</div>
           </div>
         </div>
-      ) : (
-        <Image
-          src={loadingImg}
-          width={0}
-          height={0}
-          alt="loading"
-          style={{ cursor: "pointer", width: "50%", height: "50%" }}
-        />
-      )}
+        <div className={style.creditBtns}>
+          <div
+            className={type === "acc" ? style.selectedButton : style.button}
+            onClick={() => setType("acc")}
+          >
+            적립 내역
+          </div>
+          <div
+            className={type === "use" ? style.selectedButton : style.button}
+            onClick={() => setType("use")}
+          >
+            사용 내역
+          </div>
+        </div>
+        <div className={style.credits}>
+          {!isLoading ? (
+            <>
+              {data?.pages?.map((page, i) => (
+                <Fragment key={i}>
+                  {page?.histories.content.map((point) => (
+                    <CreditBox params={point} key={point.tradeId} />
+                  ))}
+                </Fragment>
+              ))}
+              <div ref={ref} style={{ height: 50 }} />
+            </>
+          ) : (
+            <Image
+              src={loadingImg}
+              width={0}
+              height={0}
+              alt="loading"
+              style={{ width: "50%", height: "50%" }}
+            />
+          )}
+          {data?.pages[0].histories.content.length === 0 && (
+            <div>내역이 없어요.</div>
+          )}
+        </div>
+      </div>
     </>
   );
 }
