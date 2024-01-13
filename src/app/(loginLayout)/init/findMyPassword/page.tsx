@@ -1,10 +1,14 @@
 "use client";
+import loadingImg from "/public/loading.gif";
+import Image from "next/image";
 import { ChangeEventHandler, useState } from "react";
 import style from "@/app/(loginLayout)/init/findMyPassword/findMyPassword.module.css";
 import authAPI from "@/apis/authentication/authenticationAPIService";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 export default function FindMyPassword() {
   const navigate = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [authCode, setAuthcode] = useState<string>("");
   const [inputAuthCode, setInputAuthCode] = useState<string>("");
@@ -27,12 +31,18 @@ export default function FindMyPassword() {
 
   const onSubmitEmail = async () => {
     try {
+      setIsLoading(true);
       const data = await authAPI.checkMyEmail(email);
       if (data.code === 200) {
         setAuthcode(data.data.authCode);
+      } else {
+        toast("존재하지 않는 회원이에요");
       }
     } catch (err) {
       console.error(err);
+      toast("존재하지 않는 회원이에요");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -62,7 +72,7 @@ export default function FindMyPassword() {
     }
   };
 
-  return (
+  return !isLoading ? (
     <div className={style.findMyPasswordContainer}>
       <div className={style.inputWrapper}>
         <div className={style.inputDiv}>
@@ -90,45 +100,65 @@ export default function FindMyPassword() {
       {authCode && (
         <>
           <span>이메일로 새로 생성된 비밀번호를 발송했어요.</span>
-          <label className={style.inputLabel} htmlFor="inputAuthCode">
-            유효코드
-          </label>
-          <input
-            id="inputAuthCode"
-            className={style.input}
-            value={inputAuthCode}
-            onChange={onChangeInputAuthCode}
-            type="text"
-            placeholder="유효코드"
-          />
-          <button
-            disabled={authUser !== false && authCode !== null}
-            onClick={onSubmitAuthCode}
-            type="button"
-          >인증</button>
+          <div className={style.inputWrapper}>
+            <div className={style.inputDiv}>
+              <label className={style.inputLabel} htmlFor="inputAuthCode">
+                유효코드
+              </label>
+              <input
+                id="inputAuthCode"
+                className={style.input}
+                value={inputAuthCode}
+                onChange={onChangeInputAuthCode}
+                type="text"
+                placeholder="유효코드"
+              />
+            </div>
+            <button
+              className={style.inputButton}
+              disabled={authUser !== false && authCode !== null}
+              onClick={onSubmitAuthCode}
+              type="button"
+            >
+              인증
+            </button>
+          </div>
         </>
       )}
       {authCode && authUser && (
         <>
           <span>새로운 비밀번호를 입력해주세요.</span>
-          <label className={style.inputLabel} htmlFor="newPassword">
-            새로운 비밀번호
-          </label>
-          <input
-            id="newPassword"
-            className={style.input}
-            value={newPassword}
-            onChange={onChangeNewPassword}
-            type="password"
-            placeholder="새로운 비밀번호"
-          />
-          <button
-            disabled={!newPassword}
-            onClick={onSubmitNewPassword}
-            type="button"
-          />
+          <div className={style.inputWrapper}>
+            <div className={style.inputDiv}>
+              <label className={style.inputLabel} htmlFor="newPassword">
+                새로운 비밀번호
+              </label>
+              <input
+                id="newPassword"
+                className={style.input}
+                value={newPassword}
+                onChange={onChangeNewPassword}
+                type="password"
+                placeholder="새로운 비밀번호"
+              />
+            </div>
+            <button
+              className={style.inputButton}
+              disabled={!newPassword}
+              onClick={onSubmitNewPassword}
+              type="button"
+            />
+          </div>
         </>
       )}
     </div>
+  ) : (
+    <Image
+      src={loadingImg}
+      width={0}
+      height={0}
+      alt="loading"
+      style={{ width: "50%", height: "50%", margin: "auto" }}
+    />
   );
 }
