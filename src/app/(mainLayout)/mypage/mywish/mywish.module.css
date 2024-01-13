@@ -37,3 +37,42 @@
   color: white;
   cursor: pointer;
 }
+
+.button {
+  margin: 2rem;
+  width: 10rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #f2cbf9;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 900;
+}
+
+.menus {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.button {
+  background-color: #ececec;
+}
+
+.selectedButton {
+  margin: 2rem;
+  width: 10rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #ffa1a1;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 900;
+}
