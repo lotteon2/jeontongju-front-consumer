@@ -48,6 +48,11 @@ export default function CreditList() {
   }, [type, page, size]);
 
   const handleBuyCredit = async (money: number) => {
+    if (money > 10000000) {
+      toast("최대 천만원까지 결제 가능해요.");
+      setUserInputMoney(10000000);
+      return;
+    }
     const params = {
       chargeCredit: money,
       paymentType: "CREDIT",
