@@ -7,7 +7,7 @@ import {
 } from "./orderAPIService.types";
 
 const orderAPI = {
-  getMyOrderList: async (page: number, size: number, isAuction: boolean) => {
+  getMyOrderList: async (page: number, size: number, isAuction?: boolean) => {
     const { data } = await authAxiosInstance.get<GetMyOrderListResponse>(
       `/order-service/api/order/consumer?page=${page}&size=${size}&isAuction=${isAuction}`
     );
