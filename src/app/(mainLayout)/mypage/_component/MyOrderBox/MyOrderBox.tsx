@@ -186,15 +186,19 @@ export default function MyOrderBox({
                     </div>
                   )}
                 </div>
-                <div
-                  className={style.orderStatusBox}
-                  onClick={() =>
-                    handleConfirmOrderByProductOrderIdAlert(item.productOrderId)
-                  }
-                >
-                  {item.productOrderStatus === ORDER_STATE.COMPLETED &&
-                    "주문 확정하기"}
-                </div>
+                {item.isAllowedConfirm &&
+                  item.productOrderStatus === ORDER_STATE.COMPLETED && (
+                    <div
+                      className={style.orderStatusBox}
+                      onClick={() =>
+                        handleConfirmOrderByProductOrderIdAlert(
+                          item.productOrderId
+                        )
+                      }
+                    >
+                      주문 확정하기
+                    </div>
+                  )}
                 <div>
                   {item.productPrice} 원 X {item.productCount}
                 </div>
