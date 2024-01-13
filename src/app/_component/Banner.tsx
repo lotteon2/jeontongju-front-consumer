@@ -34,10 +34,9 @@ export default function Banner({
           } else if (data.data.isDuplicated) {
             toast("쿠폰은 한 장만 발급받을 수 있어요.");
             return;
-          } else {
-            toast("쿠폰이 발급되었어요.");
-            return;
           }
+          toast("쿠폰이 발급되었어요.");
+          return;
         }
       }
     }
