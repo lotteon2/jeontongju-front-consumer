@@ -161,18 +161,19 @@ export default function MyOrderBox({
                     {translateOrderState(item.productOrderStatus)}
                   </strong>
 
-                  {item.productOrderStatus === ORDER_STATE.ORDER && (
-                    <div
-                      className={style.orderStatusBox}
-                      onClick={() =>
-                        handleCancelOrderByProductOrderIdAlert(
-                          item.productOrderId
-                        )
-                      }
-                    >
-                      취소하기
-                    </div>
-                  )}
+                  {!isAuction &&
+                    item.productOrderStatus === ORDER_STATE.ORDER && (
+                      <div
+                        className={style.orderStatusBox}
+                        onClick={() =>
+                          handleCancelOrderByProductOrderIdAlert(
+                            item.productOrderId
+                          )
+                        }
+                      >
+                        취소하기
+                      </div>
+                    )}
                   {item.isReviewAllowed && (
                     <div
                       className={style.orderStatusBox}
@@ -186,7 +187,7 @@ export default function MyOrderBox({
                     </div>
                   )}
                 </div>
-                {item.isAllowedConfirm &&
+                {item.isConfirmAllowed &&
                   item.productOrderStatus === ORDER_STATE.COMPLETED && (
                     <div
                       className={style.orderStatusBox}

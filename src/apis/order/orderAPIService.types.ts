@@ -28,7 +28,8 @@ export type GetMyOrderListResponseData = {
     productThumbnailImageUrl: string;
     sellerId: number;
     sellerName: string;
-    isAllowedConfirm: boolean;
+    isAuction: boolean;
+    isConfirmAllowed: boolean;
     isReviewAllowed: boolean;
   }[];
   payment: {
