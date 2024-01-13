@@ -149,7 +149,7 @@
 .categoryMenu {
   .categories {
     position: absolute;
-    top: 16.5vh;
+    top: 23vh;
     z-index: 3;
     padding: 1rem;
     background: #fff;
