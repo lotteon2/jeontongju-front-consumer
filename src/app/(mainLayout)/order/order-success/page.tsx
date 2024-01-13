@@ -14,7 +14,7 @@ export default function OrderSuccess() {
       width={0}
       height={0}
       src={orderSuccessImg}
-      style={{ cursor: "pointer", width: "80%", height: "auto" }}
+      style={{ cursor: "pointer", width: "100%", height: "auto" }}
       onClick={handleGoPrevPage}
     />
   );

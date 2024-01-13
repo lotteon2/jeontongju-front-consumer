@@ -15,7 +15,7 @@ export default function OrderFail() {
       height={0}
       src={orderFailImg}
       preview={false}
-      style={{ cursor: "pointer", width: "80%", height: "auto" }}
+      style={{ cursor: "pointer", width: "100%", height: "auto" }}
       onClick={handleGoPrevPage}
     />
   );
