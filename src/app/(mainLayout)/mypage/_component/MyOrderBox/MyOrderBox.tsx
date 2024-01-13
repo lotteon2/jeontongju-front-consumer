@@ -161,7 +161,7 @@ export default function MyOrderBox({
                     {translateOrderState(item.productOrderStatus)}
                   </strong>
 
-                  {!isAuction &&
+                  {!item.isAuction &&
                     item.productOrderStatus === ORDER_STATE.ORDER && (
                       <div
                         className={style.orderStatusBox}

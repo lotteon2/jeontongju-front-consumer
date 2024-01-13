@@ -38,7 +38,7 @@ const consumerAPI = {
     const { data } = await authAxiosInstance.get<GetMyCreditListResponse>(
       `/consumer-service/api/consumers/credit-history?search=${search}&page=${page}&size=${size}`
     );
-    return data;
+    return data.data;
   },
   getMyInfoForStore: async () => {
     const { data } = await authAxiosInstance.get<GetMyInfoForStoreResponse>(

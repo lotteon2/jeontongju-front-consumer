@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "전통주점 | 마이 페이지",
     description: "전통주, 마침표를 찍다.",
     type: "website",
-    url: "https://consumer.jeontongju.shop/mypage",
+    url: "https://jeontongju.shop/mypage",
     locale: "ko_KR",
   },
 };
