@@ -138,7 +138,7 @@ export default function OrderDetail() {
               </div>
               <div className={style.infoDiv}>
                 <strong>리뷰 적립</strong>
-                <span>500원</span>
+                <span>글: 300원 / 사진: 500원</span>
               </div>
             </div>
           </div>
