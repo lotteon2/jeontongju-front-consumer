@@ -97,16 +97,20 @@ export default function CreditList() {
           </div>
         </div>
         <div>
-          <div>크레딧 충전하기</div>
-          <div className={style.credits}>
+          <div className={style.creditMenu}>💳 크레딧 충전하기</div>
+          <div className={style.creditMenu}>
+            경매에 사용되는 크레딧을 충전해보세요.
+          </div>
+          <div className={style.creditMenu}>
             <Button onClick={() => handleBuyCredit(10000)}>만원</Button>
             <Button onClick={() => handleBuyCredit(50000)}>오만원</Button>
             <Button onClick={() => handleBuyCredit(100000)}>십만원</Button>
             <Button onClick={() => handleBuyCredit(1000000)}>백만원</Button>
-            <div className={style.credits}>
+            <div className={style.creditMenu}>
               <Input
                 value={userInputMoney}
                 onChange={(e) => setUserInputMoney(Number(e.target.value))}
+                style={{ width: "200px" }}
               />
               <Button onClick={() => handleBuyCredit(userInputMoney)}>
                 결제

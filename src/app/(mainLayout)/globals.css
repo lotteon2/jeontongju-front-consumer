@@ -6,6 +6,10 @@
   height: 100dvh;
 }
 
+span {
+  font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
+}
+
 a {
   text-decoration: none;
   outline: none;

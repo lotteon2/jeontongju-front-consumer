@@ -60,9 +60,18 @@
     margin: 0 auto;
   }
 
-  .credits {
+  .creditMenu {
     display: flex;
     gap: 1rem;
+    width: 50%;
+    align-items: center;
     flex-direction: row;
+    justify-content: center;
+    margin: 0.5rem auto;
+  }
+
+  :where(.css-dev-only-do-not-override-dkbvqv)[class^="ant-btn"],
+  :where(.css-dev-only-do-not-override-dkbvqv)[class*=" ant-btn"] {
+    font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
   }
 }

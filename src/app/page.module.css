@@ -135,6 +135,11 @@
   position: relative;
 }
 
+:where(.css-dev-only-do-not-override-dkbvqv)[class^="ant-btn"],
+:where(.css-dev-only-do-not-override-dkbvqv)[class*=" ant-btn"] {
+  font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
