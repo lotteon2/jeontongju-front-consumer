@@ -131,8 +131,8 @@ export default function OrderDetail() {
                 <strong>구매 확정시 적립</strong>
                 <span>
                   {isRegularPayment
-                    ? order.payment.realPrice * 0.03
-                    : order.payment.realPrice * 0.01}
+                    ? Math.floor(order.payment.realPrice * 0.03)
+                    : Math.floor(order.payment.realPrice * 0.01)}
                   원
                 </span>
               </div>
