@@ -1,6 +1,21 @@
+"use client";
+import auctionAPI from "@/apis/auction/auctionAPIService";
+import { GetAuctionDetailInfoResponseData } from "@/apis/auction/auctionAPIService.types";
 import style from "@/app/(mainLayout)/auction/list/auctionList.module.css";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function AuctionListPage() {
+  const [data, setData] = useState<GetAuctionDetailInfoResponseData>();
+  async function getAuction() {
+    const data = await auctionAPI.getAuctionDetailInfo();
+    if (data.code === 200) return setData(data.data);
+  }
+
+  useEffect(() => {
+    getAuction();
+  }, []);
+
   return (
     <div className={style.auctionListPage}>
       <h2>경매 입장 주의 사항</h2>
@@ -11,6 +26,12 @@ export default function AuctionListPage() {
       <div>3. 경매는 입장시 설정해둔 기본 배송지로 배송되어요.</div>
       <div>* 추후 배송지 수정은 불가해요.</div>
       <div>* 우리 자주 만나요!</div>
+      <Link
+        href={`/auction/${data?.auction.auctionId}`}
+        className={style.button}
+      >
+        경매 참여하기
+      </Link>
     </div>
   );
 }

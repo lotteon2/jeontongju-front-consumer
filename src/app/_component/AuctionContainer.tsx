@@ -42,7 +42,7 @@ export default function AuctionContainer() {
           <div className={style.auctionHeader}>
             매주 금요일 17시! 실시간으로 만나는 전통주
           </div>
-          <Link href={`/auction/${data?.auction.auctionId}`}>
+          <Link href={`/auction/list`}>
             <div className={style.auctionBody}>
               <div className={style.auctionLeft}>
                 <video

@@ -6,4 +6,15 @@
   margin: auto;
   border-radius: 12px;
   padding: 5rem;
+
+  .button {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #c0c0c0;
+    border-radius: 12px;
+  }
+
+  .button:hover {
+    background-color: #fff;
+  }
 }
