@@ -47,10 +47,6 @@ export default function PointList() {
     }
   };
 
-  useEffect(() => {
-    getMyCredit();
-    console.log("credit", points);
-  }, [type, page, size]);
 
   return (
     <>

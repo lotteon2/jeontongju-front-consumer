@@ -52,14 +52,6 @@ export default function CreditList() {
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
-  const [currentCredit, setCurrentCredit] = useState<number>();
-  const [accCredit, setAccCredit] = useState<number>();
-  const [useCredit, setUseCredit] = useState<number>();
-  const [page, setPage] = useState<number>(0);
-  const [size, setSize] = useState<number>(10);
-  const [credits, setCredits] = useState<Credit[]>();
-  const [mounted, setMounted] = useState<boolean>(false);
-
   const handleBuyCredit = async (money: number) => {
     if (money > 10000000) {
       toast("최대 천만원까지 결제 가능해요.");
@@ -134,13 +126,16 @@ export default function CreditList() {
         </div>
         <div className={style.credits}>
           {!isLoading ? (
-            data?.pages?.map((page, i) => (
-              <Fragment key={i}>
-                {page?.histories.content.map((credit) => (
-                  <CreditBox params={credit} key={credit.tradeCreditId} />
-                ))}
-              </Fragment>
-            ))
+            <>
+              {data?.pages?.map((page, i) => (
+                <Fragment key={i}>
+                  {page?.histories.content.map((credit) => (
+                    <CreditBox params={credit} key={credit.tradeCreditId} />
+                  ))}
+                </Fragment>
+              ))}
+              <div ref={ref} style={{ height: 50 }} />
+            </>
           ) : (
             <Image
               src={loadingImg}
