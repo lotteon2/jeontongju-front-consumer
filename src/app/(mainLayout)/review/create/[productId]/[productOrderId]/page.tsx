@@ -47,7 +47,7 @@ export default function CreateReviewPage({ params }: Props) {
         productOrderId: Number(productOrderId),
         reviewContents,
         reviewPhotoImageUrl,
-        concept,
+        concept: concepts,
       });
       if (data.code === 200) {
         toast("구매 후기 등록에 성공했어요.");
@@ -59,7 +59,7 @@ export default function CreateReviewPage({ params }: Props) {
   };
 
   const isDisableToAddReview = () => {
-    if (!reviewContents || !concept) return true;
+    if (!reviewContents || !concepts) return true;
     return false;
   };
 
