@@ -113,6 +113,9 @@
   margin-top: 1rem;
   background-color: lightgray;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chatInput {
