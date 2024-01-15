@@ -80,7 +80,7 @@ export default function Seller({ params }: Props) {
               description: `${sellerInfo?.data.storeDescription}`,
               imageUrl: `${sellerInfo?.data.storeImageUrl}`,
               link: {
-                mobileWebUrl: `https://consumer.jeontongju-dev.shop/seller/${sellerId}`,
+                mobileWebUrl: `https://jeontongju.shop/seller/${sellerId}`,
                 webUrl: `https://developers.kakao.com/seller/${sellerId}`,
               },
             },
@@ -95,7 +95,7 @@ export default function Seller({ params }: Props) {
           description: `${sellerInfo?.data.storeDescription}`,
           imageUrl: `${sellerInfo?.data.storeImageUrl}`,
           link: {
-            mobileWebUrl: `https://consumer.jeontongju-dev.shop/seller/${sellerId}`,
+            mobileWebUrl: `https://jeontongju.shop/seller/${sellerId}`,
             webUrl: `https://developers.kakao.com/seller/${sellerId}`,
           },
         },

@@ -27,26 +27,31 @@ export default function PopularProducts({
                 capacityToPriceRatio={product.capacityToPriceRatio}
                 key={product.productId}
                 isLikes={product.isLikes}
-              refetch={refetchPopularProducts}
-                />
+                refetch={refetchPopularProducts}
+              />
             )
           )}
+        {popularProducts.length === 0 && <div>아직 인기 상품이 없어요</div>}
       </div>
       <h2>구매 후기가 팡팡! 리뷰 인기 상품</h2>
       <div className={style.products}>
-        {popularReviewProducts?.map(
-          (product: GetPopularProductsBySellerIdResponseData) => (
-            <ProductContainer
-              productName={product.productName}
-              productId={product.productId}
-              productImg={product.productThumbnailImageUrl}
-              price={product.productPrice}
-              capacityToPriceRatio={product.capacityToPriceRatio}
-              key={product.productId}
-              isLikes={product.isLikes}
-              refetch={refetchPopularReviewProducts}
-            />
-          )
+        {popularReviewProducts &&
+          popularReviewProducts?.map(
+            (product: GetPopularProductsBySellerIdResponseData) => (
+              <ProductContainer
+                productName={product.productName}
+                productId={product.productId}
+                productImg={product.productThumbnailImageUrl}
+                price={product.productPrice}
+                capacityToPriceRatio={product.capacityToPriceRatio}
+                key={product.productId}
+                isLikes={product.isLikes}
+                refetch={refetchPopularReviewProducts}
+              />
+            )
+          )}
+        {popularReviewProducts.length === 0 && (
+          <div>아직 리뷰 인기 상품이 없어요</div>
         )}
       </div>
     </div>
