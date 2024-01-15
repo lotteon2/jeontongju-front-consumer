@@ -34,7 +34,7 @@ export default function EditMyPassword() {
   };
 
   const handleChangePassword = (e) => {
-    if (e.keycode === 13) {
+    if (e.key === "Enter" || e.keycode === 13) {
       checkIsAuth();
       return;
     }

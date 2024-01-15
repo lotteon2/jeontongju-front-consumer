@@ -8,7 +8,7 @@ import {
 const couponAPI = {
   getCoupon: async () => {
     const { data } = await authAxiosInstance.post<GetCouponResponse>(
-      "/coupon-service/api/consumers/coupons"
+      "/consumer-service/api/consumers/coupons"
     );
     return data;
   },

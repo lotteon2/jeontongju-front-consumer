@@ -243,19 +243,19 @@ const AuctionDetail = ({ params }: Props) => {
                     <span className={style.chatMessage}>{it.message}</span>
                   </div>
                 ))}
-                {isLogin && (
-                  <div className={style.bottomInput}>
-                    <input
-                      className={style.chatInput}
-                      value={message}
-                      onChange={handleChangeMessage}
-                    />
-                    <button className={style.inputButton} onClick={sendMessage}>
-                      입력
-                    </button>
-                  </div>
-                )}
               </div>
+              {isLogin && (
+                <div className={style.bottomInput}>
+                  <input
+                    className={style.chatInput}
+                    value={message}
+                    onChange={handleChangeMessage}
+                  />
+                  <button className={style.inputButton} onClick={sendMessage}>
+                    입력
+                  </button>
+                </div>
+              )}
             </div>
             <div className={style.auctionRight}>
               <div className={style.todayAuctionBox}>
@@ -347,7 +347,6 @@ const AuctionDetail = ({ params }: Props) => {
               style={{ width: "100%", height: "100%" }}
               src={LiveBeforeImg}
             />
-            <span>종료된 방송이에요.</span>
           </>
         )}
       </div>
