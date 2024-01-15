@@ -16,15 +16,16 @@ import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React from 'react'
+import { useEffect, useRef, useState } from "react";
 import Noti from "../Noti/Noti";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import searchAPI from "@/apis/search/searchAPIService";
 import productAPI from "@/apis/product/productAPIService";
-
-export default function Header() {
+const Header = () => {
   const router = useRouter();
+  const searchRef = useRef(null);
   const [search, setSearch] = useState<string>("");
   const [isShowCategoryMenu, setIsShowCategoryMenu] = useState<boolean>(false);
   const [isSearchBarOpen, setIsSearchBarOpen] = useState<boolean>(true);
@@ -76,6 +77,19 @@ export default function Header() {
     }
   }, [data]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsSearchBarOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleSearch = (e) => {
     if (e.key === "Enter" || e.keycode === 13) {
       if (search.length < 2) {
@@ -110,7 +124,7 @@ export default function Header() {
             style={{ cursor: "pointer", width: "5rem", height: "5rem" }}
           />
         </div>
-        <div className={style.searchContainer}>
+        <div className={style.searchContainer} ref={searchRef}>
           <input
             type="text"
             placeholder="전통주점은 전상품 무료배송"
@@ -270,4 +284,5 @@ export default function Header() {
       </div>
     </div>
   );
-}
+};
+export default React.memo(Header);
