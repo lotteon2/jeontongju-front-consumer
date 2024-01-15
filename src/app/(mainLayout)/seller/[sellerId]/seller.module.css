@@ -33,7 +33,6 @@
   .products {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 2rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
