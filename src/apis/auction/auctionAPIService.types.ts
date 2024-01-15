@@ -1,3 +1,4 @@
+import { AuctionData, MemberAuction } from "@/app/(mainLayout)/auction/[auctionId]/page";
 import { Page } from "@/constants/PageResponseType";
 
 interface ApiResponse<T> {
@@ -14,8 +15,11 @@ export type BidParams = {
 };
 
 export interface EnterAuctionResponseData {
-  auctionName: string;
-  status: "ING" | "BEFORE" | "AFTER";
+  broadcastResponse: {
+    auctionName: string;
+    status: "ING" | "BEFORE" | "AFTER";
+  };
+  bidHistory: AuctionData
 }
 
 export type AuctionProduct = {

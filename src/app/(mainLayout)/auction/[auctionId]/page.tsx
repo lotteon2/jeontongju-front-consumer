@@ -33,7 +33,7 @@ type ChatData = {
   message: string;
 };
 
-interface AuctionData {
+export interface AuctionData {
   auctionProductList: {
     auctionProductId: string;
     auctionProductName: string;
@@ -44,7 +44,7 @@ interface AuctionData {
   bidHistoryList: MemberAuction[];
 }
 
-type MemberAuction = {
+export type MemberAuction = {
   memberId: number;
   nickname: string;
   profileImage: string;
@@ -56,9 +56,9 @@ const AuctionDetail = ({ params }: Props) => {
   const router = useRouter();
   const { auctionId } = params;
   const [isDisableToBid, setIsDisableToBid] = useState(false);
-  const agoraEngine = useRTCClient(
-    AgoraRTC.createClient({ codec: "vp8", mode: config.selectedProduct })
-  );
+  // const agoraEngine = useRTCClient(
+  //   AgoraRTC.createClient({ codec: "vp8", mode: config.selectedProduct })
+  // );
 
   const { data: myInfo, isLoading } = useQuery({
     queryKey: ["consumer", "myinfo"],
@@ -150,11 +150,11 @@ const AuctionDetail = ({ params }: Props) => {
     try {
       const data = await auctionAPI.enterAuction(auctionId);
       if (data.code === 200) {
-        setAuctionName(data.data.auctionName);
-        setStatus(data.data.status);
-        console.log(data.data.status);
+        setAuctionName(data.data.broadcastResponse.auctionName);
+        setStatus(data.data.broadcastResponse.status);
+        setAuctionInfo((prev) => data.data.bidHistory);
         console.log(data);
-        if (data.data.status === "ING") {
+        if (data.data.broadcastResponse.status === "ING") {
           connectChatInfo();
           connectBidInfo();
         }
