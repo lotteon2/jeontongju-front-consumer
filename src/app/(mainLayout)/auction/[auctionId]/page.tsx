@@ -254,7 +254,6 @@ const AuctionDetail = ({ params }: Props) => {
               {isLogin && (
                 <div className={style.bottomInput}>
                   <Input
-                    // className={style.chatInput}
                     value={message}
                     onChange={handleChangeMessage}
                     onPressEnter={sendMessage}
