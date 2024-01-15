@@ -182,6 +182,7 @@ const AuctionDetail = ({ params }: Props) => {
         if (data.data.broadcastResponse.status === "ING") {
           connectChatInfo();
           connectBidInfo();
+          connectBidResultInfo();
         }
       }
     } catch (error) {
