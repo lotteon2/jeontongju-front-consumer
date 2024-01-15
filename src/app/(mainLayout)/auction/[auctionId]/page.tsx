@@ -176,7 +176,7 @@ const AuctionDetail = ({ params }: Props) => {
         console.log("입찰 성공");
       }
     } catch (error) {
-      toast("입찰에 실패했어요.");
+      notify("입찰에 실패했어요.");
       console.error("입찰 실패");
     }
   };
