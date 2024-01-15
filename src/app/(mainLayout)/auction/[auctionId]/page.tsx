@@ -147,6 +147,7 @@ const AuctionDetail = ({ params }: Props) => {
     try {
       const data = await auctionAPI.enterAuction(auctionId);
       if (data.code === 200) {
+        console.log(data);
         if (data.failure === "INVALID_CONSUMER_CREDIT") {
           notify("크레딧이 부족해요!");
           router("/credit/list");
@@ -193,6 +194,11 @@ const AuctionDetail = ({ params }: Props) => {
       console.log("냥냥");
       console.log(data);
       if (data.code === 200) {
+        if (data.failure === "INVALID_CONSUMER_CREDIT") {
+          notify("크레딧이 부족해요!");
+          router("/credit/list");
+          return;
+        }
         console.log("입찰 성공");
       }
     } catch (error) {
