@@ -147,6 +147,11 @@ const AuctionDetail = ({ params }: Props) => {
     try {
       const data = await auctionAPI.enterAuction(auctionId);
       if (data.code === 200) {
+        if (data.failure === "INVALID_CONSUMER_CREDIT") {
+          notify("크레딧이 부족해요!");
+          router("/credit/list");
+          return;
+        }
         setAuctionName(data.data.broadcastResponse.auctionName);
         setStatus(data.data.broadcastResponse.status);
         setAuctionInfo((prev) => data.data.bidHistory);
@@ -167,9 +172,10 @@ const AuctionDetail = ({ params }: Props) => {
     setTimeout(() => setIsDisableToBid(false), 3000);
     try {
       console.log(auctionInfo);
-if(auctionInfo?.askingPrice === 0) {
-  
-}
+      if (auctionInfo?.askingPrice === 0) {
+        notify("아직 호가 설정 전이에요. 잠시만 기다려주세요.");
+        return;
+      }
       const data = await auctionAPI.bid({
         auctionId,
         bidPrice: auctionInfo?.bidHistoryList
