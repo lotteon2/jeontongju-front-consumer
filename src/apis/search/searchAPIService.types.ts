@@ -41,6 +41,8 @@ export type GetProductDetailByProductIdResponseData = {
   concept: ["TRIP"];
   isSoldOut: boolean;
   isLikes: boolean;
+  isDeleted: boolean;
+  isActivate: boolean;
 };
 
 export type GetPopularProductsBySellerIdResponseData = {

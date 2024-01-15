@@ -67,7 +67,7 @@ export default function FindMyPassword() {
       const result = await authAPI.updateMyPasswordBeforeLogin(params);
       if (result.code === 200) {
         console.log(true, "비밀번호가 변경되었어요.");
-        navigate("/");
+        navigate("/init/signin");
       }
     }
   };

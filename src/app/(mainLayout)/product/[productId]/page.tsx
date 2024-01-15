@@ -130,7 +130,9 @@ export default function Page({ params }: Props) {
                 />
                 <div>{total}원</div>
               </div>
-              {!productData.isSoldOut ? (
+              {!productData.isSoldOut &&
+              !productData.isDeleted &&
+              productData.isActivate ? (
                 <div className={style.btnGroup}>
                   <div className={style.button} onClick={handleAddCart}>
                     장바구니 담기

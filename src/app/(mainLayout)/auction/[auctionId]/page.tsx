@@ -187,8 +187,16 @@ const AuctionDetail = ({ params }: Props) => {
         console.log("입찰 성공");
       }
     } catch (error) {
-      // notify("입찰에 실패했어요.");
       console.error("입찰 실패");
+    }
+  };
+
+  const handleChangeMessage = (e) => {
+    if (e.keycode === 13 || e.key === "Enter") {
+      sendMessage();
+      return;
+    } else {
+      setMessage(e.target.value);
     }
   };
 
@@ -231,7 +239,7 @@ const AuctionDetail = ({ params }: Props) => {
                     <input
                       className={style.chatInput}
                       value={message}
-                      onChange={(e) => setMessage(e.target.value)}
+                      onChange={handleChangeMessage}
                     />
                     <button className={style.inputButton} onClick={sendMessage}>
                       입력
