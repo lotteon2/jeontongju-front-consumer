@@ -49,7 +49,7 @@ const searchAPI = {
   },
   getCostProducts: async () => {
     const { data } = await authAxiosInstance.get<GetCostProductsResponse>(
-      `/search-service/api/products?sort=capacityToPriceRatio,asc&size=6`
+      `/search-service/api/products?sort=capacityToPriceRatio,asc&size=8`
     );
     return data;
   },

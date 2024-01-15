@@ -3,7 +3,7 @@ import NotFoundImg from "/public/jeontongju_notfound.png";
 import { useSearchParams } from "next/navigation";
 import { ProductData } from "@/apis/search/searchAPIService.types";
 import { Page } from "@/constants/PageResponseType";
-import { SORT } from "@/constants/SortEnum";
+import { SORT, SortOptions } from "@/constants/SortEnum";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
 import ProductContainer from "../_component/ProductContainer/ProductContainer";
@@ -45,7 +45,8 @@ export default function SearchPage() {
         _6: number,
         _7: number,
         _8: number,
-        _9: (keyof typeof CONCEPT)[]
+        _9: (keyof typeof CONCEPT)[],
+        _10: keyof typeof SORT
       ],
       number
     >({
@@ -59,6 +60,7 @@ export default function SearchPage() {
         minAlcoholDegree,
         maxAlcoholDegree,
         concepts,
+        sort,
       ],
       queryFn: ({ pageParam = 0 }) =>
         searchAPI.getAllProductsBySearch(
@@ -165,6 +167,15 @@ export default function SearchPage() {
           </div>
         </div>
         <div className={style.productRightBar}>
+          <Select
+            style={{
+              float: "right",
+              marginBottom: "1rem",
+            }}
+            options={SortOptions}
+            onChange={setSort}
+            placeholder="검색순"
+          />
           {data?.pages[0].content.length === 0 && (
             <>
               <Image
