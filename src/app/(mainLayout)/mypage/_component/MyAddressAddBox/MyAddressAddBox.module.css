@@ -8,10 +8,10 @@
   margin-bottom: 1rem;
 
   .input::-webkit-input-placeholder {
-    font-family: "Jua";
+    font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
   }
   .input::placeholder {
-    font-family: "Jua";
+    font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
   }
 
   .inputLabel:focus-within {
@@ -26,7 +26,7 @@
     outline: none;
     border: 1px solid #ccc;
     width: 80%;
-    font-family: "Jua";
+    font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
   }
 
   .isDefault {
