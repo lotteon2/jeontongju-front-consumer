@@ -246,7 +246,7 @@ export default function Payment() {
           )}
         </div>
         <div className={style.paymentBox}>
-          <div className={style.paymentHeader}>포인트 및 쿠폰</div>
+          <div className={style.paymentHeader}>포인트</div>
           <div className={style.pointBox}>
             <input
               className={style.input}
@@ -258,6 +258,9 @@ export default function Payment() {
               사용가능 {myPoint ? myPoint?.data.availablePoints : 0} 포인트
             </div>
           </div>
+        </div>
+        <div className={style.paymentBox}>
+          <div className={style.paymentHeader}>쿠폰</div>
           <div>
             {myCoupons?.data.coupons.map((myCoupon) => (
               <div

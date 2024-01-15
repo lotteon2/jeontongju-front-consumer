@@ -1,6 +1,5 @@
 .paymentPage {
   .paymentBox {
-    box-shadow: 3px 3px 1px 1px #c0c0c0;
     border-radius: 12px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -53,6 +52,7 @@
     color: white;
     font-weight: 900;
     background-color: #ffa1a1;
+    font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
   }
 
   .couponSelectBox {
