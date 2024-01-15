@@ -108,7 +108,7 @@ export default function ProductContainer({
 
         {capacityToPriceRatio && (
           <div className={style.capacityToPriceRatio}>
-            100ml당 {capacityToPriceRatio}원
+            100ml당 {capacityToPriceRatio.toLocaleString()}원
           </div>
         )}
       </Link>

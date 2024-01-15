@@ -20,7 +20,8 @@ export default function AuctionContainer() {
     autoplay: true,
     pauseOnHover: true,
     autoplaySpeed: 4000,
-    arrows: false,
+    dots: true,
+    arrows: true,
     slidesToShow: 1,
   };
   const [mounted, setMounted] = useState<boolean>(false);
