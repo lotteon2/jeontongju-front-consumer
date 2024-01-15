@@ -232,7 +232,7 @@ export default function Page({ params }: Props) {
                     }}
                   />
                 </div>
-                {productData.food && (
+                {productData.food.length > 0 && (
                   <>
                     <h2>잘 어울리는 안주</h2>
                     {productData.food.map((it) => (
@@ -240,7 +240,7 @@ export default function Page({ params }: Props) {
                     ))}
                   </>
                 )}
-                {productData.concept && (
+                {productData.concept.length > 0 && (
                   <>
                     <h2>잘 어울리는 컨셉</h2>
                     {productData.concept}
