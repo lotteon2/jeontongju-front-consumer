@@ -30,7 +30,7 @@ const searchAPI = {
   ) => {
     const { data } =
       await authAxiosInstance.get<GetPopularProductsBySellerIdResponse>(
-        `/search-service/api/sellers/${sellerId}/products?sort=${sort},desc&size=5`
+        `/search-service/api/sellers/${sellerId}/products?sort=${sort}&size=5`
       );
 
     return data;

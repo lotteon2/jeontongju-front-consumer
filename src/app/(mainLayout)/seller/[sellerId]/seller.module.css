@@ -68,6 +68,13 @@
       display: flex;
       justify-content: space-between;
       margin: 0.5rem 0;
+
+      .sellerInfoTitle {
+        flex: 1;
+      }
+      .sellerInfoDesc {
+        flex: 3;
+      }
     }
   }
 }

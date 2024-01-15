@@ -2,7 +2,7 @@
 import searchAPI from "@/apis/search/searchAPIService";
 import { ProductData } from "@/apis/search/searchAPIService.types";
 import { Page } from "@/constants/PageResponseType";
-import { SORT } from "@/constants/SortEnum";
+import { SORT, SortOptions } from "@/constants/SortEnum";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
 import ProductContainer from "../../_component/ProductContainer/ProductContainer";
@@ -39,7 +39,8 @@ export default function ProductList() {
         _6: number,
         _7: number,
         _8: number,
-        _9: (keyof typeof CONCEPT)[]
+        _9: (keyof typeof CONCEPT)[],
+        _10: (keyof typeof SORT)
       ],
       number
     >({
@@ -53,6 +54,7 @@ export default function ProductList() {
         minAlcoholDegree,
         maxAlcoholDegree,
         concepts,
+        sort,
       ],
       queryFn: ({ pageParam = 0 }) =>
         searchAPI.getAllProducts(
@@ -156,26 +158,37 @@ export default function ProductList() {
             />
           </div>
         </div>
-        <div className={style.productRightBar}>
-          {data?.pages.map((page, i) => (
-            <Fragment key={i}>
-              {page.content.map((product) => (
-                <ProductContainer
-                  productName={product.productName}
-                  productId={product.productId}
-                  productImg={product.productThumbnailImageUrl}
-                  price={product.productPrice}
-                  capacityToPriceRatio={product.capacityToPriceRatio}
-                  key={product.productId}
-                  isLikes={product.isLikes}
-                  refetch={refetch}
-                />
-              ))}
-            </Fragment>
-          ))}
-          {!data?.pages[0]?.content.length && (
-            <div>해당 상품 목록이 없어요</div>
-          )}
+        <div>
+          <Select
+            style={{
+              float: "right",
+              marginBottom: "1rem",
+            }}
+            options={SortOptions}
+            onChange={setSort}
+            placeholder="검색순"
+          />
+          <div className={style.productRightBar}>
+            {data?.pages.map((page, i) => (
+              <Fragment key={i}>
+                {page.content.map((product) => (
+                  <ProductContainer
+                    productName={product.productName}
+                    productId={product.productId}
+                    productImg={product.productThumbnailImageUrl}
+                    price={product.productPrice}
+                    capacityToPriceRatio={product.capacityToPriceRatio}
+                    key={product.productId}
+                    isLikes={product.isLikes}
+                    refetch={refetch}
+                  />
+                ))}
+              </Fragment>
+            ))}
+            {!data?.pages[0]?.content.length && (
+              <div>해당 상품 목록이 없어요</div>
+            )}
+          </div>
         </div>
         <div ref={ref} style={{ height: 50 }} />
       </div>

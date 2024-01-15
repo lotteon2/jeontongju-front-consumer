@@ -8,7 +8,7 @@ export default function PopularProducts({
   refetchPopularProducts,
 }: {
   popularProducts: GetPopularProductsBySellerIdResponseData[];
-  popularReviewProducts?: GetPopularProductsBySellerIdResponseData[];
+  popularReviewProducts: GetPopularProductsBySellerIdResponseData[];
   refetchPopularReviewProducts: () => void;
   refetchPopularProducts: () => void;
 }) {
