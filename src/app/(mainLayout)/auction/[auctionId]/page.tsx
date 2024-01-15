@@ -112,6 +112,28 @@ const AuctionDetail = ({ params }: Props) => {
     );
   };
 
+  const connectBidResultInfo = () => {
+    console.log("auction");
+    const serverURL = "https://api.jeontongju.shop/auction-service";
+    let socket = new SockJS(`${serverURL}/chat`);
+    const stompClient = Stomp.over(socket);
+    stompClient.connect(
+      {},
+      (frame) => {
+        stompClient.subscribe(`/sub/bid-result/${auctionId}`, (res) => {
+          console.log("[BID RESULT] 구독으로 받은 메시지 입니다.", res.body);
+          // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
+          const bidResult = JSON.parse(res.body);
+          console.log(bidResult);
+          // setChat((prev) => [...prev, chatData]);
+        });
+      },
+      (error) => {
+        console.log("소켓 연결 실패", error);
+      }
+    );
+  };
+
   const connectBidInfo = () => {
     console.log("auction");
     const serverURL = "https://api.jeontongju.shop/auction-service";
