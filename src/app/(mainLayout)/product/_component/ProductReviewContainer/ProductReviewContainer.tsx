@@ -74,23 +74,21 @@ export default function ProductReviewContainer({
       )}
 
       <div>
-        {!isLoading ? (
-          data ? (
-            data?.pages?.map((page, i) => (
-              <Fragment key={i}>
-                {page?.histories.content.map((it) => (
-                  <ProductReviewBox
-                    key={it.reviewId}
-                    params={it}
-                    refetch={refetch}
-                  />
-                ))}
-              </Fragment>
-            ))
-          ) : (
-            <div>아직 리뷰가 없어요!</div>
-          )
-        ) : (
+        {data?.pages?.map((page, i) => (
+          <Fragment key={i}>
+            {page?.histories.content.map((it) => (
+              <ProductReviewBox
+                key={it.reviewId}
+                params={it}
+                refetch={refetch}
+              />
+            ))}
+          </Fragment>
+        ))}
+        {data?.pages[0].histories.content.length === 0 && (
+          <div>아직 리뷰가 없어요!</div>
+        )}
+        {isLoading && (
           <Image
             src={LoadingImg}
             alt="jeontongju-notfound"
