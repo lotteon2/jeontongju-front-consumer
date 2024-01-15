@@ -92,20 +92,11 @@ export default function MyCartpage() {
         });
       });
     });
-
-    console.log(matchedItems);
-
     matchedItems.forEach(
       (matchedItem) => (total += matchedItem.amount * matchedItem.productPrice)
     );
-    console.log(total);
     setTotalAmount(total);
   }, [selectedCart, data]);
-
-  useEffect(() => {
-    console.log(data);
-    // data?.pages.map((page) => page.content.map((it) => handleUpdate(it)));
-  }, [data]);
 
   return (
     <div className={style.myCartPage}>

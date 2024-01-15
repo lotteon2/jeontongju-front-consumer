@@ -12,7 +12,9 @@ export default function CouponBox({
       <div className={style.couponName}>
         {translateCouponState(coupon.couponName)}
       </div>
-      <div className={style.discountAmount}>{coupon.discountAmount}</div>
+      <div className={style.discountAmount}>
+        {coupon.discountAmount.toLocaleString()}
+      </div>
       <div>{coupon.minOrderPrice} 이상 구매시 사용 가능</div>
       <div className={style.expiredAt}>~{coupon.expiredAt.slice(0, 10)}</div>
     </div>
