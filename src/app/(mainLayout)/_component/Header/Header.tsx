@@ -8,6 +8,7 @@ import FiSrAltActiveSvg from "/public/fi-sr-play-alt-active.svg";
 import FiSrLiveSvg from "/public/fi-sr-live.svg";
 import FiSrLiveActiveSvg from "/public/fi-sr-live-active.svg";
 import FiSrSellersSvg from "/public/fi-sr-sellers.svg";
+import FiSrSellersActiveSvg from "/public/fi-sr-sellers-active.svg";
 import FiSrProductsSvg from "/public/fi-sr-briefcase.svg";
 import FiSrProductsActiveSvg from "/public/fi-sr-briefcase-active.svg";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
@@ -16,15 +17,16 @@ import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import React from 'react'
+import React from "react";
 import { useEffect, useRef, useState } from "react";
 import Noti from "../Noti/Noti";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { toast } from "react-toastify";
 import searchAPI from "@/apis/search/searchAPIService";
 import productAPI from "@/apis/product/productAPIService";
 const Header = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const searchRef = useRef(null);
   const [search, setSearch] = useState<string>("");
   const [isShowCategoryMenu, setIsShowCategoryMenu] = useState<boolean>(false);
@@ -43,6 +45,10 @@ const Header = () => {
     queryKey: ["product", "category"],
     queryFn: () => productAPI.getCategories(),
   });
+
+  console.log(pathname);
+  console.log(pathname.startsWith("/auction/list"));
+  console.log(pathname.startsWith("/auction"));
 
   const [
     setMemberId,
@@ -240,7 +246,11 @@ const Header = () => {
               width={32}
               height={32}
               style={{ cursor: "pointer" }}
-              src={FiSrProductsSvg}
+              src={
+                pathname.startsWith("/product")
+                  ? FiSrProductsActiveSvg
+                  : FiSrProductsSvg
+              }
             />
             <div>전체 상품</div>
           </Link>
@@ -252,7 +262,9 @@ const Header = () => {
               style={{
                 cursor: "pointer",
               }}
-              src={FiSrAltSvg}
+              src={
+                pathname.startsWith("/shorts") ? FiSrAltActiveSvg : FiSrAltSvg
+              }
             />
             <div>쇼츠</div>
           </Link>
@@ -264,7 +276,7 @@ const Header = () => {
               style={{
                 cursor: "pointer",
               }}
-              src={FiSrSellersSvg}
+              src={ pathname.startsWith("/seller") ? FiSrSellersActiveSvg : FiSrSellersSvg}
             />
             <div>주모</div>
           </Link>
@@ -276,7 +288,11 @@ const Header = () => {
               style={{
                 cursor: "pointer",
               }}
-              src={FiSrLiveSvg}
+              src={
+                pathname.startsWith("/auction")
+                  ? FiSrLiveActiveSvg
+                  : FiSrLiveSvg
+              }
             />
             <div>라이브</div>
           </Link>

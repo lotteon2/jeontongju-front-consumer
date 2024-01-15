@@ -65,6 +65,8 @@ export default function AllProducts({ sellerId }: { sellerId: number }) {
           ))}
         </Fragment>
       ))}
+      {data?.pages[0].content.length === 0 && <div>
+        아직 등록된 상품이 없어요.</div>}
       <div ref={ref} style={{ height: 50 }} />
     </div>
   );

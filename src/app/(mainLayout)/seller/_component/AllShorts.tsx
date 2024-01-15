@@ -40,33 +40,37 @@ export default function AllShorts({ sellerId }: { sellerId: number }) {
 
   return (
     <div className={style.shorts}>
-      {data?.pages?.map((page, parentIdx) => (
-        <Fragment key={parentIdx}>
-          {[0, 1, 2, 3, 4].map((parentItem) => (
-            <div key={parentItem} className={style.shortsParentWrapper}>
-              {page.content.map((short, idx) => (
-                <div
-                  key={short.shortsId}
-                  className={style.shortsWrapper}
-                  style={{
-                    display:
-                      parentItem * 5 <= idx && idx < (parentItem + 1) * 5
-                        ? "flex"
-                        : "none",
-                  }}
-                >
-                  <ShortsDetail
-                    params={{ id: short.shortsId }}
+      {data?.pages[0].content.length === 0 ? (
+        <div>아직 등록된 쇼츠가 없어요.</div>
+      ) : (
+        data?.pages?.map((page, parentIdx) => (
+          <Fragment key={parentIdx}>
+            {[0, 1, 2, 3, 4].map((parentItem) => (
+              <div key={parentItem} className={style.shortsParentWrapper}>
+                {page.content.map((short, idx) => (
+                  <div
                     key={short.shortsId}
-                    shorts={short}
-                    isMain={true}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
-        </Fragment>
-      ))}
+                    className={style.shortsWrapper}
+                    style={{
+                      display:
+                        parentItem * 5 <= idx && idx < (parentItem + 1) * 5
+                          ? "flex"
+                          : "none",
+                    }}
+                  >
+                    <ShortsDetail
+                      params={{ id: short.shortsId }}
+                      key={short.shortsId}
+                      shorts={short}
+                      isMain={true}
+                    />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </Fragment>
+        ))
+      )}
       <div ref={ref} style={{ height: 50 }} />
     </div>
   );
