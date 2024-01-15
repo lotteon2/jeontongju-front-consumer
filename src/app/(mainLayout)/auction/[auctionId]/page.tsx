@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import SEO from "@/app/_component/SEO";
 import AuctionPage from "../test/page";
-import { Button } from "antd";
+import { Button, Input } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 
@@ -206,7 +206,9 @@ const AuctionDetail = ({ params }: Props) => {
   };
 
   const handleChangeMessage = (e) => {
+    console.log(e);
     if (e.keycode === 13 || e.key === "Enter") {
+      e.preventDefault();
       sendMessage();
       return;
     } else {
@@ -251,10 +253,11 @@ const AuctionDetail = ({ params }: Props) => {
               </div>
               {isLogin && (
                 <div className={style.bottomInput}>
-                  <input
+                  <Input
                     className={style.chatInput}
                     value={message}
                     onChange={handleChangeMessage}
+                    onPressEnter={sendMessage}
                   />
                   <button className={style.inputButton} onClick={sendMessage}>
                     입력
@@ -306,6 +309,7 @@ const AuctionDetail = ({ params }: Props) => {
                         />
                         <div>{bidHistory.nickname}</div>
                         <div>{bidHistory.bidPrice}</div>
+                        {idx === 0 && <div style={{ color: "red" }}>유력</div>}
                       </div>
                     ))}
                 </div>
