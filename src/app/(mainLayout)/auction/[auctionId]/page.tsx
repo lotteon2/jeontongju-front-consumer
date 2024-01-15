@@ -38,7 +38,7 @@ export interface AuctionData {
     auctionProductId: string;
     auctionProductName: string;
     startingPrice: number;
-    state: "ING" | "BEFORE" | "AFTER";
+    progress: "ING" | "BEFORE" | "AFTER";
   }[];
   askingPrice: number;
   bidHistoryList: MemberAuction[];
@@ -56,9 +56,6 @@ const AuctionDetail = ({ params }: Props) => {
   const router = useRouter();
   const { auctionId } = params;
   const [isDisableToBid, setIsDisableToBid] = useState(false);
-  // const agoraEngine = useRTCClient(
-  //   AgoraRTC.createClient({ codec: "vp8", mode: config.selectedProduct })
-  // );
 
   const { data: myInfo, isLoading } = useQuery({
     queryKey: ["consumer", "myinfo"],
@@ -196,8 +193,8 @@ const AuctionDetail = ({ params }: Props) => {
           <>
             <div className={style.auctionLeft}>
               <iframe
-                width="1280"
-                height="720"
+                width="800"
+                height="600"
                 src="https://play.mbus.tv/live/18d072ac3202207b?autoplay"
                 frameborder="0"
                 allowfullscreen
@@ -234,13 +231,26 @@ const AuctionDetail = ({ params }: Props) => {
             </div>
             <div className={style.auctionRight}>
               <div className={style.todayAuctionBox}>
-                <h3 className={style.auctionName}>{auctionName}</h3>
+                <div className={style.auctionName}>{auctionName}</div>
                 <div>
                   {auctionInfo?.auctionProductList.map(
                     (auctionProduct, idx) => (
-                      <div key={idx}>
+                      <div
+                        key={idx}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color:
+                            auctionProduct.progress === "ING"
+                              ? "red"
+                              : "#c0c0c0",
+                        }}
+                      >
                         <div>{auctionProduct.auctionProductName}</div>
-                        <div>시작가 | {auctionProduct.startingPrice}원</div>
+                        <div className={style.startingPrice}>
+                          시작가 | {auctionProduct.startingPrice}원
+                        </div>
                       </div>
                     )
                   )}
@@ -248,13 +258,13 @@ const AuctionDetail = ({ params }: Props) => {
               </div>
 
               <div className={style.bidInfo}>
-                <h2>현재 입찰 내역</h2>
+                <div className={style.auctionName}>현재 입찰 내역</div>
                 <div>
                   {auctionInfo?.bidHistoryList
                     .slice(0, 5)
                     .map((bidHistory, idx) => (
                       <div key={idx} className={style.bidInfoInner}>
-                        <div>{idx}</div>
+                        <div>{idx + 1}</div>
                         <Image
                           src={bidHistory.profileImage || UserDefaultImg}
                           width="10"

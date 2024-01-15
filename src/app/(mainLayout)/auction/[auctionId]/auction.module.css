@@ -12,7 +12,7 @@
   flex: 1;
 
   .todayAuctionBox {
-    border-radius: 32px;
+    border-radius: 16px;
     background-color: #ffe2e2;
     height: 20%;
     display: flex;
@@ -21,20 +21,30 @@
     justify-content: center;
     margin-bottom: 1rem;
 
+    .startingPrice {
+      margin-left: 0.5rem;
+      font-size: 0.5rem;
+    }
+
     .auctionName {
-      font-weight: 900;
-      font-size: 2rem;
+      font-weight: 800;
+      font-size: 1.5rem;
     }
   }
 
   .bidInfo {
-    border-radius: 32px;
+    border-radius: 16px;
     background-color: #ffe2e2;
     height: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    .auctionName {
+      font-weight: 800;
+      font-size: 1.5rem;
+    }
 
     .bidInfoInner {
       display: flex;
