@@ -36,9 +36,13 @@ authAxiosInstance.interceptors.response.use(
   async function (error) {
     const originalRequest = error.config;
     if (error.response.status === 418) {
-      const data = await authAPI.refreshAuth();
+      const data = await authAxiosInstance.put(
+        `/authentication-service/api/access-token`,
+        { refreshToken: localStorage.getItem("refreshToken") }
+      );
+      // const data = await authAPI.refreshAuth();
 
-      originalRequest.config.headers.Authorization = data.accessToken;
+      originalRequest.config.headers.Authorization = data?.accessToken;
       originalRequest._retry = true;
       return unAuthAxiosInstance(originalRequest);
     }

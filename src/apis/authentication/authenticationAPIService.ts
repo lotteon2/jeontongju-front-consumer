@@ -30,7 +30,7 @@ const authAPI = {
   refreshAuth: async () => {
     const { data } = await authAxiosInstance.put(
       `/authentication-service/api/access-token`,
-      { cookie: getCookieForRefresh() }
+      { refreshToken: localStorage.getItem("refreshToken") }
     );
     return data;
   },

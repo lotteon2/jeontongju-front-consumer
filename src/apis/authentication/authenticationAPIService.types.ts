@@ -24,6 +24,7 @@ export interface CheckEmailParams {
 
 export type SignInResponseData = {
   accessToken: string;
+  refreshToken: string;
 };
 
 export type CheckEmailResponseData = {

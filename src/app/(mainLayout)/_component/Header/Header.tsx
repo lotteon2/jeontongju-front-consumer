@@ -46,10 +46,6 @@ const Header = () => {
     queryFn: () => productAPI.getCategories(),
   });
 
-  console.log(pathname);
-  console.log(pathname.startsWith("/auction/list"));
-  console.log(pathname.startsWith("/auction"));
-
   const [
     setMemberId,
     isLogin,
@@ -276,7 +272,11 @@ const Header = () => {
               style={{
                 cursor: "pointer",
               }}
-              src={ pathname.startsWith("/seller") ? FiSrSellersActiveSvg : FiSrSellersSvg}
+              src={
+                pathname.startsWith("/seller")
+                  ? FiSrSellersActiveSvg
+                  : FiSrSellersSvg
+              }
             />
             <div>주모</div>
           </Link>

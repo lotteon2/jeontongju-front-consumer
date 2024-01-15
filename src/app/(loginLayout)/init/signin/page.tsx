@@ -19,6 +19,7 @@ export default function SignIn() {
       const data = await authAPI.signIn({ email, password });
       if (data.code === 200) {
         localStorage.setItem("accessToken", data.data.accessToken);
+        localStorage.setItem("refreshToken", data.data.refreshToken);
         router.replace("/");
       } else {
         setMessage("아이디와 비밀번호가 일치하지 않습니다.");
