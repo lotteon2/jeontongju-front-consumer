@@ -178,10 +178,11 @@ const AuctionDetail = ({ params }: Props) => {
       }
       const data = await auctionAPI.bid({
         auctionId,
-        bidPrice: auctionInfo?.bidHistoryList
+        bidPrice: auctionInfo?.bidHistoryList[0]
           ? Number(auctionInfo?.bidHistoryList[0].bidPrice)
           : 0 + Number(auctionInfo?.askingPrice),
       });
+      console.log("냥냥");
       console.log(data);
       if (data.code === 200) {
         console.log("입찰 성공");
