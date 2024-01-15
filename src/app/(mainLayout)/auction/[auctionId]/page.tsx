@@ -254,14 +254,12 @@ const AuctionDetail = ({ params }: Props) => {
               {isLogin && (
                 <div className={style.bottomInput}>
                   <Input
-                    className={style.chatInput}
+                    // className={style.chatInput}
                     value={message}
                     onChange={handleChangeMessage}
                     onPressEnter={sendMessage}
                   />
-                  <button className={style.inputButton} onClick={sendMessage}>
-                    입력
-                  </button>
+                  <Button onClick={sendMessage}>입력</Button>
                 </div>
               )}
             </div>
