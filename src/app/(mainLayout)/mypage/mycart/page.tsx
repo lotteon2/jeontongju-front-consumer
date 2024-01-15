@@ -68,10 +68,8 @@ export default function MyCartpage() {
 
   const handleUpdateSum = (e, it: GetMyCartListResponseData) => {
     if (e.target.checked) {
-      setTotalAmount((prev) => prev + it.amount * it.productPrice);
       setSelectedCart((prev) => [...prev, it]);
     } else {
-      setTotalAmount((prev) => prev - it.amount * it.productPrice);
       const updatedCart = selectedCart.filter(
         (cart) => cart.productId !== it.productId
       );
@@ -79,8 +77,34 @@ export default function MyCartpage() {
       setSelectedCart(updatedCart);
     }
   };
+
+  useEffect(() => {
+    console.log("냥");
+    let total = 0;
+
+    const matchedItems: GetMyCartListResponseData[] = [];
+    selectedCart.forEach((cartItem) => {
+      data?.pages.forEach((page) => {
+        page.content.forEach((dataItem) => {
+          if (cartItem.productId === dataItem.productId) {
+            matchedItems.push(dataItem);
+          }
+        });
+      });
+    });
+
+    console.log(matchedItems);
+
+    matchedItems.forEach(
+      (matchedItem) => (total += matchedItem.amount * matchedItem.productPrice)
+    );
+    console.log(total);
+    setTotalAmount(total);
+  }, [selectedCart, data]);
+
   useEffect(() => {
     console.log(data);
+    // data?.pages.map((page) => page.content.map((it) => handleUpdate(it)));
   }, [data]);
 
   return (
