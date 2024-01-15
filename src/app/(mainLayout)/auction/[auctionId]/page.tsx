@@ -166,17 +166,22 @@ const AuctionDetail = ({ params }: Props) => {
     setIsDisableToBid(true);
     setTimeout(() => setIsDisableToBid(false), 3000);
     try {
+      console.log(auctionInfo);
+if(auctionInfo?.askingPrice === 0) {
+  
+}
       const data = await auctionAPI.bid({
         auctionId,
-        bidPrice:
-          Number(auctionInfo?.bidHistoryList[0].bidPrice) +
-          Number(auctionInfo?.askingPrice),
+        bidPrice: auctionInfo?.bidHistoryList
+          ? Number(auctionInfo?.bidHistoryList[0].bidPrice)
+          : 0 + Number(auctionInfo?.askingPrice),
       });
+      console.log(data);
       if (data.code === 200) {
         console.log("입찰 성공");
       }
     } catch (error) {
-      notify("입찰에 실패했어요.");
+      // notify("입찰에 실패했어요.");
       console.error("입찰 실패");
     }
   };
