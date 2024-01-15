@@ -40,8 +40,8 @@ export default function ShortsDetail({
               description: `${short.shortsDescription}`,
               imageUrl: `${short.shortsThumbnailImageUrl}`,
               link: {
-                mobileWebUrl: `https://consumer.jeontongju-dev.shop/shorts/${short.shortsId}`,
-                webUrl: `https://developers.kakao.com/shorts/${short.shortsId}`,
+                mobileWebUrl: `https://jeontongju.shop/shorts/${short.shortsId}`,
+                webUrl: `https://jeontongju.shop/shorts/${short.shortsId}`,
               },
             },
           });
@@ -55,8 +55,8 @@ export default function ShortsDetail({
           description: `${short.shortsDescription}`,
           imageUrl: `${short.shortsThumbnailImageUrl}`,
           link: {
-            mobileWebUrl: `https://consumer.jeontongju-dev.shop/shorts/${short.shortsId}`,
-            webUrl: `https://developers.kakao.com/shorts/${short.shortsId}`,
+            mobileWebUrl: `https://jeontongju.shop/shorts/${short.shortsId}`,
+            webUrl: `https://jeontongju.shop/shorts/${short.shortsId}`,
           },
         },
       });

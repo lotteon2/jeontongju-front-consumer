@@ -194,7 +194,13 @@ const AuctionDetail = ({ params }: Props) => {
         {status === "ING" ? (
           <>
             <div className={style.auctionLeft}>
-              {/* <AuctionPage /> */}
+              <iframe
+                width="1280"
+                height="720"
+                src="https://play.mbus.tv/live/18d072ac3202207b?autoplay"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
               <div className={style.chat}>
                 {chat.map((it, idx) => (
                   <div className={style.chatBox} key={idx}>
@@ -243,19 +249,21 @@ const AuctionDetail = ({ params }: Props) => {
               <div className={style.bidInfo}>
                 <h2>현재 입찰 내역</h2>
                 <div>
-                  {auctionInfo?.bidHistoryList.slice(0,5).map((bidHistory, idx) => (
-                    <div key={idx} className={style.bidInfoInner}>
-                      <div>{idx}</div>
-                      <Image
-                        src={bidHistory.profileImage || UserDefaultImg}
-                        width="10"
-                        height="10"
-                        alt="bidUser"
-                      />
-                      <div>{bidHistory.nickname}</div>
-                      <div>{bidHistory.bidPrice}</div>
-                    </div>
-                  ))}
+                  {auctionInfo?.bidHistoryList
+                    .slice(0, 5)
+                    .map((bidHistory, idx) => (
+                      <div key={idx} className={style.bidInfoInner}>
+                        <div>{idx}</div>
+                        <Image
+                          src={bidHistory.profileImage || UserDefaultImg}
+                          width="10"
+                          height="10"
+                          alt="bidUser"
+                        />
+                        <div>{bidHistory.nickname}</div>
+                        <div>{bidHistory.bidPrice}</div>
+                      </div>
+                    ))}
                 </div>
               </div>
               {isLogin && (
