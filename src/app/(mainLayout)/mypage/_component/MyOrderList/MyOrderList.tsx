@@ -12,12 +12,12 @@ export default function MyOrderList() {
 
   const { data, refetch } = useQuery({
     queryKey: ["order", "list", "get"],
-    queryFn: () => orderAPI.getMyOrderList(0, 10, false),
+    queryFn: () => orderAPI.getMyOrderList(0, 10, null),
   });
 
   queryClient.prefetchInfiniteQuery({
     queryKey: ["order", "list"],
-    queryFn: () => orderAPI.getMyOrderList(0, 10, false),
+    queryFn: () => orderAPI.getMyOrderList(0, 10, null),
     initialPageParam: 0,
   });
 
