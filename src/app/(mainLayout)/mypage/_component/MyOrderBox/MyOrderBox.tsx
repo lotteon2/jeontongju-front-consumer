@@ -153,6 +153,9 @@ export default function MyOrderBox({
                   width={0}
                   height={0}
                   className={style.orderBoxImg}
+                  style={{
+                    cursor: item.isAuction ? 'none': 'pointer'
+                  }}
                 />
               </Link>
               <div className={style.orderDetail}>

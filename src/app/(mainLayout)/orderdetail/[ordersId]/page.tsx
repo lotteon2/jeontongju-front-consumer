@@ -122,26 +122,28 @@ export default function OrderDetail() {
               </div>
             </div>
           </div>
-          <div className={style.detailSection}>
-            <div>
-              <div className={style.detailHeader}>포인트 혜택</div>
-            </div>
-            <div className={style.infoCont}>
-              <div className={style.infoDiv}>
-                <strong>구매 확정시 적립</strong>
-                <span>
-                  {isRegularPayment
-                    ? Math.floor(order.payment.realPrice * 0.03)
-                    : Math.floor(order.payment.realPrice * 0.01)}
-                  원
-                </span>
+          {!order.product[0].isAuction && (
+            <div className={style.detailSection}>
+              <div>
+                <div className={style.detailHeader}>포인트 혜택</div>
               </div>
-              <div className={style.infoDiv}>
-                <strong>리뷰 적립</strong>
-                <span>글: 300원 / 사진: 500원</span>
+              <div className={style.infoCont}>
+                <div className={style.infoDiv}>
+                  <strong>구매 확정시 적립</strong>
+                  <span>
+                    {isRegularPayment
+                      ? Math.floor(order.payment.realPrice * 0.03)
+                      : Math.floor(order.payment.realPrice * 0.01)}
+                    원
+                  </span>
+                </div>
+                <div className={style.infoDiv}>
+                  <strong>리뷰 적립</strong>
+                  <span>글: 300원 / 사진: 500원</span>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       ) : (
         <Image

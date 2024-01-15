@@ -196,7 +196,6 @@ const AuctionDetail = ({ params }: Props) => {
       if (data.code === 200) {
         if (data.failure === "INVALID_CONSUMER_CREDIT") {
           notify("크레딧이 부족해요!");
-          router("/credit/list");
           return;
         }
         console.log("입찰 성공");
