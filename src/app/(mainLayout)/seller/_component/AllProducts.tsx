@@ -23,7 +23,12 @@ export default function AllProducts({ sellerId }: { sellerId: number }) {
     >({
       queryKey: ["seller", "products"],
       queryFn: ({ pageParam = 0 }) =>
-        searchAPI.getAllProductsBySellerId(sellerId, "_score", 10, pageParam),
+        searchAPI.getAllProductsBySellerId(
+          sellerId,
+          "_score,desc",
+          10,
+          pageParam
+        ),
       initialPageParam: 0,
       getNextPageParam: (lastPage) =>
         lastPage.last === false ? lastPage.number + 1 : null,

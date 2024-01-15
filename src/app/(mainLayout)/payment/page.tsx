@@ -106,6 +106,9 @@ export default function Payment() {
       console.log(totalAmount - coupon?.discountAmount - point);
       const data = await paymentAPI.kakaoPay(params);
       if (data.message) {
+        if(data.message === "LACK_OF_STOCK") {
+          toast("재고가 부족해요.");
+        }
         console.error(data.message);
       } else {
         router.replace(data.next_redirect_pc_url);

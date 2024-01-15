@@ -20,7 +20,7 @@ import Image from "next/image";
 export default function SearchPage() {
   const params = useSearchParams();
   const keywordParam = params.get("keyword");
-  const [sort, setSort] = useState<keyof typeof SORT>("_score");
+  const [sort, setSort] = useState<keyof typeof SORT>("_score,desc");
   const [rawMaterial, setRawMaterial] = useState<(keyof typeof RAW_MATERIAL)[]>(
     []
   );

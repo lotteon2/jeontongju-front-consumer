@@ -15,7 +15,7 @@ export default function MainProductContainer() {
     queryFn: () =>
       searchAPI.getAllProducts(
         0,
-        "totalSalesCount",
+        "totalSalesCount,desc",
         5,
         [],
         [],

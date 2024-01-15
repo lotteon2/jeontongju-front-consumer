@@ -23,7 +23,7 @@ type Props = {
 
 export default function CategoryPage({ params }: Props) {
   const { categoryId } = params;
-  const [sort, setSort] = useState<keyof typeof SORT>("_score");
+  const [sort, setSort] = useState<keyof typeof SORT>("_score,desc");
   const [rawMaterial, setRawMaterial] = useState<(keyof typeof RAW_MATERIAL)[]>(
     []
   );

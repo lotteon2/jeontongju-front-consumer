@@ -33,7 +33,7 @@ export default function Seller({ params }: Props) {
     queryFn: () =>
       searchAPI.getPopularProductsBySellerId(
         Number(sellerId),
-        "totalSalesCount"
+        "totalSalesCount,desc"
       ),
   });
 

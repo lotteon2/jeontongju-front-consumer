@@ -14,7 +14,7 @@ import { CONCEPT, ConceptOptions } from "@/constants/ConceptEnum";
 import { RAW_MATERIAL, RawMaterialOptions } from "@/constants/MaterialEnum";
 
 export default function ProductList() {
-  const [sort, setSort] = useState<keyof typeof SORT>("_score");
+  const [sort, setSort] = useState<keyof typeof SORT>("_score,desc");
   const [rawMaterial, setRawMaterial] = useState<(keyof typeof RAW_MATERIAL)[]>(
     []
   );
