@@ -72,7 +72,7 @@ export default function MyCartBox({
         </div>
         <div>
           <div className={style.productName}>{item.productName}</div>
-          <div>{item.productPrice}원</div>
+          <div>{item.productPrice.toLocaleString()}원</div>
         </div>
       </div>
       <div className={style.qualityInputBox}>
@@ -83,7 +83,7 @@ export default function MyCartBox({
           setQuantity={setQuantity}
           onBlur={handleBlurInput}
         />
-        <div>{total} 원</div>
+        <div>{total.toLocaleString()} 원</div>
       </div>
     </div>
   );

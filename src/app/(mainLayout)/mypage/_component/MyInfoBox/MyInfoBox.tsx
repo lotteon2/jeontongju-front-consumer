@@ -81,7 +81,9 @@ export default function MyInfoBox() {
             onClick={() => router.push("/point/list")}
           >
             <div className={style.infoTitle}>포인트</div>
-            <div className={style.infoDesc}>{myInfo?.data.point}</div>
+            <div className={style.infoDesc}>
+              {myInfo?.data.point.toLocaleString()}
+            </div>
           </div>
           <div
             className={style.infoDiv}
@@ -95,7 +97,9 @@ export default function MyInfoBox() {
             onClick={() => router.push("/credit/list")}
           >
             <div className={style.infoTitle}>크레딧</div>
-            <div className={style.infoDesc}>{myInfo?.data.credit}</div>
+            <div className={style.infoDesc}>
+              {myInfo?.data.credit.toLocaleString()}
+            </div>
           </div>
         </div>
       </div>

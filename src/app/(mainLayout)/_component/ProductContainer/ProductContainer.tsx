@@ -89,7 +89,7 @@ export default function ProductContainer({
             ? productName.slice(0, 10) + "..."
             : productName}
         </div>
-        <div className={style.price}>{price}</div>
+        <div className={style.price}>{price.toLocaleString()}원</div>
         {sellerProfileImg && (
           <div className={style.sellerInfo}>
             <Image

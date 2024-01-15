@@ -117,7 +117,7 @@ export default function Page({ params }: Props) {
               <div className={style.desc}>{productData.productDescription}</div>
               <div className={style.hr} />
               <div className={style.productPrice}>
-                {productData.productPrice}원
+                {productData.productPrice.toLocaleString()}원
               </div>
               <MemberShipBox />
               <div className={style.quantityBox}>
@@ -128,7 +128,7 @@ export default function Page({ params }: Props) {
                   setQuantity={setQuantity}
                   onBlur={handleBlurInput}
                 />
-                <div>{total}원</div>
+                <div>{total.toLocaleString()}원</div>
               </div>
               {!productData.isSoldOut &&
               !productData.isDeleted &&

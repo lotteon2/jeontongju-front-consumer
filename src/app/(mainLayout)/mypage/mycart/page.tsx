@@ -148,34 +148,38 @@ export default function MyCartpage() {
           <h2>주문 예상 금액</h2>
           <div className={style.myWishInner}>
             <div>총 상품 가격</div>
-            <div>{totalAmount} 원</div>
+            <div>{totalAmount.toLocaleString()} 원</div>
           </div>
           <div className={style.myWishInner}>
             <div>총 배송비</div>
             <div>전통주점은 언제나 무료배송!</div>
           </div>
-          <Link
-            className={style.button}
-            href={{
-              pathname: "/payment",
-              query: {
-                realAmount: totalAmount,
-                totalAmount: totalAmount,
-                isCart: true,
-                products: JSON.stringify(
-                  selectedCart.map((cart) => ({
-                    productCount: cart.amount,
-                    productId: cart.productId,
-                    productName: cart.productName,
-                    productThumbnailImageUrl: cart.productThumbnailImageUrl,
-                    productPrice: cart.productPrice,
-                  }))
-                ),
-              },
-            }}
-          >
-            결제하기
-          </Link>
+          {selectedCart.length > 0 ? (
+            <Link
+              className={style.button}
+              href={{
+                pathname: "/payment",
+                query: {
+                  realAmount: totalAmount,
+                  totalAmount: totalAmount,
+                  isCart: true,
+                  products: JSON.stringify(
+                    selectedCart.map((cart) => ({
+                      productCount: cart.amount,
+                      productId: cart.productId,
+                      productName: cart.productName,
+                      productThumbnailImageUrl: cart.productThumbnailImageUrl,
+                      productPrice: cart.productPrice,
+                    }))
+                  ),
+                },
+              }}
+            >
+              결제하기
+            </Link>
+          ) : (
+            <div className={style.button}>카트를 선택해주세요</div>
+          )}
         </div>
       </div>
 
