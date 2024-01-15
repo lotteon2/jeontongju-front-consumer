@@ -176,11 +176,18 @@ const AuctionDetail = ({ params }: Props) => {
         notify("아직 호가 설정 전이에요. 잠시만 기다려주세요.");
         return;
       }
+      let currentStartingPrice =
+        auctionInfo?.auctionProductList[
+          auctionInfo?.auctionProductList.findIndex(
+            (auctionProduct) => auctionProduct.progress === "ING"
+          )
+        ].startingPrice;
+      console.log(currentStartingPrice);
       const data = await auctionAPI.bid({
         auctionId,
         bidPrice: auctionInfo?.bidHistoryList[0]
           ? Number(auctionInfo?.bidHistoryList[0].bidPrice)
-          : 0 + Number(auctionInfo?.askingPrice),
+          : Number(currentStartingPrice) + Number(auctionInfo?.askingPrice),
       });
       console.log("냥냥");
       console.log(data);
