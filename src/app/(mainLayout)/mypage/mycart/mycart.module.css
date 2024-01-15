@@ -12,13 +12,14 @@
   .myCartBody {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 3rem;
 
     .myWishRightBar {
-      box-shadow: 3px 3px 1px 1px #c0c0c0;
+      border: 1px solid #c0c0c0;
       border-radius: 12px;
       padding: 1rem;
       flex: 1;
+      height: min-content;
 
       .myWishInner {
         display: flex;
@@ -28,7 +29,9 @@
       }
 
       .button {
+        display: block;
         width: 100%;
+        text-align: center;
         background: #c0c0c0;
         padding: 1rem;
         margin-top: 2rem;
@@ -41,7 +44,7 @@
 
   .myWishList {
     margin-bottom: 2rem;
-    flex: 2;
+    flex: 3;
 
     .cartInnerBox {
       display: flex;
