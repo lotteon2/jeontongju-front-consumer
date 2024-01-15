@@ -153,6 +153,7 @@ const AuctionDetail = ({ params }: Props) => {
         setAuctionName(data.data.auctionName);
         setStatus(data.data.status);
         console.log(data.data.status);
+        console.log(data);
         if (data.data.status === "ING") {
           connectChatInfo();
           connectBidInfo();

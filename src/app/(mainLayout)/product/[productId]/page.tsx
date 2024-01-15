@@ -210,20 +210,26 @@ export default function Page({ params }: Props) {
           <div className={style.details}>
             {selectedMenu === 0 ? (
               <>
-                <h2>상품 상세 이미지</h2>
-                <Image
-                  src={productData.productDetailsImageUrl}
-                  alt="productDetailImg"
-                  width={0}
-                  height={0}
+                <div
                   style={{
-                    cursor: "pointer",
-                    width: "100%",
-                    height: "100%",
-                    margin: "0 auto",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
-                />
-
+                >
+                  <Image
+                    src={productData.productDetailsImageUrl}
+                    alt="productDetailImg"
+                    width={0}
+                    height={0}
+                    style={{
+                      cursor: "pointer",
+                      width: "70%",
+                      height: "100%",
+                      margin: "0 auto",
+                    }}
+                  />
+                </div>
                 {productData.food && (
                   <>
                     <h2>잘 어울리는 안주</h2>
