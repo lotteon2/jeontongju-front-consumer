@@ -65,9 +65,13 @@ export default function PointList() {
         <div className={style.creditHeader}>
           <div className={style.creditTitle}>포인트 내역</div>
           <div>
-            <div>현재 내 포인트 | {data?.pages[0].point}</div>
-            <div>총 적립 포인트 | {data?.pages[0].totalAcc}</div>
-            <div>총 사용 포인트 | {data?.pages[0].totalUse}</div>
+            <div>현재 내 포인트 | {data?.pages[0].point.toLocaleString()}</div>
+            <div>
+              총 적립 포인트 | {data?.pages[0].totalAcc.toLocaleString()}
+            </div>
+            <div>
+              총 사용 포인트 | {data?.pages[0].totalUse.toLocaleString()}
+            </div>
           </div>
         </div>
         <div className={style.creditBtns}>

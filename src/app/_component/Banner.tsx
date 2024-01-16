@@ -59,6 +59,7 @@ export default function Banner({
         alt={type || "banner"}
         style={{ cursor: "pointer", width: "100%", height: "20%" }}
       />
+      <div id="successCoupon"></div>
     </div>
   ) : (
     <div className={style.banner}>

@@ -83,9 +83,15 @@ export default function CreditList() {
         <div className={style.creditHeader}>
           <div className={style.creditTitle}>크레딧 내역</div>
           <div>
-            <div>현재 내 크레딧 | {data?.pages[0].credit || 0}</div>
-            <div>총 적립 크레딧 | {data?.pages[0].totalAcc || 0}</div>
-            <div>총 사용 크레딧 | {data?.pages[0].totalUse || 0}</div>
+            <div>
+              현재 내 크레딧 | {data?.pages[0].credit.toLocaleString() || 0}
+            </div>
+            <div>
+              총 적립 크레딧 | {data?.pages[0].totalAcc.toLocaleString() || 0}
+            </div>
+            <div>
+              총 사용 크레딧 | {data?.pages[0].totalUse.toLocaleString() || 0}
+            </div>
           </div>
         </div>
         <div>
