@@ -40,9 +40,12 @@ authAxiosInstance.interceptors.response.use(
         `/authentication-service/api/access-token`,
         { refreshToken: localStorage.getItem("refreshToken") }
       );
+      console.log("RETRY", data);
+      localStorage.setItem("accessToken", data?.data.accessToken);
+      localStorage.setItem("refreshToken", data?.data.refreshToken);
       // const data = await authAPI.refreshAuth();
 
-      originalRequest.config.headers.Authorization = data?.accessToken;
+      originalRequest.config.headers.Authorization = data?.data.accessToken;
       originalRequest._retry = true;
       return unAuthAxiosInstance(originalRequest);
     }
