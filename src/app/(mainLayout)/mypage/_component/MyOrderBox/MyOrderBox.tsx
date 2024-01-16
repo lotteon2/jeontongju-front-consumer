@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import { ORDER_STATE, translateOrderState } from "@/constants/OrderStatusEnum";
 import { Alert } from "@/app/_component/Alert";
+import { Particle } from "@/app/_component/pangpang/page";
 
 export default function MyOrderBox({
   params,
@@ -103,6 +104,12 @@ export default function MyOrderBox({
       const data = await orderAPI.confirmMyOrderByOrderId(productOrderId);
       if (data.code === 200) {
         toast("주문 확정에 성공했어요.");
+        const party = new Particle("successComplete", {
+          number: 200,
+          colors: ["#ffca76", "#ffb9b9", "#fff180"],
+        });
+        party.start();
+
         refetch();
       }
     } catch (error) {
@@ -214,6 +221,7 @@ export default function MyOrderBox({
                   <div>{item.productName}</div>
                 )}
               </div>
+              <div id="successComplete"></div>
             </div>
           ))}
         </div>

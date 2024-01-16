@@ -33,7 +33,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "additional.d.ts",
-    "src/app/(mainLayout)/_component/MemberShipBox"
-, "src/app/(mainLayout)/_component/InputRange"  ],
+    "src/app/(mainLayout)/_component/MemberShipBox",
+    "src/app/(mainLayout)/_component/InputRange",
+    "src/app/_component/pangpang/page.js"
+  ],
   "exclude": ["node_modules"]
 }

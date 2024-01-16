@@ -1,0 +1,18 @@
+@function randomNum($min, $max) {
+  $rand: random();
+  $randomNum: $min + floor($rand * (($max - $min) + 1));
+  $bool: random();
+  @if ($bool > 0.5) {
+    $randomNum: $randomNum * -1;
+  }
+  @return $randomNum;
+}
+@for $i from 1 through 5 {
+  @keyframes fallen_#{$i} {
+    100% {
+      top: calc(100% + 20px);
+      transform: rotateX(#{randomNum(360, 1440)}deg)
+        rotateY(#{randomNum(360, 1440)}deg) rotateZ(#{randomNum(360, 1440)}deg);
+    }
+  }
+}

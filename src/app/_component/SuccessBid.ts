@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import Firework from "../(mainLayout)/_component/PangPang/PangPang";
+import PangPang from "./pangpang/page";
 
 interface AlertParams {
   title: string;
@@ -8,7 +9,6 @@ interface AlertParams {
 }
 
 export const SuccessAlert = async (params: AlertParams) => {
-  // Firework();
   const result = await Swal.fire({
     title: params.title,
     text: params.text,

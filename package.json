@@ -20,6 +20,7 @@
     "agora-token": "^2.0.3",
     "antd": "^5.12.7",
     "axios": "^1.6.2",
+    "canvas-confetti": "^1.9.2",
     "event-source-polyfill": "^1.0.31",
     "immer": "^10.0.3",
     "next": "14.0.4",
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "@tanstack/react-query-devtools": "5",
+    "@types/canvas-confetti": "^1.6.4",
     "@types/gtag.js": "^0.0.18",
     "@types/node": "^20.10.4",
     "@types/react": "17.0.45",

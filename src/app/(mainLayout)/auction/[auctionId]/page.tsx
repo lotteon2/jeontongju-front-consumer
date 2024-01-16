@@ -18,6 +18,7 @@ import { Button, Input, Modal } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import { SuccessAlert } from "@/app/_component/SuccessBid";
+import PangPang, { Particle } from "@/app/_component/pangpang/page";
 
 type Props = {
   params: { auctionId: string };
@@ -115,6 +116,11 @@ const AuctionDetail = ({ params }: Props) => {
           // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
           const chatData = JSON.parse(res.body);
           setChat((prev) => [...prev, chatData]);
+          const party = new Particle("particle", {
+            number: 100,
+            colors: ["#ffca76", "#ffb9b9", "#fff180"],
+          });
+          party.start();
         });
       },
       (error) => {
@@ -123,9 +129,7 @@ const AuctionDetail = ({ params }: Props) => {
     );
   };
 
-  console.log(myInfo?.data);
   const connectBidResultInfo = () => {
-    console.log("auction");
     const serverURL = "https://api.jeontongju.shop/auction-service";
     let socket = new SockJS(`${serverURL}/chat`);
     const stompClient = Stomp.over(socket);
@@ -161,6 +165,12 @@ const AuctionDetail = ({ params }: Props) => {
             }).then((res) => {
               console.log(res);
             });
+
+            const party = new Particle("particle", {
+              number: 100,
+              colors: ["#ffca76", "#ffb9b9", "#fff180"],
+            });
+            party.start();
           }
         });
       },
@@ -449,6 +459,7 @@ const AuctionDetail = ({ params }: Props) => {
           </>
         )}
       </div>
+      <div id="particle"></div>
       {/* {mySuccessBidData && ( */}
       {/* <SuccessAlert
         title={`🎉 ${mySuccessBidData?.consumerName}님 경매 낙찰을 축하드려요!`}
