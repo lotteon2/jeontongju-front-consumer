@@ -129,8 +129,26 @@ const AuctionDetail = ({ params }: Props) => {
     );
   };
 
+  const connectRoomInfo = () => {
+    const serverURL = "https://api.jeontongju.shop/auction-service";
+    let socket = new SockJS(`${serverURL}/sub`);
+    const stompClient = Stomp.over(socket);
+    stompClient.connect(
+      {},
+      (frame) => {
+        stompClient.subscribe(`/sub/action-numbers/${auctionId}`, (res) => {
+          console.log("[ROOM RESULT] 구독으로 받은 메시지 입니다.", res.body);
+          const roomResult = JSON.parse(res.body);
+          console.log(roomResult);
+        });
+      },
+      (error) => {
+        console.log("소켓 연결 실패", error);
+      }
+    );
+  };
+
   const connectBidInfo = () => {
-    console.log("auction");
     const serverURL = "https://api.jeontongju.shop/auction-service";
     let socket = new SockJS(`${serverURL}/chat`);
     const stompClient = Stomp.over(socket);
@@ -178,6 +196,7 @@ const AuctionDetail = ({ params }: Props) => {
           connectChatInfo();
           connectBidInfo();
           connectBidResultInfo();
+          connectRoomInfo();
         }
       }
     } catch (error) {
