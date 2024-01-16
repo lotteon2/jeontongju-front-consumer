@@ -138,11 +138,11 @@ const AuctionDetail = ({ params }: Props) => {
           console.log(bidResult);
           // setBidResultData(bidResult);
           if (
-            bidResult.bidResults[bidResult.bidResults.length - 1].consumerId ===
+            bidResult.bidResult[bidResult.bidResult.length - 1].consumerId ===
             myInfo?.data.memberId
           ) {
             setMySuccessBidData(
-              bidResult.bidResults[bidResult.bidResults.length - 1]
+              bidResult.bidResult[bidResult.bidResult.length - 1]
             );
           }
         });
