@@ -17,7 +17,7 @@ type Props = {
 };
 
 export default function CreateReviewPage({ params }: Props) {
-  const navigate = useRouter();
+  const router = useRouter();
   const { productId, productOrderId } = params;
   const [product, setProduct] =
     useState<GetProductDetailByProductIdResponseData>();
