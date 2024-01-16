@@ -67,7 +67,7 @@ const AuctionDetail = ({ params }: Props) => {
   const chatContainerRef = useRef<HTMLDivElement>();
   const [isDisableToBid, setIsDisableToBid] = useState(false);
   const [currentUserCount, setCurrentUserCount] = useState<number>(1);
-  const [bidResultData, setBidResultData] = useState<BidResult>();
+  const [bidResultData, setBidResultData] = useState<BidResultUser[]>();
   const { data: myInfo, isLoading } = useQuery({
     queryKey: ["consumer", "myinfo"],
     queryFn: () => consumerAPI.getMyInfoForStore(),
@@ -136,8 +136,8 @@ const AuctionDetail = ({ params }: Props) => {
           console.log("[BID RESULT] 구독으로 받은 메시지 입니다.", res.body);
           const bidResult = JSON.parse(res.body);
           console.log(bidResult);
-          setBidResultData((prev) => bidResult);
-          console.log(",,", bidResultData?.bidResult)
+          setBidResultData([...bidResult.bidResult]);
+          console.log(",,", bidResultData);
           console.log("memberId", myInfo?.data?.memberId);
           console.log("memberId", memberId);
           console.log(
@@ -406,7 +406,7 @@ const AuctionDetail = ({ params }: Props) => {
               </div>
               <div>
                 <div className={style.auctionName}>현재 낙찰 내역</div>
-                {bidResultData?.bidResult.map((it) => {
+                {bidResultData?.map((it) => {
                   <div key={it.auctionProductId}>
                     <div>{it.productName} </div>
                     <div>{it.lastBidPrice}</div>
