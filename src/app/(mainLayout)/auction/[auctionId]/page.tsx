@@ -131,7 +131,7 @@ const AuctionDetail = ({ params }: Props) => {
 
   const connectRoomInfo = () => {
     const serverURL = "https://api.jeontongju.shop/auction-service";
-    let socket = new SockJS(`${serverURL}/sub`);
+    let socket = new SockJS(`${serverURL}/chat`);
     const stompClient = Stomp.over(socket);
     stompClient.connect(
       {},

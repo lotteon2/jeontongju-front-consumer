@@ -66,6 +66,7 @@ export default function MemberShipList() {
       toast("멤버십 구독 해지에 실패했어요.");
     }
   };
+  
   const handleStopSubscriptionAlert = async () => {
     try {
       setIsLoading(true);
