@@ -50,7 +50,7 @@ authAxiosInstance.interceptors.response.use(
 
       originalRequest.config.headers.Authorization = data?.data.accessToken;
       originalRequest._retry = true;
-      return unAuthAxiosInstance(originalRequest);
+      return authAxiosInstance(originalRequest);
     }
     return Promise.reject(error);
   }
