@@ -9,7 +9,7 @@ import searchAPI from "@/apis/search/searchAPIService";
 import { useEffect, useState } from "react";
 
 export default function CostContainer() {
-  const { data, isLoading, refecth } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["event", "cost"],
     queryFn: () => searchAPI.getCostProducts(),
   });
@@ -34,7 +34,7 @@ export default function CostContainer() {
               price={crop.productPrice}
               capacityToPriceRatio={crop.capacityToPriceRatio}
               productName={crop.productName}
-              refetch={refecth}
+              refetch={refetch}
             />
           ))}
         </div>
