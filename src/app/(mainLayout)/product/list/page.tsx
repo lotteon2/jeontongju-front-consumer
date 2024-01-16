@@ -168,7 +168,7 @@ export default function ProductList() {
               }}
               options={SortOptions}
               onChange={setSort}
-              placeholder="검색순"
+              placeholder="기본 검색순"
             />
           )}
           <div className={style.productRightBar}>

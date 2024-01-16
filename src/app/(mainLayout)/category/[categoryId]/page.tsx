@@ -3,7 +3,7 @@ import NotFoundImg from "/public/jeontongju_notfound.png";
 import { useSearchParams } from "next/navigation";
 import { ProductData } from "@/apis/search/searchAPIService.types";
 import { Page } from "@/constants/PageResponseType";
-import { SORT } from "@/constants/SortEnum";
+import { SORT, SortOptions } from "@/constants/SortEnum";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useState } from "react";
 import { SNACK, SnackOptions } from "@/constants/SnackTypeEnum";
@@ -48,7 +48,8 @@ export default function CategoryPage({ params }: Props) {
         _6: number,
         _7: number,
         _8: number,
-        _9: (keyof typeof CONCEPT)[]
+        _9: (keyof typeof CONCEPT)[],
+        _10: string
       ],
       number
     >({
@@ -62,6 +63,7 @@ export default function CategoryPage({ params }: Props) {
         minAlcoholDegree,
         maxAlcoholDegree,
         concepts,
+        categoryId,
       ],
       queryFn: ({ pageParam = 0 }) =>
         searchAPI.getAllProductListForCategoryId(
@@ -169,35 +171,52 @@ export default function CategoryPage({ params }: Props) {
           </div>
         </div>
         <div className={style.productRightBar}>
-          {data?.pages[0].content.length === 0 && (
-            <>
-              <Image
-                src={NotFoundImg}
-                alt="notfound"
-                width={0}
-                height={0}
-                style={{ width: "80%", height: "80%" }}
-              />
-              <div>해당 상품이 없어요</div>
-            </>
+          {data?.pages[0]?.content.length && (
+            <Select
+              style={{
+                marginRight: "auto",
+                position: "absolute",
+                right: 0,
+              }}
+              options={SortOptions}
+              onChange={setSort}
+              placeholder="기본 검색순"
+            />
           )}
-          {data?.pages.map((page, i) => (
-            <Fragment key={i}>
-              {page.content.map((product) => (
-                <ProductContainer
-                  productName={product.productName}
-                  productId={product.productId}
-                  productImg={product.productThumbnailImageUrl}
-                  price={product.productPrice}
-                  capacityToPriceRatio={product.capacityToPriceRatio}
-                  key={product.productId}
-                  isLikes={product.isLikes}
-                  refetch={refetch}
-                />
+
+          <div className={style.productRightBar}>
+            <div className={style.products}>
+              {data?.pages[0].content.length === 0 && (
+                <>
+                  <Image
+                    src={NotFoundImg}
+                    alt="notfound"
+                    width={0}
+                    height={0}
+                    style={{ width: "80%", height: "80%" }}
+                  />
+                  <div>해당 상품이 없어요</div>
+                </>
+              )}
+              {data?.pages.map((page, i) => (
+                <Fragment key={i}>
+                  {page.content.map((product) => (
+                    <ProductContainer
+                      productName={product.productName}
+                      productId={product.productId}
+                      productImg={product.productThumbnailImageUrl}
+                      price={product.productPrice}
+                      capacityToPriceRatio={product.capacityToPriceRatio}
+                      key={product.productId}
+                      isLikes={product.isLikes}
+                      refetch={refetch}
+                    />
+                  ))}
+                </Fragment>
               ))}
-            </Fragment>
-          ))}
-          <div ref={ref} style={{ height: 50 }} />
+              <div ref={ref} style={{ height: 50 }} />
+            </div>
+          </div>
         </div>
       </div>
     </>

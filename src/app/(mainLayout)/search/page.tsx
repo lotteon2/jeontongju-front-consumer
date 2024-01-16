@@ -174,7 +174,7 @@ export default function SearchPage() {
             }}
             options={SortOptions}
             onChange={setSort}
-            placeholder="검색순"
+            placeholder="기본 검색순"
           />
           {data?.pages[0].content.length === 0 && (
             <>
