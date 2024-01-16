@@ -52,8 +52,12 @@ export default function CreateReviewPage({ params }: Props) {
         concept: concepts,
       });
       if (data.code === 200) {
+        if(data.failure === "NOT_ORDER_CONFIRM"){
+          toast("주문 확정을 먼저 진행해주세요.")
+          return;
+        }
         toast("구매 후기 등록에 성공했어요.");
-        navigate("/mypage");
+        router.replace("/mypage");
       }
     } catch (error) {
       toast("구매 후기 등록에 실패했어요");

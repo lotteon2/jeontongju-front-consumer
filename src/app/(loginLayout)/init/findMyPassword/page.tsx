@@ -7,7 +7,7 @@ import authAPI from "@/apis/authentication/authenticationAPIService";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 export default function FindMyPassword() {
-  const navigate = useRouter();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [authCode, setAuthcode] = useState<string>("");
@@ -67,7 +67,7 @@ export default function FindMyPassword() {
       const result = await authAPI.updateMyPasswordBeforeLogin(params);
       if (result.code === 200) {
         console.log(true, "비밀번호가 변경되었어요.");
-        navigate("/init/signin");
+        router.replace("/init/signin");
       }
     }
   };
