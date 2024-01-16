@@ -68,7 +68,6 @@ const AuctionDetail = ({ params }: Props) => {
   const [isDisableToBid, setIsDisableToBid] = useState(false);
   const [currentUserCount, setCurrentUserCount] = useState<number>(1);
   const [bidResultData, setBidResultData] = useState<BidResult>();
-  const [mySuccessBidData, setMySuccessBidData] = useState<BidResultUser>();
   const { data: myInfo, isLoading } = useQuery({
     queryKey: ["consumer", "myinfo"],
     queryFn: () => consumerAPI.getMyInfoForStore(),
@@ -137,8 +136,8 @@ const AuctionDetail = ({ params }: Props) => {
           console.log("[BID RESULT] 구독으로 받은 메시지 입니다.", res.body);
           const bidResult = JSON.parse(res.body);
           console.log(bidResult);
-          setBidResultData(bidResult);
-          console.log("memberId", myInfo?.data.memberId);
+          setBidResultData((prev) => bidResult);
+          console.log("memberId", myInfo?.data?.memberId);
           console.log("memberId", memberId);
           console.log(
             bidResult.bidResult[bidResult.bidResult.length - 1].consumerId
@@ -151,11 +150,17 @@ const AuctionDetail = ({ params }: Props) => {
               bidResult.bidResult[bidResult.bidResult.length - 1].consumerId
             ) === Number(memberId)
           ) {
-            setMySuccessBidData(
-              bidResult.bidResult[bidResult.bidResult.length - 1]
-            );
+            const mySuccessBid =
+              bidResult.bidResult[bidResult.bidResult.length - 1];
+
+            SuccessAlert({
+              title: `🎉 ${mySuccessBid?.consumerName}님 경매 낙찰을 축하드려요!`,
+              text: mySuccessBid?.productName,
+              submitBtnText: "마저 즐기기",
+            }).then((res) => {
+              console.log(res);
+            });
           }
-          console.log("mySuccess", mySuccessBidData);
         });
       },
       (error) => {
@@ -401,7 +406,7 @@ const AuctionDetail = ({ params }: Props) => {
               <div>
                 <div className={style.auctionName}>현재 낙찰 내역</div>
                 {bidResultData?.bidResult.map((it) => {
-                  <div>
+                  <div key={it.auctionProductId}>
                     <div>{it.productName} </div>
                     <div>{it.lastBidPrice}</div>
                     <div>{it.consumerName} </div>
@@ -443,13 +448,13 @@ const AuctionDetail = ({ params }: Props) => {
           </>
         )}
       </div>
-      {mySuccessBidData && (
-        <SuccessAlert
-          title={`🎉 ${mySuccessBidData?.consumerName}님 경매 낙찰을 축하드려요!`}
-          text={mySuccessBidData?.productName}
-          submitBtnText="마저 즐기기"
-        />
-      )}
+      {/* {mySuccessBidData && ( */}
+      {/* <SuccessAlert
+        title={`🎉 ${mySuccessBidData?.consumerName}님 경매 낙찰을 축하드려요!`}
+        text={mySuccessBidData?.productName}
+        submitBtnText="마저 즐기기"
+      /> */}
+      {/* )} */}
     </>
   );
 };
