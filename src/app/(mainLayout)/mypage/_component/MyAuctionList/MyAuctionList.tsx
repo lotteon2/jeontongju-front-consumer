@@ -52,7 +52,7 @@ export default function MyAuctionList() {
         </div>
       </div>
       <div className={style.myWishList}>
-        {data?.pages?.map((page, i) => (
+        {data?.pages[0]?.content.slice(0, 5).map((page, i) => (
           <Fragment key={i}>
             {page?.content.map((it: GetMyAuctionListResponseData) => (
               <MyAuctionBox key={it.auctionId} params={it} />

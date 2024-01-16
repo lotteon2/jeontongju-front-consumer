@@ -18,14 +18,14 @@ export default function MyAuctionBox({
             alt="product"
             width="200"
             height="200"
-          />
+          style={{borderRadius: '12px'}}/>
           <div>{params.productName}</div>
         </div>
         <div>
           <div>{params.bidDate}</div>
-          <div>시작가 | {params.startingPrice}</div>
-          <div>낙찰가 | {params.lastBidPrice}</div>
-          <div>마지막 입찰가 | {params.myLastBidPrice}</div>
+          <div>시작가 | {params.startingPrice.toLocaleString()}</div>
+          <div>낙찰가 | {params.lastBidPrice.toLocaleString()}</div>
+          <div>마지막 입찰가 | {params.myLastBidPrice.toLocaleString()}</div>
         </div>
       </div>
     </div>

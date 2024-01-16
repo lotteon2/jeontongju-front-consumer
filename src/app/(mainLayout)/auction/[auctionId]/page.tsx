@@ -14,9 +14,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import SEO from "@/app/_component/SEO";
-import { Button, Input } from "antd";
+import { Button, Input, Modal } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
+import { SuccessAlert } from "@/app/_component/SuccessBid";
 
 type Props = {
   params: { auctionId: string };
@@ -49,10 +50,13 @@ export type MemberAuction = {
 
 export type BidResultUser = {
   consumerId: number;
+  consumerName: string;
   productName: string;
+  lastBidPrice: number;
 };
 
 export type BidResult = {
+  auctionId: string;
   results: BidResultUser[];
 };
 
@@ -63,6 +67,7 @@ const AuctionDetail = ({ params }: Props) => {
   const [isDisableToBid, setIsDisableToBid] = useState(false);
   const [currentUserCount, setCurrentUserCount] = useState<number>(1);
   const [bidResultData, setBidResultData] = useState<BidResult>();
+  const [mySuccessBidData, setMySuccessBidData] = useState<BidResultUser>();
   const { data: myInfo, isLoading } = useQuery({
     queryKey: ["consumer", "myinfo"],
     queryFn: () => consumerAPI.getMyInfoForStore(),
@@ -96,6 +101,19 @@ const AuctionDetail = ({ params }: Props) => {
       router.push("/mypage/myaddress");
     }
   }, [myInfo]);
+
+  useEffect(() => {
+    if (bidResultData?.results) {
+      if (
+        bidResultData.results[bidResultData.results.length - 1].consumerId ===
+        myInfo?.data.memberId
+      ) {
+        setMySuccessBidData(
+          bidResultData.results[bidResultData.results.length - 1]
+        );
+      }
+    }
+  }, [bidResultData]);
 
   const connectChatInfo = () => {
     console.log("auction");
@@ -414,6 +432,13 @@ const AuctionDetail = ({ params }: Props) => {
           </>
         )}
       </div>
+      {mySuccessBidData && (
+        <SuccessAlert
+          title={`🎉 ${mySuccessBidData?.consumerName}님 경매 낙찰을 축하드려요!`}
+          text={mySuccessBidData?.productName}
+          submitBtnText="마저 즐기기"
+        />
+      )}
     </>
   );
 };
