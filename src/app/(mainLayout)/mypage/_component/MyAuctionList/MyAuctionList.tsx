@@ -52,13 +52,21 @@ export default function MyAuctionList() {
         </div>
       </div>
       <div className={style.myWishList}>
-        {data?.pages[0]?.content.slice(0, 5).map((page, i) => (
-          <Fragment key={i}>
-            {page?.content.map((it: GetMyAuctionListResponseData) => (
+        {data?.pages[0]?.content?.length > 0 &&
+          data?.pages[0].content.slice(0, 5)?.map((it, i) => (
+            <Fragment key={i}>
               <MyAuctionBox key={it.auctionId} params={it} />
-            ))}
+            </Fragment>
+          ))}
+        {/* {data?.pages?.map((page, i) => (
+          <Fragment key={i}>
+            {page?.content
+              .slice(0, 5)
+              .map((it: GetMyAuctionListResponseData) => (
+                <MyAuctionBox key={it.auctionId} params={it} />
+              ))}
           </Fragment>
-        ))}
+        ))} */}
         {!data?.pages[0]?.content.length && <div>나의 경매 목록이 없어요</div>}
       </div>
       <div ref={ref} style={{ height: 50 }} />
