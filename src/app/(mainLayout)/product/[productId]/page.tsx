@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import wishAPI from "@/apis/wishCart/wishAPIService";
 import ProductReviewContainer from "../_component/ProductReviewContainer/ProductReviewContainer";
+import { useQuery } from "@tanstack/react-query";
 
 type Props = {
   params: { productId: string };
@@ -33,6 +34,10 @@ export default function Page({ params }: Props) {
   const [total, setTotal] = useState(
     productData ? productData.productPrice : 0
   );
+
+  const { refetch } = useQuery({
+    queryKey: ["cart", "list"],
+  });
 
   const handleClickCounter = (num: number) => {
     setQuantity((prev) => (prev as number) + num);
@@ -72,6 +77,7 @@ export default function Page({ params }: Props) {
     try {
       const data = await wishAPI.addCart(productId, quantity);
       if (data.code === 200) {
+        refetch();
         toast("장바구니 담기에 성공했어요.");
       }
     } catch (err) {
