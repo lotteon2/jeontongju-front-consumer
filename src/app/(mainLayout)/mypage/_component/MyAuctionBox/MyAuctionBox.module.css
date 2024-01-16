@@ -1,0 +1,25 @@
+.myAuctionBox {
+  box-shadow: 3px 3px 1px 1px #c0c0c0;
+  border-radius: 12px;
+  padding: 1rem;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  position: relative;
+  .auctionName {
+    font-size: 1.5rem;
+  }
+
+  .myAuctionInnerBox {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .bid {
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+    padding-top: 10px;
+    top: 0;
+    color: red;
+  }
+}

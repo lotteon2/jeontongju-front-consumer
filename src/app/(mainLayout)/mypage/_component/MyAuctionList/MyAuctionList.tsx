@@ -7,6 +7,7 @@ import { Fragment, useEffect, useState } from "react";
 import auctionAPI from "@/apis/auction/auctionAPIService";
 import { GetMyAuctionListResponseData } from "@/apis/auction/auctionAPIService.types";
 import { useRouter } from "next/navigation";
+import MyAuctionBox from "../MyAuctionBox/MyAuctionBox";
 
 export default function MyAuctionList() {
   const router = useRouter();
@@ -53,8 +54,8 @@ export default function MyAuctionList() {
       <div className={style.myWishList}>
         {data?.pages?.map((page, i) => (
           <Fragment key={i}>
-            {page?.content.map((it) => (
-              <div key={it.auctionId}>{it.auctionName}</div>
+            {page?.content.map((it: GetMyAuctionListResponseData) => (
+              <MyAuctionBox key={it.auctionId} params={it} />
             ))}
           </Fragment>
         ))}
