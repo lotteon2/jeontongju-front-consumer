@@ -206,10 +206,12 @@ export default function MyOrderBox({
                 <div>
                   {item.productPrice.toLocaleString()} 원 X {item.productCount}
                 </div>
-                {!item.isAuction && (
+                {!item.isAuction ? (
                   <Link href={`/product/${item.productId}`}>
                     {item.productName}
                   </Link>
+                ) : (
+                  <div>{item.productName}</div>
                 )}
               </div>
             </div>

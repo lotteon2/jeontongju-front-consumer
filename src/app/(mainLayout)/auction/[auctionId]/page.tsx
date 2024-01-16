@@ -14,7 +14,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";
 import SEO from "@/app/_component/SEO";
-import AuctionPage from "../test/page";
 import { Button, Input } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
@@ -48,13 +47,22 @@ export type MemberAuction = {
   bidPrice: number;
 };
 
+export type BidResultUser = {
+  consumerId: number;
+  productName: string;
+};
+
+export type BidResult = {
+  results: BidResultUser[];
+};
+
 const AuctionDetail = ({ params }: Props) => {
   const router = useRouter();
   const { auctionId } = params;
   const chatContainerRef = useRef<HTMLDivElement>();
   const [isDisableToBid, setIsDisableToBid] = useState(false);
   const [currentUserCount, setCurrentUserCount] = useState<number>(1);
-
+  const [bidResultData, setBidResultData] = useState<BidResult>();
   const { data: myInfo, isLoading } = useQuery({
     queryKey: ["consumer", "myinfo"],
     queryFn: () => consumerAPI.getMyInfoForStore(),
@@ -121,6 +129,8 @@ const AuctionDetail = ({ params }: Props) => {
         stompClient.subscribe(`/sub/bid-result/${auctionId}`, (res) => {
           console.log("[BID RESULT] 구독으로 받은 메시지 입니다.", res.body);
           const bidResult = JSON.parse(res.body);
+          console.log(bidResult);
+          setBidResultData(bidResult);
           console.log(bidResult);
         });
       },
@@ -259,9 +269,6 @@ const AuctionDetail = ({ params }: Props) => {
   }, []);
 
   useEffect(() => {
-    console.log(chatContainerRef?.current?.scrollTop);
-    console.log(chatContainerRef?.current?.scrollHeight);
-    // 채팅이 업데이트될 때마다 스크롤을 아래로 내립니다.
     if (chatContainerRef && chatContainerRef.current) {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
@@ -332,7 +339,6 @@ const AuctionDetail = ({ params }: Props) => {
                         style={{
                           display: "flex",
                           alignItems: "center",
-                          justifyContent: "center",
                           color:
                             auctionProduct.progress === "ING"
                               ? "red"
@@ -370,18 +376,11 @@ const AuctionDetail = ({ params }: Props) => {
                     ))}
                 </div>
               </div>
+              <div>
+                <div className={style.auctionName}>현재 낙찰 내역</div>
+              </div>
               {isLogin && (
                 <>
-                  {/* <div className={style.bidInput}>
-                    <input
-                      className={style.chatInput}
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                    />
-                    <button className={style.inputButton} onClick={sendMessage}>
-                      입찰
-                    </button>
-                  </div> */}
                   <Button
                     className={style.inputBidButton}
                     onClick={bidAskingPrice}
