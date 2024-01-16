@@ -10,7 +10,7 @@ import style from "@/app/(mainLayout)/review/create/[productId]/[productOrderId]
 import ImageUploader from "@/app/_component/ImageUploader";
 import { useRouter } from "next/navigation";
 import { CONCEPT, ConceptOptions } from "@/constants/ConceptEnum";
-import { Select } from "antd";
+import { Button, Select } from "antd";
 
 type Props = {
   params: { productId: string; productOrderId: string };
@@ -22,6 +22,7 @@ export default function CreateReviewPage({ params }: Props) {
   const [product, setProduct] =
     useState<GetProductDetailByProductIdResponseData>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isAddLoading, setIsAddLoading] = useState<boolean>(false);
   const [reviewContents, setReviewContents] = useState<string>("");
   const [reviewPhotoImageUrl, setReviewPhotoImageUrl] = useState<string>("");
   const [concepts, setConcepts] = useState<(keyof typeof CONCEPT)[]>([]);
@@ -42,6 +43,7 @@ export default function CreateReviewPage({ params }: Props) {
 
   const handleAddReview = async () => {
     try {
+      setIsAddLoading(true);
       const data = await reviewAPI.addReview({
         productId,
         productOrderId: Number(productOrderId),
@@ -55,6 +57,8 @@ export default function CreateReviewPage({ params }: Props) {
       }
     } catch (error) {
       toast("구매 후기 등록에 실패했어요");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -98,13 +102,14 @@ export default function CreateReviewPage({ params }: Props) {
             value={concepts}
             allowClear
           />
-          <button
+          <Button
             className={style.button}
             onClick={handleAddReview}
             disabled={isDisableToAddReview()}
+            loading={isAddLoading}
           >
             저장
-          </button>
+          </Button>
         </>
       ) : (
         <Image

@@ -45,9 +45,6 @@ authAxiosInstance.interceptors.response.use(
         localStorage.setItem("accessToken", data?.data.data.accessToken);
         localStorage.setItem("refreshToken", data?.data.data.refreshToken);
       }
-
-      // const data = await authAPI.refreshAuth();
-
       originalRequest.config.headers.Authorization = data?.data.accessToken;
       originalRequest._retry = true;
       return authAxiosInstance(originalRequest);
