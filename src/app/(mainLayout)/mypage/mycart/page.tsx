@@ -88,6 +88,7 @@ export default function MyCartpage() {
         page.content.forEach((dataItem) => {
           if (cartItem.productId === dataItem.productId) {
             matchedItems.push(dataItem);
+            cartItem.amount = dataItem.amount
           }
         });
       });
@@ -145,7 +146,7 @@ export default function MyCartpage() {
             <div>총 배송비</div>
             <div>전통주점은 언제나 무료배송!</div>
           </div>
-          {selectedCart.length > 0 ? (
+          {selectedCart?.length > 0 ? (
             <Link
               className={style.button}
               href={{
