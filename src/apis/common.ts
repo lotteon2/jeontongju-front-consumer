@@ -41,8 +41,11 @@ authAxiosInstance.interceptors.response.use(
         { refreshToken: localStorage.getItem("refreshToken") }
       );
       console.log("RETRY", data);
-      localStorage.setItem("accessToken", data?.data.accessToken);
-      localStorage.setItem("refreshToken", data?.data.refreshToken);
+      if (data.data.code === 200) {
+        localStorage.setItem("accessToken", data?.data.data.accessToken);
+        localStorage.setItem("refreshToken", data?.data.data.refreshToken);
+      }
+
       // const data = await authAPI.refreshAuth();
 
       originalRequest.config.headers.Authorization = data?.data.accessToken;
