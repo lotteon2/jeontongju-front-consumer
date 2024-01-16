@@ -5,7 +5,7 @@ import config from "../_component/config";
 import { Client } from "stompjs";
 import Stomp from "webstomp-client";
 import SockJS from "sockjs-client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import style from "@/app/(mainLayout)/auction/[auctionId]/auction.module.css";
 import auctionAPI from "@/apis/auction/auctionAPIService";
 import Image from "next/image";
@@ -51,6 +51,7 @@ export type MemberAuction = {
 const AuctionDetail = ({ params }: Props) => {
   const router = useRouter();
   const { auctionId } = params;
+  const chatContainerRef = useRef<HTMLDivElement>();
   const [isDisableToBid, setIsDisableToBid] = useState(false);
 
   const { data: myInfo, isLoading } = useQuery({
@@ -118,10 +119,8 @@ const AuctionDetail = ({ params }: Props) => {
       (frame) => {
         stompClient.subscribe(`/sub/bid-result/${auctionId}`, (res) => {
           console.log("[BID RESULT] 구독으로 받은 메시지 입니다.", res.body);
-          // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
           const bidResult = JSON.parse(res.body);
           console.log(bidResult);
-          // setChat((prev) => [...prev, chatData]);
         });
       },
       (error) => {
@@ -225,7 +224,6 @@ const AuctionDetail = ({ params }: Props) => {
   };
 
   const handleChangeMessage = (e) => {
-    console.log(e);
     if (e.keycode === 13 || e.key === "Enter") {
       e.preventDefault();
       sendMessage();
@@ -238,6 +236,16 @@ const AuctionDetail = ({ params }: Props) => {
   useEffect(() => {
     enterAuctionRoom();
   }, []);
+
+  useEffect(() => {
+    console.log(chatContainerRef?.current?.scrollTop);
+    console.log(chatContainerRef?.current?.scrollHeight);
+    // 채팅이 업데이트될 때마다 스크롤을 아래로 내립니다.
+    if (chatContainerRef && chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [chat]);
 
   return (
     <>
@@ -253,7 +261,7 @@ const AuctionDetail = ({ params }: Props) => {
                 frameborder="0"
                 allowfullscreen
               ></iframe>
-              <div className={style.chat}>
+              <div className={style.chat} ref={chatContainerRef}>
                 {chat.map((it, idx) => (
                   <div className={style.chatBox} key={idx}>
                     <Image
