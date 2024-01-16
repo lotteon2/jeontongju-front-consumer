@@ -9,7 +9,7 @@ import searchAPI from "@/apis/search/searchAPIService";
 export default function CropContainer() {
   const [selectedMenu, setSelectedMenu] = useState<number>(0);
   const [selectedValue, setSelectedValue] = useState<string>("sweetPotato");
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["event", "crop"],
     queryFn: () => searchAPI.getCropProducts(),
   });
@@ -60,6 +60,7 @@ export default function CropContainer() {
               capacityToPriceRatio={crop.capacityToPriceRatio}
               productName={crop.productName}
               isLikes={crop.isLikes}
+              refetch={refetch}
             />
           ))}
         </div>
