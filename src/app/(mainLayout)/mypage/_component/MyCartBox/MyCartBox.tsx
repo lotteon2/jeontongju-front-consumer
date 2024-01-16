@@ -19,7 +19,6 @@ export default function MyCartBox({
     try {
       const data = await wishAPI.deleteCartItem(item.productId);
       if (data.code === 200) {
-        toast("장바구니에서 삭제 되었어요.");
         refetch();
       }
     } catch (error) {}
@@ -62,12 +61,19 @@ export default function MyCartBox({
         />
       </div>
       <div className={style.myCartBody}>
-        <div style={{ width: "10rem", height: "10rem", position: "relative" }}>
+        <div
+          style={{
+            width: "10rem",
+            height: "10rem",
+            marginBottom: "1rem",
+            position: "relative",
+          }}
+        >
           <Image
             src={item.productThumbnailImageUrl}
             alt="img"
             layout="fill"
-            objectFit="contain"
+            style={{ borderRadius: "12px" }}
           />
         </div>
         <div>

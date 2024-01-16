@@ -3,6 +3,8 @@
   box-shadow: 3px 3px 1px 1px #c0c0c0;
   border-radius: 12px;
   padding: 1rem;
+  max-height: 500px;
+  margin-bottom: 1rem;
 
   .deleteButton {
     float: right;

@@ -79,7 +79,6 @@ export default function MyCartpage() {
   };
 
   useEffect(() => {
-    console.log("냥");
     let total = 0;
 
     const matchedItems: GetMyCartListResponseData[] = [];
@@ -88,7 +87,7 @@ export default function MyCartpage() {
         page.content.forEach((dataItem) => {
           if (cartItem.productId === dataItem.productId) {
             matchedItems.push(dataItem);
-            cartItem.amount = dataItem.amount
+            cartItem.amount = dataItem.amount;
           }
         });
       });
