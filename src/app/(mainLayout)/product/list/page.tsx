@@ -40,7 +40,7 @@ export default function ProductList() {
         _7: number,
         _8: number,
         _9: (keyof typeof CONCEPT)[],
-        _10: (keyof typeof SORT)
+        _10: keyof typeof SORT
       ],
       number
     >({
@@ -158,35 +158,41 @@ export default function ProductList() {
             />
           </div>
         </div>
-        <div>
-          <Select
-            style={{
-              float: "right",
-              marginBottom: "1rem",
-            }}
-            options={SortOptions}
-            onChange={setSort}
-            placeholder="검색순"
-          />
+        <div className={style.productRightBar}>
+          {data?.pages[0]?.content.length && (
+            <Select
+              style={{
+                marginRight: "auto",
+                position: "absolute",
+                right: 0,
+              }}
+              options={SortOptions}
+              onChange={setSort}
+              placeholder="검색순"
+            />
+          )}
           <div className={style.productRightBar}>
-            {data?.pages.map((page, i) => (
-              <Fragment key={i}>
-                {page.content.map((product) => (
-                  <ProductContainer
-                    productName={product.productName}
-                    productId={product.productId}
-                    productImg={product.productThumbnailImageUrl}
-                    price={product.productPrice}
-                    capacityToPriceRatio={product.capacityToPriceRatio}
-                    key={product.productId}
-                    isLikes={product.isLikes}
-                    refetch={refetch}
-                  />
-                ))}
-              </Fragment>
-            ))}
+            <div className={style.products}>
+              {data?.pages.map((page, i) => (
+                <Fragment key={i}>
+                  {page.content.map((product) => (
+                    <ProductContainer
+                      productName={product.productName}
+                      productId={product.productId}
+                      productImg={product.productThumbnailImageUrl}
+                      price={product.productPrice}
+                      capacityToPriceRatio={product.capacityToPriceRatio}
+                      key={product.productId}
+                      isLikes={product.isLikes}
+                      refetch={refetch}
+                    />
+                  ))}
+                </Fragment>
+              ))}
+            </div>
+
             {!data?.pages[0]?.content.length && (
-              <div>해당 상품 목록이 없어요</div>
+              <div className={style.noContent}>해당 상품 목록이 없어요</div>
             )}
           </div>
         </div>

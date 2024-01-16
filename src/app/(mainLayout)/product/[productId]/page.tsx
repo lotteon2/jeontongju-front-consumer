@@ -99,11 +99,18 @@ export default function Page({ params }: Props) {
                   borderRadius: "12px",
                   width: "30rem",
                   height: "auto",
-                  opacity: productData.isSoldOut ? 0.4 : 1,
+                  opacity:
+                    productData.isSoldOut || !productData.isActivate || productData.isDeleted ? 0.4 : 1,
                 }}
               />
               {productData.isSoldOut && (
                 <div className={style.soldOut}>품절</div>
+              )}
+              {!productData.isActivate && (
+                <div className={style.soldOut}>비공개</div>
+              )}
+               {productData.isDeleted && (
+                <div className={style.soldOut}>판매중단</div>
               )}
             </div>
             <div className={style.info}>
