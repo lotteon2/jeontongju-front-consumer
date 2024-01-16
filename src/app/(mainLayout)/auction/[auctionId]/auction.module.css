@@ -45,6 +45,7 @@
   }
 
   .bidInfo {
+    margin-bottom: 1rem;
     border-radius: 16px;
     background-color: #ffe2e2;
     height: 30%;
