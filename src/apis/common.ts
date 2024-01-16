@@ -45,7 +45,8 @@ authAxiosInstance.interceptors.response.use(
         localStorage.setItem("accessToken", data?.data.data.accessToken);
         localStorage.setItem("refreshToken", data?.data.data.refreshToken);
       }
-      originalRequest.config.headers.Authorization = data?.data.accessToken;
+      originalRequest.config.headers.Authorization =
+        data?.data.data.accessToken;
       originalRequest._retry = true;
       return authAxiosInstance(originalRequest);
     }

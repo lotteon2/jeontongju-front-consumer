@@ -116,11 +116,6 @@ const AuctionDetail = ({ params }: Props) => {
           // 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
           const chatData = JSON.parse(res.body);
           setChat((prev) => [...prev, chatData]);
-          const party = new Particle("particle", {
-            number: 100,
-            colors: ["#ffca76", "#ffb9b9", "#fff180"],
-          });
-          party.start();
         });
       },
       (error) => {
