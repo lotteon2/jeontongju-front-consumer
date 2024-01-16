@@ -407,7 +407,7 @@ const AuctionDetail = ({ params }: Props) => {
                     disabled={isDisableToBid}
                     loading={isDisableToBid}
                   >
-                    현재가 + 호가만큼 입찰하기
+                    💵 현재가 + 호가만큼 입찰하기
                   </Button>
                 </>
               )}
