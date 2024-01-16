@@ -172,10 +172,7 @@ const AuctionDetail = ({ params }: Props) => {
       {},
       (frame) => {
         stompClient.subscribe(`/sub/auction-numbers/${auctionId}`, (res) => {
-          console.log("[ROOM RESULT] 구독으로 받은 메시지 입니다.", res.body);
           setCurrentUserCount(Number(res.body));
-          const roomResult = JSON.parse(res.body);
-          console.log(roomResult);
         });
       },
       (error) => {
