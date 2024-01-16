@@ -10,7 +10,7 @@ export default function MyAuctionBox({
   return (
     <div className={style.myAuctionBox}>
       <div className={style.auctionName}>{params.auctionName}</div>
-      {params.isBid && <div className={style.bid}> 🎉낙찰 </div>}
+      {params.isBid && <div className={style.bid}> 🎉 낙찰 </div>}
       <div className={style.myAuctionInnerBox}>
         <div>
           <Image

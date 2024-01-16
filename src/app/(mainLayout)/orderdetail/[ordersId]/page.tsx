@@ -22,6 +22,8 @@ export default function OrderDetail() {
   useEffect(() => {
     if (orderParam) {
       try {
+        console.log('orderParam', orderParam);
+        console.log('order deocde', decodeURIComponent(orderParam))
         const decodedOrder = decodeURIComponent(orderParam);
         const parsedOrder = JSON.parse(decodedOrder);
         console.log(parsedOrder);

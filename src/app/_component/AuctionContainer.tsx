@@ -89,7 +89,9 @@ export default function AuctionContainer() {
                         <div className={style.productName}>
                           {product.productName}
                         </div>
-                        <div>{product.description}</div>
+                        <div className={style.productDesc}>
+                          {product.description.length > 12 ? product.description.slice(0, 11) + "..." : product.description}
+                        </div>
                         <div>도수 | {product.alcoholDegree}%</div>
                         <div>용량 | {product.capacity}ml</div>
                       </div>

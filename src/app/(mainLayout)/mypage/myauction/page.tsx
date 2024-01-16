@@ -61,7 +61,7 @@ export default function MyAuction() {
       <h2 className={style.myWishHeader}>나의 경매내역</h2>
       <div className={style.myWishList}>
         {data &&
-          data?.pages?.map((page, i) => (
+          data?.pages[0].content.slice(0, 5)?.map((page, i) => (
             <Fragment key={i}>
               {page?.content.map((it) => (
                 <div key={it.auctionId}>{it.auctionName}</div>
