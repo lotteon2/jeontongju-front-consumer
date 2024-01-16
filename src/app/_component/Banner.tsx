@@ -8,6 +8,7 @@ import eventCropImg from "/public/event_crop.png";
 import { toast } from "react-toastify";
 import couponAPI from "@/apis/coupon/couponAPIService";
 import style from "@/app/page.module.css";
+import { Particle } from "./pangpang/page";
 
 export default function Banner({
   type,
@@ -27,6 +28,11 @@ export default function Banner({
           console.log(data);
           if (data.detail === "쿠폰 수령 성공") {
             toast("쿠폰이 발급되었어요.");
+            const party = new Particle("successCoupon", {
+              number: 200,
+              colors: ["#ffca76", "#ffb9b9", "#fff180"],
+            });
+            party.start();
             return;
           }
           if (!data.data.isOpen) {
