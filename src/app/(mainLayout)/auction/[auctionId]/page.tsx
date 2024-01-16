@@ -145,7 +145,10 @@ const AuctionDetail = ({ params }: Props) => {
           if (
             Number(
               bidResult.bidResult[bidResult.bidResult.length - 1].consumerId
-            ) === Number(myInfo?.data.memberId)
+            ) === Number(myInfo?.data.memberId) ||
+            Number(
+              bidResult.bidResult[bidResult.bidResult.length - 1].consumerId
+            ) === Number(memberId)
           ) {
             setMySuccessBidData(
               bidResult.bidResult[bidResult.bidResult.length - 1]
