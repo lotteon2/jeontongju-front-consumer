@@ -11,6 +11,15 @@
 .auctionRight {
   flex: 1;
 
+  .activeUser {
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+
   .todayAuctionBox {
     border-radius: 16px;
     background-color: #ffe2e2;

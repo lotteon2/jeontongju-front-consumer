@@ -1,7 +1,7 @@
 "use client";
+import FiSrSellersSvg from "/public/fi-sr-sellers.svg";
 import UserDefaultImg from "/public/UserDefault.png";
 import LiveBeforeImg from "/public/live_before.mp4";
-import config from "../_component/config";
 import { Client } from "stompjs";
 import Stomp from "webstomp-client";
 import SockJS from "sockjs-client";
@@ -53,6 +53,7 @@ const AuctionDetail = ({ params }: Props) => {
   const { auctionId } = params;
   const chatContainerRef = useRef<HTMLDivElement>();
   const [isDisableToBid, setIsDisableToBid] = useState(false);
+  const [currentUserCount, setCurrentUserCount] = useState<number>(1);
 
   const { data: myInfo, isLoading } = useQuery({
     queryKey: ["consumer", "myinfo"],
@@ -138,6 +139,7 @@ const AuctionDetail = ({ params }: Props) => {
       (frame) => {
         stompClient.subscribe(`/sub/auction-numbers/${auctionId}`, (res) => {
           console.log("[ROOM RESULT] 구독으로 받은 메시지 입니다.", res.body);
+          setCurrentUserCount(Number(res.body));
           const roomResult = JSON.parse(res.body);
           console.log(roomResult);
         });
@@ -278,6 +280,7 @@ const AuctionDetail = ({ params }: Props) => {
                 height="600"
                 src="https://play.mbus.tv/live/18d072ac3202207b?autoplay"
                 frameborder="0"
+                style={{ borderRadius: "12px" }}
                 allowfullscreen
               ></iframe>
               <div className={style.chat} ref={chatContainerRef}>
@@ -309,6 +312,16 @@ const AuctionDetail = ({ params }: Props) => {
               )}
             </div>
             <div className={style.auctionRight}>
+              <div className={style.activeUser}>
+                <div>현재 참여자 수</div>
+                <Image
+                  alt="currentUserCount"
+                  width={15}
+                  height={15}
+                  src={FiSrSellersSvg}
+                />
+                {currentUserCount}명
+              </div>
               <div className={style.todayAuctionBox}>
                 <div className={style.auctionName}>{auctionName}</div>
                 <div>
