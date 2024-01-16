@@ -139,6 +139,7 @@ const AuctionDetail = ({ params }: Props) => {
           console.log(bidResult);
           setBidResultData(bidResult);
           console.log("memberId", myInfo?.data.memberId);
+          console.log("memberId", memberId);
           console.log(
             bidResult.bidResult[bidResult.bidResult.length - 1].consumerId
           );
