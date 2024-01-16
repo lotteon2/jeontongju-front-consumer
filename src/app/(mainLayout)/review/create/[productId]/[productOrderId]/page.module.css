@@ -1,6 +1,5 @@
 .addReviewPage {
   display: flex;
-  align-items: center;
   flex-direction: column;
   gap: 1rem;
 }
@@ -19,9 +18,10 @@
   outline: none;
   border: 1px solid #ccc;
   width: 80%;
-  font-family: "Jua";
+  font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
 }
 
+/* 
 .button {
   margin: 2rem;
   width: 4rem;
@@ -40,4 +40,4 @@
 .button:disabled {
   background-color: #c0c0c0;
   cursor: none;
-}
+} */

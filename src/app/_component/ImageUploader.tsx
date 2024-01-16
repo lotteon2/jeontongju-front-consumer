@@ -76,7 +76,9 @@ const ImageUploader = ({ imageUrl, setImageUrl }: Props) => {
           alt="이미지"
         />
       ) : (
-        <div>이미지를 등록해주세요</div>
+        <div style={{ fontFamily: `"__Jua_fe7685", "__Jua_Fallback_fe7685"` }}>
+          이미지를 등록해주세요
+        </div>
       )}
     </button>
   );

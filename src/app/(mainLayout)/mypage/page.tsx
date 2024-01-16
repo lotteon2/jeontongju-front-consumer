@@ -46,12 +46,12 @@ export default function MyPage() {
               title: "장바구니 내역",
             },
             {
-              key: "3",
+              key: "4",
               href: "#myReview",
               title: "리뷰 내역",
             },
             {
-              key: "4",
+              key: "5",
               href: "#myAuction",
               title: "경매 내역",
             },

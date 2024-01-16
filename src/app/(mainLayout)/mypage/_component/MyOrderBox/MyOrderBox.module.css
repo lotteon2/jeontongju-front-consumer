@@ -30,6 +30,7 @@
       cursor: pointer;
       width: 8rem;
       height: auto;
+      max-height: 180px;
       border-radius: 12px;
     }
 
