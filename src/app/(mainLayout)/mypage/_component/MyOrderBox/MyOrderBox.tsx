@@ -154,7 +154,7 @@ export default function MyOrderBox({
                   height={0}
                   className={style.orderBoxImg}
                   style={{
-                    cursor: item.isAuction ? 'none': 'pointer'
+                    cursor: item.isAuction ? "none" : "pointer",
                   }}
                 />
               </Link>
@@ -204,11 +204,13 @@ export default function MyOrderBox({
                     </div>
                   )}
                 <div>
-                  {item.productPrice} 원 X {item.productCount}
+                  {item.productPrice.toLocaleString()} 원 X {item.productCount}
                 </div>
-                <Link href={`/product/${item.productId}`}>
-                  {item.productName}
-                </Link>
+                {!item.isAuction && (
+                  <Link href={`/product/${item.productId}`}>
+                    {item.productName}
+                  </Link>
+                )}
               </div>
             </div>
           ))}

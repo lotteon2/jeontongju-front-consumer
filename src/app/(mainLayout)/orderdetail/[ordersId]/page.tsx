@@ -54,12 +54,17 @@ export default function OrderDetail() {
                     </strong>
                   </div>
                   <div>
-                    {product.productPrice} 원 X {product.productCount}
+                    {product.productPrice.toLocaleString()} 원 X
+                    {product.productCount}
                   </div>
                   <div>
-                    <Link href={`/product/${product.productId}`}>
-                      {product.productName}
-                    </Link>
+                    {!product.isAuction ? (
+                      <Link href={`/product/${product.productId}`}>
+                        {product.productName}
+                      </Link>
+                    ) : (
+                      product.productName
+                    )}
                   </div>
                   <div>
                     <Link href={`/seller/${product.sellerId}`}>
@@ -101,7 +106,7 @@ export default function OrderDetail() {
               <div className={style.infoCont}>
                 <div className={style.infoDiv}>
                   <strong>전체 금액</strong>
-                  <span>{order.payment.totalPrice}</span>
+                  <span>{order.payment.totalPrice.toLocaleString()} 원</span>
                 </div>
                 <div className={style.infoDiv}>
                   <strong>배송비</strong>
@@ -109,15 +114,17 @@ export default function OrderDetail() {
                 </div>
                 <div className={style.infoDiv}>
                   <strong>쿠폰 할인 </strong>
-                  <span> {order.payment.minusCouponAmount}</span>
+                  <span>
+                    {order.payment.minusCouponAmount.toLocaleString()}
+                  </span>
                 </div>
                 <div className={style.infoDiv}>
                   <strong>포인트 할인 </strong>
-                  <span> {order.payment.minusPointAmount}</span>
+                  <span>{order.payment.minusPointAmount.toLocaleString()}</span>
                 </div>
                 <div className={style.infoDiv}>
                   <strong>실제 결제 금액 </strong>
-                  <span> {order.payment.realPrice}</span>
+                  <span> {order.payment.realPrice.toLocaleString()} 원</span>
                 </div>
               </div>
             </div>
@@ -151,7 +158,7 @@ export default function OrderDetail() {
           alt="jeontongju-notfound"
           width={0}
           height={0}
-          style={{ cursor: "pointer", width: "80%", height: "80%" }}
+          style={{ cursor: "pointer", width: "100%", height: "100%" }}
         />
       )}
     </>
