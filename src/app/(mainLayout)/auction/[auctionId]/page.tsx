@@ -404,10 +404,10 @@ const AuctionDetail = ({ params }: Props) => {
                     ))}
                 </div>
               </div>
-              <div>
+              <div className={style.bidInfo}>
                 <div className={style.auctionName}>현재 낙찰 내역</div>
                 {bidResultData?.map((it) => {
-                  <div key={it.auctionProductId}>
+                  <div key={it.auctionProductId} className={style.bidInfoInner}>
                     <div>{it.productName} </div>
                     <div>{it.lastBidPrice}</div>
                     <div>{it.consumerName} </div>
