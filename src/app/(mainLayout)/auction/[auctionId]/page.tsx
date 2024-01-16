@@ -137,6 +137,7 @@ const AuctionDetail = ({ params }: Props) => {
           const bidResult = JSON.parse(res.body);
           console.log(bidResult);
           setBidResultData((prev) => bidResult);
+          console.log(",,", bidResultData?.bidResult)
           console.log("memberId", myInfo?.data?.memberId);
           console.log("memberId", memberId);
           console.log(
