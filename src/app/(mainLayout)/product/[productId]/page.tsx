@@ -100,7 +100,11 @@ export default function Page({ params }: Props) {
                   width: "30rem",
                   height: "auto",
                   opacity:
-                    productData.isSoldOut || !productData.isActivate || productData.isDeleted ? 0.4 : 1,
+                    productData.isSoldOut ||
+                    !productData.isActivate ||
+                    productData.isDeleted
+                      ? 0.4
+                      : 1,
                 }}
               />
               {productData.isSoldOut && (
@@ -109,7 +113,7 @@ export default function Page({ params }: Props) {
               {!productData.isActivate && (
                 <div className={style.soldOut}>비공개</div>
               )}
-               {productData.isDeleted && (
+              {productData.isDeleted && (
                 <div className={style.soldOut}>판매중단</div>
               )}
             </div>
@@ -127,16 +131,20 @@ export default function Page({ params }: Props) {
                 {productData.productPrice.toLocaleString()}원
               </div>
               <MemberShipBox />
-              <div className={style.quantityBox}>
-                <QualityInput
-                  quantity={quantity}
-                  stock={productData.registeredQuantity}
-                  onClick={handleClickCounter}
-                  setQuantity={setQuantity}
-                  onBlur={handleBlurInput}
-                />
-                <div>{total.toLocaleString()}원</div>
-              </div>
+              {!productData.isSoldOut &&
+                productData.isActivate &&
+                !productData.isDeleted && (
+                  <div className={style.quantityBox}>
+                    <QualityInput
+                      quantity={quantity}
+                      stock={productData.registeredQuantity}
+                      onClick={handleClickCounter}
+                      setQuantity={setQuantity}
+                      onBlur={handleBlurInput}
+                    />
+                    <div>{total.toLocaleString()}원</div>
+                  </div>
+                )}
               {!productData.isSoldOut &&
               !productData.isDeleted &&
               productData.isActivate ? (
