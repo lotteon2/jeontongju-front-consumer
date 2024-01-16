@@ -358,6 +358,7 @@ const AuctionDetail = ({ params }: Props) => {
                         style={{
                           display: "flex",
                           alignItems: "center",
+                          justifyContent: "space-between",
                           color:
                             auctionProduct.progress === "ING"
                               ? "red"
