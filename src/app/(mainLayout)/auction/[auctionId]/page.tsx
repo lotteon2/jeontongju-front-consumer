@@ -136,15 +136,21 @@ const AuctionDetail = ({ params }: Props) => {
           console.log("[BID RESULT] 구독으로 받은 메시지 입니다.", res.body);
           const bidResult = JSON.parse(res.body);
           console.log(bidResult);
-          // setBidResultData(bidResult);
+          setBidResultData(bidResult);
+          console.log("memberId", myInfo?.data.memberId);
+          console.log(
+            bidResult.bidResult[bidResult.bidResult.length - 1].consumerId
+          );
           if (
-            bidResult.bidResult[bidResult.bidResult.length - 1].consumerId ===
-            myInfo?.data.memberId
+            Number(
+              bidResult.bidResult[bidResult.bidResult.length - 1].consumerId
+            ) === Number(myInfo?.data.memberId)
           ) {
             setMySuccessBidData(
               bidResult.bidResult[bidResult.bidResult.length - 1]
             );
           }
+          console.log("mySuccess", mySuccessBidData);
         });
       },
       (error) => {
