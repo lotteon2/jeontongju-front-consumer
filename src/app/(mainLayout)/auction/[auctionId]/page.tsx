@@ -391,7 +391,7 @@ const AuctionDetail = ({ params }: Props) => {
               </div>
               <div>
                 <div className={style.auctionName}>현재 낙찰 내역</div>
-                {bidResultData?.bidResults.map((it) => {
+                {bidResultData?.bidResult.map((it) => {
                   <div>
                     <div>{it.productName} </div>
                     <div>{it.lastBidPrice}</div>
