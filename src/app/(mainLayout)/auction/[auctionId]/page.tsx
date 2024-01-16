@@ -124,6 +124,7 @@ const AuctionDetail = ({ params }: Props) => {
     );
   };
 
+  console.log(myInfo?.data);
   const connectBidResultInfo = () => {
     console.log("auction");
     const serverURL = "https://api.jeontongju.shop/auction-service";
