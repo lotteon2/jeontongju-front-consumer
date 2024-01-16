@@ -52,12 +52,13 @@ export type BidResultUser = {
   consumerId: number;
   consumerName: string;
   productName: string;
+  auctionProductId: string;
   lastBidPrice: number;
 };
 
 export type BidResult = {
   auctionId: string;
-  results: BidResultUser[];
+  bidResult: BidResultUser[];
 };
 
 const AuctionDetail = ({ params }: Props) => {
@@ -102,19 +103,6 @@ const AuctionDetail = ({ params }: Props) => {
     }
   }, [myInfo]);
 
-  useEffect(() => {
-    if (bidResultData?.results) {
-      if (
-        bidResultData.results[bidResultData.results.length - 1].consumerId ===
-        myInfo?.data.memberId
-      ) {
-        setMySuccessBidData(
-          bidResultData.results[bidResultData.results.length - 1]
-        );
-      }
-    }
-  }, [bidResultData]);
-
   const connectChatInfo = () => {
     console.log("auction");
     const serverURL = "https://api.jeontongju.shop/auction-service";
@@ -148,8 +136,15 @@ const AuctionDetail = ({ params }: Props) => {
           console.log("[BID RESULT] 구독으로 받은 메시지 입니다.", res.body);
           const bidResult = JSON.parse(res.body);
           console.log(bidResult);
-          setBidResultData(bidResult);
-          console.log(bidResult);
+          // setBidResultData(bidResult);
+          if (
+            bidResult.bidResults[bidResult.bidResults.length - 1].consumerId ===
+            myInfo?.data.memberId
+          ) {
+            setMySuccessBidData(
+              bidResult.bidResults[bidResult.bidResults.length - 1]
+            );
+          }
         });
       },
       (error) => {
@@ -396,7 +391,7 @@ const AuctionDetail = ({ params }: Props) => {
               </div>
               <div>
                 <div className={style.auctionName}>현재 낙찰 내역</div>
-                {bidResultData?.results.map((it) => {
+                {bidResultData?.bidResults.map((it) => {
                   <div>
                     <div>{it.productName} </div>
                     <div>{it.lastBidPrice}</div>

@@ -51,5 +51,12 @@ export default function Firework() {
     };
   }, []);
 
+  // const a = () => {
+  //   myConfetti({
+  //     particleCount: 100,
+  //     spread: 3,
+  //   });
+  // };
+
   return <></>;
 }

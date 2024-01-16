@@ -38,6 +38,10 @@ body {
   }
 }
 
+div:where(.swal2-icon) {
+  border: none;
+}
+
 .swal2-icon {
   border: none;
 }
