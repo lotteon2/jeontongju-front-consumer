@@ -186,7 +186,14 @@ const Header = () => {
           {isLogin ? (
             <>
               <Noti />
-              <Link href={"/mypage"}>마이페이지</Link>
+              <Link
+                href={"/mypage"}
+                style={{
+                  color: pathname.startsWith("/mypage") ? "red" : "black",
+                }}
+              >
+                마이페이지
+              </Link>
               <Link href={"/init/logout"}>로그아웃</Link>
             </>
           ) : (
