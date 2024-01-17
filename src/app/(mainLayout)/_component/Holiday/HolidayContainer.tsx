@@ -34,6 +34,7 @@ export default function HolidayContainer() {
               price={crop.productPrice}
               capacityToPriceRatio={crop.capacityToPriceRatio}
               productName={crop.productName}
+              reviewCount={crop.reviewCount}
             />
           ))}
         </div>

@@ -207,6 +207,7 @@ export default function SearchPage() {
                       capacityToPriceRatio={product.capacityToPriceRatio}
                       key={product.productId}
                       isLikes={product.isLikes}
+                      reviewCount={product.reviewCount}
                       refetch={refetch}
                     />
                   ))}

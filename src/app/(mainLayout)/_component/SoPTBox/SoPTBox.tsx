@@ -45,6 +45,7 @@ export default function SoPTBox({ gptQuestion }: { gptQuestion: string }) {
               price={crop.productPrice}
               capacityToPriceRatio={crop.capacityToPriceRatio}
               productName={crop.productName}
+              reviewCount={crop.reviewCount}
             />
           ))}
         </div>

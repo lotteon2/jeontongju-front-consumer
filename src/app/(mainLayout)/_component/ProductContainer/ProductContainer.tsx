@@ -18,6 +18,7 @@ type Props = {
   sellerName?: string;
   sellerProfileImg?: string;
   capacityToPriceRatio?: number;
+  reviewCount?: number;
   refetch?: () => void;
 };
 export default function ProductContainer({
@@ -29,6 +30,7 @@ export default function ProductContainer({
   isLikes,
   sellerProfileImg,
   capacityToPriceRatio,
+  reviewCount,
   refetch,
 }: Props) {
   const isLogin = useMyInfoStore((state) => state.isLogin);
@@ -109,6 +111,11 @@ export default function ProductContainer({
         {capacityToPriceRatio && (
           <div className={style.capacityToPriceRatio}>
             100ml당 {capacityToPriceRatio.toLocaleString()}원
+          </div>
+        )}
+        {reviewCount && (
+          <div className={style.capacityToPriceRatio}>
+            리뷰 {reviewCount.toLocaleString()} 개
           </div>
         )}
       </Link>

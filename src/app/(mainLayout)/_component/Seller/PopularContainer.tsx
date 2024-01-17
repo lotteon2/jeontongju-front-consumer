@@ -28,6 +28,7 @@ export default function PopularProducts({
                 key={product.productId}
                 isLikes={product.isLikes}
                 refetch={refetchPopularProducts}
+                reviewCount={product.reviewCount}
               />
             )
           )}
@@ -46,6 +47,7 @@ export default function PopularProducts({
                 capacityToPriceRatio={product.capacityToPriceRatio}
                 key={product.productId}
                 isLikes={product.isLikes}
+                reviewCount={product.reviewCount}
                 refetch={refetchPopularReviewProducts}
               />
             )

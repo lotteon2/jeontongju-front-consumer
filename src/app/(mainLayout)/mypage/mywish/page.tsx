@@ -65,6 +65,7 @@ export default function MyWishPage() {
                 productImg={it.productThumbnailImageUrl}
                 price={it.productPrice}
                 productName={it.productName}
+                reviewCount={it.reviewCount}
                 refetch={refetch}
               />
             ))}

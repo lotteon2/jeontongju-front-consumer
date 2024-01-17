@@ -16,6 +16,7 @@ export type GetMyWishListResponseData = {
   isSoldOut: boolean;
   isActivate: boolean;
   isLikes: boolean;
+  reviewCount?: number;
 };
 
 export type GetMyCartListResponseData = {

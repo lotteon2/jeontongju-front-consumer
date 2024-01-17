@@ -54,6 +54,7 @@ export type GetPopularProductsBySellerIdResponseData = {
   capacityToPriceRatio: number;
   isLikes: boolean;
   isSoldOut: boolean;
+  reviewCount?: number;
 };
 
 export interface ProductData extends GetPopularProductsBySellerIdResponseData {

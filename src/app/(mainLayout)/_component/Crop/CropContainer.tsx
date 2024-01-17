@@ -60,6 +60,7 @@ export default function CropContainer() {
               capacityToPriceRatio={crop.capacityToPriceRatio}
               productName={crop.productName}
               isLikes={crop.isLikes}
+              reviewCount={crop.reviewCount}
               refetch={refetch}
             />
           ))}

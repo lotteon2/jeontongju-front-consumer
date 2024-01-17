@@ -183,6 +183,7 @@ export default function ProductList() {
                       price={product.productPrice}
                       capacityToPriceRatio={product.capacityToPriceRatio}
                       key={product.productId}
+                      reviewCount={product.reviewCount}
                       isLikes={product.isLikes}
                       refetch={refetch}
                     />
