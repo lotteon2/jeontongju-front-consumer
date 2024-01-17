@@ -25,7 +25,7 @@ export default function SoPTBox({ gptQuestion }: { gptQuestion: string }) {
 
   useEffect(() => {
     getGptResponse();
-  }, []);
+  }, [gptQuestion]);
 
   return (
     <div className={style.SoPTBox}>

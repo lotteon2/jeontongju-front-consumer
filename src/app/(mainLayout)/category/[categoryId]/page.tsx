@@ -193,7 +193,7 @@ export default function CategoryPage({ params }: Props) {
                     alt="notfound"
                     width={0}
                     height={0}
-                    style={{ width: "80%", height: "80%" }}
+                    style={{ width: "30%", height: "30%" }}
                   />
                   <div>해당 상품이 없어요</div>
                 </>
