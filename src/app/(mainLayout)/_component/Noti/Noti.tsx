@@ -45,7 +45,7 @@ function Noti() {
             Connection: "keep-alive",
             Accept: "text/event-stream",
           },
-          heartbeatTimeout: 360000,
+          heartbeatTimeout: 60000,
           withCredentials: true,
         }
       );
@@ -97,9 +97,7 @@ function Noti() {
           notiType === "INTERNAL_PRODUCT_SERVER_ERROR"
         ) {
           router.replace(data.data.redirectUrl);
-          console.log(url);
         }
-        // router.replace(url);
         toast("알림이 읽음 처리되었어요");
       }
     } catch (error) {
