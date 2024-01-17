@@ -313,11 +313,20 @@ const AuctionDetail = ({ params }: Props) => {
               <iframe
                 width="800"
                 height="600"
+                src="https://www.youtube.com/embed/FJfwehhzIhw"
+                title="[LIVE] 대한민국 24시간 뉴스채널 YTN"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+              {/* <iframe
+                width="800"
+                height="600"
                 src="https://play.mbus.tv/live/18d072ac3202207b?autoplay"
                 frameborder="0"
                 style={{ borderRadius: "12px" }}
                 allowfullscreen
-              ></iframe>
+              ></iframe> */}
               <div className={style.chat} ref={chatContainerRef}>
                 {chat.map((it, idx) => (
                   <div className={style.chatBox} key={idx}>
