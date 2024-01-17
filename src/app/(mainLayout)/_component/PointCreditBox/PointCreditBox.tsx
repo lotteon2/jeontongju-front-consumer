@@ -6,7 +6,9 @@ export default function PointCreditBox({ params }: { params: Trade | Credit }) {
   return (
     <div className={style.creditBox}>
       <div className={style.left}>
-        {params.tradePoint.toLocaleString() || params.tradeCredit.toLocaleString()}냥
+        {params?.tradePoint?.toLocaleString() ||
+          params?.tradeCredit?.toLocaleString()}
+        냥
       </div>
       <div className={style.right}>
         <div>{POINT[params.tradePath]}</div>
