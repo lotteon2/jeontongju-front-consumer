@@ -190,7 +190,6 @@ export default function ProductList() {
                 </Fragment>
               ))}
             </div>
-
             {!data?.pages[0]?.content.length && (
               <div className={style.noContent}>해당 상품 목록이 없어요</div>
             )}

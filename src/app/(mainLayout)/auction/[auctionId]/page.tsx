@@ -156,7 +156,7 @@ const AuctionDetail = ({ params }: Props) => {
             SuccessAlert({
               title: `🎉 ${mySuccessBid?.consumerName}님 경매 낙찰을 축하드려요!`,
               text: mySuccessBid?.productName,
-              submitBtnText: "마저 즐기기",
+              submitBtnText: "계속 참여하기",
             }).then((res) => {
               console.log(res);
             });
