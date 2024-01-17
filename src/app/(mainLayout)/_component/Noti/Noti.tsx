@@ -90,6 +90,7 @@ function Noti() {
       const data = await notificationAPI.clickNoti(id);
       if (data.code === 200) {
         console.log("알림 읽음 처리 완료");
+        router.replace(`/orderdetail/2?${url}`);
         if (
           notiType === "INTERNAL_ORDER_SERVER_ERROR" ||
           notiType === "INTERNAL_CONSUMER_SERVER_ERROR" ||
