@@ -134,22 +134,11 @@ export default function Seller({ params }: Props) {
                   height={0}
                   style={{
                     cursor: "pointer",
-                    width: "2rem",
+                    width: "10rem",
                     height: "2rem",
                   }}
                 />
               </div>
-              <Image
-                src={KakaoShareImg}
-                alt="kakaoShare"
-                width={0}
-                height={0}
-                style={{
-                  cursor: "pointer",
-                  width: "2rem",
-                  height: "2rem",
-                }}
-              />
             </div>
           </div>
           <div>
@@ -171,12 +160,6 @@ export default function Seller({ params }: Props) {
                 onClick={() => setSelectedMenu(2)}
               >
                 등록된 쇼츠
-              </div>
-              <div
-                className={selectedMenu === 3 ? style.selected : ""}
-                onClick={() => setSelectedMenu(3)}
-              >
-                주모 정보
               </div>
             </div>
             <div className={style.sellerSub}>

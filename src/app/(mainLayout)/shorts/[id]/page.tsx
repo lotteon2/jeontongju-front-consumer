@@ -159,15 +159,23 @@ export default function ShortsDetail({
             <div className={style.shortsDescription}>
               {short?.shortsDescription}
             </div>
-            <div onClick={handleShareKakao}>
+            <div
+              onClick={handleShareKakao}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <Image
                 src={KakaoShareImg}
                 alt="kakaoShare"
                 width={0}
                 height={0}
                 style={{
+                  marginTop: "1rem",
                   cursor: "pointer",
-                  width: "2rem",
+                  width: "10rem",
                   height: "2rem",
                 }}
               />
