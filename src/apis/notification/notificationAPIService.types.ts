@@ -7,3 +7,4 @@ interface ApiResponse<T> {
 }
 
 export type ReadAllNotiResponse = ApiResponse<string>;
+export type ClickNotiResponse = ApiResponse<{ redirectUrl: string }>;

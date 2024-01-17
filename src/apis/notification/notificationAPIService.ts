@@ -1,5 +1,8 @@
 import { authAxiosInstance } from "../common";
-import { ReadAllNotiResponse } from "./notificationAPIService.types";
+import {
+  ClickNotiResponse,
+  ReadAllNotiResponse,
+} from "./notificationAPIService.types";
 
 const notificationAPI = {
   connectNoti: async () => {
@@ -15,7 +18,7 @@ const notificationAPI = {
     return data;
   },
   clickNoti: async (notificationId: number) => {
-    const { data } = await authAxiosInstance.get(
+    const { data } = await authAxiosInstance.get<ClickNotiResponse>(
       `/notification-service/api/notifications/${notificationId}/to`
     );
     return data;

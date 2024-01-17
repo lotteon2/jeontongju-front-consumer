@@ -89,8 +89,6 @@ function Noti() {
     try {
       const data = await notificationAPI.clickNoti(id);
       if (data.code === 200) {
-        console.log("알림 읽음 처리 완료");
-        router.replace(`/orderdetail/2?${url}`);
         if (
           notiType === "INTERNAL_ORDER_SERVER_ERROR" ||
           notiType === "INTERNAL_CONSUMER_SERVER_ERROR" ||
@@ -98,7 +96,7 @@ function Noti() {
           notiType === "INTERNAL_COUPON_SERVER_ERROR" ||
           notiType === "INTERNAL_PRODUCT_SERVER_ERROR"
         ) {
-          router.replace(`/orderdetail/2?${url}`);
+          router.replace(data.data.redirectUrl);
           console.log(url);
         }
         // router.replace(url);
