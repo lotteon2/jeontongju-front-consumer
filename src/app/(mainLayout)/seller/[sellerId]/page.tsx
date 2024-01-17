@@ -41,7 +41,10 @@ export default function Seller({ params }: Props) {
     useQuery({
       queryKey: ["seller", "review", "products"],
       queryFn: () =>
-        searchAPI.getPopularProductsBySellerId(Number(sellerId), "reviewCount"),
+        searchAPI.getPopularProductsBySellerId(
+          Number(sellerId),
+          "reviewCount,desc"
+        ),
     });
 
   useEffect(() => {
