@@ -30,7 +30,7 @@ export default function SoPTBox({ gptQuestion }: { gptQuestion: string }) {
   return (
     <div className={style.SoPTBox}>
       <div className={style.typedOut}>
-        🔍 "{gptQuestion}"에 대한 추천 검색 결과에요.
+        🔍 &quot;{gptQuestion}&quot;에 대한 추천 검색 결과에요.
       </div>
       {!isLoading && data?.length > 0 ? (
         <div className={style.SoPTInnerBox}>

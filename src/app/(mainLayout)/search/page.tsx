@@ -170,7 +170,7 @@ export default function SearchPage() {
         <div className={style.productRightBar}>
           <SoPTBox gptQuestion={keywordParam} />
           <div className={style.searchHeader}>
-            🔍 "{keywordParam}" 에 대한 검색 결과에요.
+            🔍 &quot;{keywordParam}&quot; 에 대한 검색 결과에요.
           </div>
           <Select
             style={{
