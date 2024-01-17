@@ -81,7 +81,7 @@ export default function CreditList() {
     <>
       <div className={style.creditList}>
         <div className={style.creditHeader}>
-          <div className={style.creditTitle}>크레딧 내역</div>
+          <div className={style.creditTitle}>경매 크레딧 내역</div>
           <div>
             <div>
               현재 내 크레딧 | {data?.pages[0].credit.toLocaleString() || 0}

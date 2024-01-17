@@ -96,7 +96,7 @@ export default function MyInfoBox() {
             className={style.infoDiv}
             onClick={() => router.push("/credit/list")}
           >
-            <div className={style.infoTitle}>크레딧</div>
+            <div className={style.infoTitle}>경매 크레딧</div>
             <div className={style.infoDesc}>
               {myInfo?.data.credit.toLocaleString()}
             </div>
