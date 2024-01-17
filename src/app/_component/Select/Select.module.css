@@ -3,7 +3,6 @@
 }
 
 .select {
-  font-family: "Jua";
   margin-left: 1rem;
   margin-bottom: 1rem;
   background-size: 20px;
@@ -21,7 +20,6 @@
   background: black;
   color: #fff;
   padding: 3px 0;
-  font-family: "Jua";
 }
 
 .select:hover {
@@ -39,12 +37,3 @@
 .select:disabled {
   opacity: 0.5;
 }
-
-/* label {
-  margin-bottom: 1rem;
-  font-family: "Jua";
-}
-
-option {
-  font-family: "Jua";
-} */

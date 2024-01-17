@@ -23,17 +23,6 @@
   min-height: 100vh;
 }
 
-:where(.css-dev-only-do-not-override-dkbvqv).ant-anchor-wrapper
-  .ant-anchor
-  .ant-anchor-link-title:only-child {
-  font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
-}
-
-.ant-form-item-label {
-  font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
-  text-align: left !important;
-}
-
 .description {
   display: inherit;
   justify-content: inherit;
@@ -133,11 +122,6 @@
 
 .logo {
   position: relative;
-}
-
-:where(.css-dev-only-do-not-override-dkbvqv)[class^="ant-btn"],
-:where(.css-dev-only-do-not-override-dkbvqv)[class*=" ant-btn"] {
-  font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
 }
 
 /* Enable hover only on non-touch devices */
@@ -311,8 +295,7 @@
           font-size: 1.2rem;
         }
 
-        .productDesc{
-          
+        .productDesc {
         }
       }
     }
@@ -383,7 +366,6 @@
   outline: none;
   border: 1px solid #ccc;
   width: 80%;
-  font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
 }
 
 .searchAddress {

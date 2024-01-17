@@ -11,9 +11,3 @@
     }
   }
 }
-
-:where(.css-dkbvqv).ant-anchor-wrapper
-  .ant-anchor
-  .ant-anchor-link-title:only-child {
-  font-family: __Jua_fe7685, __Jua_Fallback_fe7685;
-}

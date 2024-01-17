@@ -6,10 +6,6 @@
   height: 100dvh;
 }
 
-span {
-  font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
-}
-
 a {
   text-decoration: none;
   outline: none;
@@ -23,19 +19,9 @@ a:active {
   color: #ffa1a1;
 }
 
-:where(.css-dev-only-do-not-override-dkbvqv).ant-anchor-wrapper .ant-anchor {
-  font-family: "__Jua_fe7685";
-}
-
 body {
   width: 80vw;
   margin: 0 auto;
-  font-family: "Jua";
-  font-family: "__Jua_fe7685";
-
-  .Toastify__toast-body {
-    font-family: "__Jua_fe7685";
-  }
 }
 
 div:where(.swal2-icon) {
@@ -51,11 +37,9 @@ div:where(.swal2-icon) {
 }
 .swal2-confirm {
   width: 150px;
-  font-family: "__Jua_fe7685";
 }
 .swal2-cancel {
   width: 150px;
-  font-family: "__Jua_fe7685";
 }
 
 .swal2-image {

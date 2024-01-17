@@ -23,12 +23,7 @@
     border-radius: 0;
     flex: 2;
     text-align: center;
-    font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
     outline: none;
-  }
-
-  .input::placeholder {
-    font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
   }
 }
 

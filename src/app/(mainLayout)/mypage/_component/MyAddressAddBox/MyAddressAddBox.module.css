@@ -7,13 +7,6 @@
   flex-direction: column;
   margin-bottom: 1rem;
 
-  .input::-webkit-input-placeholder {
-    font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
-  }
-  .input::placeholder {
-    font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
-  }
-
   .inputLabel:focus-within {
     color: red;
   }
@@ -26,7 +19,6 @@
     outline: none;
     border: 1px solid #ccc;
     width: 80%;
-    font-family: "__Jua_fe7685", "__Jua_Fallback_fe7685";
   }
 
   .isDefault {
@@ -42,7 +34,6 @@
     white-space: nowrap;
     background-color: #ffa1a1;
     width: 5rem;
-    font-family: "__Jua_fe7685";
   }
 
   .addButton:disabled {
