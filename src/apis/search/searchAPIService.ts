@@ -27,7 +27,7 @@ const searchAPI = {
   },
   getPopularProductsBySellerId: async (
     sellerId: number,
-    sort: "totalSalesCount,desc" | "reviewCount,desc"
+    sort: "totalSalesCount,desc" | "reviewCount,desc" | "stockQuantity,asc"
   ) => {
     const { data } =
       await authAxiosInstance.get<GetPopularProductsBySellerIdResponse>(

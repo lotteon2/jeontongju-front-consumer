@@ -34,7 +34,7 @@ export default function PopularProducts({
           )}
         {popularProducts.length === 0 && <div>아직 인기 상품이 없어요</div>}
       </div>
-      <h2>구매 후기가 팡팡! 리뷰 인기 상품</h2>
+      <h2>품절 임박! 지금 구매하세요!</h2>
       <div className={style.products}>
         {popularReviewProducts &&
           popularReviewProducts?.map(
