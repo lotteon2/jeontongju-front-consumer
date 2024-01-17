@@ -1,4 +1,4 @@
-.SoPTBox{
+.SoPTBox {
   padding: 1rem;
 }
 
@@ -29,4 +29,10 @@
 .typedOut {
   /* ... */
   animation: typing 1s steps(20, end) forwards, blink 0.8s infinite;
+}
+
+.SoPTInnerBox {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
 }

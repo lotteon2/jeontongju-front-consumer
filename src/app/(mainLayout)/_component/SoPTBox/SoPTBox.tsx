@@ -2,18 +2,39 @@ import searchAPI from "@/apis/search/searchAPIService";
 import style from "@/app/(mainLayout)/_component/SoPTBox/SoPTBox.module.css";
 import { useQuery } from "@tanstack/react-query";
 import ProductContainer from "../ProductContainer/ProductContainer";
+import { useEffect, useState } from "react";
+import {
+  GetSoPTDataResponse,
+  ProductData,
+} from "@/apis/search/searchAPIService.types";
 export default function SoPTBox({ gptQuestion }: { gptQuestion: string }) {
-  const { data, refetch } = useQuery({
-    queryKey: ["search", "sopt", gptQuestion],
-    queryFn: () => searchAPI.getSoPTData(gptQuestion),
-  });
+  const [isLoading, setIsLoading] = useState<boolean>();
+  const [data, setData] = useState<ProductData[]>([]);
+
+  const getGptResponse = async () => {
+    try {
+      setIsLoading(true);
+      const data = await searchAPI.getSoPTData(gptQuestion);
+      if (data.code === 200) {
+        setData(data.data);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getGptResponse();
+  }, []);
 
   return (
     <div className={style.SoPTBox}>
-      <div className={style.typedOut}> {gptQuestion}</div>
-      {data?.data?.length > 0 ? (
-        <div>
-          {data?.data.map((crop) => (
+      <div className={style.typedOut}>
+        "{gptQuestion}"에 대한 검색 결과에요.
+      </div>
+      {data?.length > 0 ? (
+        <div className={style.SoPTInnerBox}>
+          {data?.map((crop) => (
             <ProductContainer
               key={crop.productId}
               isLikes={crop.isLikes}
@@ -24,12 +45,13 @@ export default function SoPTBox({ gptQuestion }: { gptQuestion: string }) {
               price={crop.productPrice}
               capacityToPriceRatio={crop.capacityToPriceRatio}
               productName={crop.productName}
-              refetch={refetch}
             />
           ))}
         </div>
       ) : (
-        <div>추천 데이터 X</div>
+        <div className={style.SoPTInnerBox}>
+          🥲 아쉽지만 추천 데이터가 없어요.
+        </div>
       )}
     </div>
   );

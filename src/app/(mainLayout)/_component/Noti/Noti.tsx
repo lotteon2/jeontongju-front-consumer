@@ -60,6 +60,7 @@ function Noti() {
           const newNoti = event.data;
           console.log(event);
           setNewNoti((prev) => [...prev, JSON.parse(newNoti)]);
+          console.log(newNoti);
         });
 
         eventSource.addEventListener("connect", (event: any) => {
