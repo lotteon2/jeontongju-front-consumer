@@ -169,10 +169,14 @@ export default function SearchPage() {
         </div>
         <div className={style.productRightBar}>
           <SoPTBox gptQuestion={keywordParam} />
+          <div className={style.searchHeader}>
+            🔍 "{keywordParam}" 에 대한 검색 결과에요.
+          </div>
           <Select
             style={{
-              float: "right",
-              marginBottom: "1rem",
+              marginRight: "auto",
+              position: "absolute",
+              right: 0,
             }}
             options={SortOptions}
             onChange={setSort}
@@ -190,23 +194,27 @@ export default function SearchPage() {
               <div>해당 상품이 없어요</div>
             </>
           )}
-          {data?.pages.map((page, i) => (
-            <Fragment key={i}>
-              {page.content.map((product) => (
-                <ProductContainer
-                  productName={product.productName}
-                  productId={product.productId}
-                  productImg={product.productThumbnailImageUrl}
-                  price={product.productPrice}
-                  capacityToPriceRatio={product.capacityToPriceRatio}
-                  key={product.productId}
-                  isLikes={product.isLikes}
-                  refetch={refetch}
-                />
+          <div className={style.productRightBar}>
+            <div className={style.products}>
+              {data?.pages.map((page, i) => (
+                <Fragment key={i}>
+                  {page.content.map((product) => (
+                    <ProductContainer
+                      productName={product.productName}
+                      productId={product.productId}
+                      productImg={product.productThumbnailImageUrl}
+                      price={product.productPrice}
+                      capacityToPriceRatio={product.capacityToPriceRatio}
+                      key={product.productId}
+                      isLikes={product.isLikes}
+                      refetch={refetch}
+                    />
+                  ))}
+                </Fragment>
               ))}
-            </Fragment>
-          ))}
-          <div ref={ref} style={{ height: 50 }} />
+            </div>
+            <div ref={ref} style={{ height: 50 }} />
+          </div>
         </div>
       </div>
     </>
