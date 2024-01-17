@@ -95,3 +95,4 @@ export type GetAutoCompleteForSearchResponse = ApiResponse<
 export type GetAllProductListForCategoryIdResponse = ApiResponse<
   Page<ProductData[]>
 >;
+export type GetSoPTDataResponse = ApiResponse<ProductData[]>;

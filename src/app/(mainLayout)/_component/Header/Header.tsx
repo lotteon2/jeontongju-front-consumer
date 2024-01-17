@@ -129,7 +129,7 @@ const Header = () => {
         <div className={style.searchContainer} ref={searchRef}>
           <input
             type="text"
-            placeholder="전통주점은 전상품 무료배송"
+            placeholder="전통주점에게 뭐든 물어보세요"
             className={style.input}
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={handleSearch}
@@ -141,7 +141,7 @@ const Header = () => {
             height={32}
             style={{
               position: "absolute",
-              right: "5px",
+              right: "20px",
               cursor: "pointer",
             }}
             src="https://static.lotteon.com/p/common/foCommon/assets/img/icon_search_black.svg"

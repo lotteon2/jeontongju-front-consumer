@@ -12,18 +12,20 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 0.5rem 1rem;
+
   .input {
     padding: 0 28px 0 0;
     height: auto;
+    border: 1px solid #c0c0c0;
+    padding: 0.5rem;
     font-size: 16px;
     line-height: 30px;
     color: #333;
-    border: none;
-    border-radius: 0;
+    border-radius: 12px;
     flex: 2;
     text-align: center;
     outline: none;
+    box-sizing: border-box;
   }
 }
 
@@ -34,10 +36,11 @@
   width: 30vw;
   background-color: #fff;
   position: absolute;
-  top: 46px;
+  top: 50px;
   border: 1px solid;
   padding: 15px;
   border-radius: 12px;
+  box-sizing: border-box;
 
   @media only screen and (min-width: 200px) and (max-width: 480px) {
     width: 300px;

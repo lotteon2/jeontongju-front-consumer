@@ -11,6 +11,7 @@ import {
   GetAutoCompleteForSearchResponse,
   GetHolidayProductsResponse,
   GetAllProductListForCategoryIdResponse,
+  GetSoPTDataResponse,
 } from "./searchAPIService.types";
 import { SNACK } from "@/constants/SnackTypeEnum";
 import { CONCEPT } from "@/constants/ConceptEnum";
@@ -133,6 +134,12 @@ const searchAPI = {
         `/search-service/api/products/categories?id=${categoryId}&page=${page}&sort=${sort}&size=${size}&rawMaterial=${rawMaterial}&food=${food}&minPrice=${minPrice}&maxPrice=${maxPrice}&concept=${concept}&minAlcoholDegree=${minAlcoholDegree}&maxAlcoholDegree=${maxAlcoholDegree}`
       );
     return data.data;
+  },
+  getSoPTData: async (question: string) => {
+    const { data } = await unAuthAxiosInstance.get<GetSoPTDataResponse>(
+      `search-service/api/products/recommend?query=${question}`
+    );
+    return data;
   },
 };
 export default searchAPI;

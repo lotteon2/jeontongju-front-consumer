@@ -1,0 +1,32 @@
+.SoPTBox{
+  padding: 1rem;
+}
+
+.typedOut {
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+  font-size: 1.6rem;
+  width: 0;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  from {
+    border-color: transparent;
+  }
+  to {
+    border-color: orange;
+  }
+}
+
+.typedOut {
+  /* ... */
+  animation: typing 1s steps(20, end) forwards, blink 0.8s infinite;
+}

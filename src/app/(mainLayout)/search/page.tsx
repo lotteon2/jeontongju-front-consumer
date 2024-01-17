@@ -16,6 +16,7 @@ import { RAW_MATERIAL, RawMaterialOptions } from "@/constants/MaterialEnum";
 import searchAPI from "@/apis/search/searchAPIService";
 import Script from "next/script";
 import Image from "next/image";
+import SoPTBox from "../_component/SoPTBox/SoPTBox";
 
 export default function SearchPage() {
   const params = useSearchParams();
@@ -167,6 +168,7 @@ export default function SearchPage() {
           </div>
         </div>
         <div className={style.productRightBar}>
+          <SoPTBox gptQuestion={keywordParam} />
           <Select
             style={{
               float: "right",
