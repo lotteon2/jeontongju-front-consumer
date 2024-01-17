@@ -54,9 +54,9 @@ const searchAPI = {
     );
     return data;
   },
-  getBestReviewProducts: async () => {
+  getProductsBySort: async (sort: keyof typeof SORT) => {
     const { data } = await authAxiosInstance.get<GetBestReviewProducts>(
-      `/search-service/api/products?sort=reviewCount,desc&size=5`
+      `/search-service/api/products?sort=${sort}&size=5`
     );
     return data;
   },

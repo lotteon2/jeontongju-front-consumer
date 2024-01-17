@@ -12,13 +12,13 @@ export default function MainReviewContainer() {
 
   const { data, refetch } = useQuery({
     queryKey: ["product", "bestReview"],
-    queryFn: () => searchAPI.getBestReviewProducts(),
+    queryFn: () => searchAPI.getProductsBySort(`stockQuantity,asc`),
   });
 
   return (
     <div className={style.mainShortsContainer}>
       <div className={style.mainShortsTop}>
-        <h2>리뷰가 많이 달리는 상품들!</h2>
+        <h2>품절 임박! 지금 당장 구매하세요!</h2>
         <div
           className={style.goList}
           onClick={() => router.push("/product/list")}
