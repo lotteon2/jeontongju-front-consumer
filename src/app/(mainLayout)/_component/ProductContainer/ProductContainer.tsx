@@ -113,11 +113,9 @@ export default function ProductContainer({
             100ml당 {capacityToPriceRatio.toLocaleString()}원
           </div>
         )}
-        {reviewCount && (
-          <div className={style.capacityToPriceRatio}>
-            리뷰 {reviewCount.toLocaleString()} 개
-          </div>
-        )}
+        <div className={style.capacityToPriceRatio}>
+          리뷰 {reviewCount ? reviewCount.toLocaleString() : 0} 개
+        </div>
       </Link>
     </div>
   );
