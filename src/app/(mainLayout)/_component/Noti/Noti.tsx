@@ -81,12 +81,26 @@ function Noti() {
     }
   }, []);
 
-  const handleClickByNotificationId = async (id: number, url: string) => {
+  const handleClickByNotificationId = async (
+    id: number,
+    url: string,
+    notiType: keyof typeof NOTI
+  ) => {
     try {
       const data = await notificationAPI.clickNoti(id);
       if (data.code === 200) {
         console.log("알림 읽음 처리 완료");
-        router.replace(url);
+        if (
+          notiType === "INTERNAL_ORDER_SERVER_ERROR" ||
+          notiType === "INTERNAL_CONSUMER_SERVER_ERROR" ||
+          notiType === "INTERNAL_PAYMENT_SERVER_ERROR" ||
+          notiType === "INTERNAL_COUPON_SERVER_ERROR" ||
+          notiType === "INTERNAL_PRODUCT_SERVER_ERROR"
+        ) {
+          router.replace(`/orderdetail/2?${url}`);
+          console.log(url);
+        }
+        // router.replace(url);
         toast("알림이 읽음 처리되었어요");
       }
     } catch (error) {
@@ -138,7 +152,11 @@ function Noti() {
                 className={styles.alarmDiv}
                 key={i}
                 onClick={() =>
-                  handleClickByNotificationId(it.notificationId, it.redirectUrl)
+                  handleClickByNotificationId(
+                    it.notificationId,
+                    it.redirectUrl,
+                    it.data
+                  )
                 }
               >
                 {translateNoti(it.data)}
