@@ -10,6 +10,8 @@ import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import style from "@/app/(mainLayout)/product/[productId]/product.module.css";
+import { translateConcept } from "@/constants/ConceptEnum";
 
 export default function ProductReviewContainer({
   productId,
@@ -55,7 +57,7 @@ export default function ProductReviewContainer({
   };
   return (
     <div>
-      <div>
+      <div className={style.selectSort}>
         <Select
           options={ReviewOptions}
           value={sort}
@@ -63,14 +65,16 @@ export default function ProductReviewContainer({
         />
       </div>
       {data?.pages[0]?.representativeReview?.length > 0 && (
-        <>
+        <div className={style.tags}>
           <div>이 상품과 잘 어울리는 태그는</div>
-          <div>
+          <div className={style.tags}>
             {data?.pages[0]?.representativeReview.map((it) => (
-              <div key={it}>{it}</div>
+              <div key={it} className={style.tag}>
+                #{translateConcept(it)}
+              </div>
             ))}
           </div>
-        </>
+        </div>
       )}
 
       <div>

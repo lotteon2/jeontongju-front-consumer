@@ -162,3 +162,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.selectSort {
+  display: flex;
+  justify-content: end;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .tag {
+    padding: 0.2rem;
+    border: 1px;
+  }
+}
