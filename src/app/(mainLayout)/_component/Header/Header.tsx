@@ -29,6 +29,8 @@ const Header = () => {
   const pathname = usePathname();
   const searchRef = useRef(null);
   const [search, setSearch] = useState<string>("");
+  const [placeHolder, setPlaceHolder] =
+    useState<string>("전통주점에게 뭐든 물어보세요");
   const [isShowCategoryMenu, setIsShowCategoryMenu] = useState<boolean>(false);
   const [isSearchBarOpen, setIsSearchBarOpen] = useState<boolean>(true);
   const { data } = useQuery({
@@ -114,6 +116,10 @@ const Header = () => {
     setIsShowCategoryMenu(false);
   };
 
+  const clearPlaceholder = () => {
+    setPlaceHolder("");
+  };
+
   return (
     <div className={style.header}>
       <div className={style.headerTop}>
@@ -129,11 +135,12 @@ const Header = () => {
         <div className={style.searchContainer} ref={searchRef}>
           <input
             type="text"
-            placeholder="전통주점에게 뭐든 물어보세요"
+            placeholder={placeHolder}
             className={style.input}
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={handleSearch}
             value={search}
+            onFocus={clearPlaceholder}
           />
           <Image
             alt="search"
