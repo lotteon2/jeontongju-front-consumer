@@ -311,22 +311,80 @@ const AuctionDetail = ({ params }: Props) => {
           <>
             <div className={style.auctionLeft}>
               <iframe
-                width="800"
+                width="600"
                 height="600"
                 src="https://www.youtube.com/embed/FJfwehhzIhw"
-                title="[LIVE] 대한민국 24시간 뉴스채널 YTN"
+                title="[LIVE] 전통주점"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
               ></iframe>
-              {/* <iframe
-                width="800"
-                height="600"
-                src="https://play.mbus.tv/live/18d072ac3202207b?autoplay"
-                frameborder="0"
-                style={{ borderRadius: "12px" }}
-                allowfullscreen
-              ></iframe> */}
+            </div>
+            <div className={style.auctionRight}>
+              <div className={style.activeUser}>
+                <span>현재 호가 | </span>
+                <span>{auctionInfo?.askingPrice || 0}원</span>
+                <span>현재 참여자 수</span>
+                <Image
+                  alt="currentUserCount"
+                  width={15}
+                  height={15}
+                  src={FiSrSellersSvg}
+                />
+                <span>{currentUserCount}명</span>
+              </div>
+              <div className={style.todayAuctionBox}>
+                {auctionInfo?.auctionProductList.map((auctionProduct, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      color:
+                        auctionProduct.progress === "ING" ? "red" : "#c0c0c0",
+                    }}
+                  >
+                    <div>{auctionProduct.auctionProductName}</div>
+                    <div className={style.startingPrice}>
+                      시작가 | {auctionProduct.startingPrice}원
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {isLogin && (
+                <>
+                  <Button
+                    className={style.inputBidButton}
+                    onClick={bidAskingPrice}
+                    disabled={isDisableToBid}
+                    loading={isDisableToBid}
+                  >
+                    💵 현재가 + 호가만큼 입찰하기
+                  </Button>
+                </>
+              )}
+              <div className={style.bidInfo}>
+                <div className={style.auctionName}>현재 입찰 내역</div>
+                <div>
+                  {auctionInfo?.bidHistoryList
+                    .slice(0, 5)
+                    .map((bidHistory, idx) => (
+                      <div key={idx} className={style.bidInfoInner}>
+                        <div>{idx + 1}.</div>
+                        <Image
+                          src={bidHistory.profileImage || UserDefaultImg}
+                          width="10"
+                          height="10"
+                          alt="bidUser"
+                        />
+                        <div>{bidHistory.nickname}</div>
+                        <div>{bidHistory.bidPrice}</div>
+                        {idx === 0 && <div style={{ color: "red" }}>유력</div>}
+                      </div>
+                    ))}
+                </div>
+              </div>
               <div className={style.chat} ref={chatContainerRef}>
                 {chat.map((it, idx) => (
                   <div className={style.chatBox} key={idx}>
@@ -353,78 +411,6 @@ const AuctionDetail = ({ params }: Props) => {
                   />
                   <Button onClick={sendMessage}>입력</Button>
                 </div>
-              )}
-            </div>
-            <div className={style.auctionRight}>
-              <div className={style.activeUser}>
-                <div>현재 참여자 수</div>
-                <Image
-                  alt="currentUserCount"
-                  width={15}
-                  height={15}
-                  src={FiSrSellersSvg}
-                />
-                {currentUserCount}명
-              </div>
-              <div className={style.todayAuctionBox}>
-                <div className={style.auctionName}>{auctionName}</div>
-                <div>
-                  {auctionInfo?.auctionProductList.map(
-                    (auctionProduct, idx) => (
-                      <div
-                        key={idx}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          color:
-                            auctionProduct.progress === "ING"
-                              ? "red"
-                              : "#c0c0c0",
-                        }}
-                      >
-                        <div>{auctionProduct.auctionProductName}</div>
-                        <div className={style.startingPrice}>
-                          시작가 | {auctionProduct.startingPrice}원
-                        </div>
-                      </div>
-                    )
-                  )}
-                </div>
-              </div>
-
-              <div className={style.bidInfo}>
-                <div className={style.auctionName}>현재 입찰 내역</div>
-                <div>
-                  {auctionInfo?.bidHistoryList
-                    .slice(0, 5)
-                    .map((bidHistory, idx) => (
-                      <div key={idx} className={style.bidInfoInner}>
-                        <div>{idx + 1}</div>
-                        <Image
-                          src={bidHistory.profileImage || UserDefaultImg}
-                          width="10"
-                          height="10"
-                          alt="bidUser"
-                        />
-                        <div>{bidHistory.nickname}</div>
-                        <div>{bidHistory.bidPrice}</div>
-                        {idx === 0 && <div style={{ color: "red" }}>유력</div>}
-                      </div>
-                    ))}
-                </div>
-              </div>
-              {isLogin && (
-                <>
-                  <Button
-                    className={style.inputBidButton}
-                    onClick={bidAskingPrice}
-                    disabled={isDisableToBid}
-                    loading={isDisableToBid}
-                  >
-                    💵 현재가 + 호가만큼 입찰하기
-                  </Button>
-                </>
               )}
               <ToastContainer />
             </div>
