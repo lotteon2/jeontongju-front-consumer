@@ -138,7 +138,9 @@ export default function MyOrderBox({
                   </div>
                 )}
               </div>
-              <div>{params.order?.orderStatus}</div>
+              <div>
+                {params.order?.orderStatus === "CANCEL" ? "취소" : "정상 주문"}
+              </div>
               <Link
                 href={{
                   pathname: `/orderdetail/${params.order.ordersId}`,
