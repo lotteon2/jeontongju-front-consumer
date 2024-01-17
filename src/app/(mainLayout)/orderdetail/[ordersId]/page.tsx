@@ -22,8 +22,8 @@ export default function OrderDetail() {
   useEffect(() => {
     if (orderParam) {
       try {
-        console.log('orderParam', orderParam);
-        console.log('order deocde', decodeURIComponent(orderParam))
+        console.log("orderParam", orderParam);
+        console.log("order deocde", decodeURIComponent(orderParam));
         const decodedOrder = decodeURIComponent(orderParam);
         const parsedOrder = JSON.parse(decodedOrder);
         console.log(parsedOrder);
@@ -43,7 +43,10 @@ export default function OrderDetail() {
         <div className={style.orderDetailPage}>
           주문 상세 내역
           <div className={style.orderHeader}>
-            <div>{order.order?.ordersId}</div>
+            <div>
+              {order.order.isAuction ? `AU_` : `PR_`}
+              {order.order?.ordersId}
+            </div>
             <div>{order.order?.orderDate.slice(0, 10)}</div>
           </div>
           <div className={style.detailSection}>
@@ -140,9 +143,10 @@ export default function OrderDetail() {
                 <div className={style.infoDiv}>
                   <strong>구매 확정시 적립</strong>
                   <span>
-                    {isRegularPayment
+                    {(isRegularPayment
                       ? Math.floor(order.payment.realPrice * 0.03)
-                      : Math.floor(order.payment.realPrice * 0.01)}
+                      : Math.floor(order.payment.realPrice * 0.01)
+                    ).toLocaleString()}
                     원
                   </span>
                 </div>
