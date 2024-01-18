@@ -11,6 +11,7 @@ a {
   outline: none;
   color: black;
   white-space: nowrap;
+  font-size: 1rem;
 }
 
 a:hover,
@@ -23,6 +24,15 @@ body {
   width: 80vw;
   margin: 0 auto;
   font-size: 62.5%;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+div {
+  font-size: 2rem;
 }
 
 div:where(.swal2-icon) {

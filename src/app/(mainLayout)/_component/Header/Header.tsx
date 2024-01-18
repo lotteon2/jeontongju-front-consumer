@@ -217,6 +217,8 @@ const Header = () => {
               height={32}
               style={{
                 cursor: "pointer",
+                width: "2rem",
+                height: "2rem",
               }}
               src={FiSrMenuBurger}
             />
@@ -245,24 +247,26 @@ const Header = () => {
               height={32}
               style={{
                 cursor: "pointer",
+                width: "2rem",
+                height: "2rem",
               }}
               src={FiSrHomeSvg}
             />
-            <div>홈</div>
+            <div className={style.categoryMenu}>홈</div>
           </Link>
           <Link href={"/product/list"} className={style.menu}>
             <Image
               alt="products"
               width={32}
               height={32}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", width: "2rem", height: "2rem" }}
               src={
                 pathname.startsWith("/product")
                   ? FiSrProductsActiveSvg
                   : FiSrProductsSvg
               }
             />
-            <div>전체 상품</div>
+            <div className={style.categoryMenu}>전체 상품</div>
           </Link>
           <Link href={"/shorts/list"} className={style.menu}>
             <Image
@@ -271,12 +275,14 @@ const Header = () => {
               height={32}
               style={{
                 cursor: "pointer",
+                width: "2rem",
+                height: "2rem",
               }}
               src={
                 pathname.startsWith("/shorts") ? FiSrAltActiveSvg : FiSrAltSvg
               }
             />
-            <div>쇼츠</div>
+            <div className={style.categoryMenu}>쇼츠</div>
           </Link>
           <Link href={"/seller/list"}>
             <Image
@@ -292,7 +298,7 @@ const Header = () => {
                   : FiSrSellersSvg
               }
             />
-            <div>주모</div>
+            <div className={style.categoryMenu}>주모</div>
           </Link>
           <Link href={"/auction/list"}>
             <Image
@@ -308,7 +314,7 @@ const Header = () => {
                   : FiSrLiveSvg
               }
             />
-            <div>라이브</div>
+            <div className={style.categoryMenu}>라이브</div>
           </Link>
         </div>
       </div>
