@@ -78,7 +78,12 @@ const AuctionDetail = ({ params }: Props) => {
     state.memberId,
   ]);
   const [message, setMessage] = useState<string>("");
-  const stompClientRef = useRef({});
+  const stompClientRef = useRef({
+    chat: null,
+    bidInfo: null,
+    room: null,
+    bidResult: null,
+  });
 
   const [stompClient, setStompClient] = useState<null | Client>(null);
   const [auctionName, setAuctionName] = useState<string>("");
@@ -106,12 +111,13 @@ const AuctionDetail = ({ params }: Props) => {
 
   useEffect(() => {
     return () => {
+      console.log(stompClientRef);
       Object.values(stompClientRef.current).forEach((stompClient) => {
         if (stompClient) {
           stompClient.unsubscribe(`/sub/chat/${auctionId}`);
           stompClient.unsubscribe(`/sub/bid-result/${auctionId}`);
           stompClient.unsubscribe(`/sub/auction-numbers/${auctionId}`);
-          stompClient.unsubscribe(`/sub/bid-info//${auctionId}`);
+          stompClient.unsubscribe(`/sub/bid-info/${auctionId}`);
           // Unsubscribe from other channels if needed
           stompClient.disconnect(() => {
             console.log("disconnect 성공!!");
@@ -136,6 +142,7 @@ const AuctionDetail = ({ params }: Props) => {
           setChat((prev) => [...prev, chatData]);
           console.log(stompClient);
         });
+        stompClientRef.current.chat = stompClient;
         setStompClient(stompClient);
       },
       (error) => {
@@ -160,7 +167,7 @@ const AuctionDetail = ({ params }: Props) => {
             bidResult.bidResult[bidResult.bidResult.length - 1].consumerId
           );
           console.log(stompClient);
-          stompClientRef.current.chat = stompClient;
+          stompClientRef.current.bidResult = stompClient;
           setStompClient(stompClient);
           if (
             Number(
@@ -204,8 +211,8 @@ const AuctionDetail = ({ params }: Props) => {
       (frame) => {
         stompClient.subscribe(`/sub/auction-numbers/${auctionId}`, (res) => {
           setCurrentUserCount(Number(res.body));
-          stompClientRef.current.actionNumber = stompClient;
         });
+        stompClientRef.current.room = stompClient;
       },
       (error) => {
         console.log("소켓 연결 실패", error);
@@ -224,8 +231,8 @@ const AuctionDetail = ({ params }: Props) => {
           console.log("[BID] 구독으로 받은 메시지 입니다.", res.body);
           const auctionData = JSON.parse(res.body);
           setAuctionInfo((prev) => auctionData);
-          stompClientRef.current.bidInfo = stompClient;
         });
+        stompClientRef.current.bidInfo = stompClient;
       },
       (error) => {
         console.log("소켓 연결 실패", error);
