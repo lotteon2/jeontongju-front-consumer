@@ -16,6 +16,7 @@ import ProductReviewContainer from "../_component/ProductReviewContainer/Product
 import { useQuery } from "@tanstack/react-query";
 import SnackCard from "@/app/_component/SnackCard/SnackCard";
 import RawMaterialCard from "@/app/_component/RawMaterialCard/RawMaterialCard";
+import ConceptCard from "@/app/_component/ConceptCard/ConceptCard";
 
 type Props = {
   params: { productId: string };
@@ -277,7 +278,11 @@ export default function Page({ params }: Props) {
                 {productData.concept.length > 0 && (
                   <>
                     <h2>잘 어울리는 컨셉</h2>
-                    {productData.concept}
+                    <div className={style.snacks}>
+                      {productData.concept.map((it, idx) => (
+                        <ConceptCard key={idx} concept={it} />
+                      ))}
+                    </div>
                   </>
                 )}
               </>

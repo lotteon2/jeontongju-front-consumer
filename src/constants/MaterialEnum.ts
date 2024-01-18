@@ -16,7 +16,7 @@ export const RAW_MATERIAL = {
   PEAR: "🍐배",
   MUSHROOM: "🍄버섯",
   HONEY: "🍯벌꿀",
-  PINT_NUT: "🫘잣",
+  PINT_NUT: "🫘 잣",
 };
 
 export const RawMaterialOptions: SelectProps["options"] = [];

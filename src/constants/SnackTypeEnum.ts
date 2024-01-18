@@ -10,9 +10,9 @@ export const SNACK = {
   PIG_HOCKS: "🐷 족발/보쌈",
   BARBECUE: "🍖 바베큐",
   BOILED_CHICKEN: "🐓 백숙",
-  CHICKEN: "🍗 치킨",
+  CHICKEN: "🍗 치킨 ",
   RAW_FISH: "🍣 생선 회",
-  GRILLED_SEAFOOD: "🦀 해산물구이",
+  GRILLED_SEAFOOD: "🦀 해산물 구이",
   WHITE_SOUP: "🍲 백탕",
   RED_SOUP: "🥘 홍탕",
 };

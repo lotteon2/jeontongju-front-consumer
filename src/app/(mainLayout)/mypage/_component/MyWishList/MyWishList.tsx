@@ -1,5 +1,4 @@
 import LoadingImg from "/public/loading.gif";
-import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";

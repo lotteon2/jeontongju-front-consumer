@@ -24,7 +24,6 @@ export default function RawMaterialCard({
   rawMaterial: keyof typeof RAW_MATERIAL;
 }) {
   const getImageByRawMaterial = () => {
-    console.log(rawMaterial);
     switch (rawMaterial) {
       case RAW_MATERIAL.CHESTNUT:
         return CHESTNUT;
