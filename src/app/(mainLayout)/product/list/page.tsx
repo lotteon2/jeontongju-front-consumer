@@ -9,7 +9,7 @@ import ProductContainer from "../../_component/ProductContainer/ProductContainer
 import { SNACK, SnackOptions } from "@/constants/SnackTypeEnum";
 import { useInView } from "react-intersection-observer";
 import style from "@/app/(mainLayout)/product/list/productList.module.css";
-import { Select, Slider } from "antd";
+import { Input, Select, Slider } from "antd";
 import { CONCEPT, ConceptOptions } from "@/constants/ConceptEnum";
 import { RAW_MATERIAL, RawMaterialOptions } from "@/constants/MaterialEnum";
 
@@ -104,7 +104,6 @@ export default function ProductList() {
           <div>
             <div>도수별(0~100)</div>
             <Slider
-              min={0}
               max={100}
               range
               step={10}
@@ -114,12 +113,29 @@ export default function ProductList() {
           <div>
             <div>가격별(0~1,000,000)</div>
             <Slider
-              min={0}
               max={1000000}
               range
               step={100}
               onChangeComplete={onChangeCompletePrice}
             />
+          </div>
+          <div>
+            <div>최소 가격 ~ 최대 가격 (원)</div>
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+              <Input
+                type="number"
+                min={0}
+                value={minPrice}
+                onChange={(e) => setMinPrice(Number(e.target.value))}
+              />
+              <div>~</div>
+              <Input
+                type="number"
+                min={0}
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(Number(e.target.value))}
+              />
+            </div>
           </div>
           <div>
             <div>원료</div>
