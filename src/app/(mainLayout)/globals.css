@@ -31,8 +31,11 @@ h2 {
   font-size: 2rem;
 }
 
-div {
-  font-size: 2rem;
+div,
+a,
+span,
+button {
+  font-size: 1rem;
 }
 
 div:where(.swal2-icon) {
