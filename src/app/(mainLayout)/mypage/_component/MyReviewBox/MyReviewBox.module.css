@@ -8,4 +8,9 @@
   gap: 2rem;
   margin-bottom: 1rem;
   cursor: pointer;
+
+  .createdAt {
+    color: #c0c0c0;
+    margin-top: 1rem;
+  }
 }

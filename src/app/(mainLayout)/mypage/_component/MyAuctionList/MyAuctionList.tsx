@@ -58,15 +58,6 @@ export default function MyAuctionList() {
               <MyAuctionBox key={it.auctionId} params={it} />
             </Fragment>
           ))}
-        {/* {data?.pages?.map((page, i) => (
-          <Fragment key={i}>
-            {page?.content
-              .slice(0, 5)
-              .map((it: GetMyAuctionListResponseData) => (
-                <MyAuctionBox key={it.auctionId} params={it} />
-              ))}
-          </Fragment>
-        ))} */}
         {!data?.pages[0]?.content.length && <div>나의 경매 목록이 없어요</div>}
       </div>
       <div ref={ref} style={{ height: 50 }} />

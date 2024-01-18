@@ -49,7 +49,12 @@ export default function MyReviewBox({
           />
         )}
 
-        <div>{params.reviewContents}</div>
+        <div>
+          <div>{params.reviewContents}</div>
+          <div className={style.createdAt}>
+            작성일 | {params.createdAt?.slice(0, 10)}
+          </div>
+        </div>
       </div>
     </div>
   );
