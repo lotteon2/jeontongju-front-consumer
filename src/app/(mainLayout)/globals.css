@@ -45,6 +45,12 @@ div:where(.swal2-icon) {
 :where(.css-dkbvqv).ant-modal .ant-modal-content {
   padding: 0;
 }
+
+:where(.css-dkbvqv).ant-modal .ant-modal-close {
+  color: white;
+  font-weight: 800;
+}
+
 :where(.css-dev-only-do-not-override-dkbvqv).ant-modal .ant-modal-content {
   padding: 0;
 }
