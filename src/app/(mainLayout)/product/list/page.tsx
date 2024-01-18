@@ -111,15 +111,6 @@ export default function ProductList() {
             />
           </div>
           <div>
-            <div>가격별(0~1,000,000)</div>
-            <Slider
-              max={1000000}
-              range
-              step={100}
-              onChangeComplete={onChangeCompletePrice}
-            />
-          </div>
-          <div>
             <div>최소 가격 ~ 최대 가격 (원)</div>
             <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
               <Input
