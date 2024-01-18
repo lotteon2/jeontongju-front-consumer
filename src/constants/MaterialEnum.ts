@@ -6,7 +6,7 @@ export const RAW_MATERIAL = {
   RICE: "🍚쌀",
   CORN: "🌽옥수수",
   PUMPKIN: "🎃호박",
-  POTATO: "🥔 감자",
+  POTATO: "🥔감자",
   BOKBUNJA: "🫐복분자",
   GRAPE: "🍇포도",
   APPLE: "🍏 사과",

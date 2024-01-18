@@ -126,7 +126,7 @@ export default function Page({ params }: Props) {
             </div>
             <div className={style.info}>
               <div className={style.title}>
-                <div>{productData.productName}</div>
+                <div className={style.title}>{productData.productName}</div>
                 {!productData.isSoldOut &&
                   productData.registeredQuantity < 10 && (
                     <div style={{ color: "red" }}>품절 임박</div>
