@@ -142,17 +142,23 @@ const Header = () => {
             value={search}
             onFocus={clearPlaceholder}
           />
-          <Image
-            alt="search"
-            width={32}
-            height={32}
+          <div
+            onClick={handleSearch}
             style={{
               position: "absolute",
               right: "20px",
               cursor: "pointer",
+              display: "flex",
             }}
-            src="https://static.lotteon.com/p/common/foCommon/assets/img/icon_search_black.svg"
-          />
+          >
+            <Image
+              alt="search"
+              width={32}
+              height={32}
+              src="https://static.lotteon.com/p/common/foCommon/assets/img/icon_search_black.svg"
+            />
+          </div>
+
           {autoSearchKeyword?.data?.length > 0 && isSearchBarOpen && (
             <div className={style.autoSearchContainer}>
               {autoSearchKeyword?.data.map((it) => (
