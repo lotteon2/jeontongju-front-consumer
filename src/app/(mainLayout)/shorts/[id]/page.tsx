@@ -146,10 +146,7 @@ export default function ShortsDetail({
           }}
         />
         {!isMain && (
-          <div
-            className={style.shortsBottom}
-            style={{ bottom: isMain ? "0" : "5rem" }}
-          >
+          <div className={style.shortsBottom}>
             <div
               className={style.shortsTitle}
               onClick={() => router.push(`/${short.targetId}`)}

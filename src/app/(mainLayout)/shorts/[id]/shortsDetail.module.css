@@ -6,7 +6,11 @@
   .shortsBottom {
     position: absolute;
     color: white;
-    width: 80%;
+    bottom: 0;
+    background: rgba(200, 200, 200, 0.2);
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
 
     .shortsTitle {
       font-size: 1.5rem;

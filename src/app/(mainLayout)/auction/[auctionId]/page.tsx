@@ -467,13 +467,6 @@ const AuctionDetail = ({ params }: Props) => {
         )}
       </div>
       <div id="particle"></div>
-      {/* {mySuccessBidData && ( */}
-      {/* <SuccessAlert
-        title={`🎉 ${mySuccessBidData?.consumerName}님 경매 낙찰을 축하드려요!`}
-        text={mySuccessBidData?.productName}
-        submitBtnText="마저 즐기기"
-      /> */}
-      {/* )} */}
     </>
   );
 };
