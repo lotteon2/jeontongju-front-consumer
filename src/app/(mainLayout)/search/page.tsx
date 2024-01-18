@@ -52,7 +52,7 @@ export default function SearchPage() {
       number
     >({
       queryKey: [
-        "search",
+        keywordParam,
         "all",
         rawMaterial,
         food,
@@ -189,7 +189,7 @@ export default function SearchPage() {
                 alt="notfound"
                 width={0}
                 height={0}
-                style={{ width: "80%", height: "80%" }}
+                style={{ width: "10rem", height: "10rem" }}
               />
               <div>해당 상품이 없어요</div>
             </>
