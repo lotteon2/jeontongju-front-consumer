@@ -9,7 +9,7 @@ export const CONCEPT = {
   TRIP: "🚗 여행",
   GIFT: "🎁 선물",
   MEETING_THE_FAMILY: "👨‍👩‍👧‍👧상견례",
-  HOLIDAY: "🎎 명절",
+  HOLIDAY: "🎎명절",
   ROOPTOP: "🌕 루프탑",
   HEALING: "🏥 힐링",
   EMOTION: "❤️감성",
