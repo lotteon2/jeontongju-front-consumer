@@ -256,7 +256,7 @@ export default function Page({ params }: Props) {
                 </div>
                 {productData.rawMaterial && (
                   <>
-                    <h2>잘 어울리는 안주</h2>
+                    <h2>잘 어울리는 원료</h2>
                     <div className={style.snacks}>
                       {productData.rawMaterial.map((it, idx) => (
                         <RawMaterialCard key={idx} rawMaterial={it} />
