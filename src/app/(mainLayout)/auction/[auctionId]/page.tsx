@@ -167,7 +167,6 @@ const AuctionDetail = ({ params }: Props) => {
             bidResult.bidResult[bidResult.bidResult.length - 1].consumerId
           );
           console.log(stompClient);
-          stompClientRef.current.bidResult = stompClient;
           setStompClient(stompClient);
           if (
             Number(
@@ -195,6 +194,7 @@ const AuctionDetail = ({ params }: Props) => {
             party.start();
           }
         });
+        stompClientRef.current.bidResult = stompClient;
       },
       (error) => {
         console.log("소켓 연결 실패", error);
