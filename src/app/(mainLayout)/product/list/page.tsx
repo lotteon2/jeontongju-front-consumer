@@ -125,14 +125,14 @@ export default function ProductList() {
               <Input
                 type="number"
                 min={0}
-                value={minPrice}
+                value={minPrice === -1 ? 0 : minPrice}
                 onChange={(e) => setMinPrice(Number(e.target.value))}
               />
               <div>~</div>
               <Input
                 type="number"
                 min={0}
-                value={maxPrice}
+                value={maxPrice === -1 ? 0 : maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
               />
             </div>
