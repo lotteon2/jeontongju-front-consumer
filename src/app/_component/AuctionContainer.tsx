@@ -54,7 +54,7 @@ export default function AuctionContainer() {
                   width={0}
                   height={0}
                   style={{
-                    width: "100%",
+                    width: "20rem",
                     height: "80%",
                     cursor: "pointer",
                     borderRadius: "5px",
@@ -90,7 +90,9 @@ export default function AuctionContainer() {
                           {product.productName}
                         </div>
                         <div className={style.productDesc}>
-                          {product.description.length > 12 ? product.description.slice(0, 11) + "..." : product.description}
+                          {product.description.length > 12
+                            ? product.description.slice(0, 11) + "..."
+                            : product.description}
                         </div>
                         <div>도수 | {product.alcoholDegree}%</div>
                         <div>용량 | {product.capacity}ml</div>

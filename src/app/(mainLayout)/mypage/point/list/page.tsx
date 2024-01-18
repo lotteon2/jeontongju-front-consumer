@@ -1,11 +1,11 @@
 "use client";
 import loadingImg from "/public/loading.gif";
 import Image from "next/image";
-import style from "@/app/(mainLayout)/point/list/pointList.module.css";
+import style from "@/app/(mainLayout)/mypage/point/list/pointList.module.css";
 import { Fragment, useEffect, useState } from "react";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import { GetMyPointListResponseData } from "@/apis/consumer/consumerAPIservice.types";
-import CreditBox from "../../_component/PointCreditBox/PointCreditBox";
+import CreditBox from "../../../_component/PointCreditBox/PointCreditBox";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useMyInfoStore } from "@/app/store/myInfo/myInfo";

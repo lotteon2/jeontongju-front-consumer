@@ -1,7 +1,7 @@
 "use client";
 import loadingImg from "/public/loading.gif";
 import Image from "next/image";
-import style from "@/app/(mainLayout)/credit/list/creditList.module.css";
+import style from "@/app/(mainLayout)/mypage/credit/list/creditList.module.css";
 import { Fragment, useEffect, useState } from "react";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import {
@@ -9,7 +9,7 @@ import {
   GetMyCreditListResponseData,
   Trade,
 } from "@/apis/consumer/consumerAPIservice.types";
-import CreditBox from "../../_component/PointCreditBox/PointCreditBox";
+import CreditBox from "../../../_component/PointCreditBox/PointCreditBox";
 import { toast } from "react-toastify";
 import { Button, Input } from "antd";
 import paymentAPI from "@/apis/payment/paymentAPIService";
@@ -56,6 +56,9 @@ export default function CreditList() {
     if (money > 10000000) {
       toast("최대 천만원까지 결제 가능해요.");
       setUserInputMoney(10000000);
+      return;
+    } else if (money === 0) {
+      toast("0원 이상 입력해주세요!");
       return;
     }
     const params = {

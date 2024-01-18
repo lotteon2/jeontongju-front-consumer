@@ -78,7 +78,7 @@ export default function MyInfoBox() {
         <div className={style.infoFooter}>
           <div
             className={style.infoDiv}
-            onClick={() => router.push("/point/list")}
+            onClick={() => router.push("/mypage/point/list")}
           >
             <div className={style.infoTitle}>포인트</div>
             <div className={style.infoDesc}>
@@ -94,7 +94,7 @@ export default function MyInfoBox() {
           </div>
           <div
             className={style.infoDiv}
-            onClick={() => router.push("/credit/list")}
+            onClick={() => router.push("/mypage/credit/list")}
           >
             <div className={style.infoTitle}>경매 크레딧</div>
             <div className={style.infoDesc}>
