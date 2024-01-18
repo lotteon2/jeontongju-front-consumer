@@ -13,7 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function MyInfo() {
   const router = useRouter();
-  const [selectedMenu, setSelectedMenu] = useState<number>(0);
+  const [selectedMenu, setSelectedMenu] = useState<number>(1);
 
   const { data: myInfo, isLoading } = useQuery({
     queryKey: ["consumer", "myinfo"],

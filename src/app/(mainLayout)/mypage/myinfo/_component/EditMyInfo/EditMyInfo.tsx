@@ -70,6 +70,7 @@ export default function EditMyInfo() {
               onClick={handleUpdateMyProfileImg}
               disabled={!imageUrl}
               loading={isLoadingUploadImg}
+              style={{ marginTop: "1rem" }}
             >
               저장
             </Button>
@@ -88,6 +89,7 @@ export default function EditMyInfo() {
                 onClick={checkIsAuth}
                 disabled={!originalPassword}
                 loading={isLoadingUpdatePassword}
+                style={{ marginTop: "1rem" }}
               >
                 확인
               </Button>

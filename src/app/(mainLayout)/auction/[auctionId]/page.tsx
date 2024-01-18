@@ -300,7 +300,6 @@ const AuctionDetail = ({ params }: Props) => {
             ? Number(auctionInfo?.bidHistoryList[0].bidPrice)
             : Number(currentStartingPrice)) + Number(auctionInfo?.askingPrice),
       });
-      console.log("냥냥");
       console.log(data);
       if (data.code === 200) {
         if (data.failure === "INVALID_CONSUMER_CREDIT") {
