@@ -31,7 +31,7 @@ export default function MainShortsContainer() {
         </div>
       </div>
 
-      <div className={style.shortsContainer}>
+      <div className={style.shortsContainerList}>
         {data?.map((short) => (
           <ShortsDetail
             params={{ id: short.shortsId }}

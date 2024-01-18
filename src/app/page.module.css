@@ -345,6 +345,19 @@
       height: auto;
     }
   }
+
+  .shortsContainerList {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      flex-wrap: wrap;
+      height: auto;
+    }
+  }
 }
 
 .slider {
