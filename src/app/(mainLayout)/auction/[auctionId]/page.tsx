@@ -102,6 +102,13 @@ const AuctionDetail = ({ params }: Props) => {
     }
   }, [myInfo]);
 
+  useEffect(() => {
+    return () => {
+      console.log("DISCONNECT");
+      stompClient?.disconnect();
+    };
+  }, []);
+
   const connectChatInfo = () => {
     console.log("auction");
     const serverURL = "https://api.jeontongju.shop/auction-service";
