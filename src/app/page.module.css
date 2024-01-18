@@ -335,9 +335,10 @@
 
   .shortsContainer {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 1rem;
-    height: 20rem;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 
     @media only screen and (min-width: 200px) and (max-width: 480px) {
       flex-wrap: wrap;

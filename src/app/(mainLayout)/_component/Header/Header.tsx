@@ -257,6 +257,8 @@ const Header = () => {
               height={32}
               style={{
                 cursor: "pointer",
+                width: "2rem",
+                height: "2rem",
               }}
               src={
                 pathname.startsWith("/seller")
