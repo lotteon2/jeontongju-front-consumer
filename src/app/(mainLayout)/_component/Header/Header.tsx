@@ -30,9 +30,9 @@ const Header = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(
     typeof window !== "undefined"
-      ? localStorage.getItem("isModalOpen") === "true"
-        ? true
-        : false
+      ? localStorage.getItem("isModalOpen") === "false"
+        ? false
+        : true
       : true
   );
   const pathname = usePathname();
