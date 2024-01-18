@@ -24,12 +24,13 @@ import Noti from "../Noti/Noti";
 import { useRouter, usePathname } from "next/navigation";
 import { toast } from "react-toastify";
 import searchAPI from "@/apis/search/searchAPIService";
-import productAPI from "@/apis/product/productAPIService";
 import { Modal } from "antd";
+
 const Header = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(
-    typeof window !== "undefined" ? localStorage.getItem("isModalOpen") === "true"
+    typeof window !== "undefined"
+      ? localStorage.getItem("isModalOpen") === "true"
         ? true
         : false
       : true
@@ -109,15 +110,6 @@ const Header = () => {
       setIsSearchBarOpen(true);
     }
   };
-
-  const handleShowCategory = () => {
-    setIsShowCategoryMenu(true);
-  };
-
-  const handleHideCategory = () => {
-    setIsShowCategoryMenu(false);
-  };
-
   const clearPlaceholder = () => {
     setPlaceHolder("");
   };
