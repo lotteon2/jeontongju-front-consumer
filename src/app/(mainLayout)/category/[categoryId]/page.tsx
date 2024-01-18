@@ -103,11 +103,6 @@ export default function CategoryPage({ params }: Props) {
     setMaxAlcoholDegree(value[1]);
   };
 
-  const onChangeCompletePrice = (value: number[]) => {
-    setMinPrice(value[0]);
-    setMaxPrice(value[1]);
-  };
-
   return (
     <>
       <Script id="my-script">{`console.log('Rendering on client:', typeof window !== 'undefined');`}</Script>

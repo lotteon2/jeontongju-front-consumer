@@ -92,11 +92,6 @@ export default function ProductList() {
     setMaxAlcoholDegree(value[1]);
   };
 
-  const onChangeCompletePrice = (value: number[]) => {
-    setMinPrice(value[0]);
-    setMaxPrice(value[1]);
-  };
-
   return (
     <div>
       <div className={style.productList}>
