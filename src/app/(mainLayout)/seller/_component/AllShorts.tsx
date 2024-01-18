@@ -45,29 +45,18 @@ export default function AllShorts({ sellerId }: { sellerId: number }) {
       ) : (
         data?.pages?.map((page, parentIdx) => (
           <Fragment key={parentIdx}>
-            {[0, 1, 2, 3, 4].map((parentItem) => (
-              <div key={parentItem} className={style.shortsParentWrapper}>
-                {page.content.map((short, idx) => (
-                  <div
+            <div key={parentIdx} className={style.shortsParentWrapper}>
+              {page.content.map((short, idx) => (
+                <div key={short.shortsId} className={style.shortsWrapper}>
+                  <ShortsDetail
+                    params={{ id: short.shortsId }}
                     key={short.shortsId}
-                    className={style.shortsWrapper}
-                    style={{
-                      display:
-                        parentItem * 5 <= idx && idx < (parentItem + 1) * 5
-                          ? "flex"
-                          : "none",
-                    }}
-                  >
-                    <ShortsDetail
-                      params={{ id: short.shortsId }}
-                      key={short.shortsId}
-                      shorts={short}
-                      isMain={true}
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
+                    shorts={short}
+                    isMain={true}
+                  />
+                </div>
+              ))}
+            </div>
           </Fragment>
         ))
       )}

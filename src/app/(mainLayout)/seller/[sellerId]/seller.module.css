@@ -50,6 +50,7 @@
       width: 100%;
       gap: 1rem;
       flex-wrap: nowrap;
+      margin-bottom: 1rem;
     }
   }
 
