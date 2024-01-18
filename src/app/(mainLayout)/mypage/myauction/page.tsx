@@ -63,7 +63,7 @@ export default function MyAuction() {
         {data &&
           data?.pages[0].content.slice(0, 5)?.map((page, i) => (
             <Fragment key={i}>
-              {page?.content.map((it) => (
+              {page?.map((it) => (
                 <div key={it.auctionId}>{it.auctionName}</div>
               ))}
             </Fragment>
