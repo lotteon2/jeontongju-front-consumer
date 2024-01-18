@@ -99,10 +99,6 @@ const Header = () => {
 
   const handleSearch = (e) => {
     if (e.key === "Enter" || e.keycode === 13) {
-      if (search.length < 2) {
-        toast("2글자 이상 입력해주세요");
-        return;
-      }
       router.push(`/search?keyword=${encodeURIComponent(search)}`);
       setIsSearchBarOpen(false);
     } else {
@@ -290,7 +286,13 @@ const Header = () => {
         maskClosable={false}
         footer={null}
       >
-        <div onClick={() => router.push("/event/holiday")}>
+        <div
+          onClick={() => {
+            setIsModalOpen(false);
+            localStorage.setItem("isModalOpen", "false");
+            router.push("/event/holiday");
+          }}
+        >
           <Image
             src={eventHolidayImg}
             width={100}
