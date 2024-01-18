@@ -17,7 +17,7 @@ import WHITE_SOUP from "public/snack/WHITE_SOUP.png";
 import RED_SOUP from "public/snack/RED_SOUP.png";
 import style from "@/app/_component/SnackCard/SnackCard.module.css";
 
-import { SNACK, getSnackKey } from "@/constants/SnackTypeEnum";
+import { SNACK } from "@/constants/SnackTypeEnum";
 
 export default function SnackCard({ snack }: { snack: keyof typeof SNACK }) {
   const getImageBySnack = () => {

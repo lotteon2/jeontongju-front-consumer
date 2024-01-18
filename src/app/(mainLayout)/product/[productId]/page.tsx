@@ -15,6 +15,7 @@ import wishAPI from "@/apis/wishCart/wishAPIService";
 import ProductReviewContainer from "../_component/ProductReviewContainer/ProductReviewContainer";
 import { useQuery } from "@tanstack/react-query";
 import SnackCard from "@/app/_component/SnackCard/SnackCard";
+import RawMaterialCard from "@/app/_component/RawMaterialCard/RawMaterialCard";
 
 type Props = {
   params: { productId: string };
@@ -253,7 +254,17 @@ export default function Page({ params }: Props) {
                     }}
                   />
                 </div>
-                {productData.food.length > 0 && (
+                {productData.rawMaterial && (
+                  <>
+                    <h2>잘 어울리는 안주</h2>
+                    <div className={style.snacks}>
+                      {productData.rawMaterial.map((it, idx) => (
+                        <RawMaterialCard key={idx} rawMaterial={it} />
+                      ))}
+                    </div>
+                  </>
+                )}
+                {productData.food.length && (
                   <>
                     <h2>잘 어울리는 안주</h2>
                     <div className={style.snacks}>
