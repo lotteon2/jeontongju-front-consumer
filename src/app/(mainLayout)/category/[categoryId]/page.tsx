@@ -9,7 +9,7 @@ import { Fragment, useEffect, useState } from "react";
 import { SNACK, SnackOptions } from "@/constants/SnackTypeEnum";
 import { useInView } from "react-intersection-observer";
 import style from "@/app/(mainLayout)/product/list/productList.module.css";
-import { Select, Slider } from "antd";
+import { Input, Select, Slider } from "antd";
 import { CONCEPT, ConceptOptions } from "@/constants/ConceptEnum";
 import { RAW_MATERIAL, RawMaterialOptions } from "@/constants/MaterialEnum";
 import searchAPI from "@/apis/search/searchAPIService";
