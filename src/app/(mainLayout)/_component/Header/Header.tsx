@@ -287,6 +287,7 @@ const Header = () => {
         footer={null}
       >
         <div
+          role="dialog"
           onClick={() => {
             setIsModalOpen(false);
             localStorage.setItem("isModalOpen", "false");
