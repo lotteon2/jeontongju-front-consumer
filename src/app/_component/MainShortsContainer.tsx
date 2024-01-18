@@ -22,7 +22,7 @@ export default function MainShortsContainer() {
   return (
     <div className={style.mainShortsContainer}>
       <div className={style.mainShortsTop}>
-        <h2>지금 뜨고 있는 쇼츠!</h2>
+        <h2>새로 올라온 쇼츠!</h2>
         <div
           className={style.goList}
           onClick={() => router.push("/shorts/list")}
