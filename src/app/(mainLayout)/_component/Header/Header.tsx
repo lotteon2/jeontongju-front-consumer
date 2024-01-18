@@ -149,6 +149,10 @@ const Header = () => {
               alt="search"
               width={32}
               height={32}
+              style={{
+                width: "1.5rem",
+                height: "1.5rem",
+              }}
               src="https://static.lotteon.com/p/common/foCommon/assets/img/icon_search_black.svg"
             />
           </div>
@@ -211,12 +215,8 @@ const Header = () => {
               alt="search"
               width={32}
               height={32}
-              style={{
-                cursor: "pointer",
-                width: "2rem",
-                height: "2rem",
-              }}
               src={FiSrHomeSvg}
+              className={style.headerImgButton}
             />
             <div className={style.categoryMenu}>홈</div>
           </Link>
@@ -225,12 +225,12 @@ const Header = () => {
               alt="products"
               width={32}
               height={32}
-              style={{ cursor: "pointer", width: "2rem", height: "2rem" }}
               src={
                 pathname.startsWith("/product")
                   ? FiSrProductsActiveSvg
                   : FiSrProductsSvg
               }
+              className={style.headerImgButton}
             />
             <div className={style.categoryMenu}>전체 상품</div>
           </Link>
@@ -239,11 +239,7 @@ const Header = () => {
               alt="products"
               width={32}
               height={32}
-              style={{
-                cursor: "pointer",
-                width: "2rem",
-                height: "2rem",
-              }}
+              className={style.headerImgButton}
               src={
                 pathname.startsWith("/shorts") ? FiSrAltActiveSvg : FiSrAltSvg
               }
@@ -255,11 +251,7 @@ const Header = () => {
               alt="products"
               width={32}
               height={32}
-              style={{
-                cursor: "pointer",
-                width: "2rem",
-                height: "2rem",
-              }}
+              className={style.headerImgButton}
               src={
                 pathname.startsWith("/seller")
                   ? FiSrSellersActiveSvg
@@ -273,9 +265,7 @@ const Header = () => {
               alt="products"
               width={32}
               height={32}
-              style={{
-                cursor: "pointer",
-              }}
+              className={style.headerImgButton}
               src={
                 pathname.startsWith("/auction")
                   ? FiSrLiveActiveSvg

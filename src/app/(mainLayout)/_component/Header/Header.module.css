@@ -110,9 +110,22 @@
   background: #ccc;
 }
 
+.headerImgButton {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 @media screen and (max-width: 600px) {
   .topnav {
     flex-wrap: wrap;
+    justify-content: stretch;
+    width: 100vw;
+    gap: 0.5rem;
+  }
+  .headerImgButton {
+    width: 1rem;
+    height: 1rem;
   }
   .topnav .search-container {
     float: none;
