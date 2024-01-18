@@ -21,3 +21,7 @@ export const SnackOptions: { value: string; label: string }[] = [];
 Object.entries(SNACK).forEach(([key, value]) =>
   SnackOptions.push({ value: key, label: value })
 );
+
+export const getSnackKey = (snack) => {
+  return Object.keys(SNACK).find((key) => SNACK[key] === snack);
+};

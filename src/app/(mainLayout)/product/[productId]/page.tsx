@@ -1,5 +1,4 @@
 "use client";
-import UserDefaultImg from "/public/UserDefault.png";
 import LoadingImg from "/public/loading.gif";
 import NotFoundImg from "/public/jeontongju_notfound.png";
 import searchAPI from "@/apis/search/searchAPIService";
@@ -15,6 +14,7 @@ import { toast } from "react-toastify";
 import wishAPI from "@/apis/wishCart/wishAPIService";
 import ProductReviewContainer from "../_component/ProductReviewContainer/ProductReviewContainer";
 import { useQuery } from "@tanstack/react-query";
+import SnackCard from "@/app/_component/SnackCard/SnackCard";
 
 type Props = {
   params: { productId: string };
@@ -256,9 +256,11 @@ export default function Page({ params }: Props) {
                 {productData.food.length > 0 && (
                   <>
                     <h2>잘 어울리는 안주</h2>
-                    {productData.food.map((it) => (
-                      <div key={it}>{it}</div>
-                    ))}
+                    <div className={style.snacks}>
+                      {productData.food.map((it, idx) => (
+                        <SnackCard key={idx} snack={it} />
+                      ))}
+                    </div>
                   </>
                 )}
                 {productData.concept.length > 0 && (
