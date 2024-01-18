@@ -43,6 +43,24 @@ div:where(.swal2-icon) {
   border: none;
 }
 
+:where(.css-dev-only-do-not-override-dkbvqv).ant-modal .ant-modal-content {
+  padding: 0;
+}
+
+:where(.css-dev-only-do-not-override-dkbvqv).ant-modal .ant-modal-close {
+  color: white;
+  font-weight: 800;
+}
+
+.ant-modal-content {
+  padding: 0;
+  width: 20rem;
+}
+.ant-modal {
+  width: 20rem;
+  padding: none;
+}
+
 .swal2-icon {
   border: none;
 }

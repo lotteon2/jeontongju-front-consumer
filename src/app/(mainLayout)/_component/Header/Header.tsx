@@ -1,4 +1,5 @@
 "use client";
+import eventHolidayImg from "/public/event_holiday.png";
 import logoImg from "/public/logo.png";
 import FiSrMenuBurger from "/public/fi-sr-menu-burger.svg";
 import FiSrHomeSvg from "/public/fi-sr-home.svg";
@@ -24,8 +25,16 @@ import { useRouter, usePathname } from "next/navigation";
 import { toast } from "react-toastify";
 import searchAPI from "@/apis/search/searchAPIService";
 import productAPI from "@/apis/product/productAPIService";
+import { Button, Modal } from "antd";
 const Header = () => {
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(
+    localStorage.getItem("isModalOpen")
+      ? localStorage.getItem("isModalOpen") === "true"
+        ? true
+        : false
+      : true
+  );
   const pathname = usePathname();
   const searchRef = useRef(null);
   const [search, setSearch] = useState<string>("");
@@ -324,6 +333,30 @@ const Header = () => {
           </Link>
         </div>
       </div>
+      <Modal
+        onCancel={() => {
+          setIsModalOpen(false);
+          localStorage.setItem("isModalOpen", "false");
+        }}
+        open={isModalOpen}
+        destroyOnClose
+        afterClose={() => {
+          setIsModalOpen(false);
+          localStorage.setItem("isModalOpen", "false");
+        }}
+        maskClosable={false}
+        footer={null}
+      >
+        <div onClick={() => router.push("/event/holiday")}>
+          <Image
+            src={eventHolidayImg}
+            width={100}
+            height={100}
+            alt="holiday"
+            style={{ width: "20rem", height: "25rem" }}
+          />
+        </div>
+      </Modal>
     </div>
   );
 };
