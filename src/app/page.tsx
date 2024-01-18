@@ -17,6 +17,7 @@ import TopButton from "./_component/TopButton/TopButton";
 import CartButton from "./_component/CartButton/CartButton";
 import MainReviewContainer from "./_component/MainReviewContainer";
 import Footer from "./(mainLayout)/_component/Footer/Footer";
+import CategoryHeader from "./(mainLayout)/_component/CategoryHeader/CategoryHeader";
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ export default async function Page() {
         <RQProvider>
           <HydrationBoundary state={dehydratedState}>
             <Header />
+            <CategoryHeader />
             <MainProductContainer />
             <Banner type="membership" href="/membership/buy" />
             <AuctionContainer />

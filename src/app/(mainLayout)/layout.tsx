@@ -11,6 +11,7 @@ import consumerAPI from "@/apis/consumer/consumerAPIService";
 import TopButton from "../_component/TopButton/TopButton";
 import CartButton from "../_component/CartButton/CartButton";
 import Footer from "./_component/Footer/Footer";
+import CategoryHeader from "./_component/CategoryHeader/CategoryHeader";
 
 export const metadata: Metadata = {
   title: "전통주점",
@@ -33,8 +34,9 @@ export default async function RootLayout({ children }: Props) {
   return (
     <RQProvider>
       <HydrationBoundary state={dehydratedState}>
-        <section style={{ position: "relative" }}>
+        <section>
           <Header />
+          <CategoryHeader />
           <div style={{ marginTop: "3rem" }}>
             {children}
             <CartButton />

@@ -25,7 +25,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { toast } from "react-toastify";
 import searchAPI from "@/apis/search/searchAPIService";
 import productAPI from "@/apis/product/productAPIService";
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 const Header = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(
@@ -40,7 +40,6 @@ const Header = () => {
   const [search, setSearch] = useState<string>("");
   const [placeHolder, setPlaceHolder] =
     useState<string>("전통주점에게 뭐든 물어보세요");
-  const [isShowCategoryMenu, setIsShowCategoryMenu] = useState<boolean>(false);
   const [isSearchBarOpen, setIsSearchBarOpen] = useState<boolean>(true);
   const { data } = useQuery({
     queryKey: ["consumer", "myinfo"],
@@ -50,11 +49,6 @@ const Header = () => {
   const { data: autoSearchKeyword, refetch } = useQuery({
     queryKey: ["search", "keyword", search],
     queryFn: () => searchAPI.getAutoCompleteForSearch(search),
-  });
-
-  const { data: category } = useQuery({
-    queryKey: ["product", "category"],
-    queryFn: () => productAPI.getCategories(),
   });
 
   const [
@@ -221,40 +215,6 @@ const Header = () => {
       </div>
       <div>
         <div className={style.topnav}>
-          <div
-            className={style.menu}
-            onMouseOver={handleShowCategory}
-            onMouseLeave={handleHideCategory}
-          >
-            <Image
-              alt="search"
-              width={32}
-              height={32}
-              style={{
-                cursor: "pointer",
-                width: "2rem",
-                height: "2rem",
-              }}
-              src={FiSrMenuBurger}
-            />
-            <div className={style.categoryMenu}>
-              카테고리
-              {isShowCategoryMenu && (
-                <div className={style.categories}>
-                  {category?.data.map((cate) => (
-                    <div
-                      className={style.cate}
-                      key={cate.value}
-                      role="presentation"
-                      onClick={() => router.push(`/category/${cate.value}`)}
-                    >
-                      {cate.label}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
           <Link href={"/"} className={style.menu}>
             <Image
               alt="search"

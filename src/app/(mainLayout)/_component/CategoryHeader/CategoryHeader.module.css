@@ -1,0 +1,22 @@
+.categories {
+  display: flex;
+  font-size: 1rem;
+  gap: 1rem;
+  margin: 1rem 0;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .cate {
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #c0c0c0;
+    padding: 1rem;
+    color: white;
+  }
+
+  .cate:hover {
+    background-color: #ffa1a1;
+    cursor: pointer;
+  }
+}
