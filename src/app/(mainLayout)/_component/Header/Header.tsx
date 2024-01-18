@@ -29,8 +29,7 @@ import { Modal } from "antd";
 const Header = () => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(
-    localStorage.getItem("isModalOpen")
-      ? localStorage.getItem("isModalOpen") === "true"
+    typeof window !== "undefined" ? localStorage.getItem("isModalOpen") === "true"
         ? true
         : false
       : true
