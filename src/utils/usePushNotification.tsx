@@ -3,6 +3,7 @@ import { useRef } from "react";
 export const usePushNotification = () => {
   const notificationRef = useRef(null);
   const timerRef = useRef(null);
+  if (typeof Notification === "undefined") return;
 
   if (Notification.permission !== "granted") {
     try {
