@@ -134,7 +134,7 @@ export default function OrderDetail() {
               </div>
             </div>
           </div>
-          {!order.product[0].isAuction && (
+          {order.payment.realPrice > 0 && !order.product[0].isAuction && (
             <div className={style.detailSection}>
               <div>
                 <div className={style.detailHeader}>포인트 혜택</div>
