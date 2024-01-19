@@ -29,6 +29,16 @@ const notificationAPI = {
     );
     return data;
   },
+  notiFcm: async (title: string, body: string) => {
+    const { data } = await authAxiosInstance.post(
+      `/notification-service/api/notifications/fcm`,
+      {
+        title,
+        body,
+      }
+    );
+    return data;
+  },
 };
 
 export default notificationAPI;

@@ -115,5 +115,14 @@ const consumerAPI = {
     );
     return data;
   },
+  postFcmToken: async (fcmToken: string | null) => {
+    const { data } = await authAxiosInstance.patch(
+      `/consumer-service/api/fcm-token`,
+      {
+        fcmToken,
+      }
+    );
+    return data;
+  },
 };
 export default consumerAPI;

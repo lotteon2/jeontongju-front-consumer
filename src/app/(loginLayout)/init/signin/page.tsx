@@ -7,6 +7,9 @@ import authAPI from "@/apis/authentication/authenticationAPIService";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import consumerAPI from "@/apis/consumer/consumerAPIService";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { getApp, getApps, initializeApp } from "firebase/app";
 // import { usePushNotification } from "@/utils/usePushNotification";
 
 export default function SignIn() {
@@ -16,6 +19,52 @@ export default function SignIn() {
   const [message, setMessage] = useState<string>("");
 
   // const { fireNotificationWithTimeout } = usePushNotification();
+  const onMessageFCM = async () => {
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission !== "granted") return;
+      const app = !getApps().length
+        ? initializeApp({
+            apiKey: "AIzaSyA1GNxBU0SnupYmC1mg4kH_AIDWNQWZp5g",
+            authDomain: "jeontongjujum-4d228.firebaseapp.com",
+            projectId: "jeontongjujum-4d228",
+            storageBucket: "jeontongjujum-4d228.appspot.com",
+            messagingSenderId: "499842917350",
+            appId: "1:499842917350:web:869b329ab1566c099eac27",
+            measurementId: "G-9YFD581KH3",
+          })
+        : getApp();
+      const messaging = getMessaging(app);
+
+      getToken(messaging, {
+        vapidKey:
+          "BGbg4JO9g6cuz-h7WYhIduveZuXRHX9HSXvu0gylq-FEhNTkt58kVYhp6skOd1ZbfmPTRddiZHK0m9FtZ4JS0wo",
+      })
+        .then((currentToken) => {
+          if (currentToken) {
+            console.log(currentToken);
+            localStorage.setItem("fcmToken", currentToken);
+          } else {
+            console.log(
+              "No registration token available. Request permission to generate one."
+            );
+          }
+        })
+        .catch((err) => {
+          console.log("An error occurred while retrieving token. ", err);
+        });
+
+      onMessage(messaging, (payload) => {
+        console.log("Message received. ", payload);
+      });
+    } catch (error) {
+      console.log("err", error);
+    }
+  };
+
+  useEffect(() => {
+    onMessageFCM();
+  });
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -25,7 +74,14 @@ export default function SignIn() {
         localStorage.setItem("accessToken", data.data.accessToken);
         localStorage.setItem("refreshToken", data.data.refreshToken);
         router.replace("/");
-        // console.log(Notification.permission);
+
+        await consumerAPI
+          .postFcmToken(
+            localStorage.getItem("fcmToken")
+              ? localStorage.getItem("fcmToken")
+              : null
+          )
+          .then((res) => console.log(res));
         if (typeof Notification !== "undefined") {
           new Notification("냥", {
             badge:
