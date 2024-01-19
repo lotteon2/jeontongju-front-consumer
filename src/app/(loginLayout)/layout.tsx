@@ -2,15 +2,10 @@
 import logoImg from "/public/logo.png";
 import styles from "@/app/page.module.css";
 import Script from "next/script";
-import Link from "next/link";
 import NextServer from "next/script";
 import Footer from "../(mainLayout)/_component/Footer/Footer";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { getApp, getApps, initializeApp } from "firebase/app";
-import { getMessaging, onMessage, getToken } from "firebase/messaging";
-import consumerAPI from "@/apis/consumer/consumerAPIService";
 
 export default function LoginLayout({
   children,
