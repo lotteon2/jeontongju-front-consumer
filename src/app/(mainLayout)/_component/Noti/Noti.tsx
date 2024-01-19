@@ -61,6 +61,14 @@ function Noti() {
           console.log(event);
           setNewNoti((prev) => [...prev, JSON.parse(newNoti)]);
           console.log(newNoti);
+          if (typeof Notification !== "undefined") {
+            new Notification("전통주점", {
+              badge:
+                "https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e",
+              icon: "https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e",
+              body: translateNoti(newNoti.data),
+            });
+          }
         });
 
         eventSource.addEventListener("connect", (event: any) => {
@@ -69,8 +77,6 @@ function Noti() {
             setNewNoti((prev) => [JSON.parse(newNoti)]);
           }
           console.log(event);
-          // setNewNoti((prev) => [JSON.parse(newNoti)]);
-          console.log("SSE CONNECTED");
         });
       };
 
@@ -96,6 +102,10 @@ function Noti() {
           notiType === "INTERNAL_COUPON_SERVER_ERROR" ||
           notiType === "INTERNAL_PRODUCT_SERVER_ERROR"
         ) {
+          const filteredNoti = newNoti.filter(
+            (item) => item.notificationId !== id
+          );
+          setNewNoti(filteredNoti);
           router.replace(data.data.redirectUrl);
         }
         toast("알림이 읽음 처리되었어요");
