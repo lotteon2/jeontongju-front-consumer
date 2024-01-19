@@ -344,9 +344,9 @@ const AuctionDetail = ({ params }: Props) => {
             <div className={style.auctionLeft}>
               <iframe
                 width="600"
-                height="600"
-                src="https://www.youtube.com/embed/FJfwehhzIhw"
-                title="[LIVE] 전통주점"
+                height="705"
+                src="https://www.youtube.com/embed/DuTetRVoF-Q?si=9X0RuVrm1Kzkaq-o&amp;controls=0"
+                title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
