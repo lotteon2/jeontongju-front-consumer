@@ -296,10 +296,10 @@ const AuctionDetail = ({ params }: Props) => {
       const data = await auctionAPI.bid({
         auctionId,
         bidPrice:
-          auctionInfo?.bidHistoryList[0].bidPrice === 0
+          (auctionInfo?.bidHistoryList[0].bidPrice === 0
             ? Number(currentStartingPrice)
-            : auctionInfo?.bidHistoryList[0].bidPrice +
-              Number(auctionInfo?.askingPrice),
+            : Number(auctionInfo?.bidHistoryList[0]?.bidPrice)) +
+          Number(auctionInfo?.askingPrice),
       });
       console.log(data);
       if (data.code === 200) {
@@ -379,7 +379,11 @@ const AuctionDetail = ({ params }: Props) => {
                   >
                     <div>{auctionProduct.auctionProductName}</div>
                     <div className={style.startingPrice}>
-                      시작가 | {auctionProduct.startingPrice}원
+                      시작가 |{" "}
+                      {auctionProduct.startingPrice
+                        ? auctionProduct.startingPrice.toLocaleString()
+                        : auctionProduct.startingPrice}
+                      원
                     </div>
                   </div>
                 ))}
@@ -402,7 +406,14 @@ const AuctionDetail = ({ params }: Props) => {
                   {auctionInfo?.bidHistoryList
                     .slice(0, 5)
                     .map((bidHistory, idx) => (
-                      <div key={idx} className={style.bidInfoInner}>
+                      <div
+                        key={idx}
+                        className={style.bidInfoInner}
+                        style={{
+                          color:
+                            idx === 0 && bidHistory.bidPrice ? "red" : "black",
+                        }}
+                      >
                         <div>{idx + 1}.</div>
                         <Image
                           src={bidHistory.profileImage || UserDefaultImg}
@@ -411,8 +422,7 @@ const AuctionDetail = ({ params }: Props) => {
                           alt="bidUser"
                         />
                         <div>{bidHistory.nickname}</div>
-                        <div>{bidHistory.bidPrice}</div>
-                        {idx === 0 && <div style={{ color: "red" }}>유력</div>}
+                        <div>{bidHistory.bidPrice || "-"}</div>
                       </div>
                     ))}
                 </div>
