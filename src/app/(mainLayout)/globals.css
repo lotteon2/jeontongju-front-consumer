@@ -39,7 +39,8 @@ div,
 li,
 a,
 span,
-button {
+button,
+strong {
   font-size: 1rem;
 }
 

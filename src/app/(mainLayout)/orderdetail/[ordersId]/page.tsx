@@ -47,7 +47,9 @@ export default function OrderDetail() {
               {order.order.isAuction ? `AU_` : `PR_`}
               {order.order?.ordersId}
             </div>
-            <div>{order.order?.orderDate.slice(0, 10)}</div>
+            {order.payment.realPrice > 0 && (
+              <div>{order.order?.orderDate.slice(0, 10)}</div>
+            )}
           </div>
           <div className={style.detailSection}>
             <div className={style.products}>
@@ -95,10 +97,12 @@ export default function OrderDetail() {
                   <div>{order.delivery.recipientPhoneNumber}</div>
                 </div>
                 <div className={style.infoDiv}>
-                  <strong>배송지</strong>
+                  <strong className={style.whiteSpaceNormal}>배송지</strong>
                   <span> {order.delivery.zonecode}</span>
-                  {order.delivery.basicAddress}
-                  {order.delivery.addressDetail}
+                  <span className={style.whiteSpaceNormal}>
+                    {order.delivery.basicAddress}
+                    {order.delivery.addressDetail}
+                  </span>
                 </div>
               </div>
             </div>
@@ -114,8 +118,10 @@ export default function OrderDetail() {
                   <span>{order.payment.totalPrice.toLocaleString()} 원</span>
                 </div>
                 <div className={style.infoDiv}>
-                  <strong>배송비</strong>
-                  <div>전통주점은 항상 무료 배송</div>
+                  <strong className={style.whiteSpaceNormal}>배송비</strong>
+                  <div className={style.whiteSpaceNormal}>
+                    전통주점은 항상 무료 배송
+                  </div>
                 </div>
                 <div className={style.infoDiv}>
                   <strong>쿠폰 할인 </strong>
