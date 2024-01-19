@@ -106,7 +106,7 @@ function Noti() {
             (item) => item.notificationId !== id
           );
           setNewNoti(filteredNoti);
-          router.replace(data.data.redirectUrl);
+          window.location.href = data.data.redirectUrl;
         }
         toast("알림이 읽음 처리되었어요");
       }
