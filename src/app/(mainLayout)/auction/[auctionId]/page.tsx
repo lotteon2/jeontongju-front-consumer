@@ -296,7 +296,10 @@ const AuctionDetail = ({ params }: Props) => {
       const data = await auctionAPI.bid({
         auctionId,
         bidPrice:
-          Number(currentStartingPrice) + Number(auctionInfo?.askingPrice),
+          auctionInfo?.bidHistoryList[0].bidPrice === 0
+            ? Number(currentStartingPrice)
+            : auctionInfo?.bidHistoryList[0].bidPrice +
+              Number(auctionInfo?.askingPrice),
       });
       console.log(data);
       if (data.code === 200) {
