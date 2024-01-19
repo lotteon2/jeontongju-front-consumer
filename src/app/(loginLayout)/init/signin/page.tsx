@@ -7,12 +7,16 @@ import authAPI from "@/apis/authentication/authenticationAPIService";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+// import { usePushNotification } from "@/utils/usePushNotification";
 
 export default function SignIn() {
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+
+  // const { fireNotificationWithTimeout } = usePushNotification();
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
     try {
@@ -21,6 +25,15 @@ export default function SignIn() {
         localStorage.setItem("accessToken", data.data.accessToken);
         localStorage.setItem("refreshToken", data.data.refreshToken);
         router.replace("/");
+        // console.log(Notification.permission);
+        if (typeof Notification !== "undefined") {
+          new Notification("냥", {
+            badge:
+              "https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e",
+            icon: "https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e",
+            body: "냥냥",
+          });
+        }
       } else {
         setMessage("아이디와 비밀번호가 일치하지 않습니다.");
       }
