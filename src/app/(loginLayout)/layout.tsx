@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getMessaging, onMessage, getToken } from "firebase/messaging";
+import { usePushNotification } from "@/utils/usePushNotification";
 
 export default function LoginLayout({
   children,
@@ -17,6 +18,13 @@ export default function LoginLayout({
   children: React.ReactNode | typeof NextServer;
 }) {
   const router = useRouter();
+
+  const { fireNotificationWithTimeout } = usePushNotification();
+
+  fireNotificationWithTimeout("Babble 채팅 메시지", 5000, {
+    body: `냥:`,
+  });
+
   const onMessageFCM = async () => {
     try {
       const permission = await Notification.requestPermission();
