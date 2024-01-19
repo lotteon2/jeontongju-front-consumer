@@ -61,6 +61,7 @@ function Noti() {
           console.log(event);
           setNewNoti((prev) => [...prev, JSON.parse(newNoti)]);
           console.log(newNoti);
+          console.log("DATA");
           console.log(newNoti.data);
           if (typeof Notification !== "undefined") {
             new Notification("전통주점", {
