@@ -50,9 +50,11 @@
       .infoTitle {
         font-size: 1.1rem;
         font-weight: 700;
+        white-space: nowrap;
       }
 
       .infoDesc {
+        white-space: nowrap;
       }
     }
   }

@@ -1,6 +1,9 @@
 .myPage {
   .leftBar {
     width: auto;
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      display: none;
+    }
   }
   .myPageBody {
     display: flex;
@@ -8,6 +11,9 @@
       width: 100%;
       top: 0;
       margin-left: 20%;
+      @media only screen and (min-width: 200px) and (max-width: 480px) {
+        margin-left: 0;
+      }
     }
   }
 }
