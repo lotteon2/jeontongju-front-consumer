@@ -51,6 +51,10 @@
       gap: 1rem;
       flex-wrap: nowrap;
       margin-bottom: 1rem;
+
+      @media only screen and (min-width: 200px) and (max-width: 480px) {
+        height: auto;
+      }
     }
   }
 

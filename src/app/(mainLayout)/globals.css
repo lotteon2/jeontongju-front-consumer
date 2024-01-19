@@ -25,6 +25,7 @@ body {
   margin: 0 auto;
   font-size: 62.5%;
   font-weight: 700;
+  position: relative;
   @media only screen and (min-width: 200px) and (max-width: 480px) {
     width: 90vw;
   }

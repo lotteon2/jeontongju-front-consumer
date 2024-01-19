@@ -12,6 +12,10 @@
     background-color: #c0c0c0;
     padding: 0.5rem;
     color: white;
+
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      font-size: 0.8rem;
+    }
   }
 
   .cate:hover {

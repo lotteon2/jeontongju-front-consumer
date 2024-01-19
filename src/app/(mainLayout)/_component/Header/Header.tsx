@@ -28,7 +28,7 @@ import { Modal } from "antd";
 
 const Header = () => {
   const router = useRouter();
-  
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(
     typeof window !== "undefined"
       ? localStorage.getItem("isModalOpen") === "false"
@@ -120,7 +120,7 @@ const Header = () => {
             width={0}
             height={0}
             alt="logo"
-            style={{ cursor: "pointer", width: "5rem", height: "5rem" }}
+            className={style.logo}
           />
         </div>
         <div className={style.searchContainer} ref={searchRef}>
