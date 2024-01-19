@@ -105,7 +105,7 @@ export default function Page({ params }: Props) {
                 height={0}
                 style={{
                   borderRadius: "12px",
-                  width: "30rem",
+                  width: "15rem",
                   height: "auto",
                   opacity:
                     productData.isSoldOut ||
