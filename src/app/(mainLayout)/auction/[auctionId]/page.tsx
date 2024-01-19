@@ -278,8 +278,8 @@ const AuctionDetail = ({ params }: Props) => {
   };
 
   const bidAskingPrice = async () => {
-    setIsDisableToBid(true);
-    setTimeout(() => setIsDisableToBid(false), 3000);
+    // setIsDisableToBid(true);
+    // setTimeout(() => setIsDisableToBid(false), 3000);
     try {
       console.log(auctionInfo);
       if (auctionInfo?.askingPrice === 0) {
