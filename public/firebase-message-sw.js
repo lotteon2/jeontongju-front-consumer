@@ -7,9 +7,7 @@ const config = {
   projectId: "jeontongjujum-4d228",
   storageBucket: "jeontongjujum-4d228.appspot.com",
   messagingSenderId: "499842917350",
-  appId: "1:499842917350:web:d66d354c45d33bd19eac27",
-  measurementId: "G-141N6H4QJC",
+  appId: "1:499842917350:web:869b329ab1566c099eac27",
+  measurementId: "G-9YFD581KH3",
 };
 firebase.initializeApp(config);
-
-const messaging = firebase.messaging();

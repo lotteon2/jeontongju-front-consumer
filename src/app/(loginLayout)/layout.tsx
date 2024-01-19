@@ -7,6 +7,9 @@ import NextServer from "next/script";
 import Footer from "../(mainLayout)/_component/Footer/Footer";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { getApp, getApps, initializeApp } from "firebase/app";
+import { getMessaging, onMessage, getToken } from "firebase/messaging";
 
 export default function LoginLayout({
   children,
@@ -14,6 +17,62 @@ export default function LoginLayout({
   children: React.ReactNode | typeof NextServer;
 }) {
   const router = useRouter();
+  const onMessageFCM = async () => {
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission !== "granted") return;
+      const app = !getApps().length
+        ? initializeApp({
+            apiKey: "AIzaSyA1GNxBU0SnupYmC1mg4kH_AIDWNQWZp5g",
+            authDomain: "jeontongjujum-4d228.firebaseapp.com",
+            projectId: "jeontongjujum-4d228",
+            storageBucket: "jeontongjujum-4d228.appspot.com",
+            messagingSenderId: "499842917350",
+            appId: "1:499842917350:web:869b329ab1566c099eac27",
+            measurementId: "G-9YFD581KH3",
+          })
+        : getApp();
+
+      // const firebaseApp = initializeApp({
+      //   apiKey: "AIzaSyA1GNxBU0SnupYmC1mg4kH_AIDWNQWZp5g",
+      //   authDomain: "jeontongjujum-4d228.firebaseapp.com",
+      //   projectId: "jeontongjujum-4d228",
+      //   storageBucket: "jeontongjujum-4d228.appspot.com",
+      //   messagingSenderId: "499842917350",
+      //   appId: "1:499842917350:web:869b329ab1566c099eac27",
+      //   measurementId: "G-9YFD581KH3",
+      // });
+
+      const messaging = getMessaging(app);
+
+      getToken(messaging, {
+        vapidKey:
+          "BGbg4JO9g6cuz-h7WYhIduveZuXRHX9HSXvu0gylq-FEhNTkt58kVYhp6skOd1ZbfmPTRddiZHK0m9FtZ4JS0wo",
+      })
+        .then((currentToken) => {
+          if (currentToken) {
+            console.log(currentToken);
+          } else {
+            console.log(
+              "No registration token available. Request permission to generate one."
+            );
+          }
+        })
+        .catch((err) => {
+          console.log("An error occurred while retrieving token. ", err);
+        });
+
+      onMessage(messaging, (payload) => {
+        console.log("Message received. ", payload);
+      });
+    } catch (error) {
+      console.log("err", error);
+    }
+  };
+
+  useEffect(() => {
+    onMessageFCM();
+  });
   return (
     <div className={styles.loginContainer}>
       <header className={styles.loginHeader}>
