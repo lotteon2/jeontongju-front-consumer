@@ -40,7 +40,9 @@ li,
 a,
 span,
 button,
-strong {
+strong,
+input,
+input::placeholder {
   font-size: 1rem;
 }
 
