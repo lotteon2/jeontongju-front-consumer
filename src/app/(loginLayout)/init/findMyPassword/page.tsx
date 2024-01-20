@@ -158,6 +158,7 @@ export default function FindMyPassword() {
       width={0}
       height={0}
       alt="loading"
+      placeholder="blur"
       style={{ width: "50%", height: "50%", margin: "auto" }}
     />
   );

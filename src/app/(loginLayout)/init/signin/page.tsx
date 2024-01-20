@@ -160,6 +160,7 @@ export default function SignIn() {
             </button>
             <Image
               alt="kakao"
+              placeholder="blur"
               width={0}
               height={0}
               src={KaKaoImg}
@@ -168,6 +169,7 @@ export default function SignIn() {
             />
             <Image
               alt="google"
+              placeholder="blur"
               width={0}
               height={0}
               src={googleImg}
