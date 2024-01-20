@@ -54,5 +54,5 @@ const withPWA = require("next-pwa")({
 
 // const withImages = require("next-images");
 // const withVideos = require("next-videos");
-module.export;
-module.exports = withPWA(withVideos(withImages(nextConfig)));
+module.exports = withPWA(nextConfig);
+// module.exports = withPWA(withVideos(withImages(nextConfig)));
