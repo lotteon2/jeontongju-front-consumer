@@ -8,6 +8,7 @@ export default function Footer() {
       <h2 className={style.logoArea}>
         <Image
           src={logoImg}
+          layout="responsive"
           width={0}
           height={0}
           alt="logo"

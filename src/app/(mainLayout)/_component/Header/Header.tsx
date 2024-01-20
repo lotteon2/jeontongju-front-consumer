@@ -121,6 +121,7 @@ const Header = () => {
             height={0}
             priority
             alt="logo"
+            layout="responsive"
             className={style.logo}
           />
         </div>

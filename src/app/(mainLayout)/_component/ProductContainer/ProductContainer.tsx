@@ -80,6 +80,7 @@ export default function ProductContainer({
           priority
           width={0}
           height={0}
+          layout="responsive"
           style={{
             cursor: "pointer",
             width: "100%",
