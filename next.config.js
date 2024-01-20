@@ -18,14 +18,13 @@ const nextConfig = {
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    domains: [],
+    domains: ["jeontongju-dev-bucket2.s3.ap-northeast-2.amazonaws.com"],
     path: "/_next/image",
     // loader can be 'default', 'imgix', 'cloudinary', 'akamai', or 'custom'
     loader: "default",
     loaderFile: "",
     disableStaticImages: true,
     minimumCacheTTL: 60,
-    formats: ["image/avif", "image/webp"],
     // enable dangerous use of SVG images
     dangerouslyAllowSVG: false,
     // set the Content-Security-Policy header
