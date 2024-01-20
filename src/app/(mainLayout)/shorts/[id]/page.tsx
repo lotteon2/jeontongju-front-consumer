@@ -105,29 +105,6 @@ export default function ShortsDetail({
 
   return (
     <>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-4MJ6ZE1TXS`}
-      />
-      <Script
-        id="gtag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-4MJ6ZE1TXS', {
-                  page_path: window.location.pathname,
-                  shortsId: ${id}
-                });
-                gtag('event', 'watch_shorts', {
-                  'event_name': 'watch_shorts',
-                  'event_label': 'shortsId-${id}'
-                })
-              `,
-        }}
-      />
       <div
         className={style.shortsContainer}
         style={{ height: isMain ? "auto" : "90dvh" }}

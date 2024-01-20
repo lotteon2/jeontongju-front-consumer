@@ -90,10 +90,6 @@ export default function Document() {
           async
         />
         <script
-          src="https://developers.kakao.com/sdk/js/kakao.js"
-          defer
-        ></script>
-        <script
           src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
           async
         ></script>
