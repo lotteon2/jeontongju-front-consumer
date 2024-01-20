@@ -77,6 +77,7 @@ export default function ProductContainer({
         <Image
           alt="productThumbnail"
           src={productImg}
+          priority
           width={0}
           height={0}
           style={{
