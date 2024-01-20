@@ -8,12 +8,12 @@ export default function Footer() {
       <h2 className={style.logoArea}>
         <Image
           src={logoImg}
-          layout="responsive"
+          layout="fixed"
           width={0}
           height={0}
           alt="logo"
+          className={style.logoImg}
           priority
-          style={{ width: "5rem", height: "5rem" }}
         />
       </h2>
       <div className={style.infoWrapper}>
