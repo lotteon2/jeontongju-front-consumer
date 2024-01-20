@@ -119,6 +119,7 @@ const Header = () => {
             src={logoImg}
             width={0}
             height={0}
+            priority
             alt="logo"
             className={style.logo}
           />

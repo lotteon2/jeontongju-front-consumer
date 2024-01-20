@@ -11,6 +11,7 @@ export default function Footer() {
           width={0}
           height={0}
           alt="logo"
+          priority
           style={{ width: "5rem", height: "5rem" }}
         />
       </h2>

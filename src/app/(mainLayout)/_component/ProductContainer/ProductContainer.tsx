@@ -96,6 +96,7 @@ export default function ProductContainer({
           <div className={style.sellerInfo}>
             <Image
               alt="sellerThumbnail"
+              priority
               src={
                 sellerProfileImg ||
                 "https://img.freepik.com/free-photo/concrete-background-cement-texture-with-blank-space_53876-129755.jpg"
