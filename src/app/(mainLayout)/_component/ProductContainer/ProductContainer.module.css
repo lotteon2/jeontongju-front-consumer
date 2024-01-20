@@ -42,4 +42,15 @@
     gap: 1rem;
     align-items: center;
   }
+
+  .productImgBox {
+    height: 15rem;
+    max-height: 15rem;
+    min-height: 15rem;
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      height: 10rem;
+      max-height: 10rem;
+      min-height: 10rem;
+    }
+  }
 }

@@ -105,13 +105,11 @@ export default function Page({ params }: Props) {
               <Image
                 src={productData.productThumbnailImageUrl}
                 alt="productImg"
-                width={0}
-                height={0}
                 priority
+                width={100}
+                height={100}
+                className={style.detailImg}
                 style={{
-                  borderRadius: "12px",
-                  width: "15rem",
-                  height: "auto",
                   opacity:
                     productData.isSoldOut ||
                     !productData.isActivate ||
@@ -202,10 +200,10 @@ export default function Page({ params }: Props) {
                 <Image
                   src={productData.storeImageUrl}
                   alt="img"
+                  priority
                   className={style.storeImg}
                   width={0}
                   height={0}
-                  priority
                   style={{
                     borderRadius: "12px",
                     cursor: "pointer",
@@ -251,8 +249,9 @@ export default function Page({ params }: Props) {
                   <Image
                     src={productData.productDetailsImageUrl}
                     alt="productDetailImg"
-                    width={0}
-                    height={0}
+                    priority
+                    width={100}
+                    height={100}
                     style={{
                       cursor: "pointer",
                       width: "70%",

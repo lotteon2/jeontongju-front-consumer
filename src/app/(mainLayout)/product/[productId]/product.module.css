@@ -12,6 +12,16 @@
   text-align: center;
 }
 
+.detailImg {
+  width: 30rem;
+  height: 30rem;
+  border-radius: 12px;
+  @media only screen and (min-width: 200px) and (max-width: 480px) {
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
 .button:hover {
   background-color: #ffa1a1;
   color: white;

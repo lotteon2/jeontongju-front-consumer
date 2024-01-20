@@ -74,20 +74,22 @@ export default function ProductContainer({
         </div>
       )}
       <Link href={`/product/${productId}`}>
-        <Image
-          alt="productThumbnail"
-          src={productImg}
-          priority
-          width={0}
-          height={0}
-          layout="responsive"
-          style={{
-            cursor: "pointer",
-            width: "100%",
-            height: "70%",
-            borderRadius: "12px",
-          }}
-        />
+        <div className={style.productImgBox}>
+          <Image
+            alt="productThumbnail"
+            src={productImg}
+            priority
+            width={0}
+            height={0}
+            layout="responsive"
+            style={{
+              cursor: "pointer",
+              width: "10rem",
+              height: "auto",
+              borderRadius: "12px",
+            }}
+          />
+        </div>
         <div className={style.productName}>
           {productName.length > 10
             ? productName.slice(0, 10) + "..."
@@ -98,7 +100,6 @@ export default function ProductContainer({
           <div className={style.sellerInfo}>
             <Image
               alt="sellerThumbnail"
-              priority
               src={
                 sellerProfileImg ||
                 "https://img.freepik.com/free-photo/concrete-background-cement-texture-with-blank-space_53876-129755.jpg"
