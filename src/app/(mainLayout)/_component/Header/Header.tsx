@@ -291,6 +291,7 @@ const Header = () => {
       >
         <div
           role="dialog"
+          aria-label="이벤트 팝업"
           onClick={() => {
             setIsModalOpen(false);
             localStorage.setItem("isModalOpen", "false");
