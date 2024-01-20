@@ -33,9 +33,11 @@ export default function MyOrderList() {
         </div>
       </div>
       {data?.content?.length > 0 ? (
-        data.content.map((it) => (
-          <MyOrderBox params={it} key={it.order.ordersId} refetch={refetch} />
-        ))
+        data.content
+          .slice(0, 5)
+          .map((it) => (
+            <MyOrderBox params={it} key={it.order.ordersId} refetch={refetch} />
+          ))
       ) : (
         <div>주문 내역이 없어요.</div>
       )}

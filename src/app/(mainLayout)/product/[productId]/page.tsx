@@ -13,10 +13,12 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import wishAPI from "@/apis/wishCart/wishAPIService";
 import ProductReviewContainer from "../_component/ProductReviewContainer/ProductReviewContainer";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import SnackCard from "@/app/_component/SnackCard/SnackCard";
 import RawMaterialCard from "@/app/_component/RawMaterialCard/RawMaterialCard";
 import ConceptCard from "@/app/_component/ConceptCard/ConceptCard";
+import { getMyCartList } from "../../mypage/_lib/getMyCartList";
+import { useGetMyInfiniteCartList } from "../../mypage/_lib/useGetMyInfiniteCartList";
 
 type Props = {
   params: { productId: string };
@@ -31,15 +33,17 @@ export default function Page({ params }: Props) {
   const [img, setImg] = useState<string>(LoadingImg);
   const [productData, setProductData] =
     useState<GetProductDetailByProductIdResponseData>(null);
+  const { refetch } = useGetMyInfiniteCartList();
 
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState(
     productData ? productData.productPrice : 0
   );
 
-  const { refetch } = useQuery({
-    queryKey: ["cart", "list"],
-  });
+  // const { data, refetch } = useQuery({
+  //   queryKey: ["cart", "list", "get"],
+  //   queryFn: () => wishAPI.getMyCartList(0, 5),
+  // });
 
   const handleClickCounter = (num: number) => {
     setQuantity((prev) => (prev as number) + num);

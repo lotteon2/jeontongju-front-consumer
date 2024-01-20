@@ -5,18 +5,16 @@ import { Page } from "@/constants/PageResponseType";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 import productAPI from "@/apis/product/productAPIService";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import style from "@/app/(mainLayout)/shorts/list/shortsList.module.css";
 
 export default function ShortsList() {
   const snapScrollWrapperRef = useRef();
 
   const playVideo = (e) => {
-    // snap-scroll-wrapper의 뷰포트에서 맨 위 Y좌표와 맨 아래 Y좌표를 구함
     const snapScrollWrapperRect = e.target.getBoundingClientRect();
     const snapScrollWrapperTopY = snapScrollWrapperRect.top;
     const snapScrollWrapperBottomY = snapScrollWrapperRect.bottom;
-    // 스크롤되는 아이템들은 snap-scoll-wrapper의 자식들(snap-scroll-item)이다.
     const snapScrollItems = e.target.childNodes;
     snapScrollItems.forEach((item) => {
       // 이미지나 비디오는 snap-scroll-item의 0번째 자식

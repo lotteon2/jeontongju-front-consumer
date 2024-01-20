@@ -8,7 +8,7 @@ import {
 const productAPI = {
   getAllShorts: async (page: number, size: number) => {
     const { data } = await unAuthAxiosInstance.get<GetShortsListResponse>(
-      `/product-service/api/shorts?page=${page}&sort=shortsHits,desc&size=${size}`
+      `/product-service/api/shorts?page=${page}&sort=createdAt,desc&size=${size}`
     );
     return data.data;
   },

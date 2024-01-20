@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Loading from "@/app/_component/Loading/Loading";
 import Link from "next/link";
+import { useGetMyInfiniteCartList } from "../_lib/useGetMyInfiniteCartList";
 
 export default function MyCartpage() {
   const router = useRouter();
@@ -19,22 +20,24 @@ export default function MyCartpage() {
   const [selectedCart, setSelectedCart] = useState<GetMyCartListResponseData[]>(
     []
   );
-  const { data, fetchNextPage, hasNextPage, isFetching, refetch, isLoading } =
-    useInfiniteQuery<
-      Page<GetMyCartListResponseData[]>,
-      Object,
-      InfiniteData<Page<GetMyCartListResponseData[]>>,
-      [_1: string, _2: string],
-      number
-    >({
-      queryKey: ["cart", "list"],
-      queryFn: getMyCartList,
-      initialPageParam: 0,
-      getNextPageParam: (lastPage) =>
-        lastPage.last === false ? lastPage.number + 1 : null,
-      staleTime: 60 * 1000,
-      gcTime: 300 * 1000,
-    });
+
+  const {data, fetchNextPage, hasNextPage, isFetching, refetch, isLoading} = useGetMyInfiniteCartList();
+  // const { data, fetchNextPage, hasNextPage, isFetching, refetch, isLoading } =
+  //   useInfiniteQuery<
+  //     Page<GetMyCartListResponseData[]>,
+  //     Object,
+  //     InfiniteData<Page<GetMyCartListResponseData[]>>,
+  //     [_1: string, _2: string],
+  //     number
+  //   >({
+  //     queryKey: ["cart", "list"],
+  //     queryFn: getMyCartList,
+  //     initialPageParam: 0,
+  //     getNextPageParam: (lastPage) =>
+  //       lastPage.last === false ? lastPage.number + 1 : null,
+  //     staleTime: 60 * 1000,
+  //     gcTime: 300 * 1000,
+  //   });
 
   const { ref, inView } = useInView({
     threshold: 0,
