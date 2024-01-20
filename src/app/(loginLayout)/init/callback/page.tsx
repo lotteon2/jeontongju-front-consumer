@@ -10,6 +10,7 @@ const Callback = () => {
   const router = useRouter();
   useEffect(() => {
     localStorage.setItem("accessToken", "Bearer " + params?.get("code"));
+    localStorage.setItem("refreshToken", "Bearer " + params?.get("refresh"));
     router.replace("/");
   }, []);
 
