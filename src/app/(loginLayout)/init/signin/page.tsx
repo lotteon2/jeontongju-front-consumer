@@ -82,14 +82,6 @@ export default function SignIn() {
               : null
           )
           .then((res) => console.log(res));
-        if (typeof Notification !== "undefined") {
-          new Notification("냥", {
-            badge:
-              "https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e",
-            icon: "https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e",
-            body: "냥냥",
-          });
-        }
       } else {
         setMessage("아이디와 비밀번호가 일치하지 않습니다.");
       }

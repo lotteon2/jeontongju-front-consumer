@@ -7,6 +7,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
@@ -20,7 +21,7 @@ const nextConfig = {
     domains: [],
     path: "/_next/image",
     // loader can be 'default', 'imgix', 'cloudinary', 'akamai', or 'custom'
-    loader: "imgix",
+    loader: "default",
     loaderFile: "",
     disableStaticImages: true,
     minimumCacheTTL: 60,
@@ -29,8 +30,11 @@ const nextConfig = {
     dangerouslyAllowSVG: false,
     // set the Content-Security-Policy header
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // sets the Content-Disposition header (inline or attachment)
     contentDispositionType: "inline",
+    // limit of 50 objects
     remotePatterns: [],
+    // when true, every image will be unoptimized
     unoptimized: true,
     minimumCacheTTL: 60,
   },
@@ -41,7 +45,6 @@ const nextConfig = {
     return config;
   },
 };
-
 const runtimeCaching = require("next-pwa/cache");
 const prod = process.env.NODE_ENV === "production";
 const withPWA = require("next-pwa")({

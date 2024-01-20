@@ -62,7 +62,7 @@ export default function MyInfo() {
         ) : selectedMenu === 3 ? (
           <Withdraw />
         ) : (
-          <div>냥</div>
+          <></>
         )}
       </div>
     </div>
