@@ -108,6 +108,7 @@ export default function Page({ params }: Props) {
                 priority
                 width={100}
                 height={100}
+                placeholder="empty"
                 className={style.detailImg}
                 style={{
                   opacity:
@@ -200,6 +201,7 @@ export default function Page({ params }: Props) {
                 <Image
                   src={productData.storeImageUrl}
                   alt="img"
+                  placeholder="empty"
                   priority
                   className={style.storeImg}
                   width={0}
