@@ -107,6 +107,7 @@ export default function Page({ params }: Props) {
                 alt="productImg"
                 width={0}
                 height={0}
+                priority
                 style={{
                   borderRadius: "12px",
                   width: "15rem",
@@ -204,6 +205,7 @@ export default function Page({ params }: Props) {
                   className={style.storeImg}
                   width={0}
                   height={0}
+                  priority
                   style={{
                     borderRadius: "12px",
                     cursor: "pointer",
