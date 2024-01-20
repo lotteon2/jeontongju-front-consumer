@@ -210,8 +210,8 @@ export default function SignUp() {
           <div className={style.message}>{message}</div>
           <Image
             alt="adultValidImg"
-            width={0}
-            height={0}
+            width={20}
+            height={20}
             placeholder="blur"
             src={adultValidImg}
             style={{ cursor: "pointer", width: "100%", height: "auto" }}

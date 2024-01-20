@@ -51,8 +51,8 @@ export default function AuctionContainer() {
                   autoPlay={true}
                   muted={true}
                   loop={true}
-                  width={0}
-                  height={0}
+                  width={10}
+                  height={10}
                   style={{
                     width: "20rem",
                     height: "80%",

@@ -48,8 +48,8 @@ export default function MyCartBox({
       <div className={style.deleteButton}>
         <Image
           alt="삭제"
-          width={0}
-          height={0}
+          width={10}
+          height={10}
           src={FiSrCoffee}
           style={{
             cursor: "pointer",

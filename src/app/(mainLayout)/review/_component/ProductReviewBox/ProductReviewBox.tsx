@@ -38,8 +38,8 @@ export default function ProductReviewBox({
             <Image
               src={params.profileImageUrl || UserDefaultImg}
               alt="img"
-              width={0}
-              height={0}
+              width={20}
+              height={20}
               style={{
                 width: "3rem",
                 height: "3rem",
@@ -59,8 +59,8 @@ export default function ProductReviewBox({
         <div onClick={handleLike} className={style.heartBox}>
           <Image
             alt="bell"
-            width={0}
-            height={0}
+            width={5}
+            height={5}
             src={params.isSympathy ? FiSrHeartFullSVG : FiSrHeartSVG}
             style={{
               cursor: localStorage.getItem("accessToken") ? "pointer" : "none",

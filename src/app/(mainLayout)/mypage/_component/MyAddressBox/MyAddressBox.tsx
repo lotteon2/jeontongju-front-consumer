@@ -79,8 +79,8 @@ export default function MyAddressBox({
         <div className={style.addressButtons}>
           <Image
             alt="수정"
-            width={0}
-            height={0}
+            width={20}
+            height={20}
             src={FiSrPencil}
             style={{
               cursor: "pointer",
@@ -92,8 +92,8 @@ export default function MyAddressBox({
           />
           <Image
             alt="삭제"
-            width={0}
-            height={0}
+            width={10}
+            height={10}
             src={FiSrCoffee}
             style={{
               cursor: "pointer",

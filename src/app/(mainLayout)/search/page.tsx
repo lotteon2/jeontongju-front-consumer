@@ -195,8 +195,8 @@ export default function SearchPage() {
               <Image
                 src={NotFoundImg}
                 alt="notfound"
-                width={0}
-                height={0}
+                width={10}
+                height={10}
                 style={{ width: "10rem", height: "10rem" }}
               />
               <div>해당 상품이 없어요</div>

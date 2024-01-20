@@ -103,8 +103,8 @@ export default function PointList() {
           ) : (
             <Image
               src={loadingImg}
-              width={0}
-              height={0}
+              width={10}
+              height={10}
               alt="loading"
               style={{ width: "50%", height: "50%" }}
             />

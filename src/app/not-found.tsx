@@ -17,8 +17,8 @@ const NotFound: NextPage = () => {
         autoPlay={true}
         muted={true}
         loop={true}
-        width={0}
-        height={0}
+        width={20}
+        height={20}
         style={{
           width: "100%",
           height: "80%",

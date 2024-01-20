@@ -66,8 +66,8 @@ export default function MyCartList() {
           <Image
             src={LoadingImg}
             alt="jeontongju-notfound"
-            width={0}
-            height={0}
+            width={10}
+            height={10}
             style={{ cursor: "pointer", width: "80%", height: "80%" }}
           />
         )}

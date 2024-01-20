@@ -9,8 +9,8 @@ export default function Footer() {
         <Image
           src={logoImg}
           layout="fixed"
-          width={0}
-          height={0}
+          width={10}
+          height={10}
           alt="logo"
           className={style.logoImg}
           priority

@@ -22,8 +22,8 @@ export default function OrderSuccess() {
     >
       <Image
         alt="OrderSuccess"
-        width={0}
-        height={0}
+        width={10}
+        height={10}
         src={SuccessImg}
         style={{ cursor: "pointer", width: "5rem", height: "auto" }}
         onClick={handleGoPrevPage}

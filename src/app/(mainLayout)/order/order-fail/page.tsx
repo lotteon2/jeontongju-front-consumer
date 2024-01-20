@@ -11,8 +11,8 @@ export default function OrderFail() {
   return (
     <Image
       alt="orderFailImg"
-      width={0}
-      height={0}
+      width={10}
+      height={10}
       src={orderFailImg}
       preview={false}
       style={{ cursor: "pointer", width: "100%", height: "auto" }}

@@ -40,11 +40,6 @@ export default function Page({ params }: Props) {
     productData ? productData.productPrice : 0
   );
 
-  // const { data, refetch } = useQuery({
-  //   queryKey: ["cart", "list", "get"],
-  //   queryFn: () => wishAPI.getMyCartList(0, 5),
-  // });
-
   const handleClickCounter = (num: number) => {
     setQuantity((prev) => (prev as number) + num);
     setTotal((prev) => prev + productData.productPrice * num);
@@ -106,8 +101,8 @@ export default function Page({ params }: Props) {
                 src={productData.productThumbnailImageUrl}
                 alt="productImg"
                 priority
-                width={100}
-                height={100}
+                width={1000}
+                height={1000}
                 placeholder="empty"
                 className={style.detailImg}
                 style={{
@@ -204,8 +199,8 @@ export default function Page({ params }: Props) {
                   placeholder="empty"
                   priority
                   className={style.storeImg}
-                  width={0}
-                  height={0}
+                  width={10}
+                  height={10}
                   style={{
                     borderRadius: "12px",
                     cursor: "pointer",

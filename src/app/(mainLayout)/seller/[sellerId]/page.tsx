@@ -130,8 +130,8 @@ export default function Seller({ params }: Props) {
                 <Image
                   src={KakaoShareImg}
                   alt="kakaoShare"
-                  width={0}
-                  height={0}
+                  width={5}
+                  height={5}
                   style={{
                     cursor: "pointer",
                     width: "10rem",
@@ -186,8 +186,8 @@ export default function Seller({ params }: Props) {
         <Image
           src={img}
           alt="seller-notfound"
-          width={0}
-          height={0}
+          width={5}
+          height={5}
           style={{ cursor: "pointer", width: "80%", height: "80%" }}
         />
       )}

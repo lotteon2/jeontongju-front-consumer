@@ -62,8 +62,8 @@ export default function MemberShip() {
                 <Image
                   src={MemberShipDeliveryImg}
                   alt="delivery"
-                  width={0}
-                  height={0}
+                  width={20}
+                  height={20}
                   style={{ width: "30%", height: "30%" }}
                 ></Image>
               </div>
@@ -73,8 +73,8 @@ export default function MemberShip() {
                 <Image
                   src="//image8.coupangcdn.com/image/coupang/loyalty/sign-up/home/web/goldbox-benfit-pc@2x.png"
                   alt="gift"
-                  width={0}
-                  height={0}
+                  width={20}
+                  height={20}
                   style={{ width: "30%", height: "30%" }}
                 ></Image>
               </div>
@@ -84,8 +84,8 @@ export default function MemberShip() {
                 <Image
                   src={MemberShipPointImg}
                   alt="gift"
-                  width={0}
-                  height={0}
+                  width={20}
+                  height={20}
                   style={{ width: "30%", height: "30%" }}
                 ></Image>
               </div>

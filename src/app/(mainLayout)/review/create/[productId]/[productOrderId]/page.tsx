@@ -52,8 +52,8 @@ export default function CreateReviewPage({ params }: Props) {
         concept: concepts,
       });
       if (data.code === 200) {
-        if(data.failure === "NOT_ORDER_CONFIRM"){
-          toast("주문 확정을 먼저 진행해주세요.")
+        if (data.failure === "NOT_ORDER_CONFIRM") {
+          toast("주문 확정을 먼저 진행해주세요.");
           return;
         }
         toast("구매 후기 등록에 성공했어요.");
@@ -119,8 +119,8 @@ export default function CreateReviewPage({ params }: Props) {
         <Image
           src={LoadingImg}
           alt="loading"
-          width={0}
-          height={0}
+          width={5}
+          height={5}
           style={{ cursor: "pointer", width: "80%", height: "80%" }}
         />
       )}
