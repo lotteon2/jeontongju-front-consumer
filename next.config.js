@@ -52,7 +52,7 @@ const withPWA = require("next-pwa")({
   skipWaiting: true,
 });
 
-const withImages = require("next-images");
-const withVideos = require("next-videos");
-
+// const withImages = require("next-images");
+// const withVideos = require("next-videos");
+module.export;
 module.exports = withPWA(withVideos(withImages(nextConfig)));
