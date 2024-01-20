@@ -23,7 +23,7 @@ const nextConfig = {
     // loader can be 'default', 'imgix', 'cloudinary', 'akamai', or 'custom'
     loader: "default",
     loaderFile: "",
-    disableStaticImages: true,
+    disableStaticImages: false,
     minimumCacheTTL: 60,
     // enable dangerous use of SVG images
     dangerouslyAllowSVG: false,
@@ -32,9 +32,8 @@ const nextConfig = {
     // sets the Content-Disposition header (inline or attachment)
     contentDispositionType: "inline",
     // limit of 50 objects
-    remotePatterns: [],
     // when true, every image will be unoptimized
-    unoptimized: true,
+    unoptimized: false,
     minimumCacheTTL: 60,
   },
   webpack: (
