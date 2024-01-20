@@ -56,6 +56,7 @@ export default function Banner({
         src={eventCouponImg}
         width={0}
         height={0}
+        priority
         alt={type || "banner"}
         style={{ cursor: "pointer", width: "100%", height: "20%" }}
       />
@@ -74,6 +75,7 @@ export default function Banner({
           }
           width={0}
           height={0}
+          priority
           alt={type || "banner"}
           style={{ cursor: "pointer", width: "100%", height: "20%" }}
         />

@@ -300,6 +300,7 @@ const Header = () => {
             width={100}
             height={100}
             alt="holiday"
+            priority
             style={{ width: "20rem", height: "25rem" }}
           />
         </div>
