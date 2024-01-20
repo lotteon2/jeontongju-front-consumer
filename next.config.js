@@ -10,7 +10,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "s3.amazonaws.com",
+        hostname: "jeontongju-dev-bucket2.s3.ap-northeast-2.amazonaws.com",
         port: "",
         pathname: "/my-bucket/**",
       },
