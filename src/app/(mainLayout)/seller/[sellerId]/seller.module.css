@@ -2,6 +2,7 @@
   .sellerHeader {
     background-color: #c0c0c0;
     display: flex;
+    border-radius: 12px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -20,7 +21,8 @@
   .sellerMenu {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 2rem;
     padding: 1rem 0;
     font-size: 1.1rem;
     font-weight: 700;

@@ -114,8 +114,8 @@ export default function Seller({ params }: Props) {
             <Image
               src={sellerInfo.data.storeImageUrl}
               alt="seller-thumbnail"
-              width={0}
-              height={0}
+              width={30}
+              height={30}
               style={{
                 cursor: "pointer",
                 width: "3rem",
@@ -130,8 +130,8 @@ export default function Seller({ params }: Props) {
                 <Image
                   src={KakaoShareImg}
                   alt="kakaoShare"
-                  width={5}
-                  height={5}
+                  width={100}
+                  height={100}
                   style={{
                     cursor: "pointer",
                     width: "10rem",
