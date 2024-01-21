@@ -345,7 +345,7 @@ const AuctionDetail = ({ params }: Props) => {
               <iframe
                 width="560"
                 height="315"
-                src="https://www.youtube.com/embed/giGKY7kGsCI?si=JzPIR1ZwT285ZrQV&amp;controls=0&autoplay=1&mute=1"
+                src="https://www.youtube.com/embed/jU6XxnErnsg?si=EQyZCNH7oI1P0_To&amp;controls=0&autoplay=1&mute=1"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
