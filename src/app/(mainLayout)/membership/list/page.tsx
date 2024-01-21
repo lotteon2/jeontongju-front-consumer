@@ -36,7 +36,7 @@ export default function MemberShipList() {
 
   useEffect(() => {
     console.log("isRegularPayment", isRegularPayment);
-    if (!isLogin) {
+    if (typeof window !== "undefined" && !localStorage.getItem("accessToken")) {
       toast("로그인한 유저만 접근할 수 있어요.");
       router.push("/init/signin");
     }
