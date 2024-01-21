@@ -159,8 +159,9 @@ export default function MyOrderBox({
                 <Image
                   src={item.productThumbnailImageUrl}
                   alt="img"
-                  width={0}
-                  height={0}
+                  width={1000}
+                  height={1000}
+                  priority
                   className={style.orderBoxImg}
                   style={{
                     cursor: item.isAuction ? "none" : "pointer",

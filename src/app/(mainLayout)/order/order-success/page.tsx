@@ -2,7 +2,7 @@
 import Image from "next/image";
 import SuccessImg from "/public/success.png";
 import { useRouter } from "next/navigation";
-import orderSuccessImg from "/public/order_success.gif";
+
 export default function OrderSuccess() {
   const router = useRouter();
   const handleGoPrevPage = () => {

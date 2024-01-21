@@ -133,11 +133,6 @@ function Noti() {
     }
   };
 
-  useEffect(() => {
-    console.log("NEW NOTI!!");
-    console.log(newNoti);
-  }, [newNoti]);
-
   return (
     <div ref={notiRef}>
       <Image
