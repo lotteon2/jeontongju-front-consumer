@@ -45,7 +45,7 @@ function Noti() {
             Connection: "keep-alive",
             Accept: "text/event-stream",
           },
-          heartbeatTimeout: 600000,
+          heartbeatTimeout: 6000000,
           withCredentials: true,
         }
       );
