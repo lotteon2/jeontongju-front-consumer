@@ -188,7 +188,7 @@ export default function Page({ params }: Props) {
               )}
 
               <div className={style.hr} />
-              <div>리뷰 적립시 3% 추가 적립</div>
+              <div>리뷰 작성시 3% 추가 적립</div>
               <Link
                 href={`/seller/${productData.sellerId}`}
                 className={style.sellerInfo}
