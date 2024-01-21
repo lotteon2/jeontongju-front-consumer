@@ -106,7 +106,7 @@ export default function MyOrderBox({
         toast("주문 확정에 성공했어요.");
         const party = new Particle("successComplete", {
           number: 200,
-          colors: ["#ffca76", "#ffb9b9", "#fff180"],
+          colors: ["#ffca76", "#ffb9b9", "#fff180", "#00AAFF"],
         });
         party.start();
 

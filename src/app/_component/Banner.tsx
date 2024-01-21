@@ -30,7 +30,7 @@ export default function Banner({
             toast("쿠폰이 발급되었어요.");
             const party = new Particle("successCoupon", {
               number: 200,
-              colors: ["#ffca76", "#ffb9b9", "#fff180"],
+              colors: ["#ffca76", "#ffb9b9", "#fff180", "#00AAFF"],
             });
             party.start();
             return;

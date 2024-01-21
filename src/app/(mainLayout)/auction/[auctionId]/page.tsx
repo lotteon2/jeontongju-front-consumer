@@ -189,7 +189,7 @@ const AuctionDetail = ({ params }: Props) => {
 
             const party = new Particle("particle", {
               number: 100,
-              colors: ["#ffca76", "#ffb9b9", "#fff180"],
+              colors: ["#ffca76", "#ffb9b9", "#fff180", "#00AAFF"],
             });
             party.start();
           }
