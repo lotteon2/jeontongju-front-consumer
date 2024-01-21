@@ -98,6 +98,7 @@ function Noti() {
       const data = await notificationAPI.clickNoti(id);
       if (data.code === 200) {
         if (
+          notiType === "SUCCESS_SUBSCRIPTION_PAYMENTS" ||
           notiType === "INTERNAL_ORDER_SERVER_ERROR" ||
           notiType === "INTERNAL_CONSUMER_SERVER_ERROR" ||
           notiType === "INTERNAL_PAYMENT_SERVER_ERROR" ||
