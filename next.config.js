@@ -20,7 +20,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     domains: [
       "jeontongju-dev-bucket2.s3.ap-northeast-2.amazonaws.com",
-      "http://k.kakaocdn.net",
+      "lh3.googleusercontent.com",
     ],
     path: "/_next/image",
     // loader can be 'default', 'imgix', 'cloudinary', 'akamai', or 'custom'

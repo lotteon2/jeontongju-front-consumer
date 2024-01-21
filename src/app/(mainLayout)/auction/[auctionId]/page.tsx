@@ -343,14 +343,23 @@ const AuctionDetail = ({ params }: Props) => {
           <>
             <div className={style.auctionLeft}>
               <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/giGKY7kGsCI?si=bK-3JP71NwGWjOkn&amp;controls=0&autoplay=1&mute=1"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+
+              {/* <iframe
                 width="600"
                 height="705"
-                src="https://www.youtube.com/embed/DuTetRVoF-Q?si=9X0RuVrm1Kzkaq-o&amp;controls=0"
+                src="https://youtube.com/live/giGKY7kGsCI;controls=0&autoplay=1&mute=1"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
-              ></iframe>
+              ></iframe> */}
             </div>
             <div className={style.auctionRight}>
               <div className={style.activeUser}>
