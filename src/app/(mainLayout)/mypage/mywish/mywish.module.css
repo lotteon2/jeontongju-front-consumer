@@ -14,7 +14,9 @@
     flex-wrap: wrap;
     gap: 3rem;
     width: 100%;
-    flex-direction: column;
+    @media only screen and (min-width: 200px) and (max-width: 480px) {
+      flex-direction: column;
+    }
   }
 }
 
