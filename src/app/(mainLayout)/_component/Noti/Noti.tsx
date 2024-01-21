@@ -8,6 +8,7 @@ import notificationAPI from "@/apis/notification/notificationAPIService";
 import { toast } from "react-toastify";
 import { NOTI, translateNoti } from "@/constants/NotiEnum";
 import { useRouter } from "next/navigation";
+import sound from "/public/jum.mp3";
 
 function Noti() {
   const router = useRouter();
@@ -45,7 +46,7 @@ function Noti() {
             Connection: "keep-alive",
             Accept: "text/event-stream",
           },
-          heartbeatTimeout: 6000000,
+          heartbeatTimeout: 60000,
           withCredentials: true,
         }
       );
@@ -60,9 +61,6 @@ function Noti() {
           const newNoti = event.data;
           console.log(event);
           setNewNoti((prev) => [...prev, JSON.parse(newNoti)]);
-          console.log(newNoti);
-          console.log("DATA");
-          console.log(newNoti.data);
           if (typeof Notification !== "undefined") {
             new Notification("전통주점", {
               badge:
@@ -70,6 +68,7 @@ function Noti() {
               icon: "https://github.com/lotteon2/jeontongju-front-consumer/assets/72402747/0c2d1ad9-36bf-4024-93d8-434617c5791e",
               body: translateNoti(newNoti.data),
             });
+            new Audio(sound).play();
           }
         });
 
