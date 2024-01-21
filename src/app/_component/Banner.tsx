@@ -29,7 +29,7 @@ export default function Banner({
           if (data.detail === "쿠폰 수령 성공") {
             toast("쿠폰이 발급되었어요.");
             const party = new Particle("successCoupon", {
-              number: 200,
+              number: 300,
               colors: ["#ffca76", "#ffb9b9", "#fff180", "#00AAFF"],
             });
             party.start();
