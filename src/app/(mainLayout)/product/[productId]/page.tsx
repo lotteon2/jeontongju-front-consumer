@@ -19,6 +19,7 @@ import RawMaterialCard from "@/app/_component/RawMaterialCard/RawMaterialCard";
 import ConceptCard from "@/app/_component/ConceptCard/ConceptCard";
 import { getMyCartList } from "../../mypage/_lib/getMyCartList";
 import { useGetMyInfiniteCartList } from "../../mypage/_lib/useGetMyInfiniteCartList";
+import { RateCard } from "@/app/_component/RateCard/RateCard";
 
 type Props = {
   params: { productId: string };
@@ -284,6 +285,21 @@ export default function Page({ params }: Props) {
                       {productData.concept.map((it, idx) => (
                         <ConceptCard key={idx} concept={it} />
                       ))}
+                    </div>
+                  </>
+                )}
+                {productData.taste && (
+                  <>
+                    <h2>상품의 맛</h2>
+                    <div>
+                      <RateCard name="바디감" rate={productData.taste.body} />
+                      <RateCard
+                        name="탄산감"
+                        rate={productData.taste.carbonation}
+                      />
+                      <RateCard name="신맛" rate={productData.taste.sour} />
+                      <RateCard name="단맛" rate={productData.taste.sweet} />
+                      <RateCard name="향" rate={productData.taste.scent} />
                     </div>
                   </>
                 )}

@@ -1,5 +1,6 @@
 import FiSrBellSVG from "/public/fi-sr-bell.svg";
 import NewFiSrBellSVG from "/public/fi-sr-new-bell.svg";
+import sound from "/public/jum.mp3";
 import React, { useEffect, useRef, useState } from "react";
 import { EventSourcePolyfill, NativeEventSource } from "event-source-polyfill";
 import styles from "./Noti.module.scss";
@@ -8,7 +9,6 @@ import notificationAPI from "@/apis/notification/notificationAPIService";
 import { toast } from "react-toastify";
 import { NOTI, translateNoti } from "@/constants/NotiEnum";
 import { useRouter } from "next/navigation";
-import sound from "/public/jum.mp3";
 
 function Noti() {
   const router = useRouter();

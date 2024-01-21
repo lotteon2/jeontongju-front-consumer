@@ -18,7 +18,10 @@ const nextConfig = {
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    domains: ["jeontongju-dev-bucket2.s3.ap-northeast-2.amazonaws.com"],
+    domains: [
+      "jeontongju-dev-bucket2.s3.ap-northeast-2.amazonaws.com",
+      "http://k.kakaocdn.net",
+    ],
     path: "/_next/image",
     // loader can be 'default', 'imgix', 'cloudinary', 'akamai', or 'custom'
     loader: "default",
@@ -36,10 +39,19 @@ const nextConfig = {
     unoptimized: false,
     minimumCacheTTL: 60,
   },
-  webpack: (
-    config,
-    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
-  ) => {
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.(mp3)$/,
+      use: {
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          publicPath: `/_next/static/sounds/`,
+          outputPath: `${options.isServer ? "../" : ""}static/sounds/`,
+        },
+      },
+    });
+
     return config;
   },
 };
