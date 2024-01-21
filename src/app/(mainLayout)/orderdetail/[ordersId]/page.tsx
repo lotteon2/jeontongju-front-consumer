@@ -41,7 +41,7 @@ export default function OrderDetail() {
     <>
       {order ? (
         <div className={style.orderDetailPage}>
-          주문 상세 내역
+          {order.payment.realPrice > 0 ? "주문 상세 내역" : "주문 실패 내역"}
           <div className={style.orderHeader}>
             <div>
               {order.order.isAuction ? `AU_` : `PR_`}
