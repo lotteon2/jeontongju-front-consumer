@@ -23,8 +23,8 @@ export default function MyReviewBox({
         <Image
           src={params.productThumbnailImage}
           alt="img"
-          width={20}
-          height={20}
+          width={100}
+          height={100}
           style={{
             cursor: "pointer",
             width: "8rem",
@@ -38,8 +38,8 @@ export default function MyReviewBox({
           <Image
             src={params.reviewPhotoImageUrl}
             alt="img"
-            width={0}
-            height={0}
+            width={100}
+            height={100}
             style={{
               cursor: "pointer",
               width: "5rem",
