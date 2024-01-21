@@ -7,11 +7,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    // formats: ["image/avif", "image/webp"],
+    formats: ["image/webp", "image/avif"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "jeontongju-dev-bucket2.s3.ap-northeast-2.amazonaws.com",
+        hostname: "s3.amazonaws.com",
         port: "",
         pathname: "/my-bucket/**",
       },
@@ -54,5 +54,5 @@ const withPWA = require("next-pwa")({
 
 const withImages = require("next-images");
 const withVideos = require("next-videos");
-// module.exports = withPWA(withVideos(nextConfig));
-module.exports = withPWA(withVideos(withImages(nextConfig)));
+module.exports = withPWA(withVideos(nextConfig));
+// module.exports = withPWA(withVideos(withImages(nextConfig)));

@@ -18,7 +18,7 @@ import { Button, Input, Modal } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import consumerAPI from "@/apis/consumer/consumerAPIService";
 import { SuccessAlert } from "@/app/_component/SuccessBid";
-import PangPang, { Particle } from "@/app/_component/pangpang/page";
+import { Particle } from "@/app/_component/pangpang/page";
 
 type Props = {
   params: { auctionId: string };
