@@ -9,11 +9,11 @@ export default function Footer() {
         <Image
           src={logoImg}
           layout="fixed"
-          width={10}
-          height={10}
+          width={1000}
+          height={1000}
+          priority
           alt="logo"
           className={style.logoImg}
-          priority
         />
       </h2>
       <div className={style.infoWrapper}>
