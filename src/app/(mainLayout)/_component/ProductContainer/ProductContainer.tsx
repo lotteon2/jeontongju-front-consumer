@@ -61,8 +61,8 @@ export default function ProductContainer({
         <div onClick={handleLike} className={style.isLiked}>
           <Image
             alt="bell"
-            width={3}
-            height={3}
+            width={20}
+            height={20}
             src={isLikes ? FiSrHeartFullSVG : FiSrHeartSVG}
             style={{
               cursor: "pointer",
@@ -79,8 +79,8 @@ export default function ProductContainer({
             alt="productThumbnail"
             src={productImg}
             priority
-            width={3}
-            height={3}
+            width={1000}
+            height={1000}
             layout="responsive"
             style={{
               cursor: "pointer",
@@ -104,8 +104,9 @@ export default function ProductContainer({
                 sellerProfileImg ||
                 "https://img.freepik.com/free-photo/concrete-background-cement-texture-with-blank-space_53876-129755.jpg"
               }
-              width={5}
-              height={5}
+              width={100}
+              height={100}
+              priority
               style={{ cursor: "pointer", width: "3rem", height: "3rem" }}
             />
             <div>{sellerName}</div>
