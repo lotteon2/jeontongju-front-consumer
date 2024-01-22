@@ -74,7 +74,8 @@ export default function MemberShip() {
                 <Image
                   src={MemberShipGiftImg}
                   alt="gift"
-                  width={100}
+                  priority
+                  width={1000}
                   height={1000}
                   style={{ width: "30%", height: "30%" }}
                 ></Image>
