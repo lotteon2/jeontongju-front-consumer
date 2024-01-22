@@ -100,11 +100,6 @@ export default function SearchPage() {
     setMaxAlcoholDegree(value[1]);
   };
 
-  const onChangeCompletePrice = (value: number[]) => {
-    setMinPrice(value[0]);
-    setMaxPrice(value[1]);
-  };
-
   return (
     <>
       <Script id="my-script">{`console.log('Rendering on client:', typeof window !== 'undefined');`}</Script>
@@ -195,8 +190,8 @@ export default function SearchPage() {
               <Image
                 src={NotFoundImg}
                 alt="notfound"
-                width={10}
-                height={10}
+                width={100}
+                height={100}
                 style={{ width: "10rem", height: "10rem" }}
               />
               <div>해당 상품이 없어요</div>

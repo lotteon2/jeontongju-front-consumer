@@ -169,9 +169,11 @@ const Header = () => {
                       <Image
                         src={it.productThumbnailImageUrl}
                         alt="img"
-                        width={1000}
-                        height={1000}
+                        width={100}
+                        height={100}
                         style={{
+                          width: "2rem",
+                          height: "2rem",
                           position: "absolute",
                           right: "5px",
                           cursor: "pointer",
