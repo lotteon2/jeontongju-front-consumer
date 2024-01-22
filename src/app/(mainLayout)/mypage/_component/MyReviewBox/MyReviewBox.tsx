@@ -39,8 +39,8 @@ export default function MyReviewBox({
           <Image
             src={params.reviewPhotoImageUrl}
             alt="img"
-            width={100}
-            height={100}
+            width={1000}
+            height={1000}
             priority
             style={{
               cursor: "pointer",
