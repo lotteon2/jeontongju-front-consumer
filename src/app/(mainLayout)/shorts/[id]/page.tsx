@@ -144,8 +144,9 @@ export default function ShortsDetail({
               <Image
                 src={KakaoShareImg}
                 alt="kakaoShare"
-                width={5}
-                height={5}
+                width={1000}
+                height={1000}
+                priority
                 style={{
                   marginTop: "1rem",
                   cursor: "pointer",
