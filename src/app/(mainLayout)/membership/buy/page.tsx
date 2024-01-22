@@ -1,5 +1,6 @@
 "use client";
 import MemberShipPointImg from "/public/membership_point.gif";
+import MemberShipGiftImg from "/public/gift.png";
 import MemberShipDeliveryImg from "/public/membership_delivery.gif";
 import Image from "next/image";
 import style from "@/app/(mainLayout)/membership/membership.module.css";
@@ -71,10 +72,10 @@ export default function MemberShip() {
                 <h2>양반 전용 이달의 쿠폰팩</h2>
                 <p>매달 10,000원의 쿠폰 지급</p>
                 <Image
-                  src="//image8.coupangcdn.com/image/coupang/loyalty/sign-up/home/web/goldbox-benfit-pc@2x.png"
+                  src={MemberShipGiftImg}
                   alt="gift"
-                  width={20}
-                  height={20}
+                  width={100}
+                  height={1000}
                   style={{ width: "30%", height: "30%" }}
                 ></Image>
               </div>
