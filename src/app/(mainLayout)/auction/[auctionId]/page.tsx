@@ -343,8 +343,8 @@ const AuctionDetail = ({ params }: Props) => {
           <>
             <div className={style.auctionLeft}>
               <iframe
-                width="560"
-                height="315"
+                width="1024"
+                height="720"
                 src="https://www.youtube.com/embed/jU6XxnErnsg?si=EQyZCNH7oI1P0_To&amp;controls=0&autoplay=1&mute=1"
                 title="YouTube video player"
                 frameborder="0"
