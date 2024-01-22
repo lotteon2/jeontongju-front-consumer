@@ -18,8 +18,8 @@ const Callback = () => {
     <>
       <Image
         src={loadingImg}
-        width={0}
-        height={0}
+        width={1000}
+        height={1000}
         alt="loading"
         style={{ cursor: "pointer", width: "50%", height: "50%" }}
       />

@@ -63,8 +63,8 @@ export default function Adult() {
         />
         <Image
           alt="adultValidImg"
-          width={0}
-          height={0}
+          width={1000}
+          height={1000}
           src={adultValidImg}
           style={{ cursor: "pointer", width: "100%", height: "auto" }}
           onClick={handleAdultValid}

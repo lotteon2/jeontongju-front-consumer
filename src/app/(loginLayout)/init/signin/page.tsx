@@ -169,8 +169,8 @@ export default function SignIn() {
             <Image
               alt="google"
               placeholder="blur"
-              width={0}
-              height={0}
+              width={1000}
+              height={1000}
               src={googleImg}
               style={{ cursor: "pointer", width: "100%", height: "50px" }}
               onClick={handleGoogleLogin}

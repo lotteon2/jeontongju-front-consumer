@@ -155,8 +155,8 @@ export default function FindMyPassword() {
   ) : (
     <Image
       src={loadingImg}
-      width={0}
-      height={0}
+      width={1000}
+      height={1000}
       alt="loading"
       placeholder="blur"
       style={{ width: "50%", height: "50%", margin: "auto" }}

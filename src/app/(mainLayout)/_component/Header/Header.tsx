@@ -117,8 +117,8 @@ const Header = () => {
         <div onClick={() => router.push("/")}>
           <Image
             src={logoImg}
-            width={0}
-            height={0}
+            width={1000}
+            height={1000}
             priority
             alt="logo"
             layout="fixed"
@@ -169,8 +169,8 @@ const Header = () => {
                       <Image
                         src={it.productThumbnailImageUrl}
                         alt="img"
-                        width={30}
-                        height={30}
+                        width={1000}
+                        height={1000}
                         style={{
                           position: "absolute",
                           right: "5px",
