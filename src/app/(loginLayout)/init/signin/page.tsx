@@ -160,9 +160,8 @@ export default function SignIn() {
             </button>
             <Image
               alt="kakao"
-              placeholder="blur"
-              width={100}
-              height={100}
+              width={1000}
+              height={1000}
               src={KaKaoImg}
               style={{ cursor: "pointer", width: "100%", height: "50px" }}
               onClick={handleKakaoLogin}
