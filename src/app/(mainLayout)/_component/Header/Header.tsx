@@ -172,15 +172,15 @@ const Header = () => {
                         width={100}
                         height={100}
                         style={{
-                          width: "2rem",
-                          height: "2rem",
+                          width: "3rem",
+                          height: "3rem",
                           position: "absolute",
                           right: "5px",
                           cursor: "pointer",
                         }}
                       />
                     </div>
-                    <div>{it.productName}</div>
+                    <div style={{ width: "80%" }}>{it.productName}</div>
                   </li>
                 </ul>
               ))}
