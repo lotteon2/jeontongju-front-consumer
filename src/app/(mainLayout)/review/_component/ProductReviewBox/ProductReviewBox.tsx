@@ -38,8 +38,8 @@ export default function ProductReviewBox({
             <Image
               src={params.profileImageUrl || UserDefaultImg}
               alt="img"
-              width={20}
-              height={20}
+              width={1000}
+              height={1000}
               style={{
                 width: "3rem",
                 height: "3rem",
@@ -47,7 +47,6 @@ export default function ProductReviewBox({
               }}
             />
           </div>
-
           <div>
             <div>{params.name}</div>
             <div className={style.date}>{params.createdAt.slice(0, 10)}</div>
@@ -75,8 +74,9 @@ export default function ProductReviewBox({
         <Image
           src={params.reviewPhotoImageUrl || params.productThumbnailImage}
           alt="img"
-          width={0}
-          height={0}
+          width={1000}
+          height={1000}
+          priority
           style={{ width: "5rem", height: "5rem", borderRadius: "8px" }}
         />
       </div>
