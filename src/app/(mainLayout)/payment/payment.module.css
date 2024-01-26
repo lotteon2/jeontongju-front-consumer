@@ -54,6 +54,11 @@
     background-color: #ffa1a1;
   }
 
+  .payButton:disabled {
+    cursor: none;
+    background-color: #c0c0c0;
+  }
+
   .couponSelectBox {
     display: flex;
     gap: 1rem;

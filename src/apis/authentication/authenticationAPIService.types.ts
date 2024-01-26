@@ -47,3 +47,4 @@ export type WithDrawalResponse = ApiResponse<string>;
 export type CheckMyPasswordIsAuthResponse = ApiResponse<string>;
 export type UpdateMyPasswordAfterLoginResponse = ApiResponse<string>;
 export type AdultCheckAfterLoginResponse = ApiResponse<string>;
+export type AdultCheckBeforeOrderResponse = ApiResponse<string>;

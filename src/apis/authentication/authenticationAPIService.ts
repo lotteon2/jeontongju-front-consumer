@@ -5,6 +5,7 @@ import {
 } from "../common";
 import {
   AdultCheckAfterLoginResponse,
+  AdultCheckBeforeOrderResponse,
   CheckEmailParams,
   CheckEmailResponse,
   CheckMyEmailResponse,
@@ -94,6 +95,14 @@ const authAPI = {
     const { data } =
       await authAxiosInstance.patch<AdultCheckAfterLoginResponse>(
         `/authentication-service/api/consumers/adult-certification`,
+        { impUid }
+      );
+    return data;
+  },
+  adultCheckBeforeOrder: async (impUid: string) => {
+    const { data } =
+      await authAxiosInstance.post<AdultCheckBeforeOrderResponse>(
+        `/authentication-service/api/adult-approve`,
         { impUid }
       );
     return data;
