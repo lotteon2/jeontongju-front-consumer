@@ -1,3 +1,4 @@
+import AdultCaution from "/public/AdultCaution.png";
 import FiSrHeartSVG from "/public/fi-sr-heart.svg";
 import FiSrHeartFullSVG from "/public/fi-sr-heart-fill.svg";
 import Image from "next/image";
@@ -57,6 +58,16 @@ export default function ProductContainer({
   return (
     <div className={style.productContainer}>
       <Script id="my-script">{`console.log('Rendering on client:', typeof window !== 'undefined');`}</Script>
+      {typeof window !== "undefined" &&
+        !localStorage.getItem("accessToken") && (
+          <Image
+            alt="caution"
+            width={20}
+            height={20}
+            src={AdultCaution}
+            style={{ position: "absolute", zIndex: "3", right: 0 }}
+          />
+        )}
       {isLogin && (
         <div onClick={handleLike} className={style.isLiked}>
           <Image
@@ -87,6 +98,11 @@ export default function ProductContainer({
               width: "10rem",
               height: "auto",
               borderRadius: "12px",
+              opacity:
+                typeof window !== "undefined" &&
+                !localStorage.getItem("accessToken")
+                  ? "0.1"
+                  : "none",
             }}
           />
         </div>

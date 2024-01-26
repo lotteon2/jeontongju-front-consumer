@@ -212,7 +212,6 @@ export default function SignUp() {
             alt="adultValidImg"
             width={1000}
             height={1000}
-            placeholder="blur"
             src={adultValidImg}
             style={{ cursor: "pointer", width: "100%", height: "auto" }}
             onClick={handleAdultValid}

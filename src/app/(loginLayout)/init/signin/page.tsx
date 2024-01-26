@@ -168,7 +168,6 @@ export default function SignIn() {
             />
             <Image
               alt="google"
-              placeholder="blur"
               width={1000}
               height={1000}
               src={googleImg}

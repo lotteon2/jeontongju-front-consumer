@@ -42,7 +42,6 @@ export default function CostContainer() {
       ) : (
         <Image
           src={LoadingImg}
-          placeholder="blur"
           alt="jeontongju-notfound"
           width={0}
           height={0}
