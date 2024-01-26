@@ -1,4 +1,4 @@
-import AdultCaution from "/public/AdultCaution.png";
+import AdultCaution from "/public/adultCaution.png";
 import FiSrHeartSVG from "/public/fi-sr-heart.svg";
 import FiSrHeartFullSVG from "/public/fi-sr-heart-fill.svg";
 import Image from "next/image";
