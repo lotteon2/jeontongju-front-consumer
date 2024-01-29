@@ -24,10 +24,10 @@ export default function ProductReviewContainer({
       GetReviewListByProductIdResponseData,
       Object,
       InfiniteData<GetReviewListByProductIdResponseData>,
-      [_1: string, _2: string, _3: string, _4: string],
+      [_1: string, _2: string, _3: string, _4: string, _5: string],
       number
     >({
-      queryKey: ["product", "review", "list", sort],
+      queryKey: ["product", "review", "list", sort, productId],
       queryFn: ({ pageParam = 0 }) =>
         reviewAPI.getReviewListByProductId(productId, pageParam, sort, 10),
       initialPageParam: 0,
