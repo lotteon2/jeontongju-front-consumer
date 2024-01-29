@@ -64,6 +64,7 @@ export default function CategoryPage({ params }: Props) {
         maxAlcoholDegree,
         concepts,
         categoryId,
+        sort
       ],
       queryFn: ({ pageParam = 0 }) =>
         searchAPI.getAllProductListForCategoryId(
