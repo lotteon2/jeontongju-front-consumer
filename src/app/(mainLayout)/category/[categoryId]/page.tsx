@@ -49,7 +49,8 @@ export default function CategoryPage({ params }: Props) {
         _7: number,
         _8: number,
         _9: (keyof typeof CONCEPT)[],
-        _10: string
+        _10: string,
+        _11: keyof typeof SORT
       ],
       number
     >({
@@ -64,7 +65,7 @@ export default function CategoryPage({ params }: Props) {
         maxAlcoholDegree,
         concepts,
         categoryId,
-        sort
+        sort,
       ],
       queryFn: ({ pageParam = 0 }) =>
         searchAPI.getAllProductListForCategoryId(
@@ -78,7 +79,8 @@ export default function CategoryPage({ params }: Props) {
           maxPrice,
           minAlcoholDegree,
           maxAlcoholDegree,
-          concepts
+          concepts,
+          sort
         ),
       initialPageParam: 0,
       getNextPageParam: (lastPage) =>
