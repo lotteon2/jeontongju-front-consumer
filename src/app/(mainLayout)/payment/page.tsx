@@ -65,9 +65,7 @@ export default function Payment() {
     if (success) {
       const data = await authAPI.adultCheckBeforeOrder(responseImpUid);
       if (data.code === 200) {
-        console.log(data.data);
         if (data.data) {
-          console.log("here");
           setAdultCheck(true);
         }
         toast("성인인증이 완료되었어요.");
@@ -105,8 +103,6 @@ export default function Payment() {
       setZonecode("");
     }
   }, [isUsingDefaultAddress]);
-
-  console.log(products);
 
   const handlePay = async () => {
     const params = {

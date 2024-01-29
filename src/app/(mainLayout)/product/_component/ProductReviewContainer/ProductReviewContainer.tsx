@@ -49,9 +49,7 @@ export default function ProductReviewContainer({
       !isFetching && hasNextPage && fetchNextPage();
     }
   }, [inView, isFetching, hasNextPage, fetchNextPage]);
-  console.log(ReviewOptions);
-  console.log(data?.pages[0]);
-  console.log(data?.pages[0]?.histories);
+
   const handleChangeSort = (e: any) => {
     setSort(e.target.value);
   };

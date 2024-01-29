@@ -39,7 +39,6 @@ export default function SignUp() {
           }
           setAuthcode(data.data.authCode);
           toast("해당 메일로 코드가 발송되었어요");
-          console.log("이메일 발송 완료");
           setIsClickedCheckEmail(true);
         }
       }
@@ -86,7 +85,6 @@ export default function SignUp() {
         isMerge,
       });
       if (data.code === 200) {
-        console.log("회원가입 성공");
         router.push("/init/signin");
       } else {
         setMessage("아이디와 비밀번호가 일치하지 않습니다.");

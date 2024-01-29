@@ -111,17 +111,13 @@ const AuctionDetail = ({ params }: Props) => {
 
   useEffect(() => {
     return () => {
-      console.log(stompClientRef);
       Object.values(stompClientRef.current).forEach((stompClient) => {
         if (stompClient) {
           stompClient.unsubscribe(`/sub/chat/${auctionId}`);
           stompClient.unsubscribe(`/sub/bid-result/${auctionId}`);
           stompClient.unsubscribe(`/sub/auction-numbers/${auctionId}`);
           stompClient.unsubscribe(`/sub/bid-info/${auctionId}`);
-          // Unsubscribe from other channels if needed
-          stompClient.disconnect(() => {
-            console.log("disconnect 성공!!");
-          });
+          stompClient.disconnect(() => {});
         }
       });
     };
@@ -159,14 +155,7 @@ const AuctionDetail = ({ params }: Props) => {
       {},
       (frame) => {
         stompClient.subscribe(`/sub/bid-result/${auctionId}`, (res) => {
-          console.log("[BID RESULT] 구독으로 받은 메시지 입니다.", res.body);
           const bidResult = JSON.parse(res.body);
-          console.log("memberId", myInfo?.data?.memberId);
-          console.log("memberId", memberId);
-          console.log(
-            bidResult.bidResult[bidResult.bidResult.length - 1].consumerId
-          );
-          console.log(stompClient);
           setStompClient(stompClient);
           if (
             Number(
@@ -345,7 +334,7 @@ const AuctionDetail = ({ params }: Props) => {
               <iframe
                 width="1024"
                 height="720"
-                src="https://www.youtube.com/embed/vFisbj1rO3o?si=oJeox5Z4QezchrrA&amp;controls=0&autoplay=1&mute=1"
+                src="https://www.youtube.com/embed/C2wcguJOtBY?si=8JT3WlIxgnQqqPrB&amp;controls=0&autoplay=1&mute=1"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen

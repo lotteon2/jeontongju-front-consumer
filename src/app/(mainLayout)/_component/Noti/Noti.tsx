@@ -52,8 +52,6 @@ function Noti() {
       );
 
       eventSource.onopen = () => {
-        console.log("OPEN");
-
         eventSource.removeEventListener("connect", () => {
           console.log("remove connect");
         });

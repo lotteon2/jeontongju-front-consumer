@@ -21,7 +21,6 @@ const unAuthAxiosInstance = axios.create({
 
 authAxiosInstance.interceptors.request.use((config: any) => {
   if (config.headers) {
-    console.log("!!!");
     if (typeof window !== "undefined") {
       config.headers.Authorization = window.localStorage.getItem("accessToken");
     }
@@ -40,7 +39,6 @@ authAxiosInstance.interceptors.response.use(
         `/authentication-service/api/access-token`,
         { refreshToken: localStorage.getItem("refreshToken") }
       );
-      console.log("RETRY", data);
       if (data.data.code === 200) {
         localStorage.setItem("accessToken", data?.data.data.accessToken);
         localStorage.setItem("refreshToken", data?.data.data.refreshToken);

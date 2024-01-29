@@ -1,4 +1,5 @@
 "use client";
+import AdultCaution from "/public/adultCaution.png";
 import LoadingImg from "/public/loading.gif";
 import NotFoundImg from "/public/jeontongju_notfound.png";
 import searchAPI from "@/apis/search/searchAPIService";
@@ -97,7 +98,7 @@ export default function Page({ params }: Props) {
       {mounted && productData ? (
         <div>
           <div className={style.productTop}>
-            <div className={style.thumbnail}>
+            <div className={style.thumbnail} style={{ position: "relative" }}>
               <Image
                 src={productData.productThumbnailImageUrl}
                 alt="productImg"
@@ -110,11 +111,29 @@ export default function Page({ params }: Props) {
                   opacity:
                     productData.isSoldOut ||
                     !productData.isActivate ||
-                    productData.isDeleted
+                    productData.isDeleted ||
+                    (typeof window !== "undefined" &&
+                      !localStorage.getItem("accessToken"))
                       ? 0.4
                       : 1,
                 }}
               />
+              {typeof window !== "undefined" &&
+                !localStorage.getItem("accessToken") && (
+                  <Image
+                    alt="caution"
+                    width={20}
+                    height={20}
+                    src={AdultCaution}
+                    style={{
+                      position: "absolute",
+                      zIndex: "3",
+                      right: 0,
+                      top: 0,
+                    }}
+                  />
+                )}
+
               {productData.isSoldOut && (
                 <div className={style.soldOut}>품절</div>
               )}

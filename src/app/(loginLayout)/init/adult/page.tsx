@@ -28,7 +28,6 @@ export default function Adult() {
 
   const handleAdultValid = async () => {
     if (!window.IMP) return;
-    console.log(window);
     const { IMP } = window;
     IMP.init(process.env.NEXT_PUBLIC_INICIS);
     const data = {

@@ -42,7 +42,6 @@ export default function SignIn() {
       })
         .then((currentToken) => {
           if (currentToken) {
-            console.log(currentToken);
             localStorage.setItem("fcmToken", currentToken);
           } else {
             console.log(
